@@ -1,18 +1,18 @@
 ---
-ID: "f1f09801-7fe4-44f0-a7db-99a6ae96fca0"
-Parent: "00000000-0000-0000-0000-000000000000"
+ID: "c9f8dbd6-e2dd-4af3-a05a-2ef2b441ffdc"
+Parent: "f5dbcb9d-9fb6-4fe2-a647-da41b8ed81e6"
 Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
-Path: "/sitecore/layout/Renderings/Feature/NovaTech/CTABanner"
+Path: "/sitecore/layout/Renderings/Feature/NovaTech/Hero"
 SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
-  Value: CTABanner
+  Value: Hero
 - ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
   Hint: __Icon
-  Value: Office/32x32/loudspeaker.png
+  Value: Office/32x32/painting_landscape.png
 - ID: "1a7c85e5-dc0b-490d-9187-bb1dbcb4c72f"
   Hint: Datasource Template
-  Value: "/sitecore/templates/Project/NovaTechCollection/Components/CTABanner"
+  Value: "/sitecore/templates/Project/NovaTechCollection/Components/Hero"
 - ID: "b5b27af1-25ef-405c-87ce-369b3a004016"
   Hint: Datasource Location
   Value: "./Data"
@@ -24,10 +24,10 @@ SharedFields:
   Value: IsRenderingsWithDynamicPlaceholders=true
 - ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
   Hint: __Sortorder
-  Value: 400
+  Value: 100
 - ID: "dbbbeca1-21c7-4906-9dd2-493c1efa59a2"
   Hint: __Shared revision
-  Value: "3f7063d5-f20b-40e5-a8f9-f8442e641d66"
+  Value: "e3888b97-6c74-4f6d-9e2f-e611083b68df"
 Languages:
 - Language: en
   Versions:
@@ -46,7 +46,7 @@ Languages:
         sitecore\Admin
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "09307fea-a2ef-4890-ac2d-3e929dbfb3f3"
+      Value: "a2fc8032-ae32-4f5b-8f1e-a91dd0c47ebf"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
