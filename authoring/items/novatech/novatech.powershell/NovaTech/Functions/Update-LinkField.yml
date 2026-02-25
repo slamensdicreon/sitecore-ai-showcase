@@ -1,0 +1,69 @@
+---
+ID: "1c80e09a-a16d-4f47-943d-374d5a5c90c3"
+Parent: "f5e07ce1-7d96-445f-ad92-31c858e47737"
+Template: "dd22f1b3-bd87-4db2-9e7d-f7a496888d43"
+Path: /sitecore/system/Modules/PowerShell/Script Library/NovaTech/Functions/Update-LinkField
+SharedFields:
+- ID: "b1a94ff0-6897-47c0-9c51-aa6acb80b1f0"
+  Hint: Script
+  Value: |
+    function Update-LinkField {
+        [CmdLetBinding()]
+        param(
+            [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
+            $Item,
+
+            [Parameter(Mandatory = $true)]
+            [string]$FieldName,
+
+            [Parameter(Mandatory = $false)]
+            [Sitecore.Data.Items.Item]$TargetItem,
+
+            [Parameter(Mandatory = $false)]
+            [string]$Url,
+
+            [Parameter(Mandatory = $false)]
+            [string]$Text
+        )
+
+        process {
+            $Item.Editing.BeginEdit()
+            [Sitecore.Data.Fields.LinkField]$linkField = $Item.Fields[$FieldName]
+            if ($TargetItem) {
+                $linkField.LinkType = "internal"
+                $linkField.TargetID = $TargetItem.ID
+                $linkField.Url = ""
+            }
+            elseif ($Url) {
+                $linkField.LinkType = "external"
+                $linkField.Url = $Url
+                $linkField.TargetID = [Sitecore.Data.ID]::Null
+            }
+            $linkField.QueryString = ""
+            $linkField.Target = ""
+            $linkField.Class = ""
+            if ($Text) {
+                $linkField.Text = $Text
+            }
+            $Item.Editing.EndEdit()
+            return $Item
+        }
+    }
+- ID: "dbbbeca1-21c7-4906-9dd2-493c1efa59a2"
+  Hint: __Shared revision
+  Value: "1c80e09a-a16d-4f47-943d-374d5a5c90c3"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260225T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "1c80e09a-a16d-4f47-943d-374d5a5c90c3"

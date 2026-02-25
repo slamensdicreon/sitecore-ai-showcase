@@ -2,7 +2,7 @@
 ID: "7170f03b-d8f8-4a17-9041-d381eb56b4c7"
 Parent: "f5e07ce1-7d96-445f-ad92-31c858e47737"
 Template: "dd22f1b3-bd87-4db2-9e7d-f7a496888d43"
-Path: /sitecore/system/Modules/PowerShell/Script Library/NovaTech/Functions/Configure Rendering Host
+Path: /sitecore/system/Modules/PowerShell/Script Library/NovaTech/Functions/NovaTech Configure Rendering Host
 SharedFields:
 - ID: "b1a94ff0-6897-47c0-9c51-aa6acb80b1f0"
   Hint: Script
@@ -24,7 +24,7 @@ SharedFields:
             [Item]$SiteLocation = $Model.SiteLocation
             $sitePath = "$($SiteLocation.Paths.Path)/$($Model.SiteName)"
 
-            Write-Log "Setting rendering host to basic-nextjs" -Log "INFO"
+            Write-Log "Setting rendering host to basic-nextjs for NovaTech" -Log "INFO"
             $siteGrouping = Get-Item -Path "$sitePath/Settings/Site Grouping/$($Model.SiteName)" -Language $Site.Language
             $siteGrouping.RenderingHost = "basic-nextjs"
         }
@@ -33,6 +33,9 @@ SharedFields:
             Write-Log "NovaTech - Configure Rendering Host - End" -Log "INFO"
         }
     }
+- ID: "dbbbeca1-21c7-4906-9dd2-493c1efa59a2"
+  Hint: __Shared revision
+  Value: "7170f03b-d8f8-4a17-9041-d381eb56b4c7"
 Languages:
 - Language: en
   Versions:

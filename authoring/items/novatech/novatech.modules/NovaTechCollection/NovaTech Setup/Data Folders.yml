@@ -1,18 +1,8 @@
 ---
-ID: "1da0183b-4254-4f74-8531-dae0e0301254"
-Parent: "a3572733-5062-43e9-a447-54698bc1c637"
-Template: "6d82fcd8-c379-443c-97a9-c6423c71e7d5"
-Path: /sitecore/system/Modules/PowerShell/Script Library/NovaTech
-SharedFields:
-- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
-  Hint: __Icon
-  Value: Office/32x32/rocket.png
-- ID: "218ca464-cb77-4c97-b141-34871ecae00b"
-  Hint: Enabled
-  Value: 1
-- ID: "dbbbeca1-21c7-4906-9dd2-493c1efa59a2"
-  Hint: __Shared revision
-  Value: "1da0183b-4254-4f74-8531-dae0e0301254"
+ID: "fe92ffc5-2e78-4bcb-8ebb-0e48c5527943"
+Parent: "fafae9ef-c7aa-40ca-be66-55258b0a9369"
+Template: "a87a00b1-e6db-45ab-8b54-636fec3b5523"
+Path: "/sitecore/system/Settings/Project/NovaTechCollection/NovaTech Setup/Data Folders"
 Languages:
 - Language: en
   Versions:
@@ -31,7 +21,7 @@ Languages:
         sitecore\Admin
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "1da0183b-4254-4f74-8531-dae0e0301254"
+      Value: "fe92ffc5-2e78-4bcb-8ebb-0e48c5527943"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
