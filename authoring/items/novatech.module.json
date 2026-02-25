@@ -2,7 +2,7 @@
     "$schema": "../../.sitecore/schemas/ModuleFile.schema.json",
     "namespace": "Project.novatech",
     "items": {
-        "path": ".",
+        "path": "novatech",
         "includes": [
             {
                 "name": "novatech.templates",
