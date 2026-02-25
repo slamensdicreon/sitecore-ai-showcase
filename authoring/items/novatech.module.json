@@ -23,6 +23,16 @@
                 "name": "novatech.media",
                 "path": "/sitecore/media library/Feature/NovaTech",
                 "allowedPushOperations": "CreateUpdateAndDelete"
+            },
+            {
+                "name": "novatech.modules",
+                "path": "/sitecore/system/Settings/Project/NovaTechCollection",
+                "allowedPushOperations": "CreateUpdateAndDelete"
+            },
+            {
+                "name": "novatech.powershell",
+                "path": "/sitecore/system/Modules/PowerShell/Script Library/NovaTech",
+                "allowedPushOperations": "CreateUpdateAndDelete"
             }
         ]
     }

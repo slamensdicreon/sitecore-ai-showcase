@@ -1,0 +1,41 @@
+---
+ID: "a7ef3e0f-1624-4426-87e3-e047a1c1f9f5"
+Parent: "fafae9ef-c7aa-40ca-be66-55258b0a9369"
+Template: "8ff2febf-f6d2-461d-9ed3-8b0cb5d9d86f"
+Path: "/sitecore/system/Settings/Project/NovaTechCollection/NovaTech Setup/Post Setup Step"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 300
+- ID: "c0a5bd91-e658-46ce-b631-77ce337d8e6e"
+  Hint: Script
+  Value: "{1DA060EC-FA02-4ED0-B5A0-C977DF759EFC}"
+- ID: "dbbbeca1-21c7-4906-9dd2-493c1efa59a2"
+  Hint: __Shared revision
+  Value: "a7ef3e0f-1624-4426-87e3-e047a1c1f9f5"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260225T000000Z
+    - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
+      Hint: __Owner
+      Value: |
+        sitecore\Admin
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "a7ef3e0f-1624-4426-87e3-e047a1c1f9f5"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\Admin
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20260225T000000Z
