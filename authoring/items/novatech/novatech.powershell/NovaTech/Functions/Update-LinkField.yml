@@ -12,20 +12,20 @@ SharedFields:
         param(
             [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
             $Item,
-
+    
             [Parameter(Mandatory = $true)]
             [string]$FieldName,
-
+    
             [Parameter(Mandatory = $false)]
             [Sitecore.Data.Items.Item]$TargetItem,
-
+    
             [Parameter(Mandatory = $false)]
             [string]$Url,
-
+    
             [Parameter(Mandatory = $false)]
             [string]$Text
         )
-
+    
         process {
             $Item.Editing.BeginEdit()
             [Sitecore.Data.Fields.LinkField]$linkField = $Item.Fields[$FieldName]

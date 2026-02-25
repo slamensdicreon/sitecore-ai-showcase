@@ -12,11 +12,11 @@ SharedFields:
         param(
             [Parameter(Mandatory = $true)]
             [Sitecore.Data.Items.Item]$TemplateItem,
-
+    
             [Parameter(Mandatory = $true)]
             [string[]]$InsertOptions
         )
-
+    
         process {
             $stdValuesItem = $TemplateItem.Children["__Standard Values"]
             if (-not $stdValuesItem) {
