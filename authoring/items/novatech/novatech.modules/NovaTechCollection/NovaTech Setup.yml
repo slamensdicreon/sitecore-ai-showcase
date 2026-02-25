@@ -1,0 +1,30 @@
+---
+ID: "fafae9ef-c7aa-40ca-be66-55258b0a9369"
+Parent: "74a6e81d-6702-4a31-a9ee-22a107df14c2"
+Template: "bed31d6f-d968-45a9-b54e-12d7f977d861"
+Path: "/sitecore/system/Settings/Project/NovaTechCollection/NovaTech Setup"
+SharedFields:
+- ID: "06d2c562-9229-4779-8807-e2a5fd2990d4"
+  Hint: IsSystemModule
+  Value:
+- ID: "11488836-d40f-40d4-beb4-1d31da7b1470"
+  Hint: IncludeByDefault
+  Value:
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260225T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "fafae9ef-c7aa-40ca-be66-55258b0a9369"
+    - ID: "c202067e-7fab-4606-afb4-e76df2185ddc"
+      Hint: Name
+      Value: NovaTech

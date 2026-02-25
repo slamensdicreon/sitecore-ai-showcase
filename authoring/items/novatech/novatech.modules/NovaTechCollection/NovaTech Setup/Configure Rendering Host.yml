@@ -1,0 +1,27 @@
+---
+ID: "1caef43c-02bf-4cc6-a2b5-c34ab37cff14"
+Parent: "fafae9ef-c7aa-40ca-be66-55258b0a9369"
+Template: "bc9bb684-36df-4285-888b-d8b4d87b10de"
+Path: "/sitecore/system/Settings/Project/NovaTechCollection/NovaTech Setup/Configure Rendering Host"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 100
+- ID: "c0a5bd91-e658-46ce-b631-77ce337d8e6e"
+  Hint: Script
+  Value: "{7170F03B-D8F8-4A17-9041-D381EB56B4C7}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260225T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "1caef43c-02bf-4cc6-a2b5-c34ab37cff14"

@@ -1,0 +1,50 @@
+---
+ID: "7170f03b-d8f8-4a17-9041-d381eb56b4c7"
+Parent: "f5e07ce1-7d96-445f-ad92-31c858e47737"
+Template: "dd22f1b3-bd87-4db2-9e7d-f7a496888d43"
+Path: /sitecore/system/Modules/PowerShell/Script Library/NovaTech/Functions/Configure Rendering Host
+SharedFields:
+- ID: "b1a94ff0-6897-47c0-9c51-aa6acb80b1f0"
+  Hint: Script
+  Value: |
+    function Invoke-Step {
+        [CmdletBinding()]
+        param(
+            [Parameter(Mandatory = $true, Position = 0)]
+            [Sitecore.XA.JSS.Foundation.Scaffolding.Models.CreateNewJSSSiteModel]$Model
+        )
+
+        begin {
+            Write-Log "NovaTech - Configure Rendering Host" -Log "INFO"
+            Write-Verbose "Cmdlet Invoke-Step - Begin"
+        }
+
+        process {
+            Write-Verbose "Cmdlet Invoke-Step - Process"
+            [Item]$SiteLocation = $Model.SiteLocation
+            $sitePath = "$($SiteLocation.Paths.Path)/$($Model.SiteName)"
+
+            Write-Log "Setting rendering host to basic-nextjs" -Log "INFO"
+            $siteGrouping = Get-Item -Path "$sitePath/Settings/Site Grouping/$($Model.SiteName)" -Language $Site.Language
+            $siteGrouping.RenderingHost = "basic-nextjs"
+        }
+
+        end {
+            Write-Log "NovaTech - Configure Rendering Host - End" -Log "INFO"
+        }
+    }
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260225T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "7170f03b-d8f8-4a17-9041-d381eb56b4c7"
