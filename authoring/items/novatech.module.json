@@ -1,0 +1,29 @@
+{
+    "$schema": "../../.sitecore/schemas/ModuleFile.schema.json",
+    "namespace": "Project.novatech",
+    "items": {
+        "path": ".",
+        "includes": [
+            {
+                "name": "novatech.templates",
+                "path": "/sitecore/templates/Project/NovaTechCollection",
+                "allowedPushOperations": "CreateUpdateAndDelete"
+            },
+            {
+                "name": "novatech.renderings",
+                "path": "/sitecore/Layout/Renderings/Feature/NovaTech",
+                "allowedPushOperations": "CreateUpdateAndDelete"
+            },
+            {
+                "name": "novatech.placeholderSettings",
+                "path": "/sitecore/Layout/Placeholder Settings/Project/NovaTechCollection",
+                "allowedPushOperations": "CreateUpdateAndDelete"
+            },
+            {
+                "name": "novatech.media",
+                "path": "/sitecore/media library/Feature/NovaTech",
+                "allowedPushOperations": "CreateUpdateAndDelete"
+            }
+        ]
+    }
+}
