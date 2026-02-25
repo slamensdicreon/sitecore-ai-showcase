@@ -1,18 +1,18 @@
 ---
-ID: "887035b7-cf81-472e-b31d-66452298340e"
-Parent: "00000000-0000-0000-0000-000000000000"
+ID: "64f22254-ebbb-46b4-9355-0c0cce6ed420"
+Parent: "f5dbcb9d-9fb6-4fe2-a647-da41b8ed81e6"
 Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
-Path: "/sitecore/layout/Renderings/Feature/NovaTech/Testimonial"
+Path: "/sitecore/layout/Renderings/Feature/NovaTech/FeatureCard"
 SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
-  Value: Testimonial
+  Value: FeatureCard
 - ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
   Hint: __Icon
-  Value: Office/32x32/speech_balloon.png
+  Value: Office/32x32/window_colors.png
 - ID: "1a7c85e5-dc0b-490d-9187-bb1dbcb4c72f"
   Hint: Datasource Template
-  Value: "/sitecore/templates/Project/NovaTechCollection/Components/Testimonial"
+  Value: "/sitecore/templates/Project/NovaTechCollection/Components/FeatureCard"
 - ID: "b5b27af1-25ef-405c-87ce-369b3a004016"
   Hint: Datasource Location
   Value: "./Data"
@@ -24,10 +24,10 @@ SharedFields:
   Value: IsRenderingsWithDynamicPlaceholders=true
 - ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
   Hint: __Sortorder
-  Value: 500
+  Value: 200
 - ID: "dbbbeca1-21c7-4906-9dd2-493c1efa59a2"
   Hint: __Shared revision
-  Value: "ef6e3f18-d85a-4bf0-a7a0-86a35782bdec"
+  Value: "5b3936d4-851a-43b3-8aea-ec13ca24d81b"
 Languages:
 - Language: en
   Versions:
@@ -46,7 +46,7 @@ Languages:
         sitecore\Admin
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "886b61da-2db6-4f1b-aac7-01c88f81f4b0"
+      Value: "5116ba94-a763-4469-9134-f8ce8c64a747"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |

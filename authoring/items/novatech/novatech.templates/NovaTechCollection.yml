@@ -1,23 +1,18 @@
 ---
-ID: "a52120dd-aedd-4b7e-8cde-fd0e87d38474"
-Parent: "00000000-0000-0000-0000-000000000000"
-Template: "5c547d4e-7111-4995-95b0-6b561751bf2e"
-Path: "/sitecore/layout/Placeholder Settings/Project/NovaTechCollection/headless-footer"
+ID: "096c7a8f-2790-4620-82c4-263a7ec09ef0"
+Parent: "825b30b4-b40b-422e-9920-23a1b6bda89c"
+Template: "77157d54-90c8-4014-9b9e-540d24e71d03"
+Path: "/sitecore/templates/Project/NovaTechCollection"
 SharedFields:
-- ID: "7256bdab-1fd2-49dd-b205-cb4873d2917c"
-  Hint: Placeholder Key
-  Value: "headless-footer"
-- ID: "e391b526-d0c5-439d-803e-17512eae6222"
-  Hint: Allowed Controls
-  Value: "{D4DA2C44-F72C-422E-B952-2644EA19F961}"
-- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
-  Hint: __Sortorder
-  Value: 300
 - ID: "dbbbeca1-21c7-4906-9dd2-493c1efa59a2"
   Hint: __Shared revision
-  Value: "e4706118-d99f-4aa1-ba93-812d844bd4b7"
+  Value: "543f046f-ef5f-4920-a282-73ec0fcf4620"
 Languages:
 - Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: NovaTech Collection
   Versions:
   - Version: 1
     Fields:
@@ -34,7 +29,7 @@ Languages:
         sitecore\Admin
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "9001bf04-4afe-494b-8297-5556947c93b0"
+      Value: "6d4e7b35-953e-4771-b034-479f117865b1"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
