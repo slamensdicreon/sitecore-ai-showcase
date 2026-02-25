@@ -1,0 +1,35 @@
+---
+ID: "e9026289-c4ce-4d68-bd5d-554948ca1803"
+Parent: "400a3c7c-cde3-45bd-b8db-1a77a3e88e2f"
+Template: "400a3c7c-cde3-45bd-b8db-1a77a3e88e2f"
+Path: "/sitecore/templates/Project/NovaTechCollection/Components/Hero/__Standard Values"
+SharedFields:
+- ID: "dbbbeca1-21c7-4906-9dd2-493c1efa59a2"
+  Hint: __Shared revision
+  Value: "4240171e-585f-4a99-a1cd-0bbcc6a579d1"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260225T185832Z
+    - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
+      Hint: __Owner
+      Value: |
+        sitecore\Admin
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "41188144-0e35-4ec6-8d98-8744f1150cc6"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\Admin
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20260225T185832Z
