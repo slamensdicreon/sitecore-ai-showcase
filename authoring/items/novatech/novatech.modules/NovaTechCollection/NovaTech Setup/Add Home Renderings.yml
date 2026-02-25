@@ -1,18 +1,21 @@
 ---
-ID: "1da0183b-4254-4f74-8531-dae0e0301254"
-Parent: "a3572733-5062-43e9-a447-54698bc1c637"
-Template: "6d82fcd8-c379-443c-97a9-c6423c71e7d5"
-Path: /sitecore/system/Modules/PowerShell/Script Library/NovaTech
+ID: "aa462927-b5a0-4011-a7f4-912743c7a711"
+Parent: "fafae9ef-c7aa-40ca-be66-55258b0a9369"
+Template: "bc9bb684-36df-4285-888b-d8b4d87b10de"
+Path: "/sitecore/system/Settings/Project/NovaTechCollection/NovaTech Setup/Add Home Renderings"
 SharedFields:
-- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
-  Hint: __Icon
-  Value: Office/32x32/rocket.png
-- ID: "218ca464-cb77-4c97-b141-34871ecae00b"
-  Hint: Enabled
-  Value: 1
+- ID: "51bae6c9-5808-423c-8c0f-bebd884b256d"
+  Hint: ValidationScript
+  Value: "{1DA060EC-FA02-4ED0-B5A0-C977DF759EFC}"
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 200
+- ID: "c0a5bd91-e658-46ce-b631-77ce337d8e6e"
+  Hint: Script
+  Value: "{1DA060EC-FA02-4ED0-B5A0-C977DF759EFC}"
 - ID: "dbbbeca1-21c7-4906-9dd2-493c1efa59a2"
   Hint: __Shared revision
-  Value: "1da0183b-4254-4f74-8531-dae0e0301254"
+  Value: "aa462927-b5a0-4011-a7f4-912743c7a711"
 Languages:
 - Language: en
   Versions:
@@ -31,7 +34,7 @@ Languages:
         sitecore\Admin
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "1da0183b-4254-4f74-8531-dae0e0301254"
+      Value: "aa462927-b5a0-4011-a7f4-912743c7a711"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
