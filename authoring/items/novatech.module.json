@@ -30,6 +30,11 @@
                 "allowedPushOperations": "CreateUpdateAndDelete"
             },
             {
+                "name": "novatech.templates.branches",
+                "path": "/sitecore/templates/Branches/Project/NovaTechCollection",
+                "allowedPushOperations": "CreateUpdateAndDelete"
+            },
+            {
                 "name": "novatech.powershell",
                 "path": "/sitecore/system/Modules/PowerShell/Script Library/NovaTech",
                 "allowedPushOperations": "CreateUpdateAndDelete"
