@@ -5,6 +5,8 @@ import { Form } from '@sitecore-content-sdk/nextjs';
 
 // end of built-in components
 import * as Testimonial from 'src/components/testimonial/Testimonial';
+import * as Container from 'src/components/sxa/Container';
+import * as ColumnSplitter from 'src/components/sxa/ColumnSplitter';
 import * as SiteHeader from 'src/components/site-header/SiteHeader';
 import * as SiteFooter from 'src/components/site-footer/SiteFooter';
 import * as PartialDesignDynamicPlaceholder from 'src/components/partial-design-dynamic-placeholder/PartialDesignDynamicPlaceholder';
@@ -12,8 +14,6 @@ import * as Hero from 'src/components/hero/Hero';
 import * as FeatureCard from 'src/components/feature-card/FeatureCard';
 import * as CTABanner from 'src/components/cta-banner/CTABanner';
 import * as ContentBlock from 'src/components/content-block/ContentBlock';
-import * as Container from 'src/components/sxa/Container';
-import * as ColumnSplitter from 'src/components/sxa/ColumnSplitter';
 import * as ContainerFullBleed from 'src/components/container/container-full-bleed/ContainerFullBleed';
 import * as Container70 from 'src/components/container/container-70/Container70';
 
@@ -22,6 +22,8 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['FEaaSWrapper', FEaaSServerWrapper],
   ['Form', { ...Form, componentType: 'client' }],
   ['Testimonial', { ...Testimonial }],
+  ['Container', { ...Container }],
+  ['ColumnSplitter', { ...ColumnSplitter }],
   ['SiteHeader', { ...SiteHeader }],
   ['SiteFooter', { ...SiteFooter }],
   ['PartialDesignDynamicPlaceholder', { ...PartialDesignDynamicPlaceholder }],
@@ -29,8 +31,6 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['FeatureCard', { ...FeatureCard }],
   ['CTABanner', { ...CTABanner }],
   ['ContentBlock', { ...ContentBlock }],
-  ['Container', { ...Container }],
-  ['ColumnSplitter', { ...ColumnSplitter }],
   ['ContainerFullBleed', { ...ContainerFullBleed }],
   ['Container70', { ...Container70 }],
 ]);
