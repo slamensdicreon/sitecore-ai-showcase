@@ -1,12 +1,9 @@
 ---
 ID: "1caef43c-02bf-4cc6-a2b5-c34ab37cff14"
 Parent: "fafae9ef-c7aa-40ca-be66-55258b0a9369"
-Template: "bc9bb684-36df-4285-888b-d8b4d87b10de"
+Template: "8ff2febf-f6d2-461d-9ed3-8b0cb5d9d86f"
 Path: "/sitecore/system/Settings/Project/NovaTechCollection/NovaTech Setup/Configure Rendering Host"
 SharedFields:
-- ID: "51bae6c9-5808-423c-8c0f-bebd884b256d"
-  Hint: ValidationScript
-  Value: "{7170F03B-D8F8-4A17-9041-D381EB56B4C7}"
 - ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
   Hint: __Sortorder
   Value: 100

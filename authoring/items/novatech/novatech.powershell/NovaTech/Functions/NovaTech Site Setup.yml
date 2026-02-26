@@ -34,10 +34,12 @@ SharedFields:
             Write-Verbose "NovaTech site path: $sitePath"
     
             # Set the start item and rendering host
-            Write-Verbose "Reset the start item"
+            Write-Verbose "Reset the start item and rendering host"
             $siteName = $Site.Name
             $siteGrouping = Get-Item -Path "$sitePath/Settings/Site Grouping/$($siteName)" -Language $Site.Language
             $siteGrouping.StartItem = $item.ID
+            $siteGrouping.RenderingHost = "basic-nextjs"
+            Write-Log "Set rendering host to basic-nextjs" -Log "INFO"
     
             # Create page templates in the Site Collection
             Write-Verbose "Create page templates in the Site Collection"
