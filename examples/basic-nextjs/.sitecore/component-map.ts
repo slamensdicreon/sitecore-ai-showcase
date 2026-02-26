@@ -12,6 +12,10 @@ import * as Hero from 'src/components/hero/Hero';
 import * as FeatureCard from 'src/components/feature-card/FeatureCard';
 import * as CTABanner from 'src/components/cta-banner/CTABanner';
 import * as ContentBlock from 'src/components/content-block/ContentBlock';
+import * as Container from 'src/components/sxa/Container';
+import * as ColumnSplitter from 'src/components/sxa/ColumnSplitter';
+import * as ContainerFullBleed from 'src/components/container/container-full-bleed/ContainerFullBleed';
+import * as Container70 from 'src/components/container/container-70/Container70';
 
 export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['BYOCWrapper', BYOCServerWrapper],
@@ -25,6 +29,10 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['FeatureCard', { ...FeatureCard }],
   ['CTABanner', { ...CTABanner }],
   ['ContentBlock', { ...ContentBlock }],
+  ['Container', { ...Container }],
+  ['ColumnSplitter', { ...ColumnSplitter }],
+  ['ContainerFullBleed', { ...ContainerFullBleed }],
+  ['Container70', { ...Container70 }],
 ]);
 
 export default componentMap;
