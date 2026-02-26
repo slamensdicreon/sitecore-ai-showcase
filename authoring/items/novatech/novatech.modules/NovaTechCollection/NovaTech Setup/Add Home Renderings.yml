@@ -6,7 +6,7 @@ Path: "/sitecore/system/Settings/Project/NovaTechCollection/NovaTech Setup/Add H
 SharedFields:
 - ID: "51bae6c9-5808-423c-8c0f-bebd884b256d"
   Hint: ValidationScript
-  Value: "{1DA060EC-FA02-4ED0-B5A0-C977DF759EFC}"
+  Value:
 - ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
   Hint: __Sortorder
   Value: 200
