@@ -6,19 +6,23 @@ import Layout from 'src/Layout';
 import Providers from 'src/Providers';
 
 export default async function NotFound() {
-  if (scConfig.defaultSite) {
-    const page = await client.getErrorPage(ErrorPage.NotFound, {
-      site: scConfig.defaultSite,
-      locale: scConfig.defaultLanguage,
-    });
+  try {
+    if (scConfig.defaultSite) {
+      const page = await client.getErrorPage(ErrorPage.NotFound, {
+        site: scConfig.defaultSite,
+        locale: scConfig.defaultLanguage,
+      });
 
-    if (page) {
-      return (
-        <Providers page={page}>
-          <Layout page={page} />
-        </Providers>
-      );
+      if (page) {
+        return (
+          <Providers page={page}>
+            <Layout page={page} />
+          </Providers>
+        );
+      }
     }
+  } catch {
+    // XM Cloud not reachable — fall through to static fallback
   }
 
   return (

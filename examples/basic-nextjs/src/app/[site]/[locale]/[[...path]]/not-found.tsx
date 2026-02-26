@@ -9,22 +9,26 @@ import Providers from 'src/Providers';
 import { NextIntlClientProvider } from 'next-intl';
 
 export default async function NotFound() {
-  const headersList = await headers();
-  const { site, locale } = parseRewriteHeader(headersList);
+  try {
+    const headersList = await headers();
+    const { site, locale } = parseRewriteHeader(headersList);
 
-  const page = await client.getErrorPage(ErrorPage.NotFound, {
-    site: site || scConfig.defaultSite,
-    locale: locale || scConfig.defaultLanguage,
-  });
+    const page = await client.getErrorPage(ErrorPage.NotFound, {
+      site: site || scConfig.defaultSite,
+      locale: locale || scConfig.defaultLanguage,
+    });
 
-  if (page) {
-    return (
-      <NextIntlClientProvider>
-        <Providers page={page}>
-          <Layout page={page} />
-        </Providers>
-      </NextIntlClientProvider>
-    );
+    if (page) {
+      return (
+        <NextIntlClientProvider>
+          <Providers page={page}>
+            <Layout page={page} />
+          </Providers>
+        </NextIntlClientProvider>
+      );
+    }
+  } catch {
+    // XM Cloud not reachable — fall through to static fallback
   }
 
   return (
