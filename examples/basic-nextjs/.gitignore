@@ -9,6 +9,7 @@
 
 # misc
 .DS_Store
+tsconfig.tsbuildinfo
 
 # local env files
 .env.local
@@ -27,3 +28,4 @@
 !.sitecore/component-map.ts
 !.sitecore/component-map.client.ts
 !.sitecore/import-map.ts
+!.sitecore/sites.json
