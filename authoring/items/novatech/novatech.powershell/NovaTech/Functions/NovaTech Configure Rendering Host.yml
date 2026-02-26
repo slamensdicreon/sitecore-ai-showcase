@@ -13,22 +13,22 @@ SharedFields:
             [Parameter(Mandatory = $true, Position = 0)]
             [Sitecore.XA.JSS.Foundation.Scaffolding.Models.CreateNewJSSSiteModel]$Model
         )
-
+    
         begin {
             Write-Log "NovaTech - Configure Rendering Host" -Log "INFO"
             Write-Verbose "Cmdlet Invoke-Step - Begin"
         }
-
+    
         process {
             Write-Verbose "Cmdlet Invoke-Step - Process"
             [Item]$SiteLocation = $Model.SiteLocation
             $sitePath = "$($SiteLocation.Paths.Path)/$($Model.SiteName)"
-
+    
             Write-Log "Setting rendering host to basic-nextjs for NovaTech" -Log "INFO"
             $siteGrouping = Get-Item -Path "$sitePath/Settings/Site Grouping/$($Model.SiteName)" -Language $Site.Language
             $siteGrouping.RenderingHost = "basic-nextjs"
         }
-
+    
         end {
             Write-Log "NovaTech - Configure Rendering Host - End" -Log "INFO"
         }

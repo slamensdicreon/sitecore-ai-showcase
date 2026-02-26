@@ -12,18 +12,18 @@ SharedFields:
         param(
             [Parameter(Mandatory = $true)]
             [string]$BaseTemplateId,
-
+    
             [Parameter(Mandatory = $true)]
             [string]$TemplateName,
-
+    
             [Parameter(Mandatory = $true)]
             [string]$TemplatesRootPath
         )
-
+    
         process {
             $templatePath = "$TemplatesRootPath/$TemplateName"
             $baseTemplate = Get-Item -Path "master:$BaseTemplateId"
-
+    
             if (-not (Test-Path $templatePath)) {
                 $templateItem = New-Item -Path $TemplatesRootPath -Name $TemplateName -ItemType "{AB86861A-6030-46C5-B394-E8F99E8B87DB}"
                 $templateItem."__Icon" = $baseTemplate."__Icon"
