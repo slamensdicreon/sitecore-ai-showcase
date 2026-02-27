@@ -70,33 +70,41 @@ export default async function Page({ params, searchParams }: PageProps) {
 // This function gets called at build and export time to determine
 // pages for SSG ("paths", as tokenized array).
 export const generateStaticParams = async () => {
-  if (process.env.NODE_ENV !== "development" && scConfig.generateStaticPaths) {
-    // Filter sites to only include the sites this starter is designed to serve.
-    // This prevents cross-site build errors when multiple starters share the same XM Cloud instance.
-    const defaultSite = scConfig.defaultSite;
-    const allowedSites = defaultSite
-      ? sites
-          .filter((site: SiteInfo) => site.name === defaultSite)
-          .map((site: SiteInfo) => site.name)
-      : sites.map((site: SiteInfo) => site.name);
-    return await client.getAppRouterStaticParams(
-      allowedSites,
-      routing.locales.slice()
-    );
+  try {
+    if (process.env.NODE_ENV !== "development" && scConfig.generateStaticPaths) {
+      // Filter sites to only include the sites this starter is designed to serve.
+      // This prevents cross-site build errors when multiple starters share the same XM Cloud instance.
+      const defaultSite = scConfig.defaultSite;
+      const allowedSites = defaultSite
+        ? sites
+            .filter((site: SiteInfo) => site.name === defaultSite)
+            .map((site: SiteInfo) => site.name)
+        : sites.map((site: SiteInfo) => site.name);
+      return await client.getAppRouterStaticParams(
+        allowedSites,
+        routing.locales.slice()
+      );
+    }
+  } catch {
+    // XM Cloud not reachable — skip static path generation
   }
   return [];
 };
 
 // Metadata fields for the page.
 export const generateMetadata = async ({ params }: PageProps) => {
-  const { path, site, locale } = await params;
+  try {
+    const { path, site, locale } = await params;
 
-  // The same call as for rendering the page. Should be cached by default react behavior
-  const page = await client.getPage(path ?? [], { site, locale });
-  return {
-    title:
-      (
-        page?.layout.sitecore.route?.fields as RouteFields
-      )?.Title?.value?.toString() || "Page",
-  };
+    // The same call as for rendering the page. Should be cached by default react behavior
+    const page = await client.getPage(path ?? [], { site, locale });
+    return {
+      title:
+        (
+          page?.layout.sitecore.route?.fields as RouteFields
+        )?.Title?.value?.toString() || "Page",
+    };
+  } catch {
+    return { title: "Page" };
+  }
 };
