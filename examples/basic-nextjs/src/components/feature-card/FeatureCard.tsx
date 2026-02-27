@@ -2,9 +2,6 @@ import { JSX } from 'react';
 import { Text, RichText, Image, Link, Field, ImageField, LinkField } from '@sitecore-content-sdk/nextjs';
 import { ComponentProps } from 'lib/component-props';
 
-/**
- * Fields for the FeatureCard datasource template
- */
 interface FeatureCardFields {
   Icon: ImageField;
   Title: Field<string>;
@@ -16,10 +13,6 @@ type FeatureCardProps = ComponentProps & {
   fields: FeatureCardFields;
 };
 
-/**
- * FeatureCard component — displays an icon, title, description, and optional link.
- * Maps to the "FeatureCard" JSON rendering in Sitecore.
- */
 export const Default = (props: FeatureCardProps): JSX.Element => {
   const { fields, params } = props;
   const id = params?.RenderingIdentifier;
@@ -40,14 +33,21 @@ export const Default = (props: FeatureCardProps): JSX.Element => {
       className={`component feature-card ${styles}`}
       id={id || undefined}
       style={{
-        background: '#FFFFFF',
-        borderRadius: '12px',
-        padding: '32px',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-        transition: 'box-shadow 0.2s ease',
+        background: '#F9FAFB',
+        padding: '24px',
       }}
     >
-      <div className="component-content">
+      <div
+        className="component-content"
+        style={{
+          background: '#FFFFFF',
+          borderRadius: '12px',
+          padding: '32px',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+          height: '100%',
+          boxSizing: 'border-box',
+        }}
+      >
         {fields.Icon?.value?.src && (
           <div style={{ marginBottom: '16px' }}>
             <Image

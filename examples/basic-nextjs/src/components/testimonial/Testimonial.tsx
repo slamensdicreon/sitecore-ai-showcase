@@ -2,9 +2,6 @@ import { JSX } from 'react';
 import { RichText, Text, Image, Field, ImageField } from '@sitecore-content-sdk/nextjs';
 import { ComponentProps } from 'lib/component-props';
 
-/**
- * Fields for the Testimonial datasource template
- */
 interface TestimonialFields {
   Quote: Field<string>;
   AuthorName: Field<string>;
@@ -16,10 +13,6 @@ type TestimonialProps = ComponentProps & {
   fields: TestimonialFields;
 };
 
-/**
- * Testimonial component — blockquote with author photo, name, and title.
- * Maps to the "Testimonial" JSON rendering in Sitecore.
- */
 export const Default = (props: TestimonialProps): JSX.Element => {
   const { fields, params } = props;
   const id = params?.RenderingIdentifier;
@@ -40,14 +33,18 @@ export const Default = (props: TestimonialProps): JSX.Element => {
       className={`component testimonial ${styles}`}
       id={id || undefined}
       style={{
-        padding: '48px 24px',
-        maxWidth: '720px',
-        margin: '0 auto',
-        textAlign: 'center',
+        background: '#FFFFFF',
+        padding: '64px 24px',
       }}
     >
-      <div className="component-content">
-        {/* Quote */}
+      <div
+        className="component-content"
+        style={{
+          maxWidth: '720px',
+          margin: '0 auto',
+          textAlign: 'center',
+        }}
+      >
         <blockquote
           style={{
             fontSize: '1.3rem',
@@ -74,7 +71,6 @@ export const Default = (props: TestimonialProps): JSX.Element => {
           <RichText field={fields.Quote} />
         </blockquote>
 
-        {/* Author */}
         <div
           style={{
             display: 'flex',

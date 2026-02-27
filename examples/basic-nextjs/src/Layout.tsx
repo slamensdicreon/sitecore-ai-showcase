@@ -23,6 +23,24 @@ function isPlaceholderEmpty(
   return !ph || ph.length === 0;
 }
 
+const sectionLayoutStyles = `
+  #content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  #content > * {
+    grid-column: 1 / -1;
+  }
+  #content > .component.feature-card {
+    grid-column: auto;
+  }
+  @media (max-width: 900px) {
+    #content > .component.feature-card {
+      grid-column: 1 / -1;
+    }
+  }
+`;
+
 const Layout = ({ page }: LayoutProps): JSX.Element => {
   const { layout, mode } = page;
   const { route } = layout.sitecore;
@@ -36,6 +54,7 @@ const Layout = ({ page }: LayoutProps): JSX.Element => {
     <>
       <Scripts />
       <SitecoreStyles layoutData={layout} />
+      <style dangerouslySetInnerHTML={{ __html: sectionLayoutStyles }} />
       <div className={mainClassPageEditing}>
         {mode.isDesignLibrary ? (
           route && (
