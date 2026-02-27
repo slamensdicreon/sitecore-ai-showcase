@@ -17,6 +17,10 @@ The configured workflow runs the **basic-nextjs** example (`examples/basic-nextj
 - `/authoring` - Sitecore content item definitions (.NET/C# project)
 - `/local-containers` - Docker configuration for local dev
 
+## Pages
+- **Home** (`/`) — Hero, 3 FeatureCards, ContentBlock, Testimonial, CTABanner
+- **Products** (`/Products`) — ProductHero, 3 ProductFeatures, PricingTable, CTABanner
+
 ## NovaTech Components
 Components located in `examples/basic-nextjs/src/components/`:
 - **Hero** - Full-width banner with heading, subheading, background image, and CTA
@@ -24,8 +28,11 @@ Components located in `examples/basic-nextjs/src/components/`:
 - **FeatureCard** - White card with icon, title, description, and link
 - **Testimonial** - Blockquote with author attribution
 - **ContentBlock** - Two-column text + image layout (configurable position)
-- **SiteHeader** - Sticky dark navy header with logo and CTA
+- **SiteHeader** - Sticky dark navy header with logo and CTA (links to /Products)
 - **SiteFooter** - Dark navy footer with logo and copyright
+- **ProductHero** - Product page hero with "Product" badge, heading, tagline, 2 CTAs
+- **ProductFeature** - Alternating left/right feature sections with badge, title, description, image placeholder
+- **PricingTable** - 3-tier pricing section (Starter $49/mo, Professional $149/mo, Enterprise Custom)
 
 ## Tech Stack
 - **Runtime**: Node.js 20
@@ -47,17 +54,33 @@ cd examples/basic-nextjs && npm run next:dev -- -p 5000 -H 0.0.0.0
 ```
 
 ## Default Content Layer
-When Sitecore CMS placeholders are empty (no components placed in the layout), the app renders default NovaTech content via:
-- `src/lib/default-content.ts` — Static content data for all components
-- `src/components/default-content/DefaultContent.tsx` — Renders default components when placeholders are empty
-- `src/Layout.tsx` — Checks if placeholders are empty and falls back to default content
+When Sitecore CMS placeholders are empty or Edge API returns empty rendered data, the app renders default NovaTech content via:
+- `src/lib/default-content.ts` — Static content data for Home and Products pages (exported via `getDefaultContent(routePath)`)
+- `src/components/default-content/DefaultContent.tsx` — Renders default components when placeholders are empty, with page-specific layouts
+- `src/Layout.tsx` — Checks if placeholders are empty and falls back to default content, passing `routePath` for page-specific defaults
+- `src/app/[site]/[locale]/[[...path]]/page.tsx` — Creates fallback page object for known paths when Edge returns no data
 
 When components are placed in Sitecore CMS, the CMS content takes priority automatically.
+
+## SDK Patch
+The Sitecore Content SDK (`@sitecore-content-sdk/core`) has a bug where it crashes when Edge returns `rendered: {}` (empty object). The layout-service.js files (CJS and ESM) are patched to check for `rendered.sitecore` before using the rendered data. This patch will need to be re-applied if node_modules are reinstalled.
+
+## Sitecore CMS Architecture
+- **CM URL**: `xmc-icreonpartncfab-novatechshof00c-novatech964b.sitecorecloud.io`
+- **Home page ID**: `0a7f28d1a8b24b8090c9e4643fdf866f`
+- **Products page ID**: `4aa845a07de340c68dc1f0ae57885350`
+- **Rendering folder**: `326231e90099427aa7e54643f5d9278c`
+- **Data folder**: `9af2100833f44c0c8cd5493da38d1268`
+- Templates: ProductHero, ProductFeature, PricingTable (+ existing Hero, CTABanner, etc.)
+- Publishing target: `experienceedge` via `publishSite` mutation
 
 ## Key Configuration Changes Made
 - `examples/basic-nextjs/next.config.ts`: Added `allowedDevOrigins` for Replit proxy compatibility
 - `examples/basic-nextjs/sitecore.config.ts`: Reads Edge credentials from env vars with graceful fallback
-- `examples/basic-nextjs/src/Layout.tsx`: Added default content fallback for empty Sitecore placeholders
+- `examples/basic-nextjs/src/Layout.tsx`: Added default content fallback for empty Sitecore placeholders, optional chaining for layout.sitecore
+- `examples/basic-nextjs/src/Scripts.tsx`: Guards SDK components that access layout.sitecore
+- `examples/basic-nextjs/src/byoc/index.tsx`: Optional chaining for layout.sitecore.context
+- `examples/basic-nextjs/src/components/content-sdk/CdpPageView.tsx`: Optional chaining for layout.sitecore
 
 ## Deployment
 - Target: Autoscale

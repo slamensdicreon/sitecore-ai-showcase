@@ -6,7 +6,10 @@ import { Default as FeatureCardDefault } from 'src/components/feature-card/Featu
 import { Default as CTABannerDefault } from 'src/components/cta-banner/CTABanner';
 import { Default as TestimonialDefault } from 'src/components/testimonial/Testimonial';
 import { Default as ContentBlockDefault } from 'src/components/content-block/ContentBlock';
-import defaultContent from 'src/lib/default-content';
+import { Default as ProductHeroDefault } from 'src/components/product-hero/ProductHero';
+import { Default as ProductFeatureDefault } from 'src/components/product-feature/ProductFeature';
+import { Default as PricingTableDefault } from 'src/components/pricing-table/PricingTable';
+import defaultContent, { getDefaultContent } from 'src/lib/default-content';
 
 const componentRegistry: Record<string, React.ComponentType<any>> = {
   Hero: HeroDefault,
@@ -16,18 +19,27 @@ const componentRegistry: Record<string, React.ComponentType<any>> = {
   CTABanner: CTABannerDefault,
   Testimonial: TestimonialDefault,
   ContentBlock: ContentBlockDefault,
+  ProductHero: ProductHeroDefault,
+  ProductFeature: ProductFeatureDefault,
+  PricingTable: PricingTableDefault,
 };
 
 interface DefaultPlaceholderProps {
   name: string;
+  routePath?: string;
 }
 
-export const DefaultPlaceholder = ({ name }: DefaultPlaceholderProps): JSX.Element | null => {
-  const items = defaultContent[name as keyof typeof defaultContent];
+export const DefaultPlaceholder = ({ name, routePath }: DefaultPlaceholderProps): JSX.Element | null => {
+  const content = routePath ? getDefaultContent(routePath) : defaultContent;
+  const items = content[name as keyof typeof content];
   if (!items || items.length === 0) return null;
 
-  if (name === 'headless-main') {
+  if (name === 'headless-main' && (!routePath || routePath === '/')) {
     return <DefaultMainContent />;
+  }
+
+  if (name === 'headless-main' && routePath?.toLowerCase()?.endsWith('/products')) {
+    return <DefaultProductsContent />;
   }
 
   return (
@@ -116,6 +128,52 @@ const DefaultMainContent = (): JSX.Element => {
             rendering={{ componentName: 'Testimonial' }}
           />
         </div>
+      )}
+
+      {ctaBanner && (
+        <CTABannerDefault
+          fields={ctaBanner.fields as any}
+          params={{}}
+          rendering={{ componentName: 'CTABanner' }}
+        />
+      )}
+    </>
+  );
+};
+
+const DefaultProductsContent = (): JSX.Element => {
+  const content = getDefaultContent('/products');
+  const mainItems = content['headless-main'];
+  const productHero = mainItems.find((item) => item.componentName === 'ProductHero');
+  const productFeatures = mainItems.filter((item) => item.componentName === 'ProductFeature');
+  const pricingTable = mainItems.find((item) => item.componentName === 'PricingTable');
+  const ctaBanner = mainItems.find((item) => item.componentName === 'CTABanner');
+
+  return (
+    <>
+      {productHero && (
+        <ProductHeroDefault
+          fields={productHero.fields as any}
+          params={{}}
+          rendering={{ componentName: 'ProductHero' }}
+        />
+      )}
+
+      {productFeatures.map((item, index) => (
+        <ProductFeatureDefault
+          key={`product-feature-${index}`}
+          fields={item.fields as any}
+          params={{}}
+          rendering={{ componentName: 'ProductFeature' }}
+        />
+      ))}
+
+      {pricingTable && (
+        <PricingTableDefault
+          fields={pricingTable.fields as any}
+          params={{}}
+          rendering={{ componentName: 'PricingTable' }}
+        />
       )}
 
       {ctaBanner && (

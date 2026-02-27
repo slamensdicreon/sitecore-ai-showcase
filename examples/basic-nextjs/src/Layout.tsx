@@ -8,6 +8,7 @@ import { DefaultPlaceholder } from "src/components/default-content/DefaultConten
 
 interface LayoutProps {
   page: Page;
+  routePath?: string;
 }
 
 export interface RouteFields {
@@ -41,9 +42,10 @@ const sectionLayoutStyles = `
   }
 `;
 
-const Layout = ({ page }: LayoutProps): JSX.Element => {
+const Layout = ({ page, routePath: urlPath }: LayoutProps): JSX.Element => {
   const { layout, mode } = page;
-  const { route } = layout.sitecore;
+  const route = layout?.sitecore?.route ?? null;
+  const routePath = urlPath || (route?.name === 'Home' ? '/' : route?.name ? `/${route.name}` : '/');
   const mainClassPageEditing = mode.isEditing ? "editing-mode" : "prod-mode";
 
   const headerEmpty = isPlaceholderEmpty(route, "headless-header");
@@ -53,7 +55,7 @@ const Layout = ({ page }: LayoutProps): JSX.Element => {
   return (
     <>
       <Scripts />
-      <SitecoreStyles layoutData={layout} />
+      {layout?.sitecore && <SitecoreStyles layoutData={layout} />}
       <style dangerouslySetInnerHTML={{ __html: sectionLayoutStyles }} />
       <div className={mainClassPageEditing}>
         {mode.isDesignLibrary ? (
@@ -77,7 +79,7 @@ const Layout = ({ page }: LayoutProps): JSX.Element => {
                     rendering={route}
                   />
                 ) : (
-                  <DefaultPlaceholder name="headless-header" />
+                  <DefaultPlaceholder name="headless-header" routePath={routePath} />
                 )}
               </div>
             </header>
@@ -91,7 +93,7 @@ const Layout = ({ page }: LayoutProps): JSX.Element => {
                     rendering={route}
                   />
                 ) : (
-                  <DefaultPlaceholder name="headless-main" />
+                  <DefaultPlaceholder name="headless-main" routePath={routePath} />
                 )}
               </div>
             </main>
@@ -105,7 +107,7 @@ const Layout = ({ page }: LayoutProps): JSX.Element => {
                     rendering={route}
                   />
                 ) : (
-                  <DefaultPlaceholder name="headless-footer" />
+                  <DefaultPlaceholder name="headless-footer" routePath={routePath} />
                 )}
               </div>
             </footer>
