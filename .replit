@@ -37,3 +37,8 @@ externalPort = 80
 deploymentTarget = "autoscale"
 run = ["bash", "-c", "cd examples/basic-nextjs && npm run next:start -- -p 5000 -H 0.0.0.0"]
 build = ["bash", "-c", "cd examples/basic-nextjs && npm run next:build"]
+
+[userenv]
+
+[userenv.shared]
+NEXT_PUBLIC_DEFAULT_SITE_NAME = "NovaTech"
