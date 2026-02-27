@@ -46,9 +46,18 @@ Components located in `examples/basic-nextjs/src/components/`:
 cd examples/basic-nextjs && npm run next:dev -- -p 5000 -H 0.0.0.0
 ```
 
+## Default Content Layer
+When Sitecore CMS placeholders are empty (no components placed in the layout), the app renders default NovaTech content via:
+- `src/lib/default-content.ts` — Static content data for all components
+- `src/components/default-content/DefaultContent.tsx` — Renders default components when placeholders are empty
+- `src/Layout.tsx` — Checks if placeholders are empty and falls back to default content
+
+When components are placed in Sitecore CMS, the CMS content takes priority automatically.
+
 ## Key Configuration Changes Made
 - `examples/basic-nextjs/next.config.ts`: Added `allowedDevOrigins` for Replit proxy compatibility
 - `examples/basic-nextjs/sitecore.config.ts`: Reads Edge credentials from env vars with graceful fallback
+- `examples/basic-nextjs/src/Layout.tsx`: Added default content fallback for empty Sitecore placeholders
 
 ## Deployment
 - Target: Autoscale
