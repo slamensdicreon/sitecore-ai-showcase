@@ -1,7 +1,7 @@
 # Sitecore XM Cloud Front End Starter Kits
 
 ## Project Overview
-This is the official Sitecore XM Cloud Front End Starter Kits repository. It contains multiple Next.js starter applications for building headless front-end apps powered by Sitecore XM Cloud.
+This is the official Sitecore XM Cloud Front End Starter Kits repository. It contains multiple Next.js starter applications for building headless front-end apps powered by Sitecore XM Cloud. The active site being developed is **NovaTech** — a modern, AI-focused technology company marketing website.
 
 ## Active Application
 The configured workflow runs the **basic-nextjs** example (`examples/basic-nextjs`), which is a Next.js 15 App Router application using the Sitecore Content SDK.
@@ -17,32 +17,38 @@ The configured workflow runs the **basic-nextjs** example (`examples/basic-nextj
 - `/authoring` - Sitecore content item definitions (.NET/C# project)
 - `/local-containers` - Docker configuration for local dev
 
+## NovaTech Components
+Components located in `examples/basic-nextjs/src/components/`:
+- **Hero** - Full-width banner with heading, subheading, background image, and CTA
+- **CTABanner** - Dark navy conversion section with primary/secondary buttons
+- **FeatureCard** - White card with icon, title, description, and link
+- **Testimonial** - Blockquote with author attribution
+- **ContentBlock** - Two-column text + image layout (configurable position)
+- **SiteHeader** - Sticky dark navy header with logo and CTA
+- **SiteFooter** - Dark navy footer with logo and copyright
+
 ## Tech Stack
 - **Runtime**: Node.js 20
 - **Framework**: Next.js 15.5 (App Router)
 - **Language**: TypeScript
-- **Styling**: Tailwind CSS 4
-- **CMS**: Sitecore XM Cloud (requires external credentials)
+- **Styling**: Tailwind CSS 4 + inline styles on components
+- **CMS**: Sitecore XM Cloud (connected via Edge API)
 - **i18n**: next-intl
+
+## Environment Variables (Configured)
+- `SITECORE_EDGE_CONTEXT_ID` - Server-side Edge context ID (secret)
+- `NEXT_PUBLIC_SITECORE_EDGE_CONTEXT_ID` - Client-side Edge context ID (secret)
+- `NEXT_PUBLIC_DEFAULT_SITE_NAME` - Set to "NovaTech" (env var)
+- `SITECORE_EDITING_SECRET` - Editing endpoint auth token (secret)
 
 ## Running the App
 ```
 cd examples/basic-nextjs && npm run next:dev -- -p 5000 -H 0.0.0.0
 ```
 
-## Sitecore XM Cloud Configuration
-The app requires Sitecore XM Cloud credentials to serve real content. Without them, it starts up but returns 500 errors on page load (GraphQL calls to Sitecore fail).
-
-Configure credentials in `examples/basic-nextjs/.env.local`:
-```
-SITECORE_EDGE_CONTEXT_ID=<your-context-id>
-NEXT_PUBLIC_SITECORE_EDGE_CONTEXT_ID=<your-context-id>
-NEXT_PUBLIC_DEFAULT_SITE_NAME=<your-site-name>
-```
-
 ## Key Configuration Changes Made
 - `examples/basic-nextjs/next.config.ts`: Added `allowedDevOrigins` for Replit proxy compatibility
-- `examples/basic-nextjs/sitecore.config.ts`: Uses graceful fallback (`not-configured`) when no Sitecore credentials are set
+- `examples/basic-nextjs/sitecore.config.ts`: Reads Edge credentials from env vars with graceful fallback
 
 ## Deployment
 - Target: Autoscale
