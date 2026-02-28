@@ -74,6 +74,12 @@ The Sitecore Content SDK (`@sitecore-content-sdk/core`) has a bug where it crash
 - Templates: ProductHero, ProductFeature, PricingTable (+ existing Hero, CTABanner, etc.)
 - Publishing target: `experienceedge` via `publishSite` mutation
 
+## Important: Sitecore Internal Links
+When setting `linktype="internal"` in Sitecore General Link fields (like CTALink), you MUST include the item's GUID in the `id` attribute. Using only `url="/path"` without the GUID will cause the CM's Edge layout resolution to fail for ALL pages (returns `rendered: {}`).
+
+Correct format: `<link linktype="internal" id="{4AA845A0-7DE3-40C6-8DC1-F0AE57885350}" url="/Products" text="Get Started" />`
+Wrong format: `<link linktype="internal" url="/Products" text="Get Started" />` (missing id — breaks Edge!)
+
 ## Key Configuration Changes Made
 - `examples/basic-nextjs/next.config.ts`: Added `allowedDevOrigins` for Replit proxy compatibility
 - `examples/basic-nextjs/sitecore.config.ts`: Reads Edge credentials from env vars with graceful fallback

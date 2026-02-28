@@ -1,0 +1,114 @@
+
+OrganizationId: org_nqH2YUQNEoUWPkGW
+EnvironmentId: 3FfgVDmwZogRKSkc9oy1Ai
+DeploymentId: 4D3OcIIMlkw4jwU10bnwjg
+PlatformTenantName: icreonpartn17e6-novatechshoc0c7-basicnextjs02e2
+Region: eus
+Build - In Progress
+02/25/2026 17:09:23 +00:00|INFO|Downloading source code from git ref/commit: main
+02/25/2026 17:09:40 +00:00|INFO|Starting editing host build because source code was provided.
+02/25/2026 17:09:51 +00:00|INFO|Resolved version '@sitecore-content-sdk/nextjs' is, 1.4.1
+02/25/2026 17:09:54 +00:00|INFO|Starting Rendering host building
+02/25/2026 17:09:54 +00:00|INFO|Downloading artifacts...
+02/25/2026 17:10:01 +00:00|INFO|Unzipping...
+02/25/2026 17:10:09 +00:00|INFO|Removing zip...
+02/25/2026 17:10:11 +00:00|INFO|Building rendering host for 'basic-nextjs'
+02/25/2026 17:10:11 +00:00|INFO|Extracting build configs completed.
+02/25/2026 17:10:11 +00:00|INFO|Installing node for 'basic-nextjs' of version 22.22.0
+02/25/2026 17:10:13 +00:00|INFO|Node installation for 'basic-nextjs' completed
+02/25/2026 17:10:13 +00:00|INFO|Building artifacts for 'basic-nextjs'...
+02/25/2026 17:10:13 +00:00|INFO|Node version: v22.22.0
+02/25/2026 17:10:13 +00:00|INFO|npm warn using --force Recommended protections disabled.
+02/25/2026 17:10:15 +00:00|INFO|npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+02/25/2026 17:10:15 +00:00|INFO|npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+02/25/2026 17:10:16 +00:00|INFO|npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+02/25/2026 17:10:21 +00:00|INFO|added 516 packages, and audited 517 packages in 7s
+02/25/2026 17:10:21 +00:00|INFO|169 packages are looking for funding
+02/25/2026 17:10:21 +00:00|INFO|run `npm fund` for details
+02/25/2026 17:10:21 +00:00|INFO|3 vulnerabilities (1 moderate, 2 high)
+02/25/2026 17:10:21 +00:00|INFO|To address all issues, run:
+02/25/2026 17:10:21 +00:00|INFO|npm audit fix
+02/25/2026 17:10:21 +00:00|INFO|Run `npm audit` for details.
+02/25/2026 17:10:22 +00:00|INFO|Found Content SDK package version: 1.4.1 for site: basic-nextjs
+02/25/2026 17:10:22 +00:00|INFO|pnpm installation started
+02/25/2026 17:10:23 +00:00|INFO|added 1 package in 824ms
+02/25/2026 17:10:23 +00:00|INFO|1 package is looking for funding
+02/25/2026 17:10:23 +00:00|INFO|run `npm fund` for details
+02/25/2026 17:10:23 +00:00|INFO|Running build with 'build'
+02/25/2026 17:10:23 +00:00|INFO|> content-sdk-nextjs-app-router@1.0.0 build
+02/25/2026 17:10:23 +00:00|INFO|> cross-env NODE_ENV=production npm-run-all --serial sitecore-tools:generate-map sitecore-tools:build next:build
+02/25/2026 17:10:23 +00:00|INFO|> content-sdk-nextjs-app-router@1.0.0 sitecore-tools:generate-map
+02/25/2026 17:10:23 +00:00|INFO|> sitecore-tools project component generate-map
+02/25/2026 17:10:23 +00:00|INFO|Generating component map for:
+02/25/2026 17:10:23 +00:00|INFO|src/components
+02/25/2026 17:10:23 +00:00|INFO|Registering Content SDK component PartialDesignDynamicPlaceholder
+02/25/2026 17:10:24 +00:00|INFO|> content-sdk-nextjs-app-router@1.0.0 sitecore-tools:build
+02/25/2026 17:10:24 +00:00|INFO|> sitecore-tools project build
+02/25/2026 17:10:25 +00:00|INFO|Writing metadata to /workspace/tmp/builds/basic-nextjs/.sitecore/metadata.json
+02/25/2026 17:10:25 +00:00|INFO|Code extraction started
+02/25/2026 17:10:26 +00:00|INFO|Code extraction completed successfully, files extracted:
+02/25/2026 17:10:26 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/partial-design-dynamic-placeholder/PartialDesignDynamicPlaceholder.tsx
+02/25/2026 17:10:26 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/package.json
+02/25/2026 17:10:26 +00:00|INFO|[Codegen] Generating import map: {"paths":["src/components"]}.
+02/25/2026 17:10:26 +00:00|INFO|Writing into /workspace/tmp/builds/basic-nextjs/.sitecore/import-map.server.ts ...
+02/25/2026 17:10:26 +00:00|INFO|[Codegen] Generating import map: {"paths":["src/components"]}.
+02/25/2026 17:10:26 +00:00|INFO|Writing into /workspace/tmp/builds/basic-nextjs/.sitecore/import-map.client.ts ...
+02/25/2026 17:10:27 +00:00|INFO|> content-sdk-nextjs-app-router@1.0.0 next:build
+02/25/2026 17:10:27 +00:00|INFO|> next build
+02/25/2026 17:10:27 +00:00|INFO|⚠ Mismatching @next/swc version, detected: 15.5.7 while Next.js is on 15.5.11. Please ensure these match
+02/25/2026 17:10:27 +00:00|INFO|Attention: Next.js now collects completely anonymous telemetry regarding usage.
+02/25/2026 17:10:27 +00:00|INFO|This information is used to shape Next.js' roadmap and prioritize features.
+02/25/2026 17:10:27 +00:00|INFO|You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+02/25/2026 17:10:27 +00:00|INFO|https://nextjs.org/telemetry
+02/25/2026 17:10:27 +00:00|INFO|▲ Next.js 15.5.11
+02/25/2026 17:10:27 +00:00|INFO|Creating an optimized production build ...
+02/25/2026 17:10:35 +00:00|INFO|✓ Compiled successfully in 7.6s
+02/25/2026 17:10:35 +00:00|INFO|Linting and checking validity of types ...
+02/25/2026 17:10:35 +00:00|INFO|We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
+02/25/2026 17:10:35 +00:00|INFO|The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:
+02/25/2026 17:10:35 +00:00|INFO|- include was updated to add '.next-container/types/**/*.ts'
+02/25/2026 17:10:37 +00:00|INFO|Collecting page data ...
+02/25/2026 17:10:39 +00:00|INFO|Generating static pages (0/6) ...
+02/25/2026 17:10:39 +00:00|INFO|Generating static pages (1/6)
+02/25/2026 17:10:40 +00:00|INFO|Generating static pages (2/6)
+02/25/2026 17:10:40 +00:00|INFO|Generating static pages (4/6)
+02/25/2026 17:10:40 +00:00|INFO|✓ Generating static pages (6/6)
+02/25/2026 17:10:40 +00:00|INFO|Finalizing page optimization ...
+02/25/2026 17:10:40 +00:00|INFO|Collecting build traces ...
+02/25/2026 17:10:43 +00:00|INFO|Route (app)                                 Size  First Load JS
+02/25/2026 17:10:43 +00:00|INFO|┌ ○ /_not-found                            133 B         102 kB
+02/25/2026 17:10:43 +00:00|INFO|├ ● /[site]/[locale]/[[...path]]         1.19 kB         201 kB
+02/25/2026 17:10:43 +00:00|INFO|├ ƒ /api/editing/config                    959 B         162 kB
+02/25/2026 17:10:43 +00:00|INFO|├ ƒ /api/editing/render                    133 B         102 kB
+02/25/2026 17:10:43 +00:00|INFO|├ ƒ /api/robots                            133 B         102 kB
+02/25/2026 17:10:43 +00:00|INFO|└ ƒ /api/sitemap                           133 B         102 kB
+02/25/2026 17:10:43 +00:00|INFO|+ First Load JS shared by all             102 kB
+02/25/2026 17:10:43 +00:00|INFO|├ chunks/255-35bf8c00c5dde345.js         46 kB
+02/25/2026 17:10:43 +00:00|INFO|├ chunks/4bd1b696-c023c6e3521b1417.js  54.2 kB
+02/25/2026 17:10:43 +00:00|INFO|└ other shared chunks (total)          2.05 kB
+02/25/2026 17:10:43 +00:00|INFO|ƒ Middleware                             79.9 kB
+02/25/2026 17:10:43 +00:00|INFO|○  (Static)   prerendered as static content
+02/25/2026 17:10:43 +00:00|INFO|●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+02/25/2026 17:10:43 +00:00|INFO|ƒ  (Dynamic)  server-rendered on demand
+02/25/2026 17:10:43 +00:00|INFO|Artifacts built for 'basic-nextjs'
+02/25/2026 17:11:16 +00:00|INFO|Uploaded artifacts for 'basic-nextjs'
+02/25/2026 17:11:16 +00:00|INFO|Build completed
+02/25/2026 17:11:17 +00:00|INFO|Build has completed successfully.
+
+
+Provisioning - Completed
+02/25/2026 17:09:23 +00:00|INFO|Starting environment 'basic-nextjs' creation.
+02/25/2026 17:09:26 +00:00|INFO|All required resources have been provisioned.
+
+
+Deployment - Completed
+02/25/2026 17:11:17 +00:00|INFO|Starting deployment of environment 'basic-nextjs'
+02/25/2026 17:11:36 +00:00|INFO|Deployment configuration file has been created.
+02/25/2026 17:11:36 +00:00|INFO|Winter is coming...
+02/25/2026 17:14:51 +00:00|INFO|Deployment '4D3OcIIMlkw4jwU10bnwjg' completed successfully for environment 'basic-nextjs'.
+
+
+PostActions - Completed
+02/25/2026 17:14:51 +00:00|INFO|XmCloud build JSON file was not found for tenant 'icreonpartn17e6-novatechshoc0c7-basicnextjs02e2' for deployment '4D3OcIIMlkw4jwU10bnwjg'.
+
+
