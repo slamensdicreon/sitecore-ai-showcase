@@ -17,7 +17,7 @@ export interface RouteFields {
 }
 
 function isPlaceholderEmpty(
-  route: any,
+  route: Record<string, unknown> | null,
   placeholderName: string
 ): boolean {
   const ph = route?.placeholders?.[placeholderName];

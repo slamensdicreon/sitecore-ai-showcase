@@ -573,12 +573,32 @@ These are Sitecore system template IDs needed for creating items:
 | JSON Rendering | `04646A89996747EDA3101C2C78C3B170` |
 | Folder | `A87A00B1E6DB45AB8B54636FEC3B5523` |
 
+### 9. ESLint `no-explicit-any` Build Failures
+
+The project's ESLint config extends `next/typescript`, which enables the `@typescript-eslint/no-explicit-any` rule. This means `as any` type casts will **fail the production build** (`next build`) even though they work fine in development (`next dev`).
+
+**Key facts:**
+- `next dev` does NOT run ESLint — only `next build` does
+- The `DefaultContent.tsx` file is a bridge/adapter that takes loosely-typed default content data and passes it to strictly-typed component props — it legitimately needs relaxed typing
+- Add `/* eslint-disable @typescript-eslint/no-explicit-any */` at the very top of `DefaultContent.tsx`
+- **Always run `npx next lint` before pushing code** to catch build-breaking ESLint errors early
+
+**Pattern for DefaultContent.tsx:**
+```tsx
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { JSX } from 'react';
+// ... rest of file with as any casts for component field props
+```
+
+**Do NOT use `as any` in component files** (e.g., `SolutionsHero.tsx`). Those should use proper Sitecore SDK types (`Field<string>`, `ImageField`, `LinkField`). The ESLint disable is only appropriate for the default content bridge file.
+
 ---
 
 ## Verification Checklist
 
 Before considering the page complete, verify each of these:
 
+- [ ] **ESLint passes**: Run `npx next lint` in the app directory before pushing — catches `no-explicit-any` and other build-breaking errors that `next dev` silently ignores
 - [ ] **Component renders locally**: Visit the page URL on Replit, confirm 200 status and visual output
 - [ ] **CMS content displays**: Verify actual Sitecore field values appear (not just fallback defaults)
 - [ ] **All placeholders populated**: Header, main content, and footer all render
