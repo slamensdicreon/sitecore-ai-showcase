@@ -33,14 +33,18 @@ export default async function Page({ params, searchParams }: PageProps) {
   // Set site and locale to be available in src/i18n/request.ts for fetching the dictionary
   setRequestLocale(`${site}_${locale}`);
 
-  // Fetch the page data from Sitecore
   let page;
   if (draft.isEnabled) {
     const editingParams = await searchParams;
-    if (isDesignLibraryPreviewData(editingParams)) {
-      page = await client.getDesignLibraryData(editingParams);
-    } else {
-      page = await client.getPreview(editingParams);
+    try {
+      if (isDesignLibraryPreviewData(editingParams)) {
+        page = await client.getDesignLibraryData(editingParams);
+      } else {
+        page = await client.getPreview(editingParams);
+      }
+    } catch (e) {
+      console.error('Editing preview fetch failed, falling back to getPage:', e);
+      page = await client.getPage(path ?? [], { site, locale });
     }
   } else {
     page = await client.getPage(path ?? [], { site, locale });
@@ -51,6 +55,11 @@ export default async function Page({ params, searchParams }: PageProps) {
   const isKnownPath = knownPaths.some(
     (p) => p.toLowerCase() === routePath.toLowerCase()
   );
+
+  if (page && !page.layout?.sitecore?.context) {
+    console.warn('Page data missing layout.sitecore.context — using fallback');
+    page = undefined;
+  }
 
   if (!page && !isKnownPath) {
     notFound();
