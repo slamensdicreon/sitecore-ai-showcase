@@ -20,6 +20,10 @@ import * as Container70 from 'src/components/container/container-70/Container70'
 import * as ProductHero from 'src/components/product-hero/ProductHero';
 import * as ProductFeature from 'src/components/product-feature/ProductFeature';
 import * as PricingTable from 'src/components/pricing-table/PricingTable';
+import * as SolutionsHero from 'src/components/solutions-hero/SolutionsHero';
+import * as SolutionCard from 'src/components/solution-card/SolutionCard';
+import * as ValueProposition from 'src/components/value-proposition/ValueProposition';
+import * as CaseStudy from 'src/components/case-study/CaseStudy';
 
 export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['BYOCWrapper', BYOCServerWrapper],
@@ -41,6 +45,10 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['ProductHero', { ...ProductHero }],
   ['ProductFeature', { ...ProductFeature }],
   ['PricingTable', { ...PricingTable }],
+  ['SolutionsHero', { ...SolutionsHero }],
+  ['SolutionCard', { ...SolutionCard }],
+  ['ValueProposition', { ...ValueProposition }],
+  ['CaseStudy', { ...CaseStudy }],
 ]);
 
 export default componentMap;

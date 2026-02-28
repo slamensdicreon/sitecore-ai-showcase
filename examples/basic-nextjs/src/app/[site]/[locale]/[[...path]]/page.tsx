@@ -46,22 +46,43 @@ export default async function Page({ params, searchParams }: PageProps) {
     page = await client.getPage(path ?? [], { site, locale });
   }
 
-  // If the page is not found, return a 404
-  if (!page) {
+  const routePath = path ? `/${path.join('/')}` : '/';
+  const knownPaths = ['/', '/Products', '/Solutions'];
+  const isKnownPath = knownPaths.some(
+    (p) => p.toLowerCase() === routePath.toLowerCase()
+  );
+
+  if (!page && !isKnownPath) {
     notFound();
   }
 
-  // Fetch the component data from Sitecore (Likely will be deprecated)
-  const componentProps = await client.getComponentData(
-    page.layout,
-    {},
-    components
-  );
+  const fallbackPage = {
+    layout: {
+      sitecore: {
+        context: { pageEditing: false, language: locale },
+        route: null,
+      },
+    },
+    siteName: site,
+    locale,
+    mode: {
+      isEditing: false,
+      isPreview: false,
+      isNormal: true,
+      isDesignLibrary: false,
+    },
+  };
+
+  const activePage = page || fallbackPage;
+
+  const componentProps = activePage.layout?.sitecore?.route
+    ? await client.getComponentData(activePage.layout, {}, components)
+    : {};
 
   return (
     <NextIntlClientProvider>
-      <Providers page={page} componentProps={componentProps}>
-        <Layout page={page} />
+      <Providers page={activePage as any} componentProps={componentProps}>
+        <Layout page={activePage as any} routePath={routePath} />
       </Providers>
     </NextIntlClientProvider>
   );
@@ -101,7 +122,7 @@ export const generateMetadata = async ({ params }: PageProps) => {
     return {
       title:
         (
-          page?.layout.sitecore.route?.fields as RouteFields
+          page?.layout?.sitecore?.route?.fields as RouteFields
         )?.Title?.value?.toString() || "Page",
     };
   } catch {
