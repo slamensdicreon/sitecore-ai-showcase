@@ -1,5 +1,3 @@
-// @ts-nocheck
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { JSX } from 'react';
 import { Default as HeroDefault } from 'src/components/hero/Hero';
 import { Default as SiteHeaderDefault } from 'src/components/site-header/SiteHeader';
@@ -15,7 +13,22 @@ import { Default as SolutionsHeroDefault } from 'src/components/solutions-hero/S
 import { Default as SolutionCardDefault } from 'src/components/solution-card/SolutionCard';
 import { Default as ValuePropositionDefault } from 'src/components/value-proposition/ValueProposition';
 import { Default as CaseStudyDefault } from 'src/components/case-study/CaseStudy';
+import { LayoutServicePageState } from '@sitecore-content-sdk/nextjs';
 import defaultContent, { getDefaultContent } from 'src/lib/default-content';
+import type { Page } from '@sitecore-content-sdk/nextjs';
+
+const defaultPage: Page = {
+  layout: { sitecore: { context: {}, route: null } },
+  locale: 'en',
+  mode: {
+    name: LayoutServicePageState.Normal,
+    designLibrary: { isVariantGeneration: false },
+    isNormal: true,
+    isPreview: false,
+    isEditing: false,
+    isDesignLibrary: false,
+  },
+};
 
 const componentRegistry: Record<string, React.ComponentType<any>> = {
   Hero: HeroDefault,
@@ -67,6 +80,7 @@ export const DefaultPlaceholder = ({ name, routePath }: DefaultPlaceholderProps)
             fields={item.fields}
             params={{}}
             rendering={{ componentName: item.componentName }}
+            page={defaultPage}
           />
         );
       })}
@@ -89,6 +103,7 @@ const DefaultMainContent = (): JSX.Element => {
           fields={hero.fields as any}
           params={{}}
           rendering={{ componentName: 'Hero' }}
+          page={defaultPage}
         />
       )}
 
@@ -119,6 +134,7 @@ const DefaultMainContent = (): JSX.Element => {
                   fields={item.fields as any}
                   params={{}}
                   rendering={{ componentName: 'FeatureCard' }}
+            page={defaultPage}
                 />
               ))}
             </div>
@@ -131,6 +147,7 @@ const DefaultMainContent = (): JSX.Element => {
           fields={contentBlock.fields as any}
           params={{}}
           rendering={{ componentName: 'ContentBlock' }}
+            page={defaultPage}
         />
       )}
 
@@ -140,6 +157,7 @@ const DefaultMainContent = (): JSX.Element => {
             fields={testimonial.fields as any}
             params={{}}
             rendering={{ componentName: 'Testimonial' }}
+            page={defaultPage}
           />
         </div>
       )}
@@ -149,6 +167,7 @@ const DefaultMainContent = (): JSX.Element => {
           fields={ctaBanner.fields as any}
           params={{}}
           rendering={{ componentName: 'CTABanner' }}
+            page={defaultPage}
         />
       )}
     </>
@@ -170,6 +189,7 @@ const DefaultProductsContent = (): JSX.Element => {
           fields={productHero.fields as any}
           params={{}}
           rendering={{ componentName: 'ProductHero' }}
+            page={defaultPage}
         />
       )}
 
@@ -179,6 +199,7 @@ const DefaultProductsContent = (): JSX.Element => {
           fields={item.fields as any}
           params={{}}
           rendering={{ componentName: 'ProductFeature' }}
+            page={defaultPage}
         />
       ))}
 
@@ -187,6 +208,7 @@ const DefaultProductsContent = (): JSX.Element => {
           fields={pricingTable.fields as any}
           params={{}}
           rendering={{ componentName: 'PricingTable' }}
+            page={defaultPage}
         />
       )}
 
@@ -195,6 +217,7 @@ const DefaultProductsContent = (): JSX.Element => {
           fields={ctaBanner.fields as any}
           params={{}}
           rendering={{ componentName: 'CTABanner' }}
+            page={defaultPage}
         />
       )}
     </>
@@ -217,6 +240,7 @@ const DefaultSolutionsContent = (): JSX.Element => {
           fields={solutionsHero.fields as any}
           params={{}}
           rendering={{ componentName: 'SolutionsHero' }}
+            page={defaultPage}
         />
       )}
 
@@ -237,6 +261,7 @@ const DefaultSolutionsContent = (): JSX.Element => {
                   fields={item.fields as any}
                   params={{}}
                   rendering={{ componentName: 'SolutionCard' }}
+            page={defaultPage}
                 />
               ))}
             </div>
@@ -249,6 +274,7 @@ const DefaultSolutionsContent = (): JSX.Element => {
           fields={valueProposition.fields as any}
           params={{}}
           rendering={{ componentName: 'ValueProposition' }}
+            page={defaultPage}
         />
       )}
 
@@ -257,6 +283,7 @@ const DefaultSolutionsContent = (): JSX.Element => {
           fields={caseStudy.fields as any}
           params={{}}
           rendering={{ componentName: 'CaseStudy' }}
+            page={defaultPage}
         />
       )}
 
@@ -265,6 +292,7 @@ const DefaultSolutionsContent = (): JSX.Element => {
           fields={ctaBanner.fields as any}
           params={{}}
           rendering={{ componentName: 'CTABanner' }}
+            page={defaultPage}
         />
       )}
     </>
@@ -302,6 +330,7 @@ export const DefaultFeatureCards = (): JSX.Element => {
               fields={item.fields as any}
               params={{}}
               rendering={{ componentName: 'FeatureCard' }}
+            page={defaultPage}
             />
           ))}
         </div>
