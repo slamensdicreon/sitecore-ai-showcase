@@ -1,0 +1,42 @@
+> content-sdk-nextjs-app-router@1.0.0 next:start
+> next start
+   ▲ Next.js 15.5.11
+   - Local:        http://localhost:3000
+   - Network:      http://10.3.69.246:3000
+ ✓ Starting...
+ ⚠ Mismatching @next/swc version, detected: 15.5.7 while Next.js is on 15.5.11. Please ensure these match
+ ✓ Ready in 509ms
+ ⨯ TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (.next-container/server/chunks/905.js:106:3727)
+    at async r (.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:19148) {
+  digest: '2126449856'
+}
+TypeError: Failed to parse URL from /
+    at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+    at Generator.throw (<anonymous>)
+    at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+  [cause]: TypeError: Invalid URL
+      at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+      at Generator.throw (<anonymous>)
+      at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+    code: 'ERR_INVALID_URL',
+    input: '/'
+  }
+}
+ ⨯ TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (.next-container/server/chunks/905.js:106:3727)
+    at async r (.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:19148) {
+  digest: '2126449856'
+}
+TypeError: Failed to parse URL from /
+    at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+    at Generator.throw (<anonymous>)
+    at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+  [cause]: TypeError: Invalid URL
+      at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+      at Generator.throw (<anonymous>)
+      at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+    code: 'ERR_INVALID_URL',
+    input: '/'
+  }
+}
