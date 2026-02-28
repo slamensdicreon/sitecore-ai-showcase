@@ -117,7 +117,7 @@ All 3 logs showed `componentMap: Map(16)` — missing all 7 custom components (P
 - `examples/basic-nextjs/next.config.ts`: Added `allowedDevOrigins` for Replit proxy
 - `examples/basic-nextjs/sitecore.config.ts`: Reads Edge credentials from env vars with graceful fallback
 - `examples/basic-nextjs/eslint.config.mjs`: Added `@typescript-eslint/no-explicit-any: "warn"` (was default warn in the working state, needed explicit override after package updates)
-- `examples/basic-nextjs/src/Layout.tsx`: Added default content fallback for empty Sitecore placeholders, optional chaining for layout.sitecore
+- `examples/basic-nextjs/src/Layout.tsx`: Added default content fallback for empty Sitecore placeholders, optional chaining for layout.sitecore. In editing/preview mode, always renders Sitecore AppPlaceholder (not default content) so editors can add components to empty placeholders
 - `examples/basic-nextjs/src/Scripts.tsx`: Guards SDK components that access layout.sitecore
 - `examples/basic-nextjs/src/byoc/index.tsx`: Optional chaining for layout.sitecore.context with `Record<string, unknown>` fallback
 - `examples/basic-nextjs/src/components/content-sdk/CdpPageView.tsx`: Optional chaining for layout.sitecore with `Record<string, unknown>` fallback
