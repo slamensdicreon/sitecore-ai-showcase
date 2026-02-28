@@ -27,7 +27,7 @@ import './index.hybrid';
 
 const BYOCInit = (): JSX.Element | null => {
   const { page } = React.useContext(SitecoreProviderReactContext);
-  const { pageState } = page.layout.sitecore.context;
+  const { pageState } = page.layout?.sitecore?.context ?? ({} as Record<string, unknown>);
   // Set context properties to be available within BYOC components
   FEAAS.setContextProperties({
     sitecoreEdgeUrl: config.api.edge?.edgeUrl,
