@@ -1,0 +1,969 @@
+> content-sdk-nextjs-app-router@1.0.0 next:start
+> next start
+   ▲ Next.js 15.5.11
+   - Local:        http://localhost:3000
+   - Network:      http://10.3.66.252:3000
+ ✓ Starting...
+ ⚠ Mismatching @next/swc version, detected: 15.5.7 while Next.js is on 15.5.11. Please ensure these match
+ ✓ Ready in 510ms
+ ⨯ TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (.next-container/server/chunks/905.js:106:3727)
+    at async r (.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:19148) {
+  digest: '2126449856'
+}
+TypeError: Failed to parse URL from /
+    at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+    at Generator.throw (<anonymous>)
+    at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+  [cause]: TypeError: Invalid URL
+      at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+      at Generator.throw (<anonymous>)
+      at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+    code: 'ERR_INVALID_URL',
+    input: '/'
+  }
+}
+Placeholder headless-main contains unknown component ProductHero. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component ProductFeature. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component ProductFeature. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component ProductFeature. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component PricingTable. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'ProductHero' component {
+  fields: {
+    SecondaryButtonLink: { value: [Object] },
+    Heading: { value: 'NovaTech AI Platform' },
+    Tagline: {
+      value: '<p>The all-in-one AI platform that transforms how enterprises build, deploy, and scale intelligent applications. From predictive analytics to automated workflows, NovaTech powers the next generation of business innovation.</p>'
+    },
+    PrimaryButtonText: { value: 'Start Free Trial' },
+    PrimaryButtonLink: { value: [Object] },
+    SecondaryButtonText: { value: 'Watch Demo' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: '93678f1e-9cdd-4e99-9c45-b1c7931215e5',
+    componentName: 'ProductHero',
+    dataSource: '{c1363837-b87d-421f-8b4e-51c8811437fd}',
+    fields: {
+      SecondaryButtonLink: [Object],
+      Heading: [Object],
+      Tagline: [Object],
+      PrimaryButtonText: [Object],
+      PrimaryButtonLink: [Object],
+      SecondaryButtonText: [Object]
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Component props for unimplemented 'ProductFeature' component {
+  fields: {
+    Title: { value: 'Predictive Analytics Engine' },
+    Description: {
+      value: '<p>Harness the power of machine learning to forecast trends and make data-driven decisions in real time. Our analytics engine processes millions of data points per second.</p><p>Built-in anomaly detection, natural language querying, and customizable dashboards make complex data accessible to every team member.</p>'
+    },
+    Image: { value: {} },
+    ImagePosition: { value: 'right' },
+    Badge: { value: 'Analytics' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'cc902104-2c31-4d73-95d9-1b0cb6b96872',
+    componentName: 'ProductFeature',
+    dataSource: '{7b5be012-fe36-4f61-a02b-7b3b5d9af06e}',
+    fields: {
+      Title: [Object],
+      Description: [Object],
+      Image: [Object],
+      ImagePosition: [Object],
+      Badge: [Object]
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Component props for unimplemented 'ProductFeature' component {
+  fields: {
+    Title: { value: 'Cloud-Native Architecture' },
+    Description: {
+      value: '<p>Deploy anywhere with our cloud-agnostic infrastructure. NovaTech adapts to AWS, Azure, or Google Cloud with zero vendor lock-in.</p><p>Auto-scaling, load balancing, and multi-region redundancy ensure 99.99% uptime guaranteed.</p>'
+    },
+    Image: { value: {} },
+    ImagePosition: { value: 'left' },
+    Badge: { value: 'Infrastructure' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a3eb519b-0470-469e-b872-11ca9ff78a2b',
+    componentName: 'ProductFeature',
+    dataSource: '{c6264683-d425-493b-9f77-5d2cf0a196e1}',
+    fields: {
+      Title: [Object],
+      Description: [Object],
+      Image: [Object],
+      ImagePosition: [Object],
+      Badge: [Object]
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Component props for unimplemented 'ProductFeature' component {
+  fields: {
+    Title: { value: 'Enterprise-Grade Security' },
+    Description: {
+      value: '<p>Military-grade encryption, zero-trust architecture, and AI-powered threat detection protect your data and applications.</p><p>SOC 2 Type II certified, GDPR compliant, and HIPAA ready.</p>'
+    },
+    Image: { value: {} },
+    ImagePosition: { value: 'right' },
+    Badge: { value: 'Security' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: '36595d73-b46f-45ab-ba1c-825be44f5c92',
+    componentName: 'ProductFeature',
+    dataSource: '{e8ae02c0-fbcb-4d27-ba9a-6a11ad2af1f0}',
+    fields: {
+      Title: [Object],
+      Description: [Object],
+      Image: [Object],
+      ImagePosition: [Object],
+      Badge: [Object]
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Component props for unimplemented 'PricingTable' component {
+  fields: {
+    Description: {
+      value: '<p>Choose the plan that fits your business. All plans include core features, API access, and support.</p>'
+    },
+    Tier1Price: { value: '$49/mo' },
+    Tier1Features: {
+      value: '<ul><li>Up to 10,000 API calls/month</li><li>5 team members</li><li>Basic analytics dashboard</li><li>Community support</li><li>99.9% uptime SLA</li></ul>'
+    },
+    Tier3ButtonLink: { value: [Object] },
+    Tier2ButtonLink: { value: [Object] },
+    Tier3Name: { value: 'Enterprise' },
+    Tier3Price: { value: 'Custom' },
+    Heading: { value: 'Simple, Transparent Pricing' },
+    Tier1Name: { value: 'Starter' },
+    Tier1ButtonText: { value: 'Get Started' },
+    Tier1ButtonLink: { value: [Object] },
+    Tier2Name: { value: 'Professional' },
+    Tier2Price: { value: '$149/mo' },
+    Tier2Features: {
+      value: '<ul><li>Up to 100,000 API calls/month</li><li>25 team members</li><li>Advanced analytics and ML</li><li>Priority support</li><li>99.95% uptime SLA</li><li>Custom integrations</li></ul>'
+    },
+    Tier2ButtonText: { value: 'Start Free Trial' },
+    Tier3Features: {
+      value: '<ul><li>Unlimited API calls</li><li>Unlimited team members</li><li>Full platform access</li><li>Dedicated account manager</li><li>99.99% uptime SLA</li><li>On-premise option</li></ul>'
+    },
+    Tier3ButtonText: { value: 'Contact Sales' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'bebc4c95-16ad-420a-aa85-ab5d3c7493e7',
+    componentName: 'PricingTable',
+    dataSource: '{768641bf-cf6d-4260-8be0-46400f8e4cb7}',
+    fields: {
+      Description: [Object],
+      Tier1Price: [Object],
+      Tier1Features: [Object],
+      Tier3ButtonLink: [Object],
+      Tier2ButtonLink: [Object],
+      Tier3Name: [Object],
+      Tier3Price: [Object],
+      Heading: [Object],
+      Tier1Name: [Object],
+      Tier1ButtonText: [Object],
+      Tier1ButtonLink: [Object],
+      Tier2Name: [Object],
+      Tier2Price: [Object],
+      Tier2Features: [Object],
+      Tier2ButtonText: [Object],
+      Tier3Features: [Object],
+      Tier3ButtonText: [Object]
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Placeholder headless-main contains unknown component ProductHero. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component ProductFeature. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component ProductFeature. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component ProductFeature. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component PricingTable. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'ProductHero' component {
+  fields: {
+    SecondaryButtonLink: { metadata: [Object], value: [Object] },
+    Heading: { metadata: [Object], value: 'NovaTech AI Platform' },
+    Tagline: {
+      metadata: [Object],
+      value: '<p>The all-in-one AI platform that transforms how enterprises build, deploy, and scale intelligent applications. From predictive analytics to automated workflows, NovaTech powers the next generation of business innovation.</p>'
+    },
+    PrimaryButtonText: { metadata: [Object], value: 'Start Free Trial' },
+    PrimaryButtonLink: { metadata: [Object], value: [Object] },
+    SecondaryButtonText: { metadata: [Object], value: 'Watch Demo' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: '93678f1e-9cdd-4e99-9c45-b1c7931215e5',
+    componentName: 'ProductHero',
+    dataSource: '{c1363837-b87d-421f-8b4e-51c8811437fd}',
+    fields: {
+      SecondaryButtonLink: [Object],
+      Heading: [Object],
+      Tagline: [Object],
+      PrimaryButtonText: [Object],
+      PrimaryButtonLink: [Object],
+      SecondaryButtonText: [Object]
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Component props for unimplemented 'ProductFeature' component {
+  fields: {
+    Title: { metadata: [Object], value: 'Predictive Analytics Engine' },
+    Description: {
+      metadata: [Object],
+      value: '<p>Harness the power of machine learning to forecast trends and make data-driven decisions in real time. Our analytics engine processes millions of data points per second.</p><p>Built-in anomaly detection, natural language querying, and customizable dashboards make complex data accessible to every team member.</p>'
+    },
+    Image: { metadata: [Object], value: {} },
+    ImagePosition: { metadata: [Object], value: 'right' },
+    Badge: { metadata: [Object], value: 'Analytics' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'cc902104-2c31-4d73-95d9-1b0cb6b96872',
+    componentName: 'ProductFeature',
+    dataSource: '{7b5be012-fe36-4f61-a02b-7b3b5d9af06e}',
+    fields: {
+      Title: [Object],
+      Description: [Object],
+      Image: [Object],
+      ImagePosition: [Object],
+      Badge: [Object]
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Component props for unimplemented 'ProductFeature' component {
+  fields: {
+    Title: { metadata: [Object], value: 'Cloud-Native Architecture' },
+    Description: {
+      metadata: [Object],
+      value: '<p>Deploy anywhere with our cloud-agnostic infrastructure. NovaTech adapts to AWS, Azure, or Google Cloud with zero vendor lock-in.</p><p>Auto-scaling, load balancing, and multi-region redundancy ensure 99.99% uptime guaranteed.</p>'
+    },
+    Image: { metadata: [Object], value: {} },
+    ImagePosition: { metadata: [Object], value: 'left' },
+    Badge: { metadata: [Object], value: 'Infrastructure' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a3eb519b-0470-469e-b872-11ca9ff78a2b',
+    componentName: 'ProductFeature',
+    dataSource: '{c6264683-d425-493b-9f77-5d2cf0a196e1}',
+    fields: {
+      Title: [Object],
+      Description: [Object],
+      Image: [Object],
+      ImagePosition: [Object],
+      Badge: [Object]
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Component props for unimplemented 'ProductFeature' component {
+  fields: {
+    Title: { metadata: [Object], value: 'Enterprise-Grade Security' },
+    Description: {
+      metadata: [Object],
+      value: '<p>Military-grade encryption, zero-trust architecture, and AI-powered threat detection protect your data and applications.</p><p>SOC 2 Type II certified, GDPR compliant, and HIPAA ready.</p>'
+    },
+    Image: { metadata: [Object], value: {} },
+    ImagePosition: { metadata: [Object], value: 'right' },
+    Badge: { metadata: [Object], value: 'Security' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: '36595d73-b46f-45ab-ba1c-825be44f5c92',
+    componentName: 'ProductFeature',
+    dataSource: '{e8ae02c0-fbcb-4d27-ba9a-6a11ad2af1f0}',
+    fields: {
+      Title: [Object],
+      Description: [Object],
+      Image: [Object],
+      ImagePosition: [Object],
+      Badge: [Object]
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Component props for unimplemented 'PricingTable' component {
+  fields: {
+    Description: {
+      metadata: [Object],
+      value: '<p>Choose the plan that fits your business. All plans include core features, API access, and support.</p>'
+    },
+    Tier1Price: { metadata: [Object], value: '$49/mo' },
+    Tier1Features: {
+      metadata: [Object],
+      value: '<ul><li>Up to 10,000 API calls/month</li><li>5 team members</li><li>Basic analytics dashboard</li><li>Community support</li><li>99.9% uptime SLA</li></ul>'
+    },
+    Tier3ButtonLink: { metadata: [Object], value: [Object] },
+    Tier2ButtonLink: { metadata: [Object], value: [Object] },
+    Tier3Name: { metadata: [Object], value: 'Enterprise' },
+    Tier3Price: { metadata: [Object], value: 'Custom' },
+    Heading: { metadata: [Object], value: 'Simple, Transparent Pricing' },
+    Tier1Name: { metadata: [Object], value: 'Starter' },
+    Tier1ButtonText: { metadata: [Object], value: 'Get Started' },
+    Tier1ButtonLink: { metadata: [Object], value: [Object] },
+    Tier2Name: { metadata: [Object], value: 'Professional' },
+    Tier2Price: { metadata: [Object], value: '$149/mo' },
+    Tier2Features: {
+      metadata: [Object],
+      value: '<ul><li>Up to 100,000 API calls/month</li><li>25 team members</li><li>Advanced analytics and ML</li><li>Priority support</li><li>99.95% uptime SLA</li><li>Custom integrations</li></ul>'
+    },
+    Tier2ButtonText: { metadata: [Object], value: 'Start Free Trial' },
+    Tier3Features: {
+      metadata: [Object],
+      value: '<ul><li>Unlimited API calls</li><li>Unlimited team members</li><li>Full platform access</li><li>Dedicated account manager</li><li>99.99% uptime SLA</li><li>On-premise option</li></ul>'
+    },
+    Tier3ButtonText: { metadata: [Object], value: 'Contact Sales' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'bebc4c95-16ad-420a-aa85-ab5d3c7493e7',
+    componentName: 'PricingTable',
+    dataSource: '{768641bf-cf6d-4260-8be0-46400f8e4cb7}',
+    fields: {
+      Description: [Object],
+      Tier1Price: [Object],
+      Tier1Features: [Object],
+      Tier3ButtonLink: [Object],
+      Tier2ButtonLink: [Object],
+      Tier3Name: [Object],
+      Tier3Price: [Object],
+      Heading: [Object],
+      Tier1Name: [Object],
+      Tier1ButtonText: [Object],
+      Tier1ButtonLink: [Object],
+      Tier2Name: [Object],
+      Tier2Price: [Object],
+      Tier2Features: [Object],
+      Tier2ButtonText: [Object],
+      Tier3Features: [Object],
+      Tier3ButtonText: [Object]
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Placeholder headless-main contains unknown component ProductHero. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component ProductFeature. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component ProductFeature. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component ProductFeature. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component PricingTable. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'ProductHero' component {
+  fields: {
+    SecondaryButtonLink: { value: [Object] },
+    Heading: { value: 'NovaTech AI Platform' },
+    Tagline: {
+      value: '<p>The all-in-one AI platform that transforms how enterprises build, deploy, and scale intelligent applications. From predictive analytics to automated workflows, NovaTech powers the next generation of business innovation.</p>'
+    },
+    PrimaryButtonText: { value: 'Start Free Trial' },
+    PrimaryButtonLink: { value: [Object] },
+    SecondaryButtonText: { value: 'Watch Demo' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: '93678f1e-9cdd-4e99-9c45-b1c7931215e5',
+    componentName: 'ProductHero',
+    dataSource: '{c1363837-b87d-421f-8b4e-51c8811437fd}',
+    fields: {
+      SecondaryButtonLink: [Object],
+      Heading: [Object],
+      Tagline: [Object],
+      PrimaryButtonText: [Object],
+      PrimaryButtonLink: [Object],
+      SecondaryButtonText: [Object]
+    }
+  },
+  page: {
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    locale: 'en',
+    mode: {
+      name: 'normal',
+      isNormal: true,
+      isPreview: false,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Component props for unimplemented 'ProductFeature' component {
+  fields: {
+    Title: { value: 'Predictive Analytics Engine' },
+    Description: {
+      value: '<p>Harness the power of machine learning to forecast trends and make data-driven decisions in real time. Our analytics engine processes millions of data points per second.</p><p>Built-in anomaly detection, natural language querying, and customizable dashboards make complex data accessible to every team member.</p>'
+    },
+    Image: { value: {} },
+    ImagePosition: { value: 'right' },
+    Badge: { value: 'Analytics' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'cc902104-2c31-4d73-95d9-1b0cb6b96872',
+    componentName: 'ProductFeature',
+    dataSource: '{7b5be012-fe36-4f61-a02b-7b3b5d9af06e}',
+    fields: {
+      Title: [Object],
+      Description: [Object],
+      Image: [Object],
+      ImagePosition: [Object],
+      Badge: [Object]
+    }
+  },
+  page: {
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    locale: 'en',
+    mode: {
+      name: 'normal',
+      isNormal: true,
+      isPreview: false,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Component props for unimplemented 'ProductFeature' component {
+  fields: {
+    Title: { value: 'Cloud-Native Architecture' },
+    Description: {
+      value: '<p>Deploy anywhere with our cloud-agnostic infrastructure. NovaTech adapts to AWS, Azure, or Google Cloud with zero vendor lock-in.</p><p>Auto-scaling, load balancing, and multi-region redundancy ensure 99.99% uptime guaranteed.</p>'
+    },
+    Image: { value: {} },
+    ImagePosition: { value: 'left' },
+    Badge: { value: 'Infrastructure' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a3eb519b-0470-469e-b872-11ca9ff78a2b',
+    componentName: 'ProductFeature',
+    dataSource: '{c6264683-d425-493b-9f77-5d2cf0a196e1}',
+    fields: {
+      Title: [Object],
+      Description: [Object],
+      Image: [Object],
+      ImagePosition: [Object],
+      Badge: [Object]
+    }
+  },
+  page: {
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    locale: 'en',
+    mode: {
+      name: 'normal',
+      isNormal: true,
+      isPreview: false,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Component props for unimplemented 'ProductFeature' component {
+  fields: {
+    Title: { value: 'Enterprise-Grade Security' },
+    Description: {
+      value: '<p>Military-grade encryption, zero-trust architecture, and AI-powered threat detection protect your data and applications.</p><p>SOC 2 Type II certified, GDPR compliant, and HIPAA ready.</p>'
+    },
+    Image: { value: {} },
+    ImagePosition: { value: 'right' },
+    Badge: { value: 'Security' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: '36595d73-b46f-45ab-ba1c-825be44f5c92',
+    componentName: 'ProductFeature',
+    dataSource: '{e8ae02c0-fbcb-4d27-ba9a-6a11ad2af1f0}',
+    fields: {
+      Title: [Object],
+      Description: [Object],
+      Image: [Object],
+      ImagePosition: [Object],
+      Badge: [Object]
+    }
+  },
+  page: {
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    locale: 'en',
+    mode: {
+      name: 'normal',
+      isNormal: true,
+      isPreview: false,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Component props for unimplemented 'PricingTable' component {
+  fields: {
+    Description: {
+      value: '<p>Choose the plan that fits your business. All plans include core features, API access, and support.</p>'
+    },
+    Tier1Price: { value: '$49/mo' },
+    Tier1Features: {
+      value: '<ul><li>Up to 10,000 API calls/month</li><li>5 team members</li><li>Basic analytics dashboard</li><li>Community support</li><li>99.9% uptime SLA</li></ul>'
+    },
+    Tier3ButtonLink: { value: [Object] },
+    Tier2ButtonLink: { value: [Object] },
+    Tier3Name: { value: 'Enterprise' },
+    Tier3Price: { value: 'Custom' },
+    Heading: { value: 'Simple, Transparent Pricing' },
+    Tier1Name: { value: 'Starter' },
+    Tier1ButtonText: { value: 'Get Started' },
+    Tier1ButtonLink: { value: [Object] },
+    Tier2Name: { value: 'Professional' },
+    Tier2Price: { value: '$149/mo' },
+    Tier2Features: {
+      value: '<ul><li>Up to 100,000 API calls/month</li><li>25 team members</li><li>Advanced analytics and ML</li><li>Priority support</li><li>99.95% uptime SLA</li><li>Custom integrations</li></ul>'
+    },
+    Tier2ButtonText: { value: 'Start Free Trial' },
+    Tier3Features: {
+      value: '<ul><li>Unlimited API calls</li><li>Unlimited team members</li><li>Full platform access</li><li>Dedicated account manager</li><li>99.99% uptime SLA</li><li>On-premise option</li></ul>'
+    },
+    Tier3ButtonText: { value: 'Contact Sales' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'bebc4c95-16ad-420a-aa85-ab5d3c7493e7',
+    componentName: 'PricingTable',
+    dataSource: '{768641bf-cf6d-4260-8be0-46400f8e4cb7}',
+    fields: {
+      Description: [Object],
+      Tier1Price: [Object],
+      Tier1Features: [Object],
+      Tier3ButtonLink: [Object],
+      Tier2ButtonLink: [Object],
+      Tier3Name: [Object],
+      Tier3Price: [Object],
+      Heading: [Object],
+      Tier1Name: [Object],
+      Tier1ButtonText: [Object],
+      Tier1ButtonLink: [Object],
+      Tier2Name: [Object],
+      Tier2Price: [Object],
+      Tier2Features: [Object],
+      Tier2ButtonText: [Object],
+      Tier3Features: [Object],
+      Tier3ButtonText: [Object]
+    }
+  },
+  page: {
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    locale: 'en',
+    mode: {
+      name: 'normal',
+      isNormal: true,
+      isPreview: false,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}

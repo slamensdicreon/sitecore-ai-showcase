@@ -1,0 +1,1241 @@
+> content-sdk-nextjs-app-router@1.0.0 next:start
+> next start
+   ▲ Next.js 15.5.11
+   - Local:        http://localhost:3000
+   - Network:      http://10.3.70.180:3000
+ ✓ Starting...
+ ⚠ Mismatching @next/swc version, detected: 15.5.7 while Next.js is on 15.5.11. Please ensure these match
+ ✓ Ready in 486ms
+ ⨯ TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (.next-container/server/chunks/905.js:106:3727)
+    at async r (.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:19148) {
+  digest: '2126449856'
+}
+TypeError: Failed to parse URL from /Products
+    at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+    at Generator.throw (<anonymous>)
+    at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+  [cause]: TypeError: Invalid URL
+      at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+      at Generator.throw (<anonymous>)
+      at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+    code: 'ERR_INVALID_URL',
+    input: '/Products'
+  }
+}
+ ⨯ TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (.next-container/server/chunks/905.js:106:3727)
+    at async r (.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:19148) {
+  digest: '2126449856'
+}
+TypeError: Failed to parse URL from /
+    at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+    at Generator.throw (<anonymous>)
+    at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+  [cause]: TypeError: Invalid URL
+      at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+      at Generator.throw (<anonymous>)
+      at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+    code: 'ERR_INVALID_URL',
+    input: '/'
+  }
+}
+ ⨯ TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (.next-container/server/chunks/905.js:106:3727)
+    at async r (.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:19148) {
+  digest: '2126449856'
+}
+TypeError: Failed to parse URL from /
+    at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+    at Generator.throw (<anonymous>)
+    at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+  [cause]: TypeError: Invalid URL
+      at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+      at Generator.throw (<anonymous>)
+      at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+    code: 'ERR_INVALID_URL',
+    input: '/'
+  }
+}
+ ⨯ TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (.next-container/server/chunks/905.js:106:3727)
+    at async r (.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:19148) {
+  digest: '2126449856'
+}
+TypeError: Failed to parse URL from /Products
+    at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+    at Generator.throw (<anonymous>)
+    at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+  [cause]: TypeError: Invalid URL
+      at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+      at Generator.throw (<anonymous>)
+      at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+    code: 'ERR_INVALID_URL',
+    input: '/Products'
+  }
+}
+ ⨯ TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (.next-container/server/chunks/905.js:106:3727)
+    at async r (.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:19148) {
+  digest: '2126449856'
+}
+TypeError: Failed to parse URL from /
+    at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+    at Generator.throw (<anonymous>)
+    at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+  [cause]: TypeError: Invalid URL
+      at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+      at Generator.throw (<anonymous>)
+      at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+    code: 'ERR_INVALID_URL',
+    input: '/'
+  }
+}
+ ⨯ TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (.next-container/server/chunks/905.js:106:3727)
+    at async r (.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:19148) {
+  digest: '2126449856'
+}
+TypeError: Failed to parse URL from /
+    at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+    at Generator.throw (<anonymous>)
+    at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+  [cause]: TypeError: Invalid URL
+      at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+      at Generator.throw (<anonymous>)
+      at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+    code: 'ERR_INVALID_URL',
+    input: '/'
+  }
+}
+ ⨯ TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (.next-container/server/chunks/905.js:106:3727)
+    at async r (.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:19148) {
+  digest: '2126449856'
+}
+TypeError: Failed to parse URL from /Products
+    at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+    at Generator.throw (<anonymous>)
+    at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+  [cause]: TypeError: Invalid URL
+      at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+      at Generator.throw (<anonymous>)
+      at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+    code: 'ERR_INVALID_URL',
+    input: '/Products'
+  }
+}
+ ⨯ TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (.next-container/server/chunks/905.js:106:3727)
+    at async r (.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:19148) {
+  digest: '2126449856'
+}
+TypeError: Failed to parse URL from /
+    at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+    at Generator.throw (<anonymous>)
+    at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+  [cause]: TypeError: Invalid URL
+      at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+      at Generator.throw (<anonymous>)
+      at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+    code: 'ERR_INVALID_URL',
+    input: '/'
+  }
+}
+ ⨯ TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (.next-container/server/chunks/905.js:106:3727)
+    at async r (.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:19148) {
+  digest: '2126449856'
+}
+TypeError: Failed to parse URL from /
+    at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+    at Generator.throw (<anonymous>)
+    at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+  [cause]: TypeError: Invalid URL
+      at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+      at Generator.throw (<anonymous>)
+      at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+    code: 'ERR_INVALID_URL',
+    input: '/'
+  }
+}
+ ⨯ TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (.next-container/server/chunks/905.js:106:3727)
+    at async r (.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:19148) {
+  digest: '2126449856'
+}
+TypeError: Failed to parse URL from /
+    at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+    at Generator.throw (<anonymous>)
+    at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+  [cause]: TypeError: Invalid URL
+      at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+      at Generator.throw (<anonymous>)
+      at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+    code: 'ERR_INVALID_URL',
+    input: '/'
+  }
+}
+ ⨯ TypeError: Cannot read properties of undefined (reading 'route')
+    at l.getPage (.next-container/server/chunks/905.js:106:1906) {
+  digest: '248363216'
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {},
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: 'e589fca5-fb20-49f2-04ef-5189b029c2a8',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: { Image: { value: [Object], metadata: [Object] } },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: 'e589fca5-fb20-49f2-04ef-5189b029c2a8',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {
+    Image: { value: [Object], metadata: [Object] },
+    TargetUrl: { value: [Object], metadata: [Object] },
+    ImageCaption: { value: 'This is a short text field', metadata: [Object] }
+  },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: 'e589fca5-fb20-49f2-04ef-5189b029c2a8',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object], TargetUrl: [Object], ImageCaption: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {
+    Image: { value: [Object], metadata: [Object] },
+    TargetUrl: { value: [Object], metadata: [Object] },
+    ImageCaption: { value: 'This is a short text field', metadata: [Object] }
+  },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: 'e589fca5-fb20-49f2-04ef-5189b029c2a8',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object], TargetUrl: [Object], ImageCaption: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {
+    Image: { value: [Object], metadata: [Object] },
+    TargetUrl: { value: [Object], metadata: [Object] },
+    ImageCaption: { value: 'This is a short text field', metadata: [Object] }
+  },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: 'e589fca5-fb20-49f2-04ef-5189b029c2a8',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object], TargetUrl: [Object], ImageCaption: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {
+    Image: { value: [Object], metadata: [Object] },
+    TargetUrl: { value: [Object], metadata: [Object] },
+    ImageCaption: { value: 'This is a short text field', metadata: [Object] }
+  },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: 'e589fca5-fb20-49f2-04ef-5189b029c2a8',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object], TargetUrl: [Object], ImageCaption: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {
+    Image: { value: [Object], metadata: [Object] },
+    TargetUrl: { value: [Object], metadata: [Object] },
+    ImageCaption: { value: 'This is a short text field', metadata: [Object] }
+  },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: 'e589fca5-fb20-49f2-04ef-5189b029c2a8',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object], TargetUrl: [Object], ImageCaption: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component ProductHero. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'ProductHero' component {
+  fields: {},
+  params: { styles: '' },
+  rendering: {
+    uid: 'a6049737-76aa-4d1a-67b8-f351c4321d61',
+    componentName: 'ProductHero',
+    dataSource: ''
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component ProductFeature. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'ProductFeature' component {
+  fields: {},
+  params: { styles: '' },
+  rendering: {
+    uid: '9b17bf71-33c9-4e8f-b499-86decbfc7f58',
+    componentName: 'ProductFeature',
+    dataSource: ''
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {},
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '1563e80f-32cd-4f3c-7da1-c5fdfa5be6a8',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: { Image: { value: [Object], metadata: [Object] } },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '1563e80f-32cd-4f3c-7da1-c5fdfa5be6a8',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {
+    Image: { value: [Object], metadata: [Object] },
+    TargetUrl: { value: [Object], metadata: [Object] },
+    ImageCaption: { value: 'This is a short text field', metadata: [Object] }
+  },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '1563e80f-32cd-4f3c-7da1-c5fdfa5be6a8',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object], TargetUrl: [Object], ImageCaption: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {
+    Image: { value: [Object], metadata: [Object] },
+    TargetUrl: { value: [Object], metadata: [Object] },
+    ImageCaption: { value: 'This is a short text field', metadata: [Object] }
+  },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '1563e80f-32cd-4f3c-7da1-c5fdfa5be6a8',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object], TargetUrl: [Object], ImageCaption: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {},
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '42374d89-1d52-4c87-e35a-d25a946b57a1',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: { Image: { value: [Object], metadata: [Object] } },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '42374d89-1d52-4c87-e35a-d25a946b57a1',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {
+    Image: { value: [Object], metadata: [Object] },
+    TargetUrl: { value: [Object], metadata: [Object] },
+    ImageCaption: { value: 'This is a short text field', metadata: [Object] }
+  },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '42374d89-1d52-4c87-e35a-d25a946b57a1',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object], TargetUrl: [Object], ImageCaption: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {
+    Image: { value: [Object], metadata: [Object] },
+    TargetUrl: { value: [Object], metadata: [Object] },
+    ImageCaption: { value: 'This is a short text field', metadata: [Object] }
+  },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '42374d89-1d52-4c87-e35a-d25a946b57a1',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object], TargetUrl: [Object], ImageCaption: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'NovaTech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(16) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Testimonial' => { Default: [Function: x] },
+    'Container' => { Default: [Function: A] },
+    'ColumnSplitter' => { Default: [Function: B] },
+    'SiteHeader' => { Default: [Function: D] },
+    'SiteFooter' => { Default: [Function: E] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: F] },
+    'Hero' => { Default: [Function: G] },
+    'FeatureCard' => { Default: [Function: H] },
+    'CTABanner' => { Default: [Function: I] },
+    'ContentBlock' => { Default: [Function: J] },
+    'ContainerFullWidth' => { Default: [Function: K] },
+    'ContainerFullBleed' => { Default: [Function: M] },
+    'Container70' => { Default: [Function: N] }
+  }
+}
+ ⨯ {
+  name: 'Error',
+  message: 'HTTP 400 Rendering item was not found',
+  stack: 'Error: HTTP 400 Rendering item was not found\n' +
+    '    at g.createError (/artifacts/basic-nextjs/.next-container/server/chunks/905.js:2:3023)\n' +
+    '    at g.fetch (/artifacts/basic-nextjs/.next-container/server/chunks/905.js:2:1745)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n' +
+    '    at async l.getDesignLibraryData (/artifacts/basic-nextjs/.next-container/server/chunks/905.js:106:4118)\n' +
+    '    at async r (/artifacts/basic-nextjs/.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:19108)',
+  response: {
+    status: 400,
+    statusText: 'Rendering item was not found',
+    headers: {
+      'accept-ch': 'Sec-CH-UA-Full-Version-List,Sec-CH-UA-Platform-Version,Sec-CH-UA-Arch,Sec-CH-UA-Model,Sec-CH-UA-Bitness',
+      'access-control-allow-headers': '*',
+      'access-control-allow-methods': 'GET, POST, PATCH, PUT, DELETE, HEAD, OPTIONS',
+      'access-control-expose-headers': '*',
+      'alt-svc': 'h3=":443"; ma=86400',
+      'cache-control': 'no-cache, no-store',
+      'cf-cache-status': 'DYNAMIC',
+      'cf-ray': '9d4aabab7afc3b90-IAD',
+      connection: 'keep-alive',
+      'content-length': '0',
+      'content-security-policy': "frame-ancestors 'self' pages.sitecorecloud.io pages.sitecore.io symphony.sitecorecloud.io explorer.sitecorecloud.io components.sitecorecloud.io https://forms.sitecorecloud.io https://designlibrary.sitecorecloud.io https://xmapps.sitecorecloud.io https://pages.sitecorecloud.io, default-src 'self' 'unsafe-inline' 'unsafe-eval' https://apps.sitecore.net https://web-sdk-eu.aptrinsic.com https://esp-eu.aptrinsic.com; img-src 'self' data: https://s.gravatar.com https://*.wp.com/cdn.auth0.com/avatars https://cdn.auth0.com/avatars; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://web-sdk-eu.aptrinsic.com; font-src 'self' 'unsafe-inline' https://fonts.gstatic.com; frame-src 'self' https://*.sitecore-staging.cloud/auth https://*.sitecorecloud.io/auth; block-all-mixed-content;",
+      date: 'Fri, 27 Feb 2026 21:10:43 GMT',
+      expires: '-1',
+      pragma: 'no-cache',
+      server: 'cloudflare',
+      'set-cookie': 'novatech#lang=en; path=/; secure; SameSite=None',
+      'strict-transport-security': 'max-age=2592000; includeSubDomains; preload',
+      vary: 'Accept-Encoding',
+      'x-actual-kong-requests': '19028903',
+      'x-content-type-options': 'nosniff',
+      'x-frame-options': 'SAMEORIGIN',
+      'x-robots-tag': 'noindex,nofollow',
+      'x-sc-correlation-id': '051179911f3a4695836c47eafff008a8'
+    },
+    data: ''
+  },
+  digest: '1780281125'
+}
+TypeError: Failed to parse URL from /
+    at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+    at Generator.throw (<anonymous>)
+    at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+  [cause]: TypeError: Invalid URL
+      at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+      at Generator.throw (<anonymous>)
+      at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+    code: 'ERR_INVALID_URL',
+    input: '/'
+  }
+}
+ ⨯ TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (.next-container/server/chunks/905.js:106:3727)
+    at async r (.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:19148) {
+  digest: '2126449856'
+}
+TypeError: Failed to parse URL from /
+    at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+    at Generator.throw (<anonymous>)
+    at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+  [cause]: TypeError: Invalid URL
+      at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+      at Generator.throw (<anonymous>)
+      at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+    code: 'ERR_INVALID_URL',
+    input: '/'
+  }
+}
+ ⨯ TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (.next-container/server/chunks/905.js:106:3727)
+    at async r (.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:19148) {
+  digest: '2126449856'
+}
+TypeError: Failed to parse URL from /
+    at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+    at Generator.throw (<anonymous>)
+    at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+  [cause]: TypeError: Invalid URL
+      at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+      at Generator.throw (<anonymous>)
+      at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+    code: 'ERR_INVALID_URL',
+    input: '/'
+  }
+}
+ ⨯ TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (.next-container/server/chunks/905.js:106:3727)
+    at async r (.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:19148) {
+  digest: '2126449856'
+}
+TypeError: Failed to parse URL from /
+    at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+    at Generator.throw (<anonymous>)
+    at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+  [cause]: TypeError: Invalid URL
+      at <unknown> (.next-container/server/app/api/editing/render/route.js:1:4225)
+      at Generator.throw (<anonymous>)
+      at h (.next-container/server/app/api/editing/render/route.js:1:1570) {
+    code: 'ERR_INVALID_URL',
+    input: '/'
+  }
+}
