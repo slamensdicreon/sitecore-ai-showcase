@@ -109,6 +109,7 @@ Wrong format: `<link linktype="internal" url="/Products" text="Get Started" />` 
 - `examples/basic-nextjs/src/Scripts.tsx`: Guards SDK components that access layout.sitecore
 - `examples/basic-nextjs/src/byoc/index.tsx`: Optional chaining for layout.sitecore.context
 - `examples/basic-nextjs/src/components/content-sdk/CdpPageView.tsx`: Optional chaining for layout.sitecore
+- `examples/basic-nextjs/src/app/api/editing/render/route.ts`: Set explicit `sitecoreInternalEditingHostUrl` fallback to `http://localhost:3000` — fixes Pages Editor spinning when `process.env.SITECORE` isn't set in XM Cloud deployment
 
 ## GitHub Integration
 - **Owner**: `slamensdicreon`
