@@ -116,7 +116,14 @@ The SDK's `resolveServerUrl()` returns undefined when the `host` header is null 
 1. `examples/basic-nextjs/src/instrumentation.ts` — Sets `SITECORE_INTERNAL_EDITING_HOST_URL=http://localhost:3000` at server startup (runtime), before any SDK request handlers execute
 2. `examples/basic-nextjs/next.config.ts` `env` option — Inlines the same value at build time as a backup
 
-Both root causes are resolved once `newdev` is merged to `main` and XM Cloud rebuilds (23-component map + instrumentation.ts).
+**Root Cause 3: SDK `getPreview` crash — `Cannot read properties of undefined (reading 'context')` (Feb 28 post-fix)**
+After fixing Root Causes 1+2, the rendering host still crashes in `getPreview` when the CM returns `item.rendered = {}` (empty but truthy object). The SDK doesn't null-check `data.layoutData.sitecore` before accessing `.context.site.name`.
+
+**Fix**: In `page.tsx`:
+1. Wrapped `getPreview`/`getDesignLibraryData` calls in try-catch — on failure, falls back to `getPage` (normal Edge fetch)
+2. Added validation: if `page.layout?.sitecore?.context` is missing, discard the malformed page and use fallback
+
+All three root causes are resolved once `newdev` is merged to `main` and XM Cloud rebuilds.
 
 ## Key Configuration Changes Made
 - `examples/basic-nextjs/src/instrumentation.ts`: Sets SITECORE_INTERNAL_EDITING_HOST_URL at runtime for SDK's resolveServerUrl()
