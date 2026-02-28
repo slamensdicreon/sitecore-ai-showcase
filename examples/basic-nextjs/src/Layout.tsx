@@ -17,7 +17,6 @@ export interface RouteFields {
 }
 
 function isPlaceholderEmpty(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   route: any,
   placeholderName: string
 ): boolean {

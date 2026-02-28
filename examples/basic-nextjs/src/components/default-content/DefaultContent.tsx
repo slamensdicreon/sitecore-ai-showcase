@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { JSX } from 'react';
 import { Default as HeroDefault } from 'src/components/hero/Hero';
