@@ -109,9 +109,9 @@ Wrong format: `<link linktype="internal" url="/Products" text="Get Started" />` 
 - `examples/basic-nextjs/src/Scripts.tsx`: Guards SDK components that access layout.sitecore
 - `examples/basic-nextjs/src/byoc/index.tsx`: Optional chaining for layout.sitecore.context
 - `examples/basic-nextjs/src/components/content-sdk/CdpPageView.tsx`: Optional chaining for layout.sitecore
-- `examples/basic-nextjs/src/app/api/editing/render/route.ts`: Clean SDK route handler (original code)
-- `examples/basic-nextjs/src/instrumentation.ts`: Sets `process.env.SITECORE_INTERNAL_EDITING_HOST_URL = 'http://localhost:3000'` at server startup — fixes Pages Editor connection when `process.env.SITECORE` isn't set in XM Cloud deployment. The SDK's `resolveServerUrl()` reads this env var at runtime. Note: The SDK's `createEditingRenderRouteHandlers` has a bug where it accepts a `sitecoreInternalEditingHostUrl` option in TypeScript types but ignores it in the implementation — only the env var works.
-- `examples/basic-nextjs/next.config.ts`: Also inlines `SITECORE_INTERNAL_EDITING_HOST_URL` via the `env` config option as a build-time backup
+- `examples/basic-nextjs/src/app/api/editing/render/route.ts`: Sets `process.env.SITECORE_INTERNAL_EDITING_HOST_URL` at module load time before creating SDK handlers — ensures the SDK's `resolveServerUrl()` finds the correct internal URL at request time
+- `examples/basic-nextjs/src/instrumentation.ts`: Also sets `process.env.SITECORE_INTERNAL_EDITING_HOST_URL = 'http://localhost:3000'` at server startup as a second layer of protection. Note: The SDK's `createEditingRenderRouteHandlers` has a bug where it accepts a `sitecoreInternalEditingHostUrl` option in TypeScript types but ignores it — only the env var works
+- **IMPORTANT**: Do NOT use the `next.config.ts` `env` option for `SITECORE_INTERNAL_EDITING_HOST_URL` — it triggers webpack DefinePlugin which replaces `process.env.X` at build time, preventing runtime env var assignments from taking effect
 
 ## GitHub Integration
 - **Owner**: `slamensdicreon`
