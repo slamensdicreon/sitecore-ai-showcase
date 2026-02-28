@@ -99,15 +99,25 @@ When setting `linktype="internal"` in Sitecore General Link fields (like CTALink
 Correct format: `<link linktype="internal" id="{4AA845A0-7DE3-40C6-8DC1-F0AE57885350}" url="/Products" text="Get Started" />`
 Wrong format: `<link linktype="internal" url="/Products" text="Get Started" />` (missing id — breaks Edge!)
 
+## Pages Editor Fix (instrumentation.ts)
+The SDK's `resolveServerUrl()` returns undefined when the `host` header is null in XM Cloud's internal editing context. Neither `SITECORE_INTERNAL_EDITING_HOST_URL` nor `SITECORE` env vars are set at runtime in XM Cloud deployments. The SDK also has a bug where `createEditingRenderRouteHandlers` ignores the `sitecoreInternalEditingHostUrl` option — it only calls `resolveServerUrl(req)` directly.
+
+**Fix**: Two-layer approach:
+1. `examples/basic-nextjs/src/instrumentation.ts` — Sets `SITECORE_INTERNAL_EDITING_HOST_URL=http://localhost:3000` at server startup (runtime), before any SDK request handlers execute
+2. `examples/basic-nextjs/next.config.ts` `env` option — Inlines the same value at build time as a backup
+
 ## Key Configuration Changes Made
-- `examples/basic-nextjs/next.config.ts`: Added `allowedDevOrigins` for Replit proxy compatibility (no build workarounds — uses stock Sitecore defaults)
+- `examples/basic-nextjs/src/instrumentation.ts`: Sets SITECORE_INTERNAL_EDITING_HOST_URL at runtime for SDK's resolveServerUrl()
+- `examples/basic-nextjs/next.config.ts`: Added `allowedDevOrigins` for Replit proxy, `env.SITECORE_INTERNAL_EDITING_HOST_URL` for build-time backup
 - `examples/basic-nextjs/sitecore.config.ts`: Reads Edge credentials from env vars with graceful fallback
 - `examples/basic-nextjs/eslint.config.mjs`: Added `@typescript-eslint/no-explicit-any: "warn"` (was default warn in the working state, needed explicit override after package updates)
 - `examples/basic-nextjs/src/Layout.tsx`: Added default content fallback for empty Sitecore placeholders, optional chaining for layout.sitecore
 - `examples/basic-nextjs/src/Scripts.tsx`: Guards SDK components that access layout.sitecore
-- `examples/basic-nextjs/src/byoc/index.tsx`: Optional chaining for layout.sitecore.context
-- `examples/basic-nextjs/src/components/content-sdk/CdpPageView.tsx`: Optional chaining for layout.sitecore
+- `examples/basic-nextjs/src/byoc/index.tsx`: Optional chaining for layout.sitecore.context with `Record<string, unknown>` fallback
+- `examples/basic-nextjs/src/components/content-sdk/CdpPageView.tsx`: Optional chaining for layout.sitecore with `Record<string, unknown>` fallback
+- `examples/basic-nextjs/src/app/[site]/[locale]/[[...path]]/page.tsx`: Uses `SitecorePage` type alias (avoids conflict with component name)
 - `examples/basic-nextjs/src/app/api/editing/render/route.ts`: Clean SDK route handler (original stock code, no customizations)
+- `examples/basic-nextjs/src/components/default-content/DefaultContent.tsx`: File-level `eslint-disable @typescript-eslint/no-explicit-any` for SDK field type casts
 
 ## GitHub Integration
 - **Owner**: `slamensdicreon`

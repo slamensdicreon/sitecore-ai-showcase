@@ -15,7 +15,7 @@ const CdpPageView = (): JSX.Element => {
     page: { layout, siteName, mode },
   } = useSitecore();
   const route = layout?.sitecore?.route ?? null;
-  const context = layout?.sitecore?.context ?? ({} as any);
+  const context = layout?.sitecore?.context ?? ({} as Record<string, unknown>);
 
   /**
    * Determines if the page view events should be turned off.
