@@ -4,8 +4,8 @@ const homeContent = {
       componentName: 'SiteHeader',
       fields: {
         Logo: { value: {} },
-        CTAText: { value: 'Get Started' },
-        CTALink: { value: { href: '/Products', text: 'Get Started' } },
+        CTAText: { value: 'Products' },
+        CTALink: { value: { href: '/Products', text: 'Products' } },
       },
     },
   ],
@@ -20,7 +20,7 @@ const homeContent = {
         },
         BackgroundImage: { value: {} },
         CTAText: { value: 'Explore Our Solutions' },
-        CTALink: { value: { href: '/', text: 'Explore Our Solutions' } },
+        CTALink: { value: { href: '/Solutions', text: 'Explore Our Solutions' } },
       },
     },
     {
@@ -217,11 +217,140 @@ const productsContent = {
   'headless-footer': homeContent['headless-footer'],
 };
 
+const solutionsContent = {
+  'headless-header': homeContent['headless-header'],
+  'headless-main': [
+    {
+      componentName: 'SolutionsHero',
+      fields: {
+        Heading: { value: 'Solutions Built for Your Industry' },
+        Tagline: {
+          value:
+            '<p>From financial services to healthcare, NovaTech delivers AI-powered solutions tailored to the unique challenges of your industry. Drive efficiency, reduce risk, and unlock new revenue streams.</p>',
+        },
+        CTAText: { value: 'Request a Demo' },
+        CTALink: { value: { href: '/', text: 'Request a Demo' } },
+      },
+    },
+    {
+      componentName: 'SolutionCard',
+      fields: {
+        Title: { value: 'Financial Services' },
+        Description: {
+          value:
+            '<p>Automate risk assessment, detect fraud in real time, and deliver personalized financial products with AI-driven insights that keep you ahead of market shifts.</p>',
+        },
+        Metrics: { value: '<p>60% faster fraud detection · $2.3M avg. annual savings</p>' },
+        Icon: { value: {} },
+        Link: { value: { href: '/', text: 'Learn More' } },
+        LinkText: { value: 'Learn More' },
+      },
+    },
+    {
+      componentName: 'SolutionCard',
+      fields: {
+        Title: { value: 'Healthcare & Life Sciences' },
+        Description: {
+          value:
+            '<p>Accelerate clinical decision-making, streamline patient workflows, and ensure regulatory compliance with intelligent automation and predictive analytics.</p>',
+        },
+        Metrics: { value: '<p>35% reduction in diagnostic time · HIPAA compliant</p>' },
+        Icon: { value: {} },
+        Link: { value: { href: '/', text: 'Learn More' } },
+        LinkText: { value: 'Learn More' },
+      },
+    },
+    {
+      componentName: 'SolutionCard',
+      fields: {
+        Title: { value: 'Manufacturing & Supply Chain' },
+        Description: {
+          value:
+            '<p>Predict equipment failures before they happen, optimize production schedules, and gain end-to-end supply chain visibility with real-time IoT analytics.</p>',
+        },
+        Metrics: { value: '<p>45% fewer unplanned downtimes · 28% inventory cost reduction</p>' },
+        Icon: { value: {} },
+        Link: { value: { href: '/', text: 'Learn More' } },
+        LinkText: { value: 'Learn More' },
+      },
+    },
+    {
+      componentName: 'SolutionCard',
+      fields: {
+        Title: { value: 'Retail & E-Commerce' },
+        Description: {
+          value:
+            '<p>Deliver hyper-personalized shopping experiences, optimize pricing in real time, and forecast demand with precision to maximize revenue and customer lifetime value.</p>',
+        },
+        Metrics: { value: '<p>3.2x increase in conversion rate · 40% higher AOV</p>' },
+        Icon: { value: {} },
+        Link: { value: { href: '/', text: 'Learn More' } },
+        LinkText: { value: 'Learn More' },
+      },
+    },
+    {
+      componentName: 'ValueProposition',
+      fields: {
+        Heading: { value: 'Why NovaTech?' },
+        Description: {
+          value:
+            '<p>Trusted by industry leaders worldwide to deliver measurable results at scale.</p>',
+        },
+        Stat1Value: { value: '500+' },
+        Stat1Label: { value: 'Enterprise Clients' },
+        Stat2Value: { value: '99.99%' },
+        Stat2Label: { value: 'Platform Uptime' },
+        Stat3Value: { value: '40%' },
+        Stat3Label: { value: 'Average ROI Increase' },
+      },
+    },
+    {
+      componentName: 'CaseStudy',
+      fields: {
+        Heading: { value: 'Proven Results' },
+        CompanyName: { value: 'Meridian Financial Group' },
+        Quote: {
+          value:
+            '<p>NovaTech\'s AI platform completely transformed our risk assessment process. What used to take our analysts days now happens in minutes, with greater accuracy and deeper insights than we ever thought possible.</p>',
+        },
+        AuthorName: { value: 'Sarah Chen' },
+        AuthorTitle: { value: 'Chief Technology Officer' },
+        Metric1Value: { value: '60%' },
+        Metric1Label: { value: 'Faster Risk Assessment' },
+        Metric2Value: { value: '$4.2M' },
+        Metric2Label: { value: 'Annual Cost Savings' },
+        Metric3Value: { value: '99.7%' },
+        Metric3Label: { value: 'Detection Accuracy' },
+        Logo: { value: {} },
+      },
+    },
+    {
+      componentName: 'CTABanner',
+      fields: {
+        Heading: { value: 'Ready to See NovaTech in Action?' },
+        Description: {
+          value:
+            '<p>Schedule a personalized demo with our solutions team and discover how NovaTech can transform your business.</p>',
+        },
+        PrimaryButtonText: { value: 'Request a Demo' },
+        PrimaryButtonLink: { value: { href: '/', text: 'Request a Demo' } },
+        SecondaryButtonText: { value: 'Talk to Sales' },
+        SecondaryButtonLink: { value: { href: '/', text: 'Talk to Sales' } },
+      },
+    },
+  ],
+  'headless-footer': homeContent['headless-footer'],
+};
+
 const defaultContent = homeContent;
 
 export function getDefaultContent(routePath?: string) {
-  if (routePath?.toLowerCase() === '/products' || routePath?.toLowerCase()?.endsWith('/products')) {
+  const normalized = routePath?.toLowerCase();
+  if (normalized === '/products' || normalized?.endsWith('/products')) {
     return productsContent;
+  }
+  if (normalized === '/solutions' || normalized?.endsWith('/solutions')) {
+    return solutionsContent;
   }
   return homeContent;
 }

@@ -9,6 +9,10 @@ import { Default as ContentBlockDefault } from 'src/components/content-block/Con
 import { Default as ProductHeroDefault } from 'src/components/product-hero/ProductHero';
 import { Default as ProductFeatureDefault } from 'src/components/product-feature/ProductFeature';
 import { Default as PricingTableDefault } from 'src/components/pricing-table/PricingTable';
+import { Default as SolutionsHeroDefault } from 'src/components/solutions-hero/SolutionsHero';
+import { Default as SolutionCardDefault } from 'src/components/solution-card/SolutionCard';
+import { Default as ValuePropositionDefault } from 'src/components/value-proposition/ValueProposition';
+import { Default as CaseStudyDefault } from 'src/components/case-study/CaseStudy';
 import defaultContent, { getDefaultContent } from 'src/lib/default-content';
 
 const componentRegistry: Record<string, React.ComponentType<any>> = {
@@ -22,6 +26,10 @@ const componentRegistry: Record<string, React.ComponentType<any>> = {
   ProductHero: ProductHeroDefault,
   ProductFeature: ProductFeatureDefault,
   PricingTable: PricingTableDefault,
+  SolutionsHero: SolutionsHeroDefault,
+  SolutionCard: SolutionCardDefault,
+  ValueProposition: ValuePropositionDefault,
+  CaseStudy: CaseStudyDefault,
 };
 
 interface DefaultPlaceholderProps {
@@ -40,6 +48,10 @@ export const DefaultPlaceholder = ({ name, routePath }: DefaultPlaceholderProps)
 
   if (name === 'headless-main' && routePath?.toLowerCase()?.endsWith('/products')) {
     return <DefaultProductsContent />;
+  }
+
+  if (name === 'headless-main' && routePath?.toLowerCase()?.endsWith('/solutions')) {
+    return <DefaultSolutionsContent />;
   }
 
   return (
@@ -173,6 +185,76 @@ const DefaultProductsContent = (): JSX.Element => {
           fields={pricingTable.fields as any}
           params={{}}
           rendering={{ componentName: 'PricingTable' }}
+        />
+      )}
+
+      {ctaBanner && (
+        <CTABannerDefault
+          fields={ctaBanner.fields as any}
+          params={{}}
+          rendering={{ componentName: 'CTABanner' }}
+        />
+      )}
+    </>
+  );
+};
+
+const DefaultSolutionsContent = (): JSX.Element => {
+  const content = getDefaultContent('/solutions');
+  const mainItems = content['headless-main'];
+  const solutionsHero = mainItems.find((item) => item.componentName === 'SolutionsHero');
+  const solutionCards = mainItems.filter((item) => item.componentName === 'SolutionCard');
+  const valueProposition = mainItems.find((item) => item.componentName === 'ValueProposition');
+  const caseStudy = mainItems.find((item) => item.componentName === 'CaseStudy');
+  const ctaBanner = mainItems.find((item) => item.componentName === 'CTABanner');
+
+  return (
+    <>
+      {solutionsHero && (
+        <SolutionsHeroDefault
+          fields={solutionsHero.fields as any}
+          params={{}}
+          rendering={{ componentName: 'SolutionsHero' }}
+        />
+      )}
+
+      {solutionCards.length > 0 && (
+        <div style={{ padding: '80px 24px', background: '#F9FAFB' }}>
+          <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '24px',
+                justifyContent: 'center',
+              }}
+            >
+              {solutionCards.map((item, index) => (
+                <SolutionCardDefault
+                  key={`solution-card-${index}`}
+                  fields={item.fields as any}
+                  params={{}}
+                  rendering={{ componentName: 'SolutionCard' }}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {valueProposition && (
+        <ValuePropositionDefault
+          fields={valueProposition.fields as any}
+          params={{}}
+          rendering={{ componentName: 'ValueProposition' }}
+        />
+      )}
+
+      {caseStudy && (
+        <CaseStudyDefault
+          fields={caseStudy.fields as any}
+          params={{}}
+          rendering={{ componentName: 'CaseStudy' }}
         />
       )}
 

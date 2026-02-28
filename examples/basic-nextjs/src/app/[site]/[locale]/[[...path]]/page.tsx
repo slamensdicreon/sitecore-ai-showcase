@@ -47,7 +47,7 @@ export default async function Page({ params, searchParams }: PageProps) {
   }
 
   const routePath = path ? `/${path.join('/')}` : '/';
-  const knownPaths = ['/', '/Products'];
+  const knownPaths = ['/', '/Products', '/Solutions'];
   const isKnownPath = knownPaths.some(
     (p) => p.toLowerCase() === routePath.toLowerCase()
   );

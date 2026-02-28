@@ -20,6 +20,7 @@ The configured workflow runs the **basic-nextjs** example (`examples/basic-nextj
 ## Pages
 - **Home** (`/`) — Hero, 3 FeatureCards, ContentBlock, Testimonial, CTABanner
 - **Products** (`/Products`) — ProductHero, 3 ProductFeatures, PricingTable, CTABanner
+- **Solutions** (`/Solutions`) — SolutionsHero, 4 SolutionCards (Financial Services, Healthcare, Manufacturing, Retail), ValueProposition, CaseStudy, CTABanner
 
 ## NovaTech Components
 Components located in `examples/basic-nextjs/src/components/`:
@@ -33,6 +34,22 @@ Components located in `examples/basic-nextjs/src/components/`:
 - **ProductHero** - Product page hero with "Product" badge, heading, tagline, 2 CTAs
 - **ProductFeature** - Alternating left/right feature sections with badge, title, description, image placeholder
 - **PricingTable** - 3-tier pricing section (Starter $49/mo, Professional $149/mo, Enterprise Custom)
+- **SolutionsHero** - Solutions page hero with "Solutions" badge, heading, tagline, single CTA
+- **SolutionCard** - Industry solution card with blue accent bar, icon placeholder, title, description, metrics highlight, and "Learn More" link
+- **ValueProposition** - "Why NovaTech?" stats section with 3 large metric columns (500+ Clients, 99.99% Uptime, 40% ROI)
+- **CaseStudy** - Featured customer success story with company details, quote with blue left border, author attribution, and 3 result metric cards
+
+## NovaTech Design System
+- **Primary Navy**: `#0A1628` (hero/banner bg)
+- **Secondary Navy**: `#1E3A5F` (gradients)
+- **Action Blue**: `#2563EB` (buttons, accents)
+- **Light Blue**: `#EFF6FF` bg / `#93C5FD` text (badges)
+- **White**: `#FFFFFF` (cards, text on dark)
+- **Off-white**: `#F9FAFB` / `#F1F5F9` (section bg)
+- **Grays**: `#6B7280` / `#4B5563` (descriptions), `#E5E7EB` (borders)
+- **Borders**: `8px` buttons, `12px` cards, `16px` feature sections
+- **Section padding**: `80px` vertical
+- **Max-width**: `1100px`-`1200px`
 
 ## Tech Stack
 - **Runtime**: Node.js 20
@@ -55,8 +72,8 @@ cd examples/basic-nextjs && npm run next:dev -- -p 5000 -H 0.0.0.0
 
 ## Default Content Layer
 When Sitecore CMS placeholders are empty or Edge API returns empty rendered data, the app renders default NovaTech content via:
-- `src/lib/default-content.ts` — Static content data for Home and Products pages (exported via `getDefaultContent(routePath)`)
-- `src/components/default-content/DefaultContent.tsx` — Renders default components when placeholders are empty, with page-specific layouts
+- `src/lib/default-content.ts` — Static content data for Home, Products, and Solutions pages (exported via `getDefaultContent(routePath)`)
+- `src/components/default-content/DefaultContent.tsx` — Renders default components when placeholders are empty, with page-specific layouts (DefaultMainContent, DefaultProductsContent, DefaultSolutionsContent)
 - `src/Layout.tsx` — Checks if placeholders are empty and falls back to default content, passing `routePath` for page-specific defaults
 - `src/app/[site]/[locale]/[[...path]]/page.tsx` — Creates fallback page object for known paths when Edge returns no data
 
@@ -69,10 +86,15 @@ The Sitecore Content SDK (`@sitecore-content-sdk/core`) has a bug where it crash
 - **CM URL**: `xmc-icreonpartncfab-novatechshof00c-novatech964b.sitecorecloud.io`
 - **Home page ID**: `0a7f28d1a8b24b8090c9e4643fdf866f`
 - **Products page ID**: `4aa845a07de340c68dc1f0ae57885350`
+- **Solutions page ID**: `c7a26a9dcba24849bd50cb28e6f841a5`
 - **Rendering folder**: `326231e90099427aa7e54643f5d9278c`
 - **Data folder**: `9af2100833f44c0c8cd5493da38d1268`
-- Templates: ProductHero, ProductFeature, PricingTable (+ existing Hero, CTABanner, etc.)
+- **Layout ID**: `96E5F4BA-A2CF-4A4C-A4E7-64DA88226362`
+- **Templates folder**: `/sitecore/templates/Project/NovaTechCollection/Components/`
+- Templates: SolutionsHero (`d67b94896e6b40d5aa3f2eb3294ac523`), SolutionCard (`8450eed0ecbc4febbe10aa6229843a05`), ValueProposition (`c67dcadc26cf4dbbb27a00d14a5dbdf0`), CaseStudy (`10fae6daadbb4ad8bf756d879570931e`), ProductHero, ProductFeature, PricingTable, Hero, CTABanner, etc.
+- Renderings: SolutionsHero (`a87c0dfc70044580a82cbe3c11912da6`), SolutionCard (`ed0517e8fdcb4239bc68e95cf5dcffaa`), ValueProposition (`8e1da011e7ff4fb5a3576666f28dca83`), CaseStudy (`12ab9af29275447eac8057746533f835`)
 - Publishing target: `experienceedge` via `publishSite` mutation
+- **Automation Client ID**: `4f0O3Ur6t3FjrxzNWkPJQiLveQuGWLme`
 
 ## Important: Sitecore Internal Links
 When setting `linktype="internal"` in Sitecore General Link fields (like CTALink), you MUST include the item's GUID in the `id` attribute. Using only `url="/path"` without the GUID will cause the CM's Edge layout resolution to fail for ALL pages (returns `rendered: {}`).
@@ -87,6 +109,12 @@ Wrong format: `<link linktype="internal" url="/Products" text="Get Started" />` 
 - `examples/basic-nextjs/src/Scripts.tsx`: Guards SDK components that access layout.sitecore
 - `examples/basic-nextjs/src/byoc/index.tsx`: Optional chaining for layout.sitecore.context
 - `examples/basic-nextjs/src/components/content-sdk/CdpPageView.tsx`: Optional chaining for layout.sitecore
+
+## GitHub Integration
+- **Owner**: `slamensdicreon`
+- **Repo**: `sitecore-ai-showcase`
+- **Branch**: `main`
+- Connected via Replit OAuth (`conn_github_01KJGTFB06JWZ7MEG7MYF2EKK0`)
 
 ## Deployment
 - Target: Autoscale
