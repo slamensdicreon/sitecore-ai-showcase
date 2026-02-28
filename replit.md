@@ -99,12 +99,24 @@ When setting `linktype="internal"` in Sitecore General Link fields (like CTALink
 Correct format: `<link linktype="internal" id="{4AA845A0-7DE3-40C6-8DC1-F0AE57885350}" url="/Products" text="Get Started" />`
 Wrong format: `<link linktype="internal" url="/Products" text="Get Started" />` (missing id — breaks Edge!)
 
-## Pages Editor Fix (instrumentation.ts)
-The SDK's `resolveServerUrl()` returns undefined when the `host` header is null in XM Cloud's internal editing context. Neither `SITECORE_INTERNAL_EDITING_HOST_URL` nor `SITECORE` env vars are set at runtime in XM Cloud deployments. The SDK also has a bug where `createEditingRenderRouteHandlers` ignores the `sitecoreInternalEditingHostUrl` option — it only calls `resolveServerUrl(req)` directly.
+## XM Cloud Rendering Host Log Diagnosis (Feb 27-28, 2026)
+Analyzed 3 rendering host logs to find why Pages Editor wasn't rendering pages.
 
-**Fix**: Two-layer approach:
+**Root Cause 1: Stale Component Map (THE REAL BLOCKER)**
+All 3 logs showed `componentMap: Map(16)` — missing all 7 custom components (ProductHero, ProductFeature, PricingTable, SolutionsHero, SolutionCard, ValueProposition, CaseStudy). The XM Cloud EH deployment was NEVER rebuilt after these components were added. CMS data was flowing correctly in all 3 modes (preview, edit, normal) with full field data — the rendering host just couldn't find the components to render them.
+
+**Root Cause 2: `TypeError: Failed to parse URL from /`**
+The SDK's `resolveServerUrl()` returns undefined when the `host` header is null in XM Cloud's internal editing context. Neither `SITECORE_INTERNAL_EDITING_HOST_URL` nor `SITECORE` env vars are set at runtime. The SDK also has a bug where `createEditingRenderRouteHandlers` ignores the `sitecoreInternalEditingHostUrl` option.
+
+**Additional findings (Feb 27 log only):**
+- Design Library `library-metadata` mode probed for `Image`, `ProductHero`, `ProductFeature` — all failed as unknown
+- `HTTP 400 Rendering item was not found` from `getDesignLibraryData` — likely the built-in SXA `Image` component
+
+**Fix**: Two-layer approach for the URL issue:
 1. `examples/basic-nextjs/src/instrumentation.ts` — Sets `SITECORE_INTERNAL_EDITING_HOST_URL=http://localhost:3000` at server startup (runtime), before any SDK request handlers execute
 2. `examples/basic-nextjs/next.config.ts` `env` option — Inlines the same value at build time as a backup
+
+Both root causes are resolved once `newdev` is merged to `main` and XM Cloud rebuilds (23-component map + instrumentation.ts).
 
 ## Key Configuration Changes Made
 - `examples/basic-nextjs/src/instrumentation.ts`: Sets SITECORE_INTERNAL_EDITING_HOST_URL at runtime for SDK's resolveServerUrl()
@@ -122,7 +134,7 @@ The SDK's `resolveServerUrl()` returns undefined when the `host` header is null 
 ## GitHub Integration
 - **Owner**: `slamensdicreon`
 - **Repo**: `sitecore-ai-showcase`
-- **Branch**: `main`
+- **Branches**: `main` (production, triggers XM Cloud EH deployment), `newdev` (development — changes pushed here first, user merges to `main` manually)
 - Connected via Replit OAuth (`conn_github_01KJGTFB06JWZ7MEG7MYF2EKK0`)
 
 ## Deployment
