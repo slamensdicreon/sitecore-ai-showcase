@@ -17,7 +17,8 @@ export interface RouteFields {
 }
 
 function isPlaceholderEmpty(
-  route: Record<string, unknown> | null,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  route: any,
   placeholderName: string
 ): boolean {
   const ph = route?.placeholders?.[placeholderName];
