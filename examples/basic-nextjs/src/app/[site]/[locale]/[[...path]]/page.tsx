@@ -39,23 +39,50 @@ export default async function Page({ params, searchParams }: PageProps) {
       page = await client.getPreview(editingParams);
     }
   } else {
-    page = await client.getPage(path ?? [], { site, locale });
-  }
-
-  if (!page) {
-    notFound();
+    try {
+      page = await client.getPage(path ?? [], { site, locale });
+    } catch {
+      page = null;
+    }
   }
 
   const routePath = path ? `/${path.join('/')}` : '/';
+  const knownPaths = ['/', '/Products', '/Solutions'];
+  const isKnownPath = knownPaths.some(
+    (p) => p.toLowerCase() === routePath.toLowerCase()
+  );
 
-  const componentProps = page.layout?.sitecore?.route
-    ? await client.getComponentData(page.layout, {}, components)
+  if (!page && !isKnownPath) {
+    notFound();
+  }
+
+  const fallbackPage = {
+    layout: {
+      sitecore: {
+        context: { pageEditing: false, language: locale },
+        route: null,
+      },
+    },
+    siteName: site,
+    locale,
+    mode: {
+      isEditing: false,
+      isPreview: false,
+      isNormal: true,
+      isDesignLibrary: false,
+    },
+  };
+
+  const activePage = page || fallbackPage;
+
+  const componentProps = activePage.layout?.sitecore?.route
+    ? await client.getComponentData(activePage.layout, {}, components)
     : {};
 
   return (
     <NextIntlClientProvider>
-      <Providers page={page as SitecorePage} componentProps={componentProps}>
-        <Layout page={page as SitecorePage} routePath={routePath} />
+      <Providers page={activePage as SitecorePage} componentProps={componentProps}>
+        <Layout page={activePage as SitecorePage} routePath={routePath} />
       </Providers>
     </NextIntlClientProvider>
   );

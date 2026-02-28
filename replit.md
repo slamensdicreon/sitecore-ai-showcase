@@ -109,7 +109,9 @@ All 3 logs showed `componentMap: Map(16)` — missing all 7 custom components (P
 - `TypeError: Cannot read properties of undefined (reading 'context')` — SDK's `getPreview` crash on first request; subsequent editing requests work fine
 - Both errors appear at startup and are harmless — the Feb 28 12:10 log (970 lines) proves preview, edit, and normal mode all work after initial errors
 
-**Approach: Keep it stock.** Page.tsx follows the stock Sitecore Content SDK starter pattern. No workaround fixes (no instrumentation.ts, no try-catch wrappers, no env overrides). The only real fix needed was registering all components in the build.
+**Approach: Near-stock with local preview.** Page.tsx follows the stock Sitecore Content SDK starter pattern with one addition: a `fallbackPage` and `knownPaths` array for local preview (when Edge API has no page data). The `getPage` call has a try-catch so errors fall through to the fallback. No instrumentation.ts or env overrides. The only real fix needed was registering all components in the build.
+
+**Local URLs**: Access pages via `/`, `/Products`, `/Solutions` (without site/locale prefix). The middleware handles the rewrite. Using `/NovaTech/en/Products` directly causes double-prefix issues.
 
 ## Key Configuration Changes Made
 - `examples/basic-nextjs/next.config.ts`: Added `allowedDevOrigins` for Replit proxy
