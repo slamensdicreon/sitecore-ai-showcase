@@ -17,6 +17,9 @@ import * as ContentBlock from 'src/components/content-block/ContentBlock';
 import * as ContainerFullWidth from 'src/components/container/container-full-width/ContainerFullWidth';
 import * as ContainerFullBleed from 'src/components/container/container-full-bleed/ContainerFullBleed';
 import * as Container70 from 'src/components/container/container-70/Container70';
+import * as ProductHero from 'src/components/product-hero/ProductHero';
+import * as ProductFeature from 'src/components/product-feature/ProductFeature';
+import * as PricingTable from 'src/components/pricing-table/PricingTable';
 
 export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['BYOCWrapper', BYOCServerWrapper],
@@ -35,6 +38,9 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['ContainerFullWidth', { ...ContainerFullWidth }],
   ['ContainerFullBleed', { ...ContainerFullBleed }],
   ['Container70', { ...Container70 }],
+  ['ProductHero', { ...ProductHero }],
+  ['ProductFeature', { ...ProductFeature }],
+  ['PricingTable', { ...PricingTable }],
 ]);
 
 export default componentMap;
