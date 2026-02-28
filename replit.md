@@ -73,15 +73,11 @@ cd examples/basic-nextjs && npm run next:dev -- -p 5000 -H 0.0.0.0
 ## Default Content Layer
 When Sitecore CMS placeholders are empty or Edge API returns empty rendered data, the app renders default NovaTech content via:
 - `src/lib/default-content.ts` — Static content data for Home, Products, and Solutions pages (exported via `getDefaultContent(routePath)`)
-- `src/components/default-content/DefaultContent.tsx` — Renders default components when placeholders are empty, with page-specific layouts (DefaultMainContent, DefaultProductsContent, DefaultSolutionsContent)
+- `src/components/default-content/DefaultContent.tsx` — Renders default components when placeholders are empty, with page-specific layouts (DefaultMainContent, DefaultProductsContent, DefaultSolutionsContent). Uses a properly typed `defaultPage` object instead of type suppressions.
 - `src/Layout.tsx` — Checks if placeholders are empty and falls back to default content, passing `routePath` for page-specific defaults
 - `src/app/[site]/[locale]/[[...path]]/page.tsx` — Creates fallback page object for known paths when Edge returns no data
 
 When components are placed in Sitecore CMS, the CMS content takes priority automatically.
-
-## SDK Patches (applied via postinstall)
-1. **resolveServerUrl fallback** (`scripts/patch-editing-utils.js`, runs via `postinstall`): The SDK's `resolveServerUrl()` has no safe fallback when the host header is missing and no `SITECORE` env vars are set. In XM Cloud editing mode, the CM's internal request may lack host headers, causing `new URL('/', undefined)` to throw. The patch adds `if (!host) return 'http://localhost:3000'` as a safe fallback. This runs at npm install time, so the patched code is compiled into the build output.
-2. **Empty rendered data** (`@sitecore-content-sdk/core` layout-service.js): The SDK crashes when Edge returns `rendered: {}` (empty object). Patched to check for `rendered.sitecore` before using the rendered data. Note: This patch must be re-applied manually if node_modules are reinstalled (it's not in postinstall yet).
 
 ## Sitecore CMS Architecture
 - **CM URL**: `xmc-icreonpartncfab-novatechshof00c-novatech964b.sitecorecloud.io`
@@ -104,16 +100,14 @@ Correct format: `<link linktype="internal" id="{4AA845A0-7DE3-40C6-8DC1-F0AE5788
 Wrong format: `<link linktype="internal" url="/Products" text="Get Started" />` (missing id — breaks Edge!)
 
 ## Key Configuration Changes Made
-- `examples/basic-nextjs/next.config.ts`: Added `allowedDevOrigins` for Replit proxy compatibility; added `typescript.ignoreBuildErrors: true` and `eslint.ignoreDuringBuilds: true` because the Sitecore SDK starter template ships with pre-existing `as any` casts in core files that cannot be changed without breaking SDK contracts
+- `examples/basic-nextjs/next.config.ts`: Added `allowedDevOrigins` for Replit proxy compatibility (no build workarounds — uses stock Sitecore defaults)
 - `examples/basic-nextjs/sitecore.config.ts`: Reads Edge credentials from env vars with graceful fallback
+- `examples/basic-nextjs/eslint.config.mjs`: Added `@typescript-eslint/no-explicit-any: "warn"` (was default warn in the working state, needed explicit override after package updates)
 - `examples/basic-nextjs/src/Layout.tsx`: Added default content fallback for empty Sitecore placeholders, optional chaining for layout.sitecore
 - `examples/basic-nextjs/src/Scripts.tsx`: Guards SDK components that access layout.sitecore
 - `examples/basic-nextjs/src/byoc/index.tsx`: Optional chaining for layout.sitecore.context
 - `examples/basic-nextjs/src/components/content-sdk/CdpPageView.tsx`: Optional chaining for layout.sitecore
-- `examples/basic-nextjs/src/app/api/editing/render/route.ts`: Clean SDK route handler (original code)
-- `examples/basic-nextjs/src/instrumentation.ts`: Sets `process.env.SITECORE_INTERNAL_EDITING_HOST_URL = 'http://localhost:3000'` at server startup as a backup
-- `examples/basic-nextjs/scripts/patch-editing-utils.js`: Postinstall script that patches SDK's `resolveServerUrl` to add localhost:3000 fallback when host header is missing
-- **IMPORTANT**: Do NOT use the `next.config.ts` `env` option for `SITECORE_INTERNAL_EDITING_HOST_URL` — it triggers webpack DefinePlugin which replaces `process.env.X` at build time, preventing runtime env var assignments from taking effect
+- `examples/basic-nextjs/src/app/api/editing/render/route.ts`: Clean SDK route handler (original stock code, no customizations)
 
 ## GitHub Integration
 - **Owner**: `slamensdicreon`
