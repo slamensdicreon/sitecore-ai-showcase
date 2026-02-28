@@ -71,11 +71,10 @@ cd examples/basic-nextjs && npm run next:dev -- -p 5000 -H 0.0.0.0
 ```
 
 ## Default Content Layer
-When Sitecore CMS placeholders are empty or Edge API returns empty rendered data, the app renders default NovaTech content via:
+When Sitecore CMS placeholders are empty, the app renders default NovaTech content via:
 - `src/lib/default-content.ts` — Static content data for Home, Products, and Solutions pages (exported via `getDefaultContent(routePath)`)
-- `src/components/default-content/DefaultContent.tsx` — Renders default components when placeholders are empty, with page-specific layouts (DefaultMainContent, DefaultProductsContent, DefaultSolutionsContent). Uses a properly typed `defaultPage` object instead of type suppressions.
+- `src/components/default-content/DefaultContent.tsx` — Renders default components when placeholders are empty, with page-specific layouts
 - `src/Layout.tsx` — Checks if placeholders are empty and falls back to default content, passing `routePath` for page-specific defaults
-- `src/app/[site]/[locale]/[[...path]]/page.tsx` — Creates fallback page object for known paths when Edge returns no data
 
 When components are placed in Sitecore CMS, the CMS content takes priority automatically.
 
@@ -102,32 +101,18 @@ Wrong format: `<link linktype="internal" url="/Products" text="Get Started" />` 
 ## XM Cloud Rendering Host Log Diagnosis (Feb 27-28, 2026)
 Analyzed 3 rendering host logs to find why Pages Editor wasn't rendering pages.
 
-**Root Cause 1: Stale Component Map (THE REAL BLOCKER)**
+**Root Cause: Stale Component Map (THE REAL BLOCKER)**
 All 3 logs showed `componentMap: Map(16)` — missing all 7 custom components (ProductHero, ProductFeature, PricingTable, SolutionsHero, SolutionCard, ValueProposition, CaseStudy). The XM Cloud EH deployment was NEVER rebuilt after these components were added. CMS data was flowing correctly in all 3 modes (preview, edit, normal) with full field data — the rendering host just couldn't find the components to render them.
 
-**Root Cause 2: `TypeError: Failed to parse URL from /`**
-The SDK's `resolveServerUrl()` returns undefined when the `host` header is null in XM Cloud's internal editing context. Neither `SITECORE_INTERNAL_EDITING_HOST_URL` nor `SITECORE` env vars are set at runtime. The SDK also has a bug where `createEditingRenderRouteHandlers` ignores the `sitecoreInternalEditingHostUrl` option.
+**Transient errors (NOT blockers):**
+- `TypeError: Failed to parse URL from /` — SDK's `resolveServerUrl()` returns undefined on first request; editing pipeline recovers on subsequent requests
+- `TypeError: Cannot read properties of undefined (reading 'context')` — SDK's `getPreview` crash on first request; subsequent editing requests work fine
+- Both errors appear at startup and are harmless — the Feb 28 12:10 log (970 lines) proves preview, edit, and normal mode all work after initial errors
 
-**Additional findings (Feb 27 log only):**
-- Design Library `library-metadata` mode probed for `Image`, `ProductHero`, `ProductFeature` — all failed as unknown
-- `HTTP 400 Rendering item was not found` from `getDesignLibraryData` — likely the built-in SXA `Image` component
-
-**Fix**: Two-layer approach for the URL issue:
-1. `examples/basic-nextjs/src/instrumentation.ts` — Sets `SITECORE_INTERNAL_EDITING_HOST_URL=http://localhost:3000` at server startup (runtime), before any SDK request handlers execute
-2. `examples/basic-nextjs/next.config.ts` `env` option — Inlines the same value at build time as a backup
-
-**Root Cause 3: SDK `getPreview` crash — `Cannot read properties of undefined (reading 'context')` (Feb 28 post-fix)**
-After fixing Root Causes 1+2, the rendering host still crashes in `getPreview` when the CM returns `item.rendered = {}` (empty but truthy object). The SDK doesn't null-check `data.layoutData.sitecore` before accessing `.context.site.name`.
-
-**Fix**: In `page.tsx`:
-1. Wrapped `getPreview`/`getDesignLibraryData` calls in try-catch — on failure, falls back to `getPage` (normal Edge fetch)
-2. Added validation: if `page.layout?.sitecore?.context` is missing, discard the malformed page and use fallback
-
-All three root causes are resolved once `newdev` is merged to `main` and XM Cloud rebuilds.
+**Approach: Keep it stock.** Page.tsx follows the stock Sitecore Content SDK starter pattern. No workaround fixes (no instrumentation.ts, no try-catch wrappers, no env overrides). The only real fix needed was registering all components in the build.
 
 ## Key Configuration Changes Made
-- `examples/basic-nextjs/src/instrumentation.ts`: Sets SITECORE_INTERNAL_EDITING_HOST_URL at runtime for SDK's resolveServerUrl()
-- `examples/basic-nextjs/next.config.ts`: Added `allowedDevOrigins` for Replit proxy, `env.SITECORE_INTERNAL_EDITING_HOST_URL` for build-time backup
+- `examples/basic-nextjs/next.config.ts`: Added `allowedDevOrigins` for Replit proxy
 - `examples/basic-nextjs/sitecore.config.ts`: Reads Edge credentials from env vars with graceful fallback
 - `examples/basic-nextjs/eslint.config.mjs`: Added `@typescript-eslint/no-explicit-any: "warn"` (was default warn in the working state, needed explicit override after package updates)
 - `examples/basic-nextjs/src/Layout.tsx`: Added default content fallback for empty Sitecore placeholders, optional chaining for layout.sitecore
