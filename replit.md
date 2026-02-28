@@ -79,8 +79,9 @@ When Sitecore CMS placeholders are empty or Edge API returns empty rendered data
 
 When components are placed in Sitecore CMS, the CMS content takes priority automatically.
 
-## SDK Patch
-The Sitecore Content SDK (`@sitecore-content-sdk/core`) has a bug where it crashes when Edge returns `rendered: {}` (empty object). The layout-service.js files (CJS and ESM) are patched to check for `rendered.sitecore` before using the rendered data. This patch will need to be re-applied if node_modules are reinstalled.
+## SDK Patches (applied via postinstall)
+1. **resolveServerUrl fallback** (`scripts/patch-editing-utils.js`, runs via `postinstall`): The SDK's `resolveServerUrl()` has no safe fallback when the host header is missing and no `SITECORE` env vars are set. In XM Cloud editing mode, the CM's internal request may lack host headers, causing `new URL('/', undefined)` to throw. The patch adds `if (!host) return 'http://localhost:3000'` as a safe fallback. This runs at npm install time, so the patched code is compiled into the build output.
+2. **Empty rendered data** (`@sitecore-content-sdk/core` layout-service.js): The SDK crashes when Edge returns `rendered: {}` (empty object). Patched to check for `rendered.sitecore` before using the rendered data. Note: This patch must be re-applied manually if node_modules are reinstalled (it's not in postinstall yet).
 
 ## Sitecore CMS Architecture
 - **CM URL**: `xmc-icreonpartncfab-novatechshof00c-novatech964b.sitecorecloud.io`
@@ -109,8 +110,9 @@ Wrong format: `<link linktype="internal" url="/Products" text="Get Started" />` 
 - `examples/basic-nextjs/src/Scripts.tsx`: Guards SDK components that access layout.sitecore
 - `examples/basic-nextjs/src/byoc/index.tsx`: Optional chaining for layout.sitecore.context
 - `examples/basic-nextjs/src/components/content-sdk/CdpPageView.tsx`: Optional chaining for layout.sitecore
-- `examples/basic-nextjs/src/app/api/editing/render/route.ts`: Sets `process.env.SITECORE_INTERNAL_EDITING_HOST_URL` at module load time before creating SDK handlers — ensures the SDK's `resolveServerUrl()` finds the correct internal URL at request time
-- `examples/basic-nextjs/src/instrumentation.ts`: Also sets `process.env.SITECORE_INTERNAL_EDITING_HOST_URL = 'http://localhost:3000'` at server startup as a second layer of protection. Note: The SDK's `createEditingRenderRouteHandlers` has a bug where it accepts a `sitecoreInternalEditingHostUrl` option in TypeScript types but ignores it — only the env var works
+- `examples/basic-nextjs/src/app/api/editing/render/route.ts`: Clean SDK route handler (original code)
+- `examples/basic-nextjs/src/instrumentation.ts`: Sets `process.env.SITECORE_INTERNAL_EDITING_HOST_URL = 'http://localhost:3000'` at server startup as a backup
+- `examples/basic-nextjs/scripts/patch-editing-utils.js`: Postinstall script that patches SDK's `resolveServerUrl` to add localhost:3000 fallback when host header is missing
 - **IMPORTANT**: Do NOT use the `next.config.ts` `env` option for `SITECORE_INTERNAL_EDITING_HOST_URL` — it triggers webpack DefinePlugin which replaces `process.env.X` at build time, preventing runtime env var assignments from taking effect
 
 ## GitHub Integration

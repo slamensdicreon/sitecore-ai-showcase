@@ -56,6 +56,7 @@
     "sitecore-tools:generate-map:watch": "sitecore-tools project component generate-map --watch",
     "sitecore-tools:build": "sitecore-tools project build || echo 'Warning: sitecore-tools build skipped (missing XM Cloud credentials). Using existing metadata.'",
     "dev": "cross-env NODE_ENV=development npm-run-all --serial sitecore-tools:generate-map sitecore-tools:build --parallel next:dev sitecore-tools:generate-map:watch",
-    "start": "cross-env-shell NODE_ENV=production npm-run-all --serial build next:start"
+    "start": "cross-env-shell NODE_ENV=production npm-run-all --serial build next:start",
+    "postinstall": "node scripts/patch-editing-utils.js"
   }
 }
