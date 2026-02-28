@@ -49,6 +49,7 @@ const Layout = ({ page, routePath: urlPath }: LayoutProps): JSX.Element => {
   const routePath = urlPath || (route?.name === 'Home' ? '/' : route?.name ? `/${route.name}` : '/');
   const mainClassPageEditing = mode.isEditing ? "editing-mode" : "prod-mode";
 
+  const isEditing = mode.isEditing || mode.isPreview;
   const headerEmpty = isPlaceholderEmpty(route, "headless-header");
   const mainEmpty = isPlaceholderEmpty(route, "headless-main");
   const footerEmpty = isPlaceholderEmpty(route, "headless-footer");
@@ -72,7 +73,7 @@ const Layout = ({ page, routePath: urlPath }: LayoutProps): JSX.Element => {
           <>
             <header>
               <div id="header">
-                {route && !headerEmpty ? (
+                {route && (!headerEmpty || isEditing) ? (
                   <AppPlaceholder
                     page={page}
                     componentMap={componentMap}
@@ -86,7 +87,7 @@ const Layout = ({ page, routePath: urlPath }: LayoutProps): JSX.Element => {
             </header>
             <main>
               <div id="content">
-                {route && !mainEmpty ? (
+                {route && (!mainEmpty || isEditing) ? (
                   <AppPlaceholder
                     page={page}
                     componentMap={componentMap}
@@ -100,7 +101,7 @@ const Layout = ({ page, routePath: urlPath }: LayoutProps): JSX.Element => {
             </main>
             <footer>
               <div id="footer">
-                {route && !footerEmpty ? (
+                {route && (!footerEmpty || isEditing) ? (
                   <AppPlaceholder
                     page={page}
                     componentMap={componentMap}
