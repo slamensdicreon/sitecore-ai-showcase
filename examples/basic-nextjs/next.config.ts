@@ -2,11 +2,6 @@ import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 
 const nextConfig: NextConfig = {
-  env: {
-    SITECORE_INTERNAL_EDITING_HOST_URL:
-      process.env.SITECORE_INTERNAL_EDITING_HOST_URL || 'http://localhost:3000',
-  },
-
   distDir: process.env.NEXTJS_DIST_DIR || '.next',
 
   // Enable React Strict Mode
