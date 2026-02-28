@@ -12,4 +12,6 @@ import { createEditingRenderRouteHandlers } from '@sitecore-content-sdk/nextjs/r
  *  4. Return the rendered HTML for editing mode
  */
 
-export const { GET, POST, OPTIONS } = createEditingRenderRouteHandlers({});
+export const { GET, POST, OPTIONS } = createEditingRenderRouteHandlers({
+  sitecoreInternalEditingHostUrl: process.env.SITECORE_INTERNAL_EDITING_HOST_URL || 'http://localhost:3000',
+});
