@@ -3,10 +3,5 @@
     "name": "NovaTech",
     "hostName": "*",
     "language": "en"
-  },
-  {
-    "name": "website",
-    "hostName": "",
-    "language": "en"
   }
 ]
