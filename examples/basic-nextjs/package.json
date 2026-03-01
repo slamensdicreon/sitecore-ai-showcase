@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "config": {
-    "appName": "basic-nextjs",
+    "appName": "content-sdk-nextjs-app-router",
     "graphQLEndpointPath": "/sitecore/api/graph/edge",
     "language": "en",
     "template": "nextjs"
