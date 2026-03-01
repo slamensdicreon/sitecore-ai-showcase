@@ -38,7 +38,10 @@ const nextConfig: NextConfig = {
       {
         source: '/:path*',
         headers: [
-          { key: 'X-Frame-Options', value: 'ALLOWALL' },
+          {
+            key: 'Content-Security-Policy',
+            value: "frame-ancestors 'self' https://*.sitecorecloud.io https://*.sitecore.cloud https://pages.sitecorecloud.io",
+          },
         ],
       },
       {
@@ -46,14 +49,6 @@ const nextConfig: NextConfig = {
         headers: [
           { key: 'Access-Control-Allow-Origin', value: '*' },
           { key: 'Access-Control-Allow-Methods', value: 'GET,OPTIONS' },
-        ],
-      },
-      {
-        source: '/api/editing/:path*',
-        headers: [
-          { key: 'Access-Control-Allow-Origin', value: '*' },
-          { key: 'Access-Control-Allow-Methods', value: 'GET,POST,OPTIONS' },
-          { key: 'Access-Control-Allow-Headers', value: 'Content-Type,Authorization,sc_editingSecret' },
         ],
       },
     ];
