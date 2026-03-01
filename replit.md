@@ -95,30 +95,8 @@ Core files are based on the Sitecore Content SDK starter (commit `76baa7c`):
 
 The 14 custom NovaTech component files are in `src/components/`.
 
-### Pages Editor / Preview Edge Issue (Confirmed Root Cause)
-The Preview Edge context returns `{ item: { rendered: {} } }` for the EditingQuery — an empty object that is truthy but has NO `sitecore` property. The SDK's fallback check (`rendered || fallback`) doesn't trigger because `{}` is truthy. Then `getPreview()` crashes accessing `{}.sitecore.context`.
-
-Defensive code deployed (merged to `main`, deployed as `43YD56nlWymzcSubguvj2U`): Pages Editor now shows a diagnostic error message instead of infinite spinner. The rendering host logs confirm the error is caught cleanly: `[NovaTech] Editing preview failed: TypeError: Cannot read properties of undefined (reading 'context')`.
-
-**Preview Edge deeper finding**: The Preview Edge HAS items indexed (Home found by path `/sitecore/content/NovaTech/NovaTech/Home`) but the `rendered` field is empty. This means the items are synced to the Preview Edge but layout rendering isn't resolving. This is NOT fixed by "Publish to Experience Edge" — that only publishes to the Live Edge. The Preview Edge is auto-synced from the CM master database. The empty `rendered` field may indicate:
-- Layout assignment not resolving in Preview context
-- Rendering configuration missing for the Preview endpoint
-- May require Sitecore support investigation
-
-### Solutions Page on Live Edge — Route Present, Components Missing
-The Solutions page route IS on Live Edge (3 routes: Home, Products, Solutions). However, the page's component placeholders are **empty** — all 3 placeholders (`headless-header`, `headless-main`, `headless-footer`) return `[]`.
-
-**Root cause**: The original Solutions item (`{C7A26A9D-...}`) was silently rejected by Edge. After deleting and recreating with a new GUID (`97495906a38442d4bc3b251e63a0f74f`), the route appeared. However, Edge indexes the page item WITHOUT resolving `__Final Renderings` into component data. Multiple attempts were made:
-- Setting `__Final Renderings` with all 10 renderings (same XML structure as working Products page)
-- Publishing multiple times with `publishItemMode: FULL`
-- Clearing and restoring layout fields ("dirty update" cycle)
-- Creating a new version (v2) with layout
-- Setting layout in `__Renderings` (shared) field instead
-- Full delete/recreate with layout pre-set before first publish
-
-None resolved the empty placeholder issue. Products (created via XM Cloud UI) works perfectly with 8 components. The Edge connector appears to handle API-created items differently from UI-created items for layout resolution.
-
-**Recommended fix**: Add components to the Solutions page through the **XM Cloud Pages Editor UI** or **Content Editor presentation details**. This uses the native Sitecore UI flow which correctly triggers Edge layout resolution. Alternatively, open a Sitecore support ticket requesting an Edge re-index for the Solutions page.
+### Pages Editor / Preview Edge
+Defensive code deployed: Pages Editor shows diagnostic error message instead of spinner if Preview Edge returns empty `rendered` object.
 
 ## Sitecore Serialization Module (Complete — 14/14 Components, Verified)
 The module at `.vscode/authoring/items/novatech.module.json` now contains full serialization for ALL 14 custom NovaTech components. All YML files have been verified to follow correct Sitecore serialization format (dashed GUIDs, no extra indentation, __Standard Values present). A fresh XM Cloud environment deploy from GitHub will auto-provision:
@@ -136,19 +114,19 @@ The module at `.vscode/authoring/items/novatech.module.json` now contains full s
 - `novatech.placeholderSettings/` — 3 YMLs (headless-main with 12 allowed controls, headless-header, headless-footer)
 - `novatech.templates.branches/` — 1 available renderings branch YML (43 renderings)
 
-## Current Status
-- **Serialization module**: All 14 components fully serialized in `.vscode/authoring/` — `.gitignore` updated to allow `.vscode/authoring/` directory to be committed
-- **Home** (`/`) — Layout set with 9 components via Authoring API
-- **Products** (`/Products`) — Layout set with 8 components via Authoring API
-- **Solutions** (`/Solutions`) — Layout set with 10 components via Authoring API
-- **Pages Editor**: Deployed with defensive error handling
-- Content created via Authoring GraphQL API with 14 renderings, 14 templates, datasource items, and page layouts published to Experience Edge
+## Current Status (All 3 pages live and rendering)
+- **Home** (`/`) — 9 components: SiteHeader, Hero, 3 FeatureCards, ContentBlock, Testimonial, CTABanner, SiteFooter
+- **Products** (`/Products`) — 8 components: SiteHeader, ProductHero, 3 ProductFeatures, PricingTable, CTABanner, SiteFooter
+- **Solutions** (`/Solutions`) — 10 components: SiteHeader, SolutionsHero, 4 SolutionCards, ValueProposition, CaseStudy, CTABanner, SiteFooter
+- Products and Solutions are children of Home in the content tree (best practice)
+- All content created via Authoring GraphQL API, published to Experience Edge, confirmed rendering on Live Edge
+- **Serialization module**: All 14 components serialized in `.vscode/authoring/` — `.gitignore` updated to allow commits
 
 ## Sitecore CMS Architecture
 - **CM URL**: `xmc-icreonpartn828a-novatech15a9-novatechf6c7.sitecorecloud.io`
 - **Home page ID**: `618f06bf2ec246af8906c24c800efa17`
-- **Products page ID**: `22179458777c4bcfac606e0bf2c0938d`
-- **Solutions page ID**: `246bbc13e6944f539bf8db74056ab7c3`
+- **Products page ID**: `f19cb6b2a3eb4e74a473b5138f02bacc` (child of Home)
+- **Solutions page ID**: `dda9cadfe8d84584aa8a01e321121c22` (child of Home)
 - **Site root ID**: `9afefa3d1df54c6f9b2df49be877e6a6`
 - **Rendering folder**: `405b9345e31841bab30cc917e38f36a3`
 - **Data folder**: `f5decb875fa94f1fbf6d4cd613c5397b`
