@@ -137,25 +137,25 @@ The module at `.vscode/authoring/items/novatech.module.json` now contains full s
 - `novatech.templates.branches/` — 1 available renderings branch YML (43 renderings)
 
 ## Current Status
-- **Sitecore environment**: User is recreating — old CM/Edge URLs will change. New context IDs TBD.
-- **Home** (`/`) — Renders correctly with 9 components (Header, Hero, 3 FeatureCards, ContentBlock, Testimonial, CTABanner, Footer)
-- **Products** (`/Products`) — Renders correctly with 8 components (Header, ProductHero, 3 ProductFeatures, PricingTable, CTABanner, Footer)
-- **Solutions** (`/Solutions`) — Route exists on Edge but renders blank (empty placeholders). Needs components added via XM Cloud Pages Editor UI after environment recreation.
-- **Pages Editor**: Deployed with defensive error handling. Shows diagnostic message instead of spinner.
-- **Preview context ID** (`3FroI...`) had items indexed but `rendered` field was empty — may need Sitecore support in new environment
+- **Serialization module**: All 14 components fully serialized in `.vscode/authoring/` — `.gitignore` updated to allow `.vscode/authoring/` directory to be committed
+- **Home** (`/`) — Layout set with 9 components via Authoring API
+- **Products** (`/Products`) — Layout set with 8 components via Authoring API
+- **Solutions** (`/Solutions`) — Layout set with 10 components via Authoring API
+- **Pages Editor**: Deployed with defensive error handling
+- Content created via Authoring GraphQL API with 14 renderings, 14 templates, datasource items, and page layouts published to Experience Edge
 
 ## Sitecore CMS Architecture
-- **CM URL**: `xmc-icreonpartncfab-novatechshof00c-novatech964b.sitecorecloud.io`
-- **Editing Host URL**: `https://xmc-2oqiqa6dtxraqi23cxueur-eh.sitecorecloud.io`
-- **Home page ID**: `0a7f28d1a8b24b8090c9e4643fdf866f`
-- **Products page ID**: `4aa845a07de340c68dc1f0ae57885350`
-- **Solutions page ID**: `97495906a38442d4bc3b251e63a0f74f`
-- **Rendering folder**: `326231e90099427aa7e54643f5d9278c`
-- **Data folder**: `9af2100833f44c0c8cd5493da38d1268`
+- **CM URL**: `xmc-icreonpartn828a-novatech15a9-novatechf6c7.sitecorecloud.io`
+- **Home page ID**: `618f06bf2ec246af8906c24c800efa17`
+- **Products page ID**: `22179458777c4bcfac606e0bf2c0938d`
+- **Solutions page ID**: `246bbc13e6944f539bf8db74056ab7c3`
+- **Site root ID**: `9afefa3d1df54c6f9b2df49be877e6a6`
+- **Rendering folder**: `405b9345e31841bab30cc917e38f36a3`
+- **Data folder**: `f5decb875fa94f1fbf6d4cd613c5397b`
+- **Templates folder**: `f53dd5fe73a04592b6dceb53d47c57a7`
 - **Layout ID**: `96E5F4BA-A2CF-4A4C-A4E7-64DA88226362`
-- **Templates folder**: `/sitecore/templates/Project/NovaTechCollection/Components/`
 - Publishing target: `experienceedge` via `publishSite` mutation
-- **Automation Client ID**: `4f0O3Ur6t3FjrxzNWkPJQiLveQuGWLme`
+- **Automation Client ID**: `Ha35Bha8Dwj4H6cmdDv20EMh21Za1iad`
 
 ## Important: Sitecore Internal Links
 When setting `linktype="internal"` in Sitecore General Link fields (like CTALink), you MUST include the item's GUID in the `id` attribute. Using only `url="/path"` without the GUID will cause the CM's Edge layout resolution to fail for ALL pages (returns `rendered: {}`).

@@ -47,5 +47,7 @@ packages/
 #Ignore system files
 .DS_Store
 
-# VS Code settings
-.vscode/
+# VS Code settings (but keep authoring serialization files)
+.vscode/*
+!.vscode/authoring/
+!.vscode/authoring/**

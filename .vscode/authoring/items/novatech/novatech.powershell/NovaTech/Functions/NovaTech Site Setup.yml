@@ -1,0 +1,158 @@
+---
+ID: "1da060ec-fa02-4ed0-b5a0-c977df759efc"
+Parent: "f5e07ce1-7d96-445f-ad92-31c858e47737"
+Template: "dd22f1b3-bd87-4db2-9e7d-f7a496888d43"
+Path: /sitecore/system/Modules/PowerShell/Script Library/NovaTech/Functions/NovaTech Site Setup
+SharedFields:
+- ID: "b1a94ff0-6897-47c0-9c51-aa6acb80b1f0"
+  Hint: Script
+  Value: |
+    Import-Function Update-PageTemplate
+    Import-Function Update-LinkField
+    Import-Function Update-TemplateInsertOptions
+    
+    function Invoke-ModuleScriptBody {
+        [CmdletBinding()]
+        param(
+            [Parameter(Mandatory = $true, Position = 0)]
+            [Item]$Site,
+    
+            [Parameter(Mandatory = $true, Position = 1)]
+            [Item[]]$TenantTemplates
+        )
+    
+        begin {
+            Write-Log "NovaTech - Post Site Creation Script"
+            Write-Verbose "Cmdlet Invoke-ModuleScriptBody - Begin"
+        }
+    
+        process {
+            Write-Verbose "Cmdlet Invoke-ModuleScriptBody - Process"
+            $sitePath = $Site.Paths.Path
+            $siteCollection = $Site.Parent
+            $item = Get-Item -Path "$sitePath/Home" -Language $Site.Language
+            Write-Verbose "NovaTech site path: $sitePath"
+    
+            # Set the start item and rendering host
+            Write-Verbose "Reset the start item and rendering host"
+            $siteName = $Site.Name
+            $siteGrouping = Get-Item -Path "$sitePath/Settings/Site Grouping/$($siteName)" -Language $Site.Language
+            $siteGrouping.StartItem = $item.ID
+            $siteGrouping.RenderingHost = "basic-nextjs"
+            Write-Log "Set rendering host to basic-nextjs" -Log "INFO"
+    
+            # Create page templates in the Site Collection
+            Write-Verbose "Create page templates in the Site Collection"
+            $basePageTemplateId = "{AC9DE9BE-8E86-4147-8FBC-739D5560408B}"
+            $baseHomePageTemplateId = "{4ACCF644-A506-421F-B60F-A05E5C6196B4}"
+            $baseLandingPageTemplateId = "{C3C9FC9E-E7D3-44E6-B777-AA23496924C7}"
+            $basePageFolderTemplateId = "{84DBE64B-0FED-4125-A971-725C0155C321}"
+    
+            $templatesRootPath = "master:/sitecore/templates/Project/$($siteCollection.Name)"
+    
+            $pageTemplate = Get-Item -Path "$templatesRootPath/Page"
+            if ($pageTemplate) {
+                $pageTemplate."__Base template" = $basePageTemplateId
+            }
+    
+            $homePageTemplate = Update-PageTemplate -BaseTemplateId $baseHomePageTemplateId -TemplateName "Home Page" -TemplatesRootPath $templatesRootPath
+            $landingPageTemplate = Update-PageTemplate -BaseTemplateId $baseLandingPageTemplateId -TemplateName "Landing Page" -TemplatesRootPath $templatesRootPath
+            $pageFolderTemplate = Update-PageTemplate -BaseTemplateId $basePageFolderTemplateId -TemplateName "Page Folder" -TemplatesRootPath $templatesRootPath
+    
+            # Update insert options
+            Write-Verbose "Update insert options"
+            $insertOptions = @( $landingPageTemplate.ID, $pageFolderTemplate.ID )
+            Update-TemplateInsertOptions -TemplateItem $homePageTemplate -InsertOptions $insertOptions
+            Update-TemplateInsertOptions -TemplateItem $landingPageTemplate -InsertOptions $insertOptions
+            Update-TemplateInsertOptions -TemplateItem $pageFolderTemplate -InsertOptions $insertOptions
+    
+            # Add Page Design and link partial designs
+            Write-Verbose "Add Page Design and link partial designs"
+            $headerPartial = Get-Item -Path "$sitePath/Presentation/Partial Designs/Global/Header" -Language $Site.Language
+            $footerPartial = Get-Item -Path "$sitePath/Presentation/Partial Designs/Global/Footer" -Language $Site.Language
+    
+            $defaultPageDesign = New-Item -Path "$($sitePath)/Presentation/Page Designs" -Name "Default" -ItemType "{1105B8F8-1E00-426B-BF1F-C840742D827B}"
+            $defaultPageDesign.PartialDesigns = "$($headerPartial.ID)|$($footerPartial.ID)"
+    
+            $pageDesigns = Get-Item -path "$sitePath/Presentation/Page Designs" -Language $Site.Language
+            $map = [Sitecore.Text.UrlString]::new()
+            if ($homePageTemplate) { $map[$homePageTemplate.ID] = "$($defaultPageDesign.ID)" }
+            if ($pageTemplate) { $map[$pageTemplate.ID] = "$($defaultPageDesign.ID)" }
+            if ($landingPageTemplate) { $map[$landingPageTemplate.ID] = "$($defaultPageDesign.ID)" }
+            $pageDesigns.TemplatesMapping = [System.Web.HttpUtility]::UrlEncode($map.toString())
+    
+            # Get rendering definitions
+            Write-Verbose "Get the rendering definitions"
+            $renderingHero = Get-Item -Path '/sitecore/layout/Renderings/Feature/NovaTech/Hero'
+            $renderingFeatureCard = Get-Item -Path '/sitecore/layout/Renderings/Feature/NovaTech/FeatureCard'
+            $renderingContentBlock = Get-Item -Path '/sitecore/layout/Renderings/Feature/NovaTech/ContentBlock'
+            $renderingCTABanner = Get-Item -Path '/sitecore/layout/Renderings/Feature/NovaTech/CTABanner'
+            $renderingTestimonial = Get-Item -Path '/sitecore/layout/Renderings/Feature/NovaTech/Testimonial'
+            $renderingSiteHeader = Get-Item -Path '/sitecore/layout/Renderings/Feature/NovaTech/SiteHeader'
+            $renderingSiteFooter = Get-Item -Path '/sitecore/layout/Renderings/Feature/NovaTech/SiteFooter'
+    
+            # Prepare rendering definitions for home page layout
+            if ($renderingHero) {
+                $renderingHeroDefinition = $renderingHero | New-Rendering
+                Add-Rendering -Item $item -PlaceHolder "headless-main" -Instance $renderingHeroDefinition -DataSource "local:/Data/Hero" -FinalLayout
+            }
+    
+            if ($renderingFeatureCard) {
+                $renderingFeatureCardDefinition = $renderingFeatureCard | New-Rendering
+                Add-Rendering -Item $item -PlaceHolder "headless-main" -Instance $renderingFeatureCardDefinition -DataSource "local:/Data/FeatureCard" -FinalLayout
+            }
+    
+            if ($renderingContentBlock) {
+                $renderingContentBlockDefinition = $renderingContentBlock | New-Rendering
+                Add-Rendering -Item $item -PlaceHolder "headless-main" -Instance $renderingContentBlockDefinition -DataSource "local:/Data/ContentBlock" -FinalLayout
+            }
+    
+            if ($renderingTestimonial) {
+                $renderingTestimonialDefinition = $renderingTestimonial | New-Rendering
+                Add-Rendering -Item $item -PlaceHolder "headless-main" -Instance $renderingTestimonialDefinition -DataSource "local:/Data/Testimonial" -FinalLayout
+            }
+    
+            if ($renderingCTABanner) {
+                $renderingCTABannerDefinition = $renderingCTABanner | New-Rendering
+                Add-Rendering -Item $item -PlaceHolder "headless-main" -Instance $renderingCTABannerDefinition -DataSource "local:/Data/CTABanner" -FinalLayout
+            }
+    
+            # Update home page fields
+            Write-Verbose "Update home page fields"
+            $item."pageTitle" = "NovaTech"
+            $item."pageShortTitle" = "NovaTech"
+            $item."pageHeaderTitle" = "NovaTech"
+            $item."pageSummary" = "NovaTech - AI Innovation"
+            $item."metadataTitle" = "NovaTech - Pioneering AI Solutions"
+            $item."metadataDescription" = "NovaTech builds cutting-edge AI-powered solutions for the modern enterprise."
+            $item."metadataKeywords" = "NovaTech, AI, innovation, technology"
+    
+            # Set the home page template
+            Write-Verbose "Update the home page template"
+            Set-ItemTemplate -Item $item -Template $homePageTemplate.ID
+    
+            Write-Log "NovaTech site setup complete"
+        }
+    
+        end {
+            Write-Log "Cmdlet Invoke-ModuleScriptBody - End"
+        }
+    }
+- ID: "dbbbeca1-21c7-4906-9dd2-493c1efa59a2"
+  Hint: __Shared revision
+  Value: "1da060ec-fa02-4ed0-b5a0-c977df759efc"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260225T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "1da060ec-fa02-4ed0-b5a0-c977df759efc"
