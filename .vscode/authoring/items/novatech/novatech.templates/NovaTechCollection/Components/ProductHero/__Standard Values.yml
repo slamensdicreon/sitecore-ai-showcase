@@ -1,12 +1,12 @@
 ---
-ID: "fe64d337-1248-4a8d-8051-7ea96743cb56"
-Parent: "fbcff128-3494-41e3-aab2-94f51c835a2b"
-Template: "e269fbb5-3750-427a-9149-7aa950b49301"
-Path: "/sitecore/templates/Project/NovaTechCollection/Components/CaseStudy/Data"
+ID: "54c64232-9224-449f-a552-2ddfb8444258"
+Parent: "1a303f14-6a13-4316-97ba-c0b2762da94f"
+Template: "1a303f14-6a13-4316-97ba-c0b2762da94f"
+Path: "/sitecore/templates/Project/NovaTechCollection/Components/ProductHero/__Standard Values"
 SharedFields:
 - ID: "dbbbeca1-21c7-4906-9dd2-493c1efa59a2"
   Hint: __Shared revision
-  Value: "fe64d337-1248-4a8d-8051-7ea96743cb56"
+  Value: "c6c8538e-252d-4432-af39-95f48a7e40c2"
 Languages:
 - Language: en
   Versions:
@@ -25,7 +25,7 @@ Languages:
         sitecore\Admin
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "fe64d337-1248-4a8d-8051-7ea96743cb56"
+      Value: "a5b74926-3faa-48f5-9954-50d2150d6371"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
