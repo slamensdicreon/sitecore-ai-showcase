@@ -134,6 +134,16 @@ A separate "NovaTech Lander" template enables marketers to create new landing pa
 - **Available Renderings**: NovaTech group (`708d8f13`) updated with all 14 actual CMS rendering IDs
 - **Partial Designs**: Header and Footer partial designs updated to reference actual SiteHeader/SiteFooter rendering IDs with shared datasources
 - **Insert Options**: NovaTech Lander added to Home page's `__Masters` so marketers can create new landing pages as children of Home
+- **Rendering Icons**: All 14 renderings have distinctive Sitecore built-in icons (replaces default blue rectangles)
+- **Wireframe Images**: Low-fidelity wireframes generated for all 14 components at `examples/basic-nextjs/public/wireframes/`
+- **Datasource Locations**: SiteHeader/SiteFooter renderings point to global Data folder; main components use `./Data` (page-local)
+
+## Content Item Organization
+Content items are organized under page-local `Data` folders (matching the Landing Page pattern):
+- **Home/Data** (`67f5d089c99e443ebb41235a9f504d7f`) — Hero, ContentBlock, CTABanner, 3 FeatureCards, Testimonial
+- **Products/Data** (`54d8f04d3e4c47a1b67fb0c6def32a7b`) — ProductHero, 3 ProductFeatures, PricingTable, Products CTABanner
+- **Solutions/Data** (`4b51e19aef3a449eab2b47a197b5822a`) — SolutionsHero, 4 SolutionCards, ValueProposition, CaseStudy, Solutions CTABanner
+- **Global Data** — SiteHeader (`8c41861a`) and SiteFooter (`57ac498e`) remain in the site-level Data folder as shared items
 
 ## Sitecore CMS Architecture
 - **CM URL**: `xmc-icreonpartn828a-novatech15a9-novatechf6c7.sitecorecloud.io`
