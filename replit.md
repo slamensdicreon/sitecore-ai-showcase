@@ -114,7 +114,9 @@ All 3 logs showed `componentMap: Map(16)` — missing all 7 custom components (P
 **Local URLs**: Access pages via `/`, `/Products`, `/Solutions` (without site/locale prefix). The middleware handles the rewrite. Using `/NovaTech/en/Products` directly causes double-prefix issues.
 
 ## Key Configuration Changes Made
-- `examples/basic-nextjs/next.config.ts`: Added `allowedDevOrigins` for Replit proxy
+- `examples/basic-nextjs/package.json`: Changed `config.appName` from `content-sdk-nextjs-app-router` to `basic-nextjs` to match the Sitecore rendering host key
+- `examples/basic-nextjs/next.config.ts`: Added `allowedDevOrigins` for Replit proxy, CORS headers for Pages Editor iframe (`X-Frame-Options: ALLOWALL`, `Access-Control-Allow-Origin` on `/_next/*` and `/api/editing/*`)
+- `xmcloud.build.json`: Disabled all rendering hosts except `basic-nextjs` to avoid confusion during XM Cloud builds
 - `examples/basic-nextjs/sitecore.config.ts`: Reads Edge credentials from env vars with graceful fallback
 - `examples/basic-nextjs/eslint.config.mjs`: Added `@typescript-eslint/no-explicit-any: "warn"` (was default warn in the working state, needed explicit override after package updates)
 - `examples/basic-nextjs/src/Layout.tsx`: Added default content fallback for empty Sitecore placeholders, optional chaining for layout.sitecore. In editing/preview mode, always renders Sitecore AppPlaceholder (not default content) so editors can add components to empty placeholders

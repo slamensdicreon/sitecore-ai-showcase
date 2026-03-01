@@ -33,6 +33,27 @@ const nextConfig: NextConfig = {
     unoptimized: process.env.NODE_ENV === 'development',
   },
 
+  headers: async () => {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "frame-ancestors 'self' https://*.sitecorecloud.io https://*.sitecore.cloud https://pages.sitecorecloud.io",
+          },
+        ],
+      },
+      {
+        source: '/_next/:path*',
+        headers: [
+          { key: 'Access-Control-Allow-Origin', value: '*' },
+          { key: 'Access-Control-Allow-Methods', value: 'GET,OPTIONS' },
+        ],
+      },
+    ];
+  },
+
   // use this configuration to serve the sitemap.xml and robots.txt files from the API route handlers
   rewrites: async () => {
     return [
