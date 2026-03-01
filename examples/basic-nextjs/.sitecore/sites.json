@@ -5,8 +5,8 @@
     "language": "en"
   },
   {
-    "name": "website",
-    "hostName": "",
+    "name": "NovaTech",
+    "hostName": "*",
     "language": "en"
   }
 ]

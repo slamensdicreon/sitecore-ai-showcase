@@ -72,33 +72,40 @@ Production mode (serves pre-built static pages):
 cd examples/basic-nextjs && npm run next:build && npm run next:start -- -p 5000 -H 0.0.0.0
 ```
 
-## Architecture: 100% Stock SDK Starter + Custom Components
-ALL core files are exact stock Sitecore Content SDK starter code matching commit `76baa7c`:
+## Architecture: Stock SDK Starter + Custom Components + Explicit Config
+Core files are based on the Sitecore Content SDK starter (commit `76baa7c`):
 - `page.tsx` - Stock (includes `force-dynamic`, `generateStaticParams`)
 - `Layout.tsx` - Stock
 - `Scripts.tsx` - Stock
 - `Providers.tsx` - Stock
 - `byoc/index.tsx` - Stock
 - `CdpPageView.tsx` - Stock
-- `sitecore.config.ts` - Stock (defineConfig with `not-configured` fallback only)
 - `sitecore-client.ts` - Stock
 - `middleware.ts` - Stock
-- `next.config.ts` - Stock + `allowedDevOrigins` for Replit proxy
+- `next.config.ts` - Stock
 - `package.json` - Stock (`name` and `appName` both `content-sdk-nextjs-app-router`)
 - `eslint.config.mjs` - Stock
 
-The only additions are the 14 custom NovaTech component files in `src/components/`.
+### sitecore.config.ts — Explicit Env Var Mapping (CRITICAL)
+The `sitecore.config.ts` explicitly maps environment variables to config properties instead of using the stock `defineConfig({})` auto-resolution. This is REQUIRED for the XM Cloud editing host to function.
 
-**CRITICAL RULE**: Do NOT modify stock SDK files. Only add new component files.
+**Why:** The stock `defineConfig({})` relies on the SDK's `deepMerge` auto-resolution, but the Next.js `getNextFallbackConfig()` layer produces empty strings for config properties that get skipped by `deepMerge`. On the XM Cloud editing host, this results in:
+- `getPreview()` failing with `Cannot read properties of undefined (reading 'context')`
+- Editing render handler failing with `Failed to parse URL from /`
+
+**Do NOT revert to stock `defineConfig({})`** — it breaks the Pages Editor with an infinite loading spinner.
+
+The only additions beyond stock are the 14 custom NovaTech component files in `src/components/`.
 
 ## Current Status
 - **Home** (`/`) and **Products** (`/Products`) render correctly from Live Edge with all components
-- **Solutions** (`/Solutions`) is NOT yet published to Live Edge — shows 404. Needs to be published from the CM
-- **Pages Editor**: Requires `newdev` → `main` merge + XM Cloud redeployment with corrected `sitecore.config.ts`
+- **Solutions** (`/Solutions`) is NOT yet published to Live Edge — shows 404. Needs to be published from the CM (was stuck in Draft workflow, removed, and republished — may need Edge propagation time)
+- **Pages Editor**: Fix pushed to `newdev` — requires merge to `main` + XM Cloud redeployment
 - **Preview context ID** (`3FroI...`) returns no layout data for any page — do not use for Replit preview
 
 ## Sitecore CMS Architecture
 - **CM URL**: `xmc-icreonpartncfab-novatechshof00c-novatech964b.sitecorecloud.io`
+- **Editing Host URL**: `https://xmc-2oqiqa6dtxraqi23cxueur-eh.sitecorecloud.io`
 - **Home page ID**: `0a7f28d1a8b24b8090c9e4643fdf866f`
 - **Products page ID**: `4aa845a07de340c68dc1f0ae57885350`
 - **Solutions page ID**: `c7a26a9dcba24849bd50cb28e6f841a5`
