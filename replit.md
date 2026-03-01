@@ -64,7 +64,7 @@ Components located in `examples/basic-nextjs/src/components/`:
 - `NEXT_PUBLIC_SITECORE_EDGE_CONTEXT_ID` - Client-side Edge context ID (Live: `2E2iW...`)
 - `NEXT_PUBLIC_DEFAULT_SITE_NAME` - Set to "NovaTech"
 - `SITECORE_EDITING_SECRET` - Editing endpoint auth token (secret)
-- **Note**: Preview context ID (`3FroI...`) returns no layout data; Live context ID (`2E2iW...`) has data for Home and Products
+- **Note**: Preview context ID (`3FroI...`) returns `rendered: {}` (empty) for all pages; Live context ID (`2E2iW...`) has data for Home and Products
 
 ## Running the App
 Production mode (serves pre-built static pages):
@@ -72,9 +72,8 @@ Production mode (serves pre-built static pages):
 cd examples/basic-nextjs && npm run next:build && npm run next:start -- -p 5000 -H 0.0.0.0
 ```
 
-## Architecture: Stock SDK Starter + Custom Components + Explicit Config
+## Architecture: Stock SDK Starter + Custom Components + Defensive Editing
 Core files are based on the Sitecore Content SDK starter (commit `76baa7c`):
-- `page.tsx` - Stock (includes `force-dynamic`, `generateStaticParams`)
 - `Layout.tsx` - Stock
 - `Scripts.tsx` - Stock
 - `Providers.tsx` - Stock
@@ -86,22 +85,31 @@ Core files are based on the Sitecore Content SDK starter (commit `76baa7c`):
 - `package.json` - Stock (`name` and `appName` both `content-sdk-nextjs-app-router`)
 - `eslint.config.mjs` - Stock
 
-### sitecore.config.ts — Explicit Env Var Mapping (CRITICAL)
-The `sitecore.config.ts` explicitly maps environment variables to config properties instead of using the stock `defineConfig({})` auto-resolution. This is REQUIRED for the XM Cloud editing host to function.
+### Modified Stock Files
 
-**Why:** The stock `defineConfig({})` relies on the SDK's `deepMerge` auto-resolution, but the Next.js `getNextFallbackConfig()` layer produces empty strings for config properties that get skipped by `deepMerge`. On the XM Cloud editing host, this results in:
-- `getPreview()` failing with `Cannot read properties of undefined (reading 'context')`
-- Editing render handler failing with `Failed to parse URL from /`
+**`sitecore.config.ts`** — Near-stock `defineConfig({})`. Only override: when no Edge or Local API env vars are present, passes `contextId: 'not-configured'` to allow builds without credentials. The SDK's internal `getFallbackConfig()` + `deepMerge` handles all env var resolution automatically.
 
-**Do NOT revert to stock `defineConfig({})`** — it breaks the Pages Editor with an infinite loading spinner.
+**`page.tsx`** — Stock + defensive try-catch around `client.getPreview()` and `client.getDesignLibraryData()`. If the editing preview fails (e.g., Preview Edge returns empty data), renders a diagnostic error page instead of crashing. Also validates `page.layout.sitecore.context` exists before proceeding.
 
-The only additions beyond stock are the 14 custom NovaTech component files in `src/components/`.
+**`src/app/api/editing/render/route.ts`** — Stock + `resolvePageUrl` option that ensures routes are absolute URLs (prepends `http://localhost:3000` on XM Cloud). This prevents the SDK's catch-block `Response.redirect(route)` from crashing with `Failed to parse URL from /` when `route` is a relative path.
+
+The 14 custom NovaTech component files are in `src/components/`.
+
+### Pages Editor / Preview Edge Issue (Confirmed Root Cause)
+The Preview Edge context returns `{ item: { rendered: {} } }` for the EditingQuery — an empty object that is truthy but has NO `sitecore` property. The SDK's fallback check (`rendered || fallback`) doesn't trigger because `{}` is truthy. Then `getPreview()` crashes accessing `{}.sitecore.context`.
+
+**This is a CMS content publishing issue, not a code issue.** The defensive code changes prevent the crash and show a diagnostic message instead. To fully fix Pages Editor:
+1. Open Content Editor in Sitecore CM
+2. Select the Home item
+3. Publish > Publish Site to Experience Edge (include subitems)
+4. Wait 2-3 minutes for Edge propagation
+5. Reload Pages Editor
 
 ## Current Status
 - **Home** (`/`) and **Products** (`/Products`) render correctly from Live Edge with all components
-- **Solutions** (`/Solutions`) is NOT yet published to Live Edge — shows 404. Needs to be published from the CM (was stuck in Draft workflow, removed, and republished — may need Edge propagation time)
-- **Pages Editor**: Fix pushed to `newdev` — requires merge to `main` + XM Cloud redeployment
-- **Preview context ID** (`3FroI...`) returns no layout data for any page — do not use for Replit preview
+- **Solutions** (`/Solutions`) is NOT yet published to Live Edge — shows 404
+- **Pages Editor**: Defensive code pushed to `newdev` — requires merge to `main` + XM Cloud redeployment. After deploy, editor will show diagnostic message if Preview Edge still empty. CMS republish needed to populate Preview Edge.
+- **Preview context ID** (`3FroI...`) returns empty `rendered: {}` for all pages
 
 ## Sitecore CMS Architecture
 - **CM URL**: `xmc-icreonpartncfab-novatechshof00c-novatech964b.sitecorecloud.io`
