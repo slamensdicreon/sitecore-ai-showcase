@@ -122,6 +122,19 @@ The module at `.vscode/authoring/items/novatech.module.json` now contains full s
 - All content created via Authoring GraphQL API, published to Experience Edge, confirmed rendering on Live Edge
 - **Serialization module**: All 14 components serialized in `.vscode/authoring/` — `.gitignore` updated to allow commits
 
+## NovaTech Lander Template (Pages Editor)
+A separate "NovaTech Lander" template enables marketers to create new landing pages with drag-and-drop NovaTech components in Pages Editor. Completely independent from the existing `Page` template.
+- **Template ID**: `02a6160f2a4942c7803f0282b7350b6d` (at `/sitecore/templates/Project/build/NovaTech Lander`)
+- **Standard Values ID**: `74fb19416a4347489ee47a5b3485c98f`
+- **Page Design**: "NovaTech Lander Design" (`f26ff105bec04e398fbde152fa859fac`) — references Global partial design for auto header/footer
+- **Placeholder Settings** (under `/sitecore/layout/Placeholder Settings/Project/build/`):
+  - `headless-main` (`69b27afad5d8482aa3596d0e79e963c9`) — 12 main-area components allowed
+  - `headless-header` (`fe4d0ef8620741d9a6da804474fa1e57`) — SiteHeader only
+  - `headless-footer` (`19c3d9fd60de4fa7b7360ebb885abf1f`) — SiteFooter only
+- **Available Renderings**: NovaTech group (`708d8f13`) updated with all 14 actual CMS rendering IDs
+- **Partial Designs**: Header and Footer partial designs updated to reference actual SiteHeader/SiteFooter rendering IDs with shared datasources
+- **Insert Options**: NovaTech Lander added to Home page's `__Masters` so marketers can create new landing pages as children of Home
+
 ## Sitecore CMS Architecture
 - **CM URL**: `xmc-icreonpartn828a-novatech15a9-novatechf6c7.sitecorecloud.io`
 - **Home page ID**: `618f06bf2ec246af8906c24c800efa17`
