@@ -60,10 +60,11 @@ Components located in `examples/basic-nextjs/src/components/`:
 - **i18n**: next-intl
 
 ## Environment Variables (Configured)
-- `SITECORE_EDGE_CONTEXT_ID` - Server-side Edge context ID (Preview: `3FroI...`)
-- `NEXT_PUBLIC_SITECORE_EDGE_CONTEXT_ID` - Client-side Edge context ID
+- `SITECORE_EDGE_CONTEXT_ID` - Server-side Edge context ID (Live: `2E2iW...`)
+- `NEXT_PUBLIC_SITECORE_EDGE_CONTEXT_ID` - Client-side Edge context ID (Live: `2E2iW...`)
 - `NEXT_PUBLIC_DEFAULT_SITE_NAME` - Set to "NovaTech"
 - `SITECORE_EDITING_SECRET` - Editing endpoint auth token (secret)
+- **Note**: Preview context ID (`3FroI...`) returns no layout data; Live context ID (`2E2iW...`) has data for Home and Products
 
 ## Running the App
 Production mode (serves pre-built static pages):
@@ -90,12 +91,11 @@ The only additions are the 14 custom NovaTech component files in `src/components
 
 **CRITICAL RULE**: Do NOT modify stock SDK files. Only add new component files.
 
-## Current Status: Edge Layout Data Issue
-- Pages exist in the NovaTech sitemap (confirmed via `getAppRouterStaticParams`)
-- But `getPage()` returns null for ALL pages (Home, Products, Solutions)
-- This means Edge has no layout data — likely a CMS-side issue
-- Possible cause: broken internal link without GUID in CMS (see "Important: Sitecore Internal Links" below)
-- Fix: Re-publish all pages to Experience Edge from the CM, or check/fix internal links in CMS
+## Current Status
+- **Home** (`/`) and **Products** (`/Products`) render correctly from Live Edge with all components
+- **Solutions** (`/Solutions`) is NOT yet published to Live Edge — shows 404. Needs to be published from the CM
+- **Pages Editor**: Requires `newdev` → `main` merge + XM Cloud redeployment with corrected `sitecore.config.ts`
+- **Preview context ID** (`3FroI...`) returns no layout data for any page — do not use for Replit preview
 
 ## Sitecore CMS Architecture
 - **CM URL**: `xmc-icreonpartncfab-novatechshof00c-novatech964b.sitecorecloud.io`
