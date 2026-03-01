@@ -109,13 +109,13 @@ All 3 logs showed `componentMap: Map(16)` — missing all 7 custom components (P
 - `TypeError: Cannot read properties of undefined (reading 'context')` — SDK's `getPreview` crash on first request; subsequent editing requests work fine
 - Both errors appear at startup and are harmless — the Feb 28 12:10 log (970 lines) proves preview, edit, and normal mode all work after initial errors
 
-**Approach: Near-stock with local preview.** Page.tsx follows the stock Sitecore Content SDK starter pattern with one addition: a `fallbackPage` and `knownPaths` array for local preview (when Edge API has no page data). The `getPage` call has a try-catch so errors fall through to the fallback. No instrumentation.ts or env overrides. The only real fix needed was registering all components in the build.
+**Approach: Stock SDK starter pattern.** Page.tsx now follows the exact stock Sitecore Content SDK starter pattern — no fallbacks, no try-catch around getPage/getPreview, no knownPaths. The only additions are `routePath` (for default content system) and `SitecorePage` type alias (ESLint fix). The only real fix needed was registering all components in the build.
 
-**Local URLs**: Access pages via `/`, `/Products`, `/Solutions` (without site/locale prefix). The middleware handles the rewrite. Using `/NovaTech/en/Products` directly causes double-prefix issues.
+**Local URLs**: Access pages via `/`, `/Products`, `/Solutions` (without site/locale prefix). The middleware handles the rewrite. Using `/NovaTech/en/Products` directly causes double-prefix issues. Note: without Edge data, local preview will show 404 — this is correct stock behavior.
 
 ## Key Configuration Changes Made
 - `examples/basic-nextjs/package.json`: Changed `config.appName` from `content-sdk-nextjs-app-router` to `basic-nextjs` to match the Sitecore rendering host key
-- `examples/basic-nextjs/next.config.ts`: Added `allowedDevOrigins` for Replit proxy, CORS headers for Pages Editor iframe (`X-Frame-Options: ALLOWALL`, `Access-Control-Allow-Origin` on `/_next/*` and `/api/editing/*`)
+- `examples/basic-nextjs/next.config.ts`: Added `allowedDevOrigins` for Replit proxy, CSP `frame-ancestors` for Pages Editor iframe (allows `*.sitecorecloud.io`), CORS headers on `/_next/*` static assets
 - `xmcloud.build.json`: Disabled all rendering hosts except `basic-nextjs` to avoid confusion during XM Cloud builds
 - `examples/basic-nextjs/sitecore.config.ts`: Reads Edge credentials from env vars with graceful fallback
 - `examples/basic-nextjs/eslint.config.mjs`: Added `@typescript-eslint/no-explicit-any: "warn"` (was default warn in the working state, needed explicit override after package updates)
