@@ -105,14 +105,25 @@ Defensive code deployed (merged to `main`, deployed as `43YD56nlWymzcSubguvj2U`)
 - Rendering configuration missing for the Preview endpoint
 - May require Sitecore support investigation
 
-### Solutions Page Missing from Live Edge
-Solutions page (`{C7A26A9D-...}`) is completely absent from Live Edge — returns `null` for both GUID and layout queries. During the user's publish (142 items processed), **3 items failed to process**. These likely include Solutions or its critical dependencies.
+### Solutions Page on Live Edge — Route Present, Components Missing
+The Solutions page route IS on Live Edge (3 routes: Home, Products, Solutions). However, the page's component placeholders are **empty** — all 3 placeholders (`headless-header`, `headless-main`, `headless-footer`) return `[]`.
 
-**To fix**: In Content Editor, check the publish log for which 3 items failed. Then try publishing Solutions specifically: select the Solutions page item, Publish > Publish Item to Experience Edge (with subitems and related items). Also ensure all Solutions data source items (SolutionsHero, SolutionCards, ValueProposition, CaseStudy) are in a publishable state (Final workflow or no workflow).
+**Root cause**: The original Solutions item (`{C7A26A9D-...}`) was silently rejected by Edge. After deleting and recreating with a new GUID (`97495906a38442d4bc3b251e63a0f74f`), the route appeared. However, Edge indexes the page item WITHOUT resolving `__Final Renderings` into component data. Multiple attempts were made:
+- Setting `__Final Renderings` with all 10 renderings (same XML structure as working Products page)
+- Publishing multiple times with `publishItemMode: FULL`
+- Clearing and restoring layout fields ("dirty update" cycle)
+- Creating a new version (v2) with layout
+- Setting layout in `__Renderings` (shared) field instead
+- Full delete/recreate with layout pre-set before first publish
+
+None resolved the empty placeholder issue. Products (created via XM Cloud UI) works perfectly with 8 components. The Edge connector appears to handle API-created items differently from UI-created items for layout resolution.
+
+**Recommended fix**: Add components to the Solutions page through the **XM Cloud Pages Editor UI** or **Content Editor presentation details**. This uses the native Sitecore UI flow which correctly triggers Edge layout resolution. Alternatively, open a Sitecore support ticket requesting an Edge re-index for the Solutions page.
 
 ## Current Status
-- **Home** (`/`) and **Products** (`/Products`) render correctly from Live Edge with all components
-- **Solutions** (`/Solutions`) NOT on Live Edge — 3 items failed during publish. Needs republish from CM.
+- **Home** (`/`) — Renders correctly with 9 components (Header, Hero, 3 FeatureCards, ContentBlock, Testimonial, CTABanner, Footer)
+- **Products** (`/Products`) — Renders correctly with 8 components (Header, ProductHero, 3 ProductFeatures, PricingTable, CTABanner, Footer)
+- **Solutions** (`/Solutions`) — Route exists on Edge but renders blank (empty placeholders). Layout XML is correct in CM but Edge isn't resolving component renderings. Needs components added via XM Cloud UI or Sitecore support re-index.
 - **Pages Editor**: Deployed with defensive error handling. Shows diagnostic message instead of spinner. Preview Edge has items but `rendered` is empty — may need Sitecore support.
 - **Preview context ID** (`3FroI...`) has items indexed but `rendered` field is empty for all pages
 
@@ -121,7 +132,7 @@ Solutions page (`{C7A26A9D-...}`) is completely absent from Live Edge — return
 - **Editing Host URL**: `https://xmc-2oqiqa6dtxraqi23cxueur-eh.sitecorecloud.io`
 - **Home page ID**: `0a7f28d1a8b24b8090c9e4643fdf866f`
 - **Products page ID**: `4aa845a07de340c68dc1f0ae57885350`
-- **Solutions page ID**: `c7a26a9dcba24849bd50cb28e6f841a5`
+- **Solutions page ID**: `97495906a38442d4bc3b251e63a0f74f`
 - **Rendering folder**: `326231e90099427aa7e54643f5d9278c`
 - **Data folder**: `9af2100833f44c0c8cd5493da38d1268`
 - **Layout ID**: `96E5F4BA-A2CF-4A4C-A4E7-64DA88226362`
