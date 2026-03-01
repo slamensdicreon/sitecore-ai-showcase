@@ -22,7 +22,7 @@ The configured workflow runs the **basic-nextjs** example (`examples/basic-nextj
 - **Products** (`/Products`) — ProductHero, 3 ProductFeatures, PricingTable, CTABanner
 - **Solutions** (`/Solutions`) — SolutionsHero, 4 SolutionCards (Financial Services, Healthcare, Manufacturing, Retail), ValueProposition, CaseStudy, CTABanner
 
-## NovaTech Components
+## NovaTech Components (20 registered)
 Components located in `examples/basic-nextjs/src/components/`:
 - **Hero** - Full-width banner with heading, subheading, background image, and CTA
 - **CTABanner** - Dark navy conversion section with primary/secondary buttons
@@ -60,22 +60,42 @@ Components located in `examples/basic-nextjs/src/components/`:
 - **i18n**: next-intl
 
 ## Environment Variables (Configured)
-- `SITECORE_EDGE_CONTEXT_ID` - Server-side Edge context ID (secret)
-- `NEXT_PUBLIC_SITECORE_EDGE_CONTEXT_ID` - Client-side Edge context ID (secret)
-- `NEXT_PUBLIC_DEFAULT_SITE_NAME` - Set to "NovaTech" (env var)
+- `SITECORE_EDGE_CONTEXT_ID` - Server-side Edge context ID (Preview: `3FroI...`)
+- `NEXT_PUBLIC_SITECORE_EDGE_CONTEXT_ID` - Client-side Edge context ID
+- `NEXT_PUBLIC_DEFAULT_SITE_NAME` - Set to "NovaTech"
 - `SITECORE_EDITING_SECRET` - Editing endpoint auth token (secret)
 
 ## Running the App
+Production mode (serves pre-built static pages):
 ```
-cd examples/basic-nextjs && npm run next:dev -- -p 5000 -H 0.0.0.0
+cd examples/basic-nextjs && npm run next:build && npm run next:start -- -p 5000 -H 0.0.0.0
 ```
 
-## Architecture: Stock SDK Starter + Custom Components
-The codebase uses 100% stock Sitecore Content SDK starter code for all core files (page.tsx, Layout.tsx, Scripts.tsx, Providers.tsx, byoc/index.tsx, CdpPageView.tsx). The only additions are the 14 custom NovaTech component files in `src/components/`.
+## Architecture: 100% Stock SDK Starter + Custom Components
+ALL core files are exact stock Sitecore Content SDK starter code matching commit `76baa7c`:
+- `page.tsx` - Stock (includes `force-dynamic`, `generateStaticParams`)
+- `Layout.tsx` - Stock
+- `Scripts.tsx` - Stock
+- `Providers.tsx` - Stock
+- `byoc/index.tsx` - Stock
+- `CdpPageView.tsx` - Stock
+- `sitecore.config.ts` - Stock (defineConfig with `not-configured` fallback only)
+- `sitecore-client.ts` - Stock
+- `middleware.ts` - Stock
+- `next.config.ts` - Stock + `allowedDevOrigins` for Replit proxy
+- `package.json` - Stock (`name` and `appName` both `content-sdk-nextjs-app-router`)
+- `eslint.config.mjs` - Stock
 
-**CRITICAL RULE**: Do NOT modify stock SDK files (Layout.tsx, Scripts.tsx, CdpPageView.tsx, byoc/index.tsx, Providers.tsx). These files are maintained by Sitecore and work correctly as-is for both Pages Editor and local preview. Only add new component files.
+The only additions are the 14 custom NovaTech component files in `src/components/`.
 
-Local preview works because Replit has Edge credentials configured as environment secrets. The stock `getPage()` call fetches real CMS data from Sitecore Edge.
+**CRITICAL RULE**: Do NOT modify stock SDK files. Only add new component files.
+
+## Current Status: Edge Layout Data Issue
+- Pages exist in the NovaTech sitemap (confirmed via `getAppRouterStaticParams`)
+- But `getPage()` returns null for ALL pages (Home, Products, Solutions)
+- This means Edge has no layout data — likely a CMS-side issue
+- Possible cause: broken internal link without GUID in CMS (see "Important: Sitecore Internal Links" below)
+- Fix: Re-publish all pages to Experience Edge from the CM, or check/fix internal links in CMS
 
 ## Sitecore CMS Architecture
 - **CM URL**: `xmc-icreonpartncfab-novatechshof00c-novatech964b.sitecorecloud.io`
@@ -86,8 +106,6 @@ Local preview works because Replit has Edge credentials configured as environmen
 - **Data folder**: `9af2100833f44c0c8cd5493da38d1268`
 - **Layout ID**: `96E5F4BA-A2CF-4A4C-A4E7-64DA88226362`
 - **Templates folder**: `/sitecore/templates/Project/NovaTechCollection/Components/`
-- Templates: SolutionsHero (`d67b94896e6b40d5aa3f2eb3294ac523`), SolutionCard (`8450eed0ecbc4febbe10aa6229843a05`), ValueProposition (`c67dcadc26cf4dbbb27a00d14a5dbdf0`), CaseStudy (`10fae6daadbb4ad8bf756d879570931e`), ProductHero, ProductFeature, PricingTable, Hero, CTABanner, etc.
-- Renderings: SolutionsHero (`a87c0dfc70044580a82cbe3c11912da6`), SolutionCard (`ed0517e8fdcb4239bc68e95cf5dcffaa`), ValueProposition (`8e1da011e7ff4fb5a3576666f28dca83`), CaseStudy (`12ab9af29275447eac8057746533f835`)
 - Publishing target: `experienceedge` via `publishSite` mutation
 - **Automation Client ID**: `4f0O3Ur6t3FjrxzNWkPJQiLveQuGWLme`
 
@@ -96,13 +114,6 @@ When setting `linktype="internal"` in Sitecore General Link fields (like CTALink
 
 Correct format: `<link linktype="internal" id="{4AA845A0-7DE3-40C6-8DC1-F0AE57885350}" url="/Products" text="Get Started" />`
 Wrong format: `<link linktype="internal" url="/Products" text="Get Started" />` (missing id — breaks Edge!)
-
-## Key Configuration
-- `examples/basic-nextjs/package.json`: `appName` is `content-sdk-nextjs-app-router` (stock value, DO NOT change)
-- `examples/basic-nextjs/next.config.ts`: Stock config + `allowedDevOrigins` for Replit proxy (harmless for XM Cloud)
-- `examples/basic-nextjs/sitecore.config.ts`: Uses `not-configured` fallback when no Edge credentials available (allows build to complete)
-- `examples/basic-nextjs/eslint.config.mjs`: `@typescript-eslint/no-explicit-any: "warn"`
-- `xmcloud.build.json`: Multiple rendering hosts enabled, `basic-nextjs` is the active one for NovaTech
 
 ## GitHub Integration
 - **Owner**: `slamensdicreon`
