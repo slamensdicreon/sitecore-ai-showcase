@@ -98,18 +98,23 @@ The 14 custom NovaTech component files are in `src/components/`.
 ### Pages Editor / Preview Edge Issue (Confirmed Root Cause)
 The Preview Edge context returns `{ item: { rendered: {} } }` for the EditingQuery — an empty object that is truthy but has NO `sitecore` property. The SDK's fallback check (`rendered || fallback`) doesn't trigger because `{}` is truthy. Then `getPreview()` crashes accessing `{}.sitecore.context`.
 
-**This is a CMS content publishing issue, not a code issue.** The defensive code changes prevent the crash and show a diagnostic message instead. To fully fix Pages Editor:
-1. Open Content Editor in Sitecore CM
-2. Select the Home item
-3. Publish > Publish Site to Experience Edge (include subitems)
-4. Wait 2-3 minutes for Edge propagation
-5. Reload Pages Editor
+Defensive code deployed (merged to `main`, deployed as `43YD56nlWymzcSubguvj2U`): Pages Editor now shows a diagnostic error message instead of infinite spinner. The rendering host logs confirm the error is caught cleanly: `[NovaTech] Editing preview failed: TypeError: Cannot read properties of undefined (reading 'context')`.
+
+**Preview Edge deeper finding**: The Preview Edge HAS items indexed (Home found by path `/sitecore/content/NovaTech/NovaTech/Home`) but the `rendered` field is empty. This means the items are synced to the Preview Edge but layout rendering isn't resolving. This is NOT fixed by "Publish to Experience Edge" — that only publishes to the Live Edge. The Preview Edge is auto-synced from the CM master database. The empty `rendered` field may indicate:
+- Layout assignment not resolving in Preview context
+- Rendering configuration missing for the Preview endpoint
+- May require Sitecore support investigation
+
+### Solutions Page Missing from Live Edge
+Solutions page (`{C7A26A9D-...}`) is completely absent from Live Edge — returns `null` for both GUID and layout queries. During the user's publish (142 items processed), **3 items failed to process**. These likely include Solutions or its critical dependencies.
+
+**To fix**: In Content Editor, check the publish log for which 3 items failed. Then try publishing Solutions specifically: select the Solutions page item, Publish > Publish Item to Experience Edge (with subitems and related items). Also ensure all Solutions data source items (SolutionsHero, SolutionCards, ValueProposition, CaseStudy) are in a publishable state (Final workflow or no workflow).
 
 ## Current Status
 - **Home** (`/`) and **Products** (`/Products`) render correctly from Live Edge with all components
-- **Solutions** (`/Solutions`) is NOT yet published to Live Edge — shows 404
-- **Pages Editor**: Defensive code pushed to `newdev` — requires merge to `main` + XM Cloud redeployment. After deploy, editor will show diagnostic message if Preview Edge still empty. CMS republish needed to populate Preview Edge.
-- **Preview context ID** (`3FroI...`) returns empty `rendered: {}` for all pages
+- **Solutions** (`/Solutions`) NOT on Live Edge — 3 items failed during publish. Needs republish from CM.
+- **Pages Editor**: Deployed with defensive error handling. Shows diagnostic message instead of spinner. Preview Edge has items but `rendered` is empty — may need Sitecore support.
+- **Preview context ID** (`3FroI...`) has items indexed but `rendered` field is empty for all pages
 
 ## Sitecore CMS Architecture
 - **CM URL**: `xmc-icreonpartncfab-novatechshof00c-novatech964b.sitecorecloud.io`
