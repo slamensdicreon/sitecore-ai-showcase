@@ -1,0 +1,14 @@
+> content-sdk-nextjs-app-router@1.0.0 next:start
+> next start
+   ▲ Next.js 15.5.11
+   - Local:        http://localhost:3000
+   - Network:      http://10.3.66.196:3000
+ ✓ Starting...
+ ⚠ Mismatching @next/swc version, detected: 15.5.7 while Next.js is on 15.5.11. Please ensure these match
+ ✓ Ready in 485ms
+[NovaTech] Editing preview failed: TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (.next-container/server/chunks/905.js:106:3727)
+    at async s (.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:20264)
+[NovaTech] Editing preview failed: TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (.next-container/server/chunks/905.js:106:3727)
+    at async s (.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:20264)
