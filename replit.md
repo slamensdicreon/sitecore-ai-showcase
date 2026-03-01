@@ -70,13 +70,12 @@ Components located in `examples/basic-nextjs/src/components/`:
 cd examples/basic-nextjs && npm run next:dev -- -p 5000 -H 0.0.0.0
 ```
 
-## Default Content Layer
-When Sitecore CMS placeholders are empty, the app renders default NovaTech content via:
-- `src/lib/default-content.ts` — Static content data for Home, Products, and Solutions pages (exported via `getDefaultContent(routePath)`)
-- `src/components/default-content/DefaultContent.tsx` — Renders default components when placeholders are empty, with page-specific layouts
-- `src/Layout.tsx` — Checks if placeholders are empty and falls back to default content, passing `routePath` for page-specific defaults
+## Architecture: Stock SDK Starter + Custom Components
+The codebase uses 100% stock Sitecore Content SDK starter code for all core files (page.tsx, Layout.tsx, Scripts.tsx, Providers.tsx, byoc/index.tsx, CdpPageView.tsx). The only additions are the 14 custom NovaTech component files in `src/components/`.
 
-When components are placed in Sitecore CMS, the CMS content takes priority automatically.
+**CRITICAL RULE**: Do NOT modify stock SDK files (Layout.tsx, Scripts.tsx, CdpPageView.tsx, byoc/index.tsx, Providers.tsx). These files are maintained by Sitecore and work correctly as-is for both Pages Editor and local preview. Only add new component files.
+
+Local preview works because Replit has Edge credentials configured as environment secrets. The stock `getPage()` call fetches real CMS data from Sitecore Edge.
 
 ## Sitecore CMS Architecture
 - **CM URL**: `xmc-icreonpartncfab-novatechshof00c-novatech964b.sitecorecloud.io`
@@ -98,34 +97,12 @@ When setting `linktype="internal"` in Sitecore General Link fields (like CTALink
 Correct format: `<link linktype="internal" id="{4AA845A0-7DE3-40C6-8DC1-F0AE57885350}" url="/Products" text="Get Started" />`
 Wrong format: `<link linktype="internal" url="/Products" text="Get Started" />` (missing id — breaks Edge!)
 
-## XM Cloud Rendering Host Log Diagnosis (Feb 27-28, 2026)
-Analyzed 3 rendering host logs to find why Pages Editor wasn't rendering pages.
-
-**Root Cause: Stale Component Map (THE REAL BLOCKER)**
-All 3 logs showed `componentMap: Map(16)` — missing all 7 custom components (ProductHero, ProductFeature, PricingTable, SolutionsHero, SolutionCard, ValueProposition, CaseStudy). The XM Cloud EH deployment was NEVER rebuilt after these components were added. CMS data was flowing correctly in all 3 modes (preview, edit, normal) with full field data — the rendering host just couldn't find the components to render them.
-
-**Transient errors (NOT blockers):**
-- `TypeError: Failed to parse URL from /` — SDK's `resolveServerUrl()` returns undefined on first request; editing pipeline recovers on subsequent requests
-- `TypeError: Cannot read properties of undefined (reading 'context')` — SDK's `getPreview` crash on first request; subsequent editing requests work fine
-- Both errors appear at startup and are harmless — the Feb 28 12:10 log (970 lines) proves preview, edit, and normal mode all work after initial errors
-
-**Approach: Stock SDK starter pattern.** Page.tsx now follows the exact stock Sitecore Content SDK starter pattern — no fallbacks, no try-catch around getPage/getPreview, no knownPaths. The only additions are `routePath` (for default content system) and `SitecorePage` type alias (ESLint fix). The only real fix needed was registering all components in the build.
-
-**Local URLs**: Access pages via `/`, `/Products`, `/Solutions` (without site/locale prefix). The middleware handles the rewrite. Using `/NovaTech/en/Products` directly causes double-prefix issues. Note: without Edge data, local preview will show 404 — this is correct stock behavior.
-
-## Key Configuration Changes Made
-- `examples/basic-nextjs/package.json`: Changed `config.appName` from `content-sdk-nextjs-app-router` to `basic-nextjs` to match the Sitecore rendering host key
-- `examples/basic-nextjs/next.config.ts`: Added `allowedDevOrigins` for Replit proxy, CSP `frame-ancestors` for Pages Editor iframe (allows `*.sitecorecloud.io`), CORS headers on `/_next/*` static assets
-- `xmcloud.build.json`: Disabled all rendering hosts except `basic-nextjs` to avoid confusion during XM Cloud builds
-- `examples/basic-nextjs/sitecore.config.ts`: Reads Edge credentials from env vars with graceful fallback
-- `examples/basic-nextjs/eslint.config.mjs`: Added `@typescript-eslint/no-explicit-any: "warn"` (was default warn in the working state, needed explicit override after package updates)
-- `examples/basic-nextjs/src/Layout.tsx`: Added default content fallback for empty Sitecore placeholders, optional chaining for layout.sitecore. In editing/preview mode, always renders Sitecore AppPlaceholder (not default content) so editors can add components to empty placeholders
-- `examples/basic-nextjs/src/Scripts.tsx`: Guards SDK components that access layout.sitecore
-- `examples/basic-nextjs/src/byoc/index.tsx`: Optional chaining for layout.sitecore.context with `Record<string, unknown>` fallback
-- `examples/basic-nextjs/src/components/content-sdk/CdpPageView.tsx`: Optional chaining for layout.sitecore with `Record<string, unknown>` fallback
-- `examples/basic-nextjs/src/app/[site]/[locale]/[[...path]]/page.tsx`: Uses `SitecorePage` type alias (avoids conflict with component name)
-- `examples/basic-nextjs/src/app/api/editing/render/route.ts`: Clean SDK route handler (original stock code, no customizations)
-- `examples/basic-nextjs/src/components/default-content/DefaultContent.tsx`: File-level `eslint-disable @typescript-eslint/no-explicit-any` for SDK field type casts
+## Key Configuration
+- `examples/basic-nextjs/package.json`: `appName` is `content-sdk-nextjs-app-router` (stock value, DO NOT change)
+- `examples/basic-nextjs/next.config.ts`: Stock config + `allowedDevOrigins` for Replit proxy (harmless for XM Cloud)
+- `examples/basic-nextjs/sitecore.config.ts`: Uses `not-configured` fallback when no Edge credentials available (allows build to complete)
+- `examples/basic-nextjs/eslint.config.mjs`: `@typescript-eslint/no-explicit-any: "warn"`
+- `xmcloud.build.json`: Multiple rendering hosts enabled, `basic-nextjs` is the active one for NovaTech
 
 ## GitHub Integration
 - **Owner**: `slamensdicreon`

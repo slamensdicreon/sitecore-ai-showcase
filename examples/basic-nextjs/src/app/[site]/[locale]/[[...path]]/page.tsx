@@ -1,7 +1,7 @@
 import { isDesignLibraryPreviewData } from "@sitecore-content-sdk/nextjs/editing";
 import { notFound } from "next/navigation";
 import { draftMode } from "next/headers";
-import { SiteInfo, type Page as SitecorePage } from "@sitecore-content-sdk/nextjs";
+import { SiteInfo } from "@sitecore-content-sdk/nextjs";
 import sites from ".sitecore/sites.json";
 import { routing } from "src/i18n/routing";
 import scConfig from "sitecore.config";
@@ -12,6 +12,8 @@ import Providers from "src/Providers";
 import { NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 
+// Configure dynamic rendering to avoid SSR issues with client-side hooks
+// This ensures all pages are rendered on-demand rather than pre-rendered at build time
 export const dynamic = 'force-dynamic';
 
 type PageProps = {
@@ -28,8 +30,10 @@ export default async function Page({ params, searchParams }: PageProps) {
   const { site, locale, path } = await params;
   const draft = await draftMode();
 
+  // Set site and locale to be available in src/i18n/request.ts for fetching the dictionary
   setRequestLocale(`${site}_${locale}`);
 
+  // Fetch the page data from Sitecore
   let page;
   if (draft.isEnabled) {
     const editingParams = await searchParams;
@@ -42,28 +46,34 @@ export default async function Page({ params, searchParams }: PageProps) {
     page = await client.getPage(path ?? [], { site, locale });
   }
 
+  // If the page is not found, return a 404
   if (!page) {
     notFound();
   }
 
-  const routePath = path ? `/${path.join('/')}` : '/';
-
-  const componentProps = page.layout?.sitecore?.route
-    ? await client.getComponentData(page.layout, {}, components)
-    : {};
+  // Fetch the component data from Sitecore (Likely will be deprecated)
+  const componentProps = await client.getComponentData(
+    page.layout,
+    {},
+    components
+  );
 
   return (
     <NextIntlClientProvider>
       <Providers page={page} componentProps={componentProps}>
-        <Layout page={page} routePath={routePath} />
+        <Layout page={page} />
       </Providers>
     </NextIntlClientProvider>
   );
 }
 
+// This function gets called at build and export time to determine
+// pages for SSG ("paths", as tokenized array).
 export const generateStaticParams = async () => {
   try {
     if (process.env.NODE_ENV !== "development" && scConfig.generateStaticPaths) {
+      // Filter sites to only include the sites this starter is designed to serve.
+      // This prevents cross-site build errors when multiple starters share the same XM Cloud instance.
       const defaultSite = scConfig.defaultSite;
       const allowedSites = defaultSite
         ? sites
@@ -76,19 +86,22 @@ export const generateStaticParams = async () => {
       );
     }
   } catch {
+    // XM Cloud not reachable — skip static path generation
   }
   return [];
 };
 
+// Metadata fields for the page.
 export const generateMetadata = async ({ params }: PageProps) => {
   try {
     const { path, site, locale } = await params;
 
+    // The same call as for rendering the page. Should be cached by default react behavior
     const page = await client.getPage(path ?? [], { site, locale });
     return {
       title:
         (
-          page?.layout?.sitecore?.route?.fields as RouteFields
+          page?.layout.sitecore.route?.fields as RouteFields
         )?.Title?.value?.toString() || "Page",
     };
   } catch {
