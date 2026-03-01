@@ -33,6 +33,32 @@ const nextConfig: NextConfig = {
     unoptimized: process.env.NODE_ENV === 'development',
   },
 
+  headers: async () => {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          { key: 'X-Frame-Options', value: 'ALLOWALL' },
+        ],
+      },
+      {
+        source: '/_next/:path*',
+        headers: [
+          { key: 'Access-Control-Allow-Origin', value: '*' },
+          { key: 'Access-Control-Allow-Methods', value: 'GET,OPTIONS' },
+        ],
+      },
+      {
+        source: '/api/editing/:path*',
+        headers: [
+          { key: 'Access-Control-Allow-Origin', value: '*' },
+          { key: 'Access-Control-Allow-Methods', value: 'GET,POST,OPTIONS' },
+          { key: 'Access-Control-Allow-Headers', value: 'Content-Type,Authorization,sc_editingSecret' },
+        ],
+      },
+    ];
+  },
+
   // use this configuration to serve the sitemap.xml and robots.txt files from the API route handlers
   rewrites: async () => {
     return [
