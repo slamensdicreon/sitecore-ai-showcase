@@ -120,20 +120,20 @@ None resolved the empty placeholder issue. Products (created via XM Cloud UI) wo
 
 **Recommended fix**: Add components to the Solutions page through the **XM Cloud Pages Editor UI** or **Content Editor presentation details**. This uses the native Sitecore UI flow which correctly triggers Edge layout resolution. Alternatively, open a Sitecore support ticket requesting an Edge re-index for the Solutions page.
 
-## Sitecore Serialization Module (Complete — 14/14 Components)
-The module at `.vscode/authoring/items/novatech.module.json` now contains full serialization for ALL 14 custom NovaTech components. A fresh XM Cloud environment deploy from GitHub will auto-provision:
-- **Templates** (with all fields): Hero, ContentBlock, CTABanner, FeatureCard, Testimonial, SiteHeader, SiteFooter, ProductHero, ProductFeature, PricingTable, SolutionsHero, SolutionCard, ValueProposition, CaseStudy
+## Sitecore Serialization Module (Complete — 14/14 Components, Verified)
+The module at `.vscode/authoring/items/novatech.module.json` now contains full serialization for ALL 14 custom NovaTech components. All YML files have been verified to follow correct Sitecore serialization format (dashed GUIDs, no extra indentation, __Standard Values present). A fresh XM Cloud environment deploy from GitHub will auto-provision:
+- **Templates** (with all fields + __Standard Values): Hero, ContentBlock, CTABanner, FeatureCard, Testimonial, SiteHeader, SiteFooter, ProductHero, ProductFeature, PricingTable, SolutionsHero, SolutionCard, ValueProposition, CaseStudy
 - **Json Renderings** for each component (componentName, datasource template, datasource location)
 - **Rendering Variants** and **Data Folders** for site setup
-- **Placeholder Settings** (`headless-main`) allowing all 14 components
-- **Available Renderings** branch template including all 14 components
+- **Placeholder Settings** (`headless-main`) allowing all 12 main-area components, plus `headless-header` (SiteHeader) and `headless-footer` (SiteFooter)
+- **Available Renderings** branch template including all 14 components + CCL starter renderings
 
-### Module File Counts
-- `novatech.templates/` — 14 template roots + 14 Data sections + ~130 field YMLs
+### Module File Counts (210 total YML files)
+- `novatech.templates/` — 14 template roots + 14 Data sections + 14 __Standard Values + ~65 field YMLs
 - `novatech.renderings/` — 14 rendering YMLs
 - `novatech.modules/.../Rendering Variants/` — 14 variant setup YMLs
 - `novatech.modules/.../Data Folders/` — 14 data folder setup YMLs
-- `novatech.placeholderSettings/` — 1 headless-main YML (12 allowed controls)
+- `novatech.placeholderSettings/` — 3 YMLs (headless-main with 12 allowed controls, headless-header, headless-footer)
 - `novatech.templates.branches/` — 1 available renderings branch YML (43 renderings)
 
 ## Current Status
