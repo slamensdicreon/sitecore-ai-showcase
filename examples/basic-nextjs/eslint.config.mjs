@@ -13,8 +13,8 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   { 
     rules: {
+      // Don't force alt for <Image/> (sourced from Sitecore media)
       "jsx-a11y/alt-text": "off",
-      "@typescript-eslint/no-explicit-any": "warn",
     },
     ignores: [
       "node_modules/**",
