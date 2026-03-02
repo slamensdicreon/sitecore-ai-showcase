@@ -59,8 +59,8 @@ export const Default = (props: ProductFeatureProps): JSX.Element => {
               style={{
                 display: 'inline-block',
                 padding: '4px 12px',
-                background: '#EFF6FF',
-                color: '#2563EB',
+                background: '#E6F2FB',
+                color: '#0076C0',
                 borderRadius: '6px',
                 fontSize: '0.8rem',
                 fontWeight: 600,
@@ -78,7 +78,7 @@ export const Default = (props: ProductFeatureProps): JSX.Element => {
             style={{
               fontSize: '2rem',
               fontWeight: 700,
-              color: '#0A1628',
+              color: '#061E40',
               marginBottom: '16px',
               lineHeight: 1.2,
             }}

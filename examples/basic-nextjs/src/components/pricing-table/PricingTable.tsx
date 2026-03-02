@@ -39,11 +39,11 @@ const TierCard = ({ name, price, features, buttonText, buttonLink, highlighted }
   return (
     <div
       style={{
-        background: highlighted ? '#0A1628' : '#FFFFFF',
-        color: highlighted ? '#FFFFFF' : '#0A1628',
+        background: highlighted ? '#061E40' : '#FFFFFF',
+        color: highlighted ? '#FFFFFF' : '#061E40',
         borderRadius: '16px',
         padding: '40px 32px',
-        border: highlighted ? '2px solid #2563EB' : '1px solid #E5E7EB',
+        border: highlighted ? '2px solid #0076C0' : '1px solid #E5E7EB',
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
@@ -59,7 +59,7 @@ const TierCard = ({ name, price, features, buttonText, buttonLink, highlighted }
             left: '50%',
             transform: 'translateX(-50%)',
             padding: '4px 16px',
-            background: '#2563EB',
+            background: '#0076C0',
             color: '#FFFFFF',
             borderRadius: '12px',
             fontSize: '0.75rem',
@@ -109,12 +109,12 @@ const TierCard = ({ name, price, features, buttonText, buttonLink, highlighted }
             display: 'block',
             textAlign: 'center',
             padding: '12px 24px',
-            background: highlighted ? '#2563EB' : 'transparent',
-            color: highlighted ? '#FFFFFF' : '#2563EB',
+            background: highlighted ? '#0076C0' : 'transparent',
+            color: highlighted ? '#FFFFFF' : '#0076C0',
             borderRadius: '8px',
             textDecoration: 'none',
             fontWeight: 600,
-            border: highlighted ? 'none' : '2px solid #2563EB',
+            border: highlighted ? 'none' : '2px solid #0076C0',
           }}
         >
           <Text field={buttonText} />
@@ -159,7 +159,7 @@ export const Default = (props: PricingTableProps): JSX.Element => {
             style={{
               fontSize: '2.25rem',
               fontWeight: 700,
-              color: '#0A1628',
+              color: '#061E40',
               marginBottom: '16px',
             }}
           />

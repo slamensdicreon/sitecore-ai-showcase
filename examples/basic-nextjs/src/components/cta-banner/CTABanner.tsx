@@ -42,7 +42,7 @@ export const Default = (props: CTABannerProps): JSX.Element => {
       className={`component cta-banner ${styles}`}
       id={id || undefined}
       style={{
-        background: '#0A1628',
+        background: '#061E40',
         padding: '64px 24px',
         textAlign: 'center',
         color: '#FFFFFF',
@@ -85,7 +85,7 @@ export const Default = (props: CTABannerProps): JSX.Element => {
               style={{
                 display: 'inline-block',
                 padding: '14px 32px',
-                background: '#2563EB',
+                background: '#0076C0',
                 color: '#FFFFFF',
                 borderRadius: '8px',
                 textDecoration: 'none',

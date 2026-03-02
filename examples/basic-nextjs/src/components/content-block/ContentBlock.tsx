@@ -66,7 +66,7 @@ export const Default = (props: ContentBlockProps): JSX.Element => {
             style={{
               fontSize: '2rem',
               fontWeight: 700,
-              color: '#0A1628',
+              color: '#061E40',
               marginBottom: '16px',
               lineHeight: 1.2,
             }}

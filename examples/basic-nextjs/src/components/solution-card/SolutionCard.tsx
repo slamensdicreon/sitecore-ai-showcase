@@ -54,7 +54,7 @@ export const Default = (props: SolutionCardProps): JSX.Element => {
         <div
           style={{
             height: '4px',
-            background: 'linear-gradient(90deg, #2563EB 0%, #3B82F6 100%)',
+            background: 'linear-gradient(90deg, #0076C0 0%, #1A90D5 100%)',
           }}
         />
         <div
@@ -70,7 +70,7 @@ export const Default = (props: SolutionCardProps): JSX.Element => {
               width: '48px',
               height: '48px',
               borderRadius: '10px',
-              background: '#EFF6FF',
+              background: '#E6F2FB',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -88,7 +88,7 @@ export const Default = (props: SolutionCardProps): JSX.Element => {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="#2563EB"
+                stroke="#0076C0"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -106,7 +106,7 @@ export const Default = (props: SolutionCardProps): JSX.Element => {
             style={{
               fontSize: '1.25rem',
               fontWeight: 700,
-              color: '#0A1628',
+              color: '#061E40',
               marginBottom: '12px',
               lineHeight: 1.3,
             }}
@@ -128,14 +128,14 @@ export const Default = (props: SolutionCardProps): JSX.Element => {
                 background: '#F8FAFC',
                 borderRadius: '8px',
                 marginBottom: '20px',
-                borderLeft: '3px solid #2563EB',
+                borderLeft: '3px solid #0076C0',
               }}
             >
               <RichText
                 field={fields.Metrics}
                 style={{
                   fontSize: '0.85rem',
-                  color: '#1E3A5F',
+                  color: '#0D3B7A',
                   fontWeight: 500,
                   lineHeight: 1.5,
                 }}
@@ -149,7 +149,7 @@ export const Default = (props: SolutionCardProps): JSX.Element => {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '6px',
-                color: '#2563EB',
+                color: '#0076C0',
                 textDecoration: 'none',
                 fontWeight: 600,
                 fontSize: '0.9rem',

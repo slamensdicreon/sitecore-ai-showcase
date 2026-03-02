@@ -119,7 +119,7 @@ export default function DrawerNav({ links }: DrawerNavProps) {
           width: '300px',
           maxWidth: '80vw',
           height: '100vh',
-          background: '#0A1628',
+          background: '#061E40',
           color: '#FFFFFF',
           zIndex: 1060,
           transform: drawerOpen ? 'translateX(0)' : 'translateX(100%)',

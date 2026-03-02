@@ -1,7 +1,7 @@
 # Sitecore XM Cloud Front End Starter Kits
 
 ## Project Overview
-This is the official Sitecore XM Cloud Front End Starter Kits repository. It contains multiple Next.js starter applications for building headless front-end apps powered by Sitecore XM Cloud. The active site being developed is **NovaTech** — a modern, AI-focused technology company marketing website.
+This is the official Sitecore XM Cloud Front End Starter Kits repository. It contains multiple Next.js starter applications for building headless front-end apps powered by Sitecore XM Cloud. The active site being developed is **EAA** (Experimental Aircraft Association) — a redesign of eaa.org on Sitecore XM Cloud.
 
 ## Active Application
 The configured workflow runs the **basic-nextjs** example (`examples/basic-nextjs`), which is a Next.js 15 App Router application using the Sitecore Content SDK.
@@ -17,33 +17,36 @@ The configured workflow runs the **basic-nextjs** example (`examples/basic-nextj
 - `/authoring` - Sitecore content item definitions (.NET/C# project)
 - `/local-containers` - Docker configuration for local dev
 
-## Pages
-- **Home** (`/`) — Hero, 3 FeatureCards, ContentBlock, Testimonial, CTABanner
-- **Products** (`/Products`) — ProductHero, 3 ProductFeatures, PricingTable, CTABanner
-- **Solutions** (`/Solutions`) — SolutionsHero, 4 SolutionCards (Financial Services, Healthcare, Manufacturing, Retail), ValueProposition, CaseStudy, CTABanner
+## Pages (EAA Content)
+- **Home** (`/`) — Hero ("Where Aviators Come Together"), 3 FeatureCards (Join the Community, AirVenture Oshkosh, Young Eagles), ContentBlock ("Our Mission"), Testimonial, CTABanner ("Ready to Take Flight?")
+- **Membership** (`/Products`) — ProductHero ("EAA Membership"), 3 ProductFeatures (Member Benefits, 850+ Chapters, AirVenture Access), PricingTable (Individual $40/yr, Family $50/yr, Lifetime), CTABanner
+- **Programs** (`/Solutions`) — SolutionsHero ("EAA Programs"), 4 SolutionCards (AirVenture Oshkosh, Young Eagles, Homebuilders, Warbirds of America), ValueProposition (200,000+ Members, 850+ Chapters, 70+ Years), CaseStudy (Member Spotlight), CTABanner
+- Nav links: Home, Membership, Programs (via CMS-managed NavigationLink items)
 
-## NovaTech Components (20 registered)
+## EAA Components (14 custom)
 Components located in `examples/basic-nextjs/src/components/`:
 - **Hero** - Full-width banner with heading, subheading, background image, and CTA
 - **CTABanner** - Dark navy conversion section with primary/secondary buttons
 - **FeatureCard** - White card with icon, title, description, and link
 - **Testimonial** - Blockquote with author attribution
 - **ContentBlock** - Two-column text + image layout (configurable position)
-- **SiteHeader** - Sticky dark navy header with logo and hamburger menu; slide-out drawer with CMS-managed navigation links (Home, Products, Solutions) fetched from Edge GraphQL; split into server component (SiteHeader.tsx) and client component (DrawerNav.tsx)
-- **SiteFooter** - Dark navy footer with logo and copyright
-- **ProductHero** - Product page hero with "Product" badge, heading, tagline, 2 CTAs
+- **SiteHeader** - Sticky dark navy header with EAA wordmark and hamburger menu; slide-out drawer with CMS-managed navigation links fetched from Edge GraphQL; split into server component (SiteHeader.tsx) and client component (DrawerNav.tsx)
+- **SiteFooter** - Dark navy footer with EAA wordmark and copyright
+- **ProductHero** - Membership page hero with "Product" badge, heading, tagline, 2 CTAs
 - **ProductFeature** - Alternating left/right feature sections with badge, title, description, image placeholder
-- **PricingTable** - 3-tier pricing section (Starter $49/mo, Professional $149/mo, Enterprise Custom)
-- **SolutionsHero** - Solutions page hero with "Solutions" badge, heading, tagline, single CTA
-- **SolutionCard** - Industry solution card with blue accent bar, icon placeholder, title, description, metrics highlight, and "Learn More" link
-- **ValueProposition** - "Why NovaTech?" stats section with 3 large metric columns (500+ Clients, 99.99% Uptime, 40% ROI)
-- **CaseStudy** - Featured customer success story with company details, quote with blue left border, author attribution, and 3 result metric cards
+- **PricingTable** - 3-tier membership pricing section (Individual, Family, Lifetime)
+- **SolutionsHero** - Programs page hero with "Solutions" badge, heading, tagline, single CTA
+- **SolutionCard** - Program card with blue accent bar, icon, title, description, metrics, and link
+- **ValueProposition** - Stats section with 3 large metric columns (200K+ Members, 850+ Chapters, 70+ Years)
+- **CaseStudy** - Member spotlight with company details, quote, author, and 3 metric cards
 
-## NovaTech Design System
-- **Primary Navy**: `#0A1628` (hero/banner bg)
-- **Secondary Navy**: `#1E3A5F` (gradients)
-- **Action Blue**: `#2563EB` (buttons, accents)
-- **Light Blue**: `#EFF6FF` bg / `#93C5FD` text (badges)
+## EAA Design System (Brand Colors)
+- **Primary Navy**: `#061E40` (EAA Deep Cove — hero/banner bg)
+- **Secondary Navy**: `#0D3B7A` (gradients)
+- **Action Blue**: `#0076C0` (EAA Lochmara — buttons, accents)
+- **Light Blue Accent**: `#1A90D5` (gradient endpoints)
+- **Light Blue**: `#9AC7F7` (EAA Jordy Blue — badges)
+- **Red**: `#EE3524` (EAA AirVenture red — reserved for future use)
 - **White**: `#FFFFFF` (cards, text on dark)
 - **Off-white**: `#F9FAFB` / `#F1F5F9` (section bg)
 - **Grays**: `#6B7280` / `#4B5563` (descriptions), `#E5E7EB` (borders)
@@ -93,13 +96,13 @@ Core files are based on the Sitecore Content SDK starter (commit `76baa7c`):
 
 **`src/app/api/editing/render/route.ts`** — Stock + `resolvePageUrl` option that ensures routes are absolute URLs (prepends `http://localhost:3000` on XM Cloud). This prevents the SDK's catch-block `Response.redirect(route)` from crashing with `Failed to parse URL from /` when `route` is a relative path.
 
-The 14 custom NovaTech component files are in `src/components/`.
+The 14 custom EAA component files are in `src/components/`.
 
 ### Pages Editor / Preview Edge
 Defensive code deployed: Pages Editor shows diagnostic error message instead of spinner if Preview Edge returns empty `rendered` object.
 
 ## Sitecore Serialization Module (Complete — 14/14 Components, Verified)
-The module at `.vscode/authoring/items/novatech.module.json` now contains full serialization for ALL 14 custom NovaTech components. All YML files have been verified to follow correct Sitecore serialization format (dashed GUIDs, no extra indentation, __Standard Values present). A fresh XM Cloud environment deploy from GitHub will auto-provision:
+The module at `.vscode/authoring/items/novatech.module.json` now contains full serialization for ALL 14 custom EAA components (originally created as NovaTech templates — CMS template names remain NovaTech internally). All YML files have been verified to follow correct Sitecore serialization format (dashed GUIDs, no extra indentation, __Standard Values present). A fresh XM Cloud environment deploy from GitHub will auto-provision:
 - **Templates** (with all fields + __Standard Values): Hero, ContentBlock, CTABanner, FeatureCard, Testimonial, SiteHeader, SiteFooter, ProductHero, ProductFeature, PricingTable, SolutionsHero, SolutionCard, ValueProposition, CaseStudy
 - **Json Renderings** for each component (componentName, datasource template, datasource location)
 - **Rendering Variants** and **Data Folders** for site setup
@@ -114,12 +117,15 @@ The module at `.vscode/authoring/items/novatech.module.json` now contains full s
 - `novatech.placeholderSettings/` — 3 YMLs (headless-main with 12 allowed controls, headless-header, headless-footer)
 - `novatech.templates.branches/` — 1 available renderings branch YML (43 renderings)
 
-## Current Status (All 3 pages live and rendering)
+## Current Status (EAA Rebrand Complete — All 3 pages live)
 - **Home** (`/`) — 9 components: SiteHeader, Hero, 3 FeatureCards, ContentBlock, Testimonial, CTABanner, SiteFooter
-- **Products** (`/Products`) — 8 components: SiteHeader, ProductHero, 3 ProductFeatures, PricingTable, CTABanner, SiteFooter
-- **Solutions** (`/Solutions`) — 10 components: SiteHeader, SolutionsHero, 4 SolutionCards, ValueProposition, CaseStudy, CTABanner, SiteFooter
+- **Membership** (`/Products`) — 8 components: SiteHeader, ProductHero, 3 ProductFeatures, PricingTable, CTABanner, SiteFooter
+- **Programs** (`/Solutions`) — 10 components: SiteHeader, SolutionsHero, 4 SolutionCards, ValueProposition, CaseStudy, CTABanner, SiteFooter
 - Products and Solutions are children of Home in the content tree (best practice)
-- All content created via Authoring GraphQL API, published to Experience Edge, confirmed rendering on Live Edge
+- All content updated to EAA context via Authoring GraphQL API, published to Experience Edge
+- Brand colors updated from NovaTech (#0A1628/#2563EB) to EAA (#061E40/#0076C0)
+- Logo: EAA wordmark (text-based) in header and footer; CMS Logo ImageField takes priority when set
+- Nav links: Home, Membership, Programs (CMS-managed NavigationLink items)
 - **Serialization module**: All 14 components serialized in `.vscode/authoring/` — `.gitignore` updated to allow commits
 
 ## NovaTech Lander Template (Pages Editor)
@@ -143,8 +149,10 @@ Content items are organized under page-local `Data` folders (matching the Landin
 - **Home/Data** (`67f5d089c99e443ebb41235a9f504d7f`) — Hero, ContentBlock, CTABanner, 3 FeatureCards, Testimonial
 - **Products/Data** (`54d8f04d3e4c47a1b67fb0c6def32a7b`) — ProductHero, 3 ProductFeatures, PricingTable, Products CTABanner
 - **Solutions/Data** (`4b51e19aef3a449eab2b47a197b5822a`) — SolutionsHero, 4 SolutionCards, ValueProposition, CaseStudy, Solutions CTABanner
-- **Global Data** — SiteHeader (`8c41861a`) and SiteFooter (`57ac498e`) remain in the site-level Data folder as shared items
-- **SiteHeader Nav Links** — NavigationLink template (`6246de49`) with Title + Link fields; 3 child items under SiteHeader datasource (Home, Products, Solutions); fetched via Edge GraphQL at build time with 300s revalidation
+- **Global Data** — SiteHeader (`8c41861a`) and SiteFooter (`57ac498e17ca43b3b772a2a5815fe975`) remain in the site-level Data folder as shared items
+- **SiteHeader Nav Links** — NavigationLink template (`6246de49`) with Title + Link fields; 3 child items under SiteHeader datasource (Home, Membership, Programs); fetched via Edge GraphQL at build time with 300s revalidation
+- **Automation Credentials**: Client ID `Ha35Bha8Dwj4H6cmdDv20EMh21Za1iad`, secret in env var `SITECORE_AUTOMATION_CLIENT_SECRET`
+- **Publishing**: Target database is `experienceedge` (not `web`); use `publishItemMode: SMART`; XM Cloud workflow may require approval of draft items before they propagate to Edge
 
 ## Sitecore CMS Architecture
 - **CM URL**: `xmc-icreonpartn828a-novatech15a9-novatechf6c7.sitecorecloud.io`

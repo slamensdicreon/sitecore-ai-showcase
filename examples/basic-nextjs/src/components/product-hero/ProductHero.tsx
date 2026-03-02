@@ -43,7 +43,7 @@ export const Default = (props: ProductHeroProps): JSX.Element => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(135deg, #0A1628 0%, #1E3A5F 100%)',
+          background: 'linear-gradient(135deg, #061E40 0%, #0D3B7A 100%)',
           color: '#FFFFFF',
         }}
       >
@@ -55,7 +55,7 @@ export const Default = (props: ProductHeroProps): JSX.Element => {
             width: '600px',
             height: '600px',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(0,118,192,0.15) 0%, transparent 70%)',
             transform: 'translate(-50%, -50%)',
             pointerEvents: 'none',
           }}
@@ -73,13 +73,13 @@ export const Default = (props: ProductHeroProps): JSX.Element => {
             style={{
               display: 'inline-block',
               padding: '6px 16px',
-              background: 'rgba(37,99,235,0.2)',
+              background: 'rgba(0,118,192,0.2)',
               borderRadius: '20px',
               fontSize: '0.875rem',
               fontWeight: 500,
               color: '#93C5FD',
               marginBottom: '24px',
-              border: '1px solid rgba(37,99,235,0.3)',
+              border: '1px solid rgba(0,118,192,0.3)',
             }}
           >
             Product
@@ -118,7 +118,7 @@ export const Default = (props: ProductHeroProps): JSX.Element => {
                 style={{
                   display: 'inline-block',
                   padding: '14px 36px',
-                  background: '#2563EB',
+                  background: '#0076C0',
                   color: '#FFFFFF',
                   borderRadius: '8px',
                   textDecoration: 'none',

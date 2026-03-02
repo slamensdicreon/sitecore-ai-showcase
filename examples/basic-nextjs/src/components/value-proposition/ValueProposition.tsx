@@ -36,7 +36,7 @@ const StatItem = ({ value, label }: StatItemProps): JSX.Element => (
       style={{
         fontSize: '3rem',
         fontWeight: 800,
-        color: '#2563EB',
+        color: '#0076C0',
         lineHeight: 1,
         marginBottom: '8px',
         letterSpacing: '-0.02em',
@@ -89,7 +89,7 @@ export const Default = (props: ValuePropositionProps): JSX.Element => {
             style={{
               fontSize: '2.25rem',
               fontWeight: 700,
-              color: '#0A1628',
+              color: '#061E40',
               marginBottom: '16px',
               lineHeight: 1.2,
             }}

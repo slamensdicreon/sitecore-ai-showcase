@@ -54,8 +54,8 @@ export const Default = (props: CaseStudyProps): JSX.Element => {
             style={{
               display: 'inline-block',
               padding: '4px 12px',
-              background: '#EFF6FF',
-              color: '#2563EB',
+              background: '#E6F2FB',
+              color: '#0076C0',
               borderRadius: '6px',
               fontSize: '0.8rem',
               fontWeight: 600,
@@ -72,7 +72,7 @@ export const Default = (props: CaseStudyProps): JSX.Element => {
             style={{
               fontSize: '2.25rem',
               fontWeight: 700,
-              color: '#0A1628',
+              color: '#061E40',
               lineHeight: 1.2,
             }}
           />
@@ -109,7 +109,7 @@ export const Default = (props: CaseStudyProps): JSX.Element => {
                   width: '48px',
                   height: '48px',
                   borderRadius: '8px',
-                  background: '#0A1628',
+                  background: '#061E40',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -128,7 +128,7 @@ export const Default = (props: CaseStudyProps): JSX.Element => {
                 style={{
                   fontSize: '1.1rem',
                   fontWeight: 700,
-                  color: '#0A1628',
+                  color: '#061E40',
                 }}
               />
               <div style={{ fontSize: '0.85rem', color: '#6B7280' }}>
@@ -138,7 +138,7 @@ export const Default = (props: CaseStudyProps): JSX.Element => {
           </div>
           <div
             style={{
-              borderLeft: '4px solid #2563EB',
+              borderLeft: '4px solid #0076C0',
               paddingLeft: '24px',
               marginBottom: '24px',
             }}
@@ -147,7 +147,7 @@ export const Default = (props: CaseStudyProps): JSX.Element => {
               field={fields.Quote}
               style={{
                 fontSize: '1.15rem',
-                color: '#1E3A5F',
+                color: '#0D3B7A',
                 lineHeight: 1.7,
                 fontStyle: 'italic',
               }}
@@ -159,7 +159,7 @@ export const Default = (props: CaseStudyProps): JSX.Element => {
               field={fields.AuthorName}
               style={{
                 fontWeight: 600,
-                color: '#0A1628',
+                color: '#061E40',
                 fontSize: '0.95rem',
               }}
             />
@@ -206,7 +206,7 @@ export const Default = (props: CaseStudyProps): JSX.Element => {
                   style={{
                     fontSize: '1.5rem',
                     fontWeight: 800,
-                    color: '#2563EB',
+                    color: '#0076C0',
                     marginBottom: '4px',
                   }}
                 />
