@@ -140,7 +140,7 @@ export const Default = async (props: SiteHeaderProps): Promise<JSX.Element> => {
       >
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
           {fields.Logo?.value?.src ? (
-            <Image field={fields.Logo} style={{ height: '40px', width: 'auto' }} />
+            <Image field={fields.Logo} style={{ height: '40px', width: 'auto', filter: 'brightness(0) invert(1)' }} />
           ) : (
             // eslint-disable-next-line @next/next/no-img-element
             <img

@@ -1,11 +1,11 @@
 import { JSX } from 'react';
-import { Text, RichText, Image, Link, Field, ImageField, LinkField } from '@sitecore-content-sdk/nextjs';
+import { Text, RichText, Image, Link, Field, ImageField, LinkField, FileField } from '@sitecore-content-sdk/nextjs';
 import { ComponentProps } from 'lib/component-props';
 
 interface HeroImpactFields {
   Heading: Field<string>;
   Subheading: Field<string>;
-  VideoUrl: Field<string>;
+  VideoUrl: FileField;
   BackgroundImage: ImageField;
   CTAText: Field<string>;
   CTALink: LinkField;
@@ -32,7 +32,8 @@ export const Default = (props: HeroImpactProps): JSX.Element => {
     );
   }
 
-  const hasVideo = !!fields.VideoUrl?.value;
+  const videoSrc = fields.VideoUrl?.value?.src;
+  const hasVideo = !!videoSrc;
   const hasSecondary = !!fields.SecondaryCtaLink?.value?.href;
 
   return (
@@ -50,11 +51,12 @@ export const Default = (props: HeroImpactProps): JSX.Element => {
     >
       {hasVideo ? (
         <video
+          aria-hidden="true"
           autoPlay
           muted
           loop
           playsInline
-          poster={fields.BackgroundImage?.value?.src as string || undefined}
+          poster={typeof fields.BackgroundImage?.value?.src === 'string' ? fields.BackgroundImage.value.src : undefined}
           style={{
             position: 'absolute',
             inset: 0,
@@ -63,7 +65,7 @@ export const Default = (props: HeroImpactProps): JSX.Element => {
             objectFit: 'cover',
           }}
         >
-          <source src={fields.VideoUrl.value} type="video/mp4" />
+          <source src={videoSrc} type="video/mp4" />
         </video>
       ) : fields.BackgroundImage?.value?.src ? (
         <div style={{ position: 'absolute', inset: 0 }}>
