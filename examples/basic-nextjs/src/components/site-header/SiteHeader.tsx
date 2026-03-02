@@ -118,7 +118,7 @@ export const Default = async (props: SiteHeaderProps): Promise<JSX.Element> => {
       className={`component site-header ${styles}`}
       id={id || undefined}
       style={{
-        background: '#0A1628',
+        background: '#061E40',
         color: '#FFFFFF',
         padding: '0 24px',
         position: 'sticky',
@@ -143,12 +143,13 @@ export const Default = async (props: SiteHeaderProps): Promise<JSX.Element> => {
           ) : (
             <span
               style={{
-                fontSize: '1.25rem',
-                fontWeight: 700,
-                letterSpacing: '-0.02em',
+                fontSize: '1.5rem',
+                fontWeight: 800,
+                letterSpacing: '0.08em',
+                color: '#FFFFFF',
               }}
             >
-              NovaTech
+              EAA
             </span>
           )}
         </div>

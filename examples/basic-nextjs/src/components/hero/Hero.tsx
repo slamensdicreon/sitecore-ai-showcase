@@ -49,7 +49,7 @@ export const Default = (props: HeroProps): JSX.Element => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: '#0A1628',
+          background: '#061E40',
           color: '#FFFFFF',
         }}
       >
@@ -103,7 +103,7 @@ export const Default = (props: HeroProps): JSX.Element => {
               style={{
                 display: 'inline-block',
                 padding: '14px 32px',
-                background: '#2563EB',
+                background: '#0076C0',
                 color: '#FFFFFF',
                 borderRadius: '8px',
                 textDecoration: 'none',

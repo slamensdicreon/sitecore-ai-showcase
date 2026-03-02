@@ -38,7 +38,7 @@ export const Default = (props: SiteFooterProps): JSX.Element => {
       className={`component site-footer ${styles}`}
       id={id || undefined}
       style={{
-        background: '#0A1628',
+        background: '#061E40',
         color: '#FFFFFF',
         padding: '32px 24px',
       }}
@@ -66,11 +66,12 @@ export const Default = (props: SiteFooterProps): JSX.Element => {
             <span
               style={{
                 fontSize: '1rem',
-                fontWeight: 600,
+                fontWeight: 800,
+                letterSpacing: '0.08em',
                 opacity: 0.7,
               }}
             >
-              NovaTech
+              EAA
             </span>
           )}
         </div>
