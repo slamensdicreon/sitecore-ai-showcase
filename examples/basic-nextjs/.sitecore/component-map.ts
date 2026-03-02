@@ -8,15 +8,12 @@ import * as ValueProposition from 'src/components/value-proposition/ValueProposi
 import * as Testimonial from 'src/components/testimonial/Testimonial';
 import * as Container from 'src/components/sxa/Container';
 import * as ColumnSplitter from 'src/components/sxa/ColumnSplitter';
-import * as SolutionsHero from 'src/components/solutions-hero/SolutionsHero';
 import * as SolutionCard from 'src/components/solution-card/SolutionCard';
 import * as SiteHeader from 'src/components/site-header/SiteHeader';
 import * as SiteFooter from 'src/components/site-footer/SiteFooter';
-import * as ProductHero from 'src/components/product-hero/ProductHero';
 import * as ProductFeature from 'src/components/product-feature/ProductFeature';
 import * as PricingTable from 'src/components/pricing-table/PricingTable';
 import * as PartialDesignDynamicPlaceholder from 'src/components/partial-design-dynamic-placeholder/PartialDesignDynamicPlaceholder';
-import * as HeroImpact from 'src/components/hero-impact/HeroImpact';
 import * as Hero from 'src/components/hero/Hero';
 import * as FeatureCard from 'src/components/feature-card/FeatureCard';
 import * as CTABanner from 'src/components/cta-banner/CTABanner';
@@ -34,15 +31,12 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['Testimonial', { ...Testimonial }],
   ['Container', { ...Container }],
   ['ColumnSplitter', { ...ColumnSplitter }],
-  ['SolutionsHero', { ...SolutionsHero }],
   ['SolutionCard', { ...SolutionCard }],
   ['SiteHeader', { ...SiteHeader }],
   ['SiteFooter', { ...SiteFooter }],
-  ['ProductHero', { ...ProductHero }],
   ['ProductFeature', { ...ProductFeature }],
   ['PricingTable', { ...PricingTable }],
   ['PartialDesignDynamicPlaceholder', { ...PartialDesignDynamicPlaceholder }],
-  ['HeroImpact', { ...HeroImpact }],
   ['Hero', { ...Hero }],
   ['FeatureCard', { ...FeatureCard }],
   ['CTABanner', { ...CTABanner }],
