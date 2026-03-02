@@ -29,7 +29,7 @@ Components located in `examples/basic-nextjs/src/components/`:
 - **FeatureCard** - White card with icon, title, description, and link
 - **Testimonial** - Blockquote with author attribution
 - **ContentBlock** - Two-column text + image layout (configurable position)
-- **SiteHeader** - Sticky dark navy header with logo and CTA (links to /Products)
+- **SiteHeader** - Sticky dark navy header with logo and hamburger menu; slide-out drawer with CMS-managed navigation links (Home, Products, Solutions) fetched from Edge GraphQL; split into server component (SiteHeader.tsx) and client component (DrawerNav.tsx)
 - **SiteFooter** - Dark navy footer with logo and copyright
 - **ProductHero** - Product page hero with "Product" badge, heading, tagline, 2 CTAs
 - **ProductFeature** - Alternating left/right feature sections with badge, title, description, image placeholder
@@ -144,6 +144,7 @@ Content items are organized under page-local `Data` folders (matching the Landin
 - **Products/Data** (`54d8f04d3e4c47a1b67fb0c6def32a7b`) — ProductHero, 3 ProductFeatures, PricingTable, Products CTABanner
 - **Solutions/Data** (`4b51e19aef3a449eab2b47a197b5822a`) — SolutionsHero, 4 SolutionCards, ValueProposition, CaseStudy, Solutions CTABanner
 - **Global Data** — SiteHeader (`8c41861a`) and SiteFooter (`57ac498e`) remain in the site-level Data folder as shared items
+- **SiteHeader Nav Links** — NavigationLink template (`6246de49`) with Title + Link fields; 3 child items under SiteHeader datasource (Home, Products, Solutions); fetched via Edge GraphQL at build time with 300s revalidation
 
 ## Sitecore CMS Architecture
 - **CM URL**: `xmc-icreonpartn828a-novatech15a9-novatechf6c7.sitecorecloud.io`
