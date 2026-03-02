@@ -60,7 +60,7 @@ export const Default = (props: SiteFooterProps): JSX.Element => {
           {fields.Logo?.value?.src ? (
             <Image
               field={fields.Logo}
-              style={{ height: '28px', width: 'auto', opacity: 0.7 }}
+              style={{ height: '28px', width: 'auto', opacity: 0.7, filter: 'brightness(0) invert(1)' }}
             />
           ) : (
             // eslint-disable-next-line @next/next/no-img-element
