@@ -1,12 +1,10 @@
 import { JSX } from 'react';
-import { Image, Field, ImageField, LinkField } from '@sitecore-content-sdk/nextjs';
+import { Image, ImageField } from '@sitecore-content-sdk/nextjs';
 import { ComponentProps } from 'lib/component-props';
 import DrawerNav from './DrawerNav';
 
 interface SiteHeaderFields {
   Logo: ImageField;
-  CTAText: Field<string>;
-  CTALink: LinkField;
 }
 
 type SiteHeaderProps = ComponentProps & {
