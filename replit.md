@@ -18,24 +18,28 @@ The configured workflow runs the **basic-nextjs** example (`examples/basic-nextj
 - `/local-containers` - Docker configuration for local dev
 
 ## Pages (EAA Content)
-- **Home** (`/`) — Hero ("Where Aviators Come Together"), 3 FeatureCards (Join the Community, AirVenture Oshkosh, Young Eagles), ContentBlock ("Our Mission"), Testimonial, CTABanner ("Ready to Take Flight?")
-- **Membership** (`/Products`) — ProductHero ("EAA Membership"), 3 ProductFeatures (Member Benefits, 850+ Chapters, AirVenture Access), PricingTable (Individual $40/yr, Family $50/yr, Lifetime), CTABanner
-- **Programs** (`/Solutions`) — SolutionsHero ("EAA Programs"), 4 SolutionCards (AirVenture Oshkosh, Young Eagles, Homebuilders, Warbirds of America), ValueProposition (200,000+ Members, 850+ Chapters, 70+ Years), CaseStudy (Member Spotlight), CTABanner
+- **Home** (`/`) — Hero (Impact variant: full-viewport video, "Where Aviators Come Together"), 3 FeatureCards, ContentBlock ("Our Mission"), Testimonial, CTABanner ("Ready to Take Flight?")
+- **Membership** (`/Products`) — Hero (Product variant: centered, "Product" badge, dual CTAs), 3 ProductFeatures, PricingTable (Individual $40/yr, Family $50/yr, Lifetime), CTABanner
+- **Programs** (`/Solutions`) — Hero (Minimal variant: centered, "Solutions" badge, single CTA), 4 SolutionCards, ValueProposition, CaseStudy (Member Spotlight), CTABanner
 - Nav links: Home, Membership, Programs (via CMS-managed NavigationLink items)
 
-## EAA Components (14 custom)
+## EAA Components (12 custom)
 Components located in `examples/basic-nextjs/src/components/`:
-- **Hero** - Full-width banner with heading, subheading, background image, and CTA
+- **Hero** (unified, 3 variants) - Single component with auto-detecting `Default` export:
+  - `Impact` — Full-viewport (100vh) video hero, bottom-left content, dual gradient overlays, primary + secondary CTAs (Home page)
+  - `Product` — Centered layout, gradient bg, radial glow, Badge pill, dual side-by-side CTAs (Products page)
+  - `Minimal` — Centered layout, gradient bg, two radial glows, Badge pill, single CTA (Solutions page)
+  - `Default` — Auto-dispatches based on `params.FieldNames` or field content detection (VideoUrl → Impact, Badge+SecondaryCTA → Product, Badge → Minimal, fallback → Impact)
+  - Fields (superset): Heading, Subheading, VideoUrl (File), BackgroundImage (Image), CTAText, CTALink, SecondaryCtaText, SecondaryCtaLink, Badge
+  - CMS: Template `400a3c7c`, Rendering `2e9a11fa`; DS items: Home `76bc1947`, Products `631ca584`, Solutions `64ee1317`
 - **CTABanner** - Dark navy conversion section with primary/secondary buttons
 - **FeatureCard** - White card with icon, title, description, and link
 - **Testimonial** - Blockquote with author attribution
 - **ContentBlock** - Two-column text + image layout (configurable position)
 - **SiteHeader** - Sticky dark navy header with EAA wordmark and hamburger menu; slide-out drawer with CMS-managed navigation links fetched from Edge GraphQL; split into server component (SiteHeader.tsx) and client component (DrawerNav.tsx)
 - **SiteFooter** - Dark navy footer with EAA wordmark and copyright
-- **ProductHero** - Membership page hero with "Product" badge, heading, tagline, 2 CTAs
 - **ProductFeature** - Alternating left/right feature sections with badge, title, description, image placeholder
 - **PricingTable** - 3-tier membership pricing section (Individual, Family, Lifetime)
-- **SolutionsHero** - Programs page hero with "Solutions" badge, heading, tagline, single CTA
 - **SolutionCard** - Program card with blue accent bar, icon, title, description, metrics, and link
 - **ValueProposition** - Stats section with 3 large metric columns (200K+ Members, 850+ Chapters, 70+ Years)
 - **CaseStudy** - Member spotlight with company details, quote, author, and 3 metric cards
@@ -117,16 +121,17 @@ The module at `.vscode/authoring/items/novatech.module.json` now contains full s
 - `novatech.placeholderSettings/` — 3 YMLs (headless-main with 12 allowed controls, headless-header, headless-footer)
 - `novatech.templates.branches/` — 1 available renderings branch YML (43 renderings)
 
-## Current Status (EAA Rebrand Complete — All 3 pages live)
-- **Home** (`/`) — 9 components: SiteHeader, Hero, 3 FeatureCards, ContentBlock, Testimonial, CTABanner, SiteFooter
-- **Membership** (`/Products`) — 8 components: SiteHeader, ProductHero, 3 ProductFeatures, PricingTable, CTABanner, SiteFooter
-- **Programs** (`/Solutions`) — 10 components: SiteHeader, SolutionsHero, 4 SolutionCards, ValueProposition, CaseStudy, CTABanner, SiteFooter
+## Current Status (EAA Rebrand Complete — All 3 pages live, Hero unified)
+- **Home** (`/`) — 9 components: SiteHeader, Hero (Impact), 3 FeatureCards, ContentBlock, Testimonial, CTABanner, SiteFooter
+- **Membership** (`/Products`) — 8 components: SiteHeader, Hero (Product), 3 ProductFeatures, PricingTable, CTABanner, SiteFooter
+- **Programs** (`/Solutions`) — 10 components: SiteHeader, Hero (Minimal), 4 SolutionCards, ValueProposition, CaseStudy, CTABanner, SiteFooter
 - Products and Solutions are children of Home in the content tree (best practice)
 - All content updated to EAA context via Authoring GraphQL API, published to Experience Edge
+- Hero consolidated: 4 separate hero components (Hero, HeroImpact, ProductHero, SolutionsHero) merged into a single Hero with 3 named variant exports; old component directories removed
 - Brand colors updated from NovaTech (#0A1628/#2563EB) to EAA (#061E40/#0076C0)
 - Logo: EAA wordmark (text-based) in header and footer; CMS Logo ImageField takes priority when set
 - Nav links: Home, Membership, Programs (CMS-managed NavigationLink items)
-- **Serialization module**: All 14 components serialized in `.vscode/authoring/` — `.gitignore` updated to allow commits
+- **Serialization module**: All components serialized in `.vscode/authoring/` — `.gitignore` updated to allow commits
 
 ## NovaTech Lander Template (Pages Editor)
 A separate "NovaTech Lander" template enables marketers to create new landing pages with drag-and-drop NovaTech components in Pages Editor. Completely independent from the existing `Page` template.
