@@ -54,7 +54,7 @@ export const Default = (props: CaseStudyProps): JSX.Element => {
             style={{
               display: 'inline-block',
               padding: '4px 12px',
-              background: '#EFF6FF',
+              background: '#E6F2FB',
               color: '#0076C0',
               borderRadius: '6px',
               fontSize: '0.8rem',

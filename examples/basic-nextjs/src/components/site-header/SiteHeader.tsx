@@ -50,8 +50,8 @@ query NavLinks($datasource: String!, $language: String!) {
 
 const FALLBACK_LINKS = [
   { id: 'home', title: 'Home', href: '/' },
-  { id: 'products', title: 'Products', href: '/Products' },
-  { id: 'solutions', title: 'Solutions', href: '/Solutions' },
+  { id: 'membership', title: 'Membership', href: '/Products' },
+  { id: 'programs', title: 'Programs', href: '/Solutions' },
 ];
 
 async function fetchNavLinks(datasourceId: string): Promise<{ id: string; title: string; href: string }[]> {

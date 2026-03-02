@@ -70,7 +70,7 @@ export const Default = (props: SolutionCardProps): JSX.Element => {
               width: '48px',
               height: '48px',
               borderRadius: '10px',
-              background: '#EFF6FF',
+              background: '#E6F2FB',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
