@@ -1,0 +1,14 @@
+---
+ID: "412b899c-8abe-443f-9d77-ea582cf5a96b"
+Parent: "0a240ace-196f-43b8-b45f-4ca75ce99862"
+Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
+Path: "/sitecore/templates/Project/NovaTechCollection/Components/NavigationLink/Data/Link"
+SharedFields:
+- ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
+  Hint: Type
+  Value: General Link
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields: []
