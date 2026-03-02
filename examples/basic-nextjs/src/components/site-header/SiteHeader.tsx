@@ -1,4 +1,5 @@
 import { JSX } from 'react';
+import Link from 'next/link';
 import { Image, ImageField } from '@sitecore-content-sdk/nextjs';
 import { ComponentProps } from 'lib/component-props';
 import DrawerNav from './DrawerNav';
@@ -137,22 +138,18 @@ export const Default = async (props: SiteHeaderProps): Promise<JSX.Element> => {
           height: '64px',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
           {fields.Logo?.value?.src ? (
-            <Image field={fields.Logo} style={{ height: '32px', width: 'auto' }} />
+            <Image field={fields.Logo} style={{ height: '40px', width: 'auto' }} />
           ) : (
-            <span
-              style={{
-                fontSize: '1.5rem',
-                fontWeight: 800,
-                letterSpacing: '0.08em',
-                color: '#FFFFFF',
-              }}
-            >
-              EAA
-            </span>
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src="/eaa-logo.svg"
+              alt="EAA"
+              style={{ height: '40px', width: 'auto' }}
+            />
           )}
-        </div>
+        </Link>
 
         <DrawerNav links={navLinks} />
       </div>
