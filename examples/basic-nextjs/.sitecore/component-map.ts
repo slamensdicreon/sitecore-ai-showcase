@@ -16,6 +16,7 @@ import * as ProductHero from 'src/components/product-hero/ProductHero';
 import * as ProductFeature from 'src/components/product-feature/ProductFeature';
 import * as PricingTable from 'src/components/pricing-table/PricingTable';
 import * as PartialDesignDynamicPlaceholder from 'src/components/partial-design-dynamic-placeholder/PartialDesignDynamicPlaceholder';
+import * as HeroImpact from 'src/components/hero-impact/HeroImpact';
 import * as Hero from 'src/components/hero/Hero';
 import * as FeatureCard from 'src/components/feature-card/FeatureCard';
 import * as CTABanner from 'src/components/cta-banner/CTABanner';
@@ -41,6 +42,7 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['ProductFeature', { ...ProductFeature }],
   ['PricingTable', { ...PricingTable }],
   ['PartialDesignDynamicPlaceholder', { ...PartialDesignDynamicPlaceholder }],
+  ['HeroImpact', { ...HeroImpact }],
   ['Hero', { ...Hero }],
   ['FeatureCard', { ...FeatureCard }],
   ['CTABanner', { ...CTABanner }],
