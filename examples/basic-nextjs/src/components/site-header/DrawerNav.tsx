@@ -63,11 +63,11 @@ function getFocusableElements(container: HTMLElement): HTMLElement[] {
 export default function DrawerNav({ links }: DrawerNavProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const submenuTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
   const drawerRef = useRef<HTMLDivElement>(null);
   const submenuRef = useRef<HTMLDivElement>(null);
-  const firstDrawerItemRef = useRef<HTMLAnchorElement | null>(null);
 
   const closeDrawer = useCallback(() => {
     setDrawerOpen(false);
@@ -440,25 +440,32 @@ export default function DrawerNav({ links }: DrawerNavProps) {
             const hasChildren = !!item.children?.length;
             const isActive = activeSubmenu === item.id;
 
+            const isHovered = hoveredItem === item.id;
+            const bgColor = isActive
+              ? 'rgba(0,118,192,0.2)'
+              : isHovered
+                ? 'rgba(255,255,255,0.08)'
+                : 'transparent';
+
             const itemProps = {
               'data-submenu-id': hasChildren ? item.id : undefined,
               style: {
                 ...linkStyle,
-                background: isActive ? 'rgba(0,118,192,0.2)' : 'transparent',
+                background: bgColor,
               } as React.CSSProperties,
-              onMouseEnter: (e: React.MouseEvent<HTMLElement>) => {
+              onMouseEnter: () => {
+                setHoveredItem(item.id);
                 handleItemHover(item.id, hasChildren);
-                if (!isActive) e.currentTarget.style.background = 'rgba(255,255,255,0.08)';
               },
-              onMouseLeave: (e: React.MouseEvent<HTMLElement>) => {
+              onMouseLeave: () => {
+                setHoveredItem(null);
                 handleItemLeave();
-                if (!isActive) e.currentTarget.style.background = 'transparent';
               },
-              onFocus: (e: React.FocusEvent<HTMLElement>) => {
-                if (!isActive) e.currentTarget.style.background = 'rgba(255,255,255,0.08)';
+              onFocus: () => {
+                setHoveredItem(item.id);
               },
-              onBlur: (e: React.FocusEvent<HTMLElement>) => {
-                if (!isActive) e.currentTarget.style.background = 'transparent';
+              onBlur: () => {
+                setHoveredItem(null);
               },
               onKeyDown: (e: React.KeyboardEvent) => {
                 if (hasChildren && (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowRight')) {
