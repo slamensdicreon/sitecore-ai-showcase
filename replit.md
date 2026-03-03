@@ -21,7 +21,7 @@ The configured workflow runs the **basic-nextjs** example (`examples/basic-nextj
 - **Home** (`/`) — Hero (Impact variant: full-viewport video, "Where Aviators Come Together"), 3 FeatureCards, ContentBlock ("Our Mission"), Testimonial, CTABanner ("Ready to Take Flight?")
 - **Membership** (`/Products`) — Hero (Product variant: centered, "Product" badge, dual CTAs), 3 ProductFeatures, PricingTable (Individual $40/yr, Family $50/yr, Lifetime), CTABanner
 - **Programs** (`/Solutions`) — Hero (Minimal variant: centered, "Solutions" badge, single CTA), 4 SolutionCards, ValueProposition, CaseStudy (Member Spotlight), CTABanner
-- Nav links: Home, Membership, Programs (via CMS-managed NavigationLink items)
+- Nav links: Home, Membership, Programs (via CMS-managed NavigationLink items) + sub-nav bar (6 external links) + mega-menu children (8 links per section)
 
 ## EAA Components (12 custom)
 Components located in `examples/basic-nextjs/src/components/`:
@@ -36,7 +36,11 @@ Components located in `examples/basic-nextjs/src/components/`:
 - **FeatureCard** - White card with icon, title, description, and link
 - **Testimonial** - Blockquote with author attribution
 - **ContentBlock** - Two-column text + image layout (configurable position)
-- **SiteHeader** - Sticky dark navy header with EAA wordmark and hamburger menu; slide-out drawer with CMS-managed navigation links fetched from Edge GraphQL; split into server component (SiteHeader.tsx) and client component (DrawerNav.tsx)
+- **SiteHeader** - Sticky dark navy header with EAA wordmark and hamburger menu; slide-out drawer with CMS-managed navigation links fetched from Edge GraphQL; split into server component (SiteHeader.tsx) and two client components (DrawerNav.tsx, SubNav.tsx). Features:
+  - **Sub-nav bar** (SubNav.tsx): Horizontal secondary nav below header (bg `#0A2A52`), 6 links with pipe separators, supports internal/external links, hidden on overflow with scroll
+  - **Mega-menu drawer** (DrawerNav.tsx): Hamburger opens right-side drawer (300px, `#061E40`); hovering non-Home items with children shows second panel (280px, `#0076C0`) sliding out left with 8-10 child links; smooth transitions, hover timeout handling
+  - **Two-pass Edge query**: First fetches top-level nav items, then fetches children of each non-Home item in parallel (avoids Edge GraphQL complexity limit); looks for `SubNavigation` folder for sub-nav links
+  - **Fallback data**: Rich fallback nav data (Membership with 8 children, Programs with 8 children, 6 sub-nav links) used when CMS items don't have children yet; once marketers add NavigationLink children under nav items in Content Editor, CMS data takes priority
 - **SiteFooter** - Dark navy footer with EAA wordmark and copyright
 - **ProductFeature** - Alternating left/right feature sections with badge, title, description, image placeholder
 - **PricingTable** - 3-tier membership pricing section (Individual, Family, Lifetime)
@@ -109,14 +113,14 @@ Defensive code deployed: Pages Editor shows diagnostic error message instead of 
 The module at `.vscode/authoring/items/novatech.module.json` now contains full serialization for ALL 14 custom EAA components (originally created as NovaTech templates — CMS template names remain NovaTech internally). All YML files have been verified to follow correct Sitecore serialization format (dashed GUIDs, no extra indentation, __Standard Values present). A fresh XM Cloud environment deploy from GitHub will auto-provision:
 - **Templates** (with all fields + __Standard Values): Hero, ContentBlock, CTABanner, FeatureCard, Testimonial, SiteHeader, SiteFooter, ProductHero, ProductFeature, PricingTable, SolutionsHero, SolutionCard, ValueProposition, CaseStudy
 - **Json Renderings** for each component (componentName, datasource template, datasource location)
-- **Rendering Variants** and **Data Folders** for site setup
+- **Rendering Variants** (Hero has 4 variant definitions: Default, Impact, Product, Minimal) and **Data Folders** for site setup
 - **Placeholder Settings** (`headless-main`) allowing all 12 main-area components, plus `headless-header` (SiteHeader) and `headless-footer` (SiteFooter)
 - **Available Renderings** branch template including all 14 components + CCL starter renderings
 
-### Module File Counts (210 total YML files)
+### Module File Counts (~212 total YML files)
 - `novatech.templates/` — 14 template roots + 14 Data sections + 14 __Standard Values + ~65 field YMLs
 - `novatech.renderings/` — 14 rendering YMLs
-- `novatech.modules/.../Rendering Variants/` — 14 variant setup YMLs
+- `novatech.modules/.../Rendering Variants/` — 12 variant group YMLs + 4 Hero variant definition YMLs (Default, Impact, Product, Minimal)
 - `novatech.modules/.../Data Folders/` — 14 data folder setup YMLs
 - `novatech.placeholderSettings/` — 3 YMLs (headless-main with 12 allowed controls, headless-header, headless-footer)
 - `novatech.templates.branches/` — 1 available renderings branch YML (43 renderings)
@@ -127,7 +131,8 @@ The module at `.vscode/authoring/items/novatech.module.json` now contains full s
 - **Programs** (`/Solutions`) — 10 components: SiteHeader, Hero (Minimal), 4 SolutionCards, ValueProposition, CaseStudy, CTABanner, SiteFooter
 - Products and Solutions are children of Home in the content tree (best practice)
 - All content updated to EAA context via Authoring GraphQL API, published to Experience Edge
-- Hero consolidated: 4 separate hero components (Hero, HeroImpact, ProductHero, SolutionsHero) merged into a single Hero with 3 named variant exports; old component directories removed
+- Hero consolidated: 4 separate hero components merged into a single Hero with 3 named variant exports; old component directories removed
+- Hero Headless Variants: 4 variant definition items (Default, Impact, Product, Minimal) added to serialization — will appear in Pages Editor Design tab after merging `sitecorebranch` → `main` and triggering XM Cloud deployment
 - Brand colors updated from NovaTech (#0A1628/#2563EB) to EAA (#061E40/#0076C0)
 - Logo: EAA wordmark (text-based) in header and footer; CMS Logo ImageField takes priority when set
 - Nav links: Home, Membership, Programs (CMS-managed NavigationLink items)
@@ -155,7 +160,11 @@ Content items are organized under page-local `Data` folders (matching the Landin
 - **Products/Data** (`54d8f04d3e4c47a1b67fb0c6def32a7b`) — ProductHero, 3 ProductFeatures, PricingTable, Products CTABanner
 - **Solutions/Data** (`4b51e19aef3a449eab2b47a197b5822a`) — SolutionsHero, 4 SolutionCards, ValueProposition, CaseStudy, Solutions CTABanner
 - **Global Data** — SiteHeader (`8c41861a`) and SiteFooter (`57ac498e17ca43b3b772a2a5815fe975`) remain in the site-level Data folder as shared items
-- **SiteHeader Nav Links** — NavigationLink template (`6246de49`) with Title + Link fields; 3 child items under SiteHeader datasource (Home, Membership, Programs); fetched via Edge GraphQL at build time with 300s revalidation
+- **SiteHeader Nav Links** — NavigationLink template (`6246de49`) with Title + Link fields; 3 top-level items under SiteHeader datasource (Home, Membership, Programs); fetched via Edge GraphQL at build time with 300s revalidation
+- **SubNavigation folder** (`F95624123159423C8B04B43CD4C7FEDC`) — Child of SiteHeader datasource, contains 6 NavigationLink items for the sub-nav bar (About EAA, Events, Chapters, Shop, Donate, Contact)
+- **Mega-menu children** — 8 NavigationLink items under Membership (`6E68F687DA424C86A963D1628A98E5E6`): JoinNow, RenewMembership, MemberBenefits, GiftMembership, FamilyMembership, LifetimeMembership, StudentMembership, CorporatePartners; 8 under Programs (`FE8775F26ABF4BD0A00F3C2D4C4E5B70`): AirVentureOshkosh, YoungEagles, EagleFlights, Homebuilders, Warbirds, Advocacy, Scholarships, FlyingStart
+- **Navigation data flow**: SiteHeader fetches top-level items → identifies SubNavigation folder for sub-nav bar → fetches children of non-Home items in parallel for mega-menu drawer → passes hierarchical data to DrawerNav and SubNav client components
+- **DrawerNav accessibility**: `role="dialog"` + `aria-modal="true"`, focus trap (Tab cycles within active panel), auto-focus first link on open, keyboard submenu navigation (ArrowRight/Enter opens, ArrowLeft/Escape closes), focus restored to trigger on close
 - **Automation Credentials**: Client ID `Ha35Bha8Dwj4H6cmdDv20EMh21Za1iad`, secret in env var `SITECORE_AUTOMATION_CLIENT_SECRET`
 - **Publishing**: Target database is `experienceedge` (not `web`); use `publishItemMode: SMART`; XM Cloud workflow may require approval of draft items before they propagate to Edge
 
@@ -181,7 +190,7 @@ Wrong format: `<link linktype="internal" url="/Products" text="Get Started" />` 
 ## GitHub Integration
 - **Owner**: `slamensdicreon`
 - **Repo**: `sitecore-ai-showcase`
-- **Branches**: `main` (production, triggers XM Cloud EH deployment), `newdev` (development — changes pushed here first, user merges to `main` manually)
+- **Branches**: `main` (production, triggers XM Cloud EH deployment), `sitecorebranch` (development — changes pushed here, user merges to `main` manually)
 - Connected via Replit OAuth (`conn_github_01KJGTFB06JWZ7MEG7MYF2EKK0`)
 
 ## Deployment

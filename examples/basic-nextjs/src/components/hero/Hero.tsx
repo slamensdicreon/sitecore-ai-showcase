@@ -98,7 +98,7 @@ export const Impact = (props: HeroProps): JSX.Element => {
       <div
         style={{
           position: 'absolute',
-          bottom: 0,
+          bottom: '12%',
           left: 0,
           zIndex: 2,
           padding: 'clamp(32px, 6vw, 80px)',
