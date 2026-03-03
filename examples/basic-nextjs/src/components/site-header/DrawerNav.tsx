@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import NextLink from 'next/link';
 import type { NavLinkData } from './SiteHeader';
 
@@ -37,7 +37,7 @@ const subLinkStyle: React.CSSProperties = {
 
 function ChevronRight() {
   return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ opacity: 0.6, flexShrink: 0 }}>
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style={{ opacity: 0.6, flexShrink: 0 }}>
       <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   );
@@ -45,7 +45,7 @@ function ChevronRight() {
 
 function ExternalIcon() {
   return (
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ opacity: 0.5, flexShrink: 0 }}>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" style={{ opacity: 0.5, flexShrink: 0 }}>
       <path d="M3.5 1.5H10.5V8.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       <path d="M10.5 1.5L1.5 10.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
@@ -56,10 +56,21 @@ export default function DrawerNav({ links }: DrawerNavProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   const submenuTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
+  const drawerRef = useRef<HTMLElement>(null);
 
   const closeDrawer = useCallback(() => {
     setDrawerOpen(false);
     setActiveSubmenu(null);
+    hamburgerRef.current?.focus();
+  }, []);
+
+  const toggleSubmenu = useCallback((itemId: string, hasChildren: boolean) => {
+    if (hasChildren) {
+      setActiveSubmenu((prev) => (prev === itemId ? null : itemId));
+    } else {
+      setActiveSubmenu(null);
+    }
   }, []);
 
   const handleItemHover = useCallback((itemId: string, hasChildren: boolean) => {
@@ -87,13 +98,38 @@ export default function DrawerNav({ links }: DrawerNavProps) {
     }, 200);
   }, []);
 
+  useEffect(() => {
+    if (!drawerOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        if (activeSubmenu) {
+          setActiveSubmenu(null);
+        } else {
+          closeDrawer();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [drawerOpen, activeSubmenu, closeDrawer]);
+
   const activeItem = links.find((l) => l.id === activeSubmenu);
   const hasSubmenu = !!activeItem?.children?.length;
 
   return (
     <>
       <button
+        ref={hamburgerRef}
         aria-label={drawerOpen ? 'Close menu' : 'Open menu'}
+        aria-expanded={drawerOpen}
+        aria-controls="main-nav-drawer"
         onClick={() => setDrawerOpen((prev) => !prev)}
         style={{
           background: 'none',
@@ -111,6 +147,7 @@ export default function DrawerNav({ links }: DrawerNavProps) {
         }}
       >
         <span
+          aria-hidden="true"
           style={{
             display: 'block',
             width: '22px',
@@ -125,6 +162,7 @@ export default function DrawerNav({ links }: DrawerNavProps) {
           }}
         />
         <span
+          aria-hidden="true"
           style={{
             display: 'block',
             width: '22px',
@@ -137,6 +175,7 @@ export default function DrawerNav({ links }: DrawerNavProps) {
           }}
         />
         <span
+          aria-hidden="true"
           style={{
             display: 'block',
             width: '22px',
@@ -168,6 +207,7 @@ export default function DrawerNav({ links }: DrawerNavProps) {
 
       {drawerOpen && hasSubmenu && (
         <nav
+          aria-label={`${activeItem?.title} submenu`}
           onMouseEnter={handleSubmenuEnter}
           onMouseLeave={handleSubmenuLeave}
           style={{
@@ -193,6 +233,7 @@ export default function DrawerNav({ links }: DrawerNavProps) {
             </span>
           </div>
           <ul
+            role="menu"
             style={{
               listStyle: 'none',
               margin: 0,
@@ -205,15 +246,18 @@ export default function DrawerNav({ links }: DrawerNavProps) {
             }}
           >
             {activeItem?.children?.map((child) => (
-              <li key={child.id}>
+              <li key={child.id} role="none">
                 {child.external ? (
                   <a
                     href={child.href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    role="menuitem"
                     style={subLinkStyle}
                     onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; }}
                     onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
+                    onFocus={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; }}
+                    onBlur={(e) => { e.currentTarget.style.background = 'transparent'; }}
                   >
                     <span style={{ flex: 1 }}>{child.title}</span>
                     <ExternalIcon />
@@ -222,9 +266,12 @@ export default function DrawerNav({ links }: DrawerNavProps) {
                   <NextLink
                     href={child.href}
                     onClick={closeDrawer}
+                    role="menuitem"
                     style={subLinkStyle}
                     onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; }}
                     onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
+                    onFocus={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; }}
+                    onBlur={(e) => { e.currentTarget.style.background = 'transparent'; }}
                   >
                     <span style={{ flex: 1 }}>{child.title}</span>
                   </NextLink>
@@ -236,6 +283,9 @@ export default function DrawerNav({ links }: DrawerNavProps) {
       )}
 
       <nav
+        id="main-nav-drawer"
+        ref={drawerRef}
+        aria-label="Main navigation"
         style={{
           position: 'fixed',
           top: 0,
@@ -252,9 +302,11 @@ export default function DrawerNav({ links }: DrawerNavProps) {
           flexDirection: 'column',
           paddingTop: '80px',
           boxShadow: drawerOpen ? '-4px 0 24px rgba(0,0,0,0.3)' : 'none',
+          visibility: drawerOpen ? 'visible' : 'hidden',
         }}
       >
         <ul
+          role="menu"
           style={{
             listStyle: 'none',
             margin: 0,
@@ -268,9 +320,40 @@ export default function DrawerNav({ links }: DrawerNavProps) {
             const hasChildren = !!item.children?.length;
             const isActive = activeSubmenu === item.id;
 
+            const itemProps = {
+              style: {
+                ...linkStyle,
+                background: isActive ? 'rgba(0,118,192,0.2)' : 'transparent',
+              } as React.CSSProperties,
+              onMouseEnter: (e: React.MouseEvent<HTMLElement>) => {
+                handleItemHover(item.id, hasChildren);
+                if (!isActive) e.currentTarget.style.background = 'rgba(255,255,255,0.08)';
+              },
+              onMouseLeave: (e: React.MouseEvent<HTMLElement>) => {
+                handleItemLeave();
+                if (!isActive) e.currentTarget.style.background = 'transparent';
+              },
+              onFocus: (e: React.FocusEvent<HTMLElement>) => {
+                if (!isActive) e.currentTarget.style.background = 'rgba(255,255,255,0.08)';
+              },
+              onBlur: (e: React.FocusEvent<HTMLElement>) => {
+                if (!isActive) e.currentTarget.style.background = 'transparent';
+              },
+              onKeyDown: (e: React.KeyboardEvent) => {
+                if (hasChildren && (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowRight')) {
+                  e.preventDefault();
+                  toggleSubmenu(item.id, true);
+                }
+                if (e.key === 'ArrowLeft' && isActive) {
+                  setActiveSubmenu(null);
+                }
+              },
+            };
+
             return (
               <li
                 key={item.id}
+                role="none"
                 onMouseEnter={() => handleItemHover(item.id, hasChildren)}
                 onMouseLeave={handleItemLeave}
               >
@@ -279,16 +362,10 @@ export default function DrawerNav({ links }: DrawerNavProps) {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{
-                      ...linkStyle,
-                      background: isActive ? 'rgba(0,118,192,0.2)' : 'transparent',
-                    }}
-                    onMouseEnter={(e) => {
-                      if (!isActive) e.currentTarget.style.background = 'rgba(255,255,255,0.08)';
-                    }}
-                    onMouseLeave={(e) => {
-                      if (!isActive) e.currentTarget.style.background = 'transparent';
-                    }}
+                    role="menuitem"
+                    aria-haspopup={hasChildren ? 'true' : undefined}
+                    aria-expanded={hasChildren ? isActive : undefined}
+                    {...itemProps}
                   >
                     <span>{item.title}</span>
                     {hasChildren && <ChevronRight />}
@@ -296,17 +373,18 @@ export default function DrawerNav({ links }: DrawerNavProps) {
                 ) : (
                   <NextLink
                     href={item.href}
-                    onClick={hasChildren ? undefined : closeDrawer}
-                    style={{
-                      ...linkStyle,
-                      background: isActive ? 'rgba(0,118,192,0.2)' : 'transparent',
+                    onClick={(e) => {
+                      if (hasChildren) {
+                        e.preventDefault();
+                        toggleSubmenu(item.id, true);
+                      } else {
+                        closeDrawer();
+                      }
                     }}
-                    onMouseEnter={(e) => {
-                      if (!isActive) e.currentTarget.style.background = 'rgba(255,255,255,0.08)';
-                    }}
-                    onMouseLeave={(e) => {
-                      if (!isActive) e.currentTarget.style.background = 'transparent';
-                    }}
+                    role="menuitem"
+                    aria-haspopup={hasChildren ? 'true' : undefined}
+                    aria-expanded={hasChildren ? isActive : undefined}
+                    {...itemProps}
                   >
                     <span>{item.title}</span>
                     {hasChildren && <ChevronRight />}
