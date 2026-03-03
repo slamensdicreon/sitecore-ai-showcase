@@ -51,10 +51,10 @@ export default function Login() {
     <div className="min-h-[calc(100vh-200px)] flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="w-12 h-12 rounded-md bg-primary flex items-center justify-center mx-auto mb-3">
-            <span className="text-primary-foreground font-bold text-lg">TE</span>
+          <div className="w-14 h-14 rounded-lg bg-[#f28d00] flex items-center justify-center mx-auto mb-3">
+            <span className="text-white font-heading font-bold text-2xl italic">TE</span>
           </div>
-          <h1 className="text-xl font-semibold" data-testid="text-auth-title">B2B Account Access</h1>
+          <h1 className="text-xl font-heading font-semibold" data-testid="text-auth-title">B2B Account Access</h1>
           <p className="text-sm text-muted-foreground mt-1">Sign in or create a buyer account</p>
         </div>
 

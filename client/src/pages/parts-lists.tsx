@@ -126,7 +126,7 @@ export default function PartsListsPage() {
     return (
       <div className="max-w-[1400px] mx-auto px-4 py-16 text-center">
         <ListChecks className="h-12 w-12 text-muted-foreground/30 mx-auto mb-4" />
-        <h2 className="font-semibold mb-2">Sign in to manage parts lists</h2>
+        <h2 className="font-heading font-semibold mb-2">Sign in to manage parts lists</h2>
         <Link href="/login"><Button>Sign In</Button></Link>
       </div>
     );
@@ -141,7 +141,7 @@ export default function PartsListsPage() {
       </div>
 
       <div className="flex items-center justify-between gap-4 mb-6">
-        <h1 className="text-xl font-semibold" data-testid="text-parts-lists-title">My Parts Lists</h1>
+        <h1 className="text-xl font-heading font-semibold" data-testid="text-parts-lists-title">My Parts Lists</h1>
       </div>
 
       <div className="max-w-2xl">

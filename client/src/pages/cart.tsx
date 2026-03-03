@@ -39,7 +39,7 @@ export default function Cart() {
     return (
       <div className="max-w-[1400px] mx-auto px-4 py-16 text-center">
         <ShoppingCart className="h-12 w-12 text-muted-foreground/30 mx-auto mb-4" />
-        <h2 className="font-semibold mb-2">Sign in to view your cart</h2>
+        <h2 className="font-heading font-semibold mb-2">Sign in to view your cart</h2>
         <Link href="/login"><Button data-testid="button-sign-in-cart">Sign In</Button></Link>
       </div>
     );
@@ -70,7 +70,7 @@ export default function Cart() {
     return (
       <div className="max-w-[1400px] mx-auto px-4 py-16 text-center">
         <ShoppingCart className="h-12 w-12 text-muted-foreground/30 mx-auto mb-4" />
-        <h2 className="font-semibold mb-2">Your cart is empty</h2>
+        <h2 className="font-heading font-semibold mb-2">Your cart is empty</h2>
         <p className="text-sm text-muted-foreground mb-4">Add products to your cart to get started</p>
         <Link href="/products"><Button data-testid="button-browse-empty">Browse Products</Button></Link>
       </div>
@@ -85,7 +85,7 @@ export default function Cart() {
         <span className="text-foreground">Cart</span>
       </div>
 
-      <h1 className="text-xl font-semibold mb-6" data-testid="text-cart-title">
+      <h1 className="text-xl font-heading font-semibold mb-6" data-testid="text-cart-title">
         Shopping Cart ({cartItems.length} item{cartItems.length !== 1 ? "s" : ""})
       </h1>
 
@@ -147,7 +147,7 @@ export default function Cart() {
 
         <div>
           <Card className="p-5 sticky top-24">
-            <h3 className="font-semibold mb-4">Order Summary</h3>
+            <h3 className="font-heading font-semibold mb-4">Order Summary</h3>
             <div className="space-y-2 text-sm mb-4">
               <div className="flex items-center justify-between gap-4">
                 <span className="text-muted-foreground">Subtotal</span>

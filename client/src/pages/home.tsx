@@ -16,6 +16,16 @@ const industryIcons: Record<string, typeof Zap> = {
   "Terminal Blocks": TrendingUp,
 };
 
+function ConnectivityLines({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 300 60" className={className} preserveAspectRatio="none" aria-hidden="true">
+      <line x1="0" y1="15" x2="300" y2="15" stroke="#f28d00" strokeWidth="4" strokeLinecap="round" opacity="0.6" />
+      <line x1="0" y1="30" x2="240" y2="30" stroke="#ffffff" strokeWidth="4" strokeLinecap="round" opacity="0.15" />
+      <line x1="0" y1="45" x2="180" y2="45" stroke="#167a87" strokeWidth="4" strokeLinecap="round" opacity="0.4" />
+    </svg>
+  );
+}
+
 export default function Home() {
   const { data: categories, isLoading: catsLoading } = useQuery<Category[]>({
     queryKey: ["/api/categories"],
@@ -27,12 +37,15 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      <section className="relative bg-foreground/95 text-background overflow-visible">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-primary/10" />
+      <section className="relative bg-[#2e4957] text-white overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#04215d]/40 via-transparent to-[#167a87]/20" />
+        <div className="absolute bottom-0 left-0 right-0 h-16 opacity-50">
+          <ConnectivityLines className="w-full h-full" />
+        </div>
         <div className="relative max-w-[1400px] mx-auto px-4 py-16 md:py-24">
           <div className="max-w-2xl">
-            <Badge variant="secondary" className="mb-4">OrderCloud B2B Commerce</Badge>
-            <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4">
+            <Badge className="mb-4 bg-[#f28d00] text-white border-[#f28d00]">OrderCloud B2B Commerce</Badge>
+            <h1 className="text-3xl md:text-5xl font-heading font-bold leading-tight mb-4">
               Engineering Your Connected Future
             </h1>
             <p className="text-lg md:text-xl opacity-80 mb-8 leading-relaxed">
@@ -40,13 +53,13 @@ export default function Home() {
             </p>
             <div className="flex items-center gap-3 flex-wrap">
               <Link href="/products">
-                <Button size="lg" data-testid="button-browse-products">
+                <Button size="lg" className="bg-[#f28d00] text-white font-heading" data-testid="button-browse-products">
                   Browse Catalog
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
               <Link href="/login">
-                <Button size="lg" variant="outline" className="bg-transparent border-background/30 text-background" data-testid="button-create-account">
+                <Button size="lg" variant="outline" className="bg-transparent border-white/30 text-white font-heading" data-testid="button-create-account">
                   Create B2B Account
                 </Button>
               </Link>
@@ -58,7 +71,7 @@ export default function Home() {
       <section className="max-w-[1400px] mx-auto px-4 py-12">
         <div className="flex items-center justify-between gap-4 mb-8">
           <div>
-            <h2 className="text-2xl font-semibold mb-1">Product Categories</h2>
+            <h2 className="text-2xl font-heading font-semibold mb-1">Product Categories</h2>
             <p className="text-muted-foreground text-sm">Browse by product family</p>
           </div>
           <Link href="/products">
@@ -81,13 +94,13 @@ export default function Home() {
                 const Icon = industryIcons[cat.name] || Box;
                 return (
                   <Link key={cat.id} href={`/products?categorySlug=${cat.slug}`}>
-                    <Card className="p-5 hover-elevate cursor-pointer h-full" data-testid={`card-category-${cat.slug}`}>
+                    <Card className="p-5 hover-elevate cursor-pointer h-full group" data-testid={`card-category-${cat.slug}`}>
                       <div className="flex items-start gap-4">
-                        <div className="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center flex-shrink-0">
-                          <Icon className="h-5 w-5 text-primary" />
+                        <div className="w-10 h-10 rounded-md bg-[#f28d00]/10 flex items-center justify-center flex-shrink-0 group-hover:bg-[#f28d00]/20 transition-colors">
+                          <Icon className="h-5 w-5 text-[#f28d00]" />
                         </div>
                         <div className="min-w-0">
-                          <h3 className="font-semibold text-sm mb-1">{cat.name}</h3>
+                          <h3 className="font-heading font-semibold text-sm mb-1">{cat.name}</h3>
                           <p className="text-xs text-muted-foreground line-clamp-2">{cat.description}</p>
                         </div>
                       </div>
@@ -102,7 +115,7 @@ export default function Home() {
         <div className="max-w-[1400px] mx-auto px-4 py-12">
           <div className="flex items-center justify-between gap-4 mb-8">
             <div>
-              <h2 className="text-2xl font-semibold mb-1">Featured Products</h2>
+              <h2 className="text-2xl font-heading font-semibold mb-1">Featured Products</h2>
               <p className="text-muted-foreground text-sm">Popular items from our catalog</p>
             </div>
           </div>
@@ -136,11 +149,11 @@ export default function Home() {
                         <p className="text-[10px] text-muted-foreground mb-1 font-mono">{product.sku}</p>
                         <h3 className="text-sm font-medium mb-2 line-clamp-2 leading-snug">{product.name}</h3>
                         <div className="flex items-center justify-between gap-2">
-                          <span className="font-semibold text-sm">
+                          <span className="font-semibold text-sm text-[#f28d00]">
                             ${parseFloat(product.basePrice).toFixed(2)}
                           </span>
                           {product.inStock && (
-                            <Badge variant="secondary" className="text-[10px]">In Stock</Badge>
+                            <Badge variant="secondary" className="text-[10px] bg-[#8fb838]/10 text-[#6a8a2a] dark:text-[#8fb838]">In Stock</Badge>
                           )}
                         </div>
                       </div>
@@ -152,7 +165,7 @@ export default function Home() {
       </section>
 
       <section className="max-w-[1400px] mx-auto px-4 py-12">
-        <h2 className="text-2xl font-semibold mb-8 text-center">Why OrderCloud for B2B</h2>
+        <h2 className="text-2xl font-heading font-semibold mb-8 text-center">Why OrderCloud for B2B</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             {
@@ -172,22 +185,22 @@ export default function Home() {
             },
           ].map((item) => (
             <div key={item.title} className="text-center">
-              <div className="w-12 h-12 rounded-md bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <item.icon className="h-6 w-6 text-primary" />
+              <div className="w-12 h-12 rounded-md bg-[#2e4957]/10 dark:bg-[#2e4957]/30 flex items-center justify-center mx-auto mb-4">
+                <item.icon className="h-6 w-6 text-[#2e4957] dark:text-[#167a87]" />
               </div>
-              <h3 className="font-semibold mb-2">{item.title}</h3>
+              <h3 className="font-heading font-semibold mb-2">{item.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <footer className="border-t bg-card">
-        <div className="max-w-[1400px] mx-auto px-4 py-8">
+      <footer className="bg-[#2e4957] text-white">
+        <div className="max-w-[1400px] mx-auto px-4 py-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
             <div>
-              <h4 className="font-semibold mb-3">Products</h4>
-              <ul className="space-y-2 text-muted-foreground">
+              <h4 className="font-heading font-semibold mb-3 text-[#f28d00]">Products</h4>
+              <ul className="space-y-2 opacity-75">
                 <li>Connectors</li>
                 <li>Sensors</li>
                 <li>Relays</li>
@@ -195,8 +208,8 @@ export default function Home() {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-3">Solutions</h4>
-              <ul className="space-y-2 text-muted-foreground">
+              <h4 className="font-heading font-semibold mb-3 text-[#f28d00]">Solutions</h4>
+              <ul className="space-y-2 opacity-75">
                 <li>Automotive</li>
                 <li>Industrial</li>
                 <li>Data Communications</li>
@@ -204,8 +217,8 @@ export default function Home() {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-3">Resources</h4>
-              <ul className="space-y-2 text-muted-foreground">
+              <h4 className="font-heading font-semibold mb-3 text-[#f28d00]">Resources</h4>
+              <ul className="space-y-2 opacity-75">
                 <li>Technical Support</li>
                 <li>Datasheets</li>
                 <li>CAD Models</li>
@@ -213,8 +226,8 @@ export default function Home() {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-3">Account</h4>
-              <ul className="space-y-2 text-muted-foreground">
+              <h4 className="font-heading font-semibold mb-3 text-[#f28d00]">Account</h4>
+              <ul className="space-y-2 opacity-75">
                 <li>My Orders</li>
                 <li>Parts Lists</li>
                 <li>Quote Requests</li>
@@ -222,8 +235,16 @@ export default function Home() {
               </ul>
             </div>
           </div>
-          <div className="mt-8 pt-6 border-t text-xs text-muted-foreground text-center">
-            TE Connectivity OrderCloud B2B Demo. Powered by Sitecore OrderCloud.
+          <div className="mt-8 pt-6 border-t border-white/10">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded bg-[#f28d00] flex items-center justify-center">
+                  <span className="text-white font-bold text-xs italic font-heading">TE</span>
+                </div>
+                <span className="text-xs opacity-60">TE Connectivity OrderCloud B2B Demo</span>
+              </div>
+              <span className="text-[10px] opacity-40 font-heading tracking-widest uppercase">Every Connection Counts</span>
+            </div>
           </div>
         </div>
       </footer>

@@ -42,7 +42,7 @@ export default function OrderDetailPage() {
     return (
       <div className="max-w-[1400px] mx-auto px-4 py-16 text-center">
         <Package className="h-12 w-12 text-muted-foreground/30 mx-auto mb-4" />
-        <h2 className="font-semibold mb-1">Order not found</h2>
+        <h2 className="font-heading font-semibold mb-1">Order not found</h2>
       </div>
     );
   }
@@ -67,7 +67,7 @@ export default function OrderDetailPage() {
         </Link>
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl font-semibold" data-testid="text-order-id">
+            <h1 className="text-xl font-heading font-semibold" data-testid="text-order-id">
               Order {order.id.substring(0, 8).toUpperCase()}
             </h1>
             <Badge variant="secondary" className={`text-[10px] capitalize ${colorClass}`}>
@@ -84,7 +84,7 @@ export default function OrderDetailPage() {
         <div className="lg:col-span-2">
           <Card className="p-0">
             <div className="px-4 py-3 border-b">
-              <h3 className="text-sm font-semibold">Order Items</h3>
+              <h3 className="text-sm font-heading font-semibold">Order Items</h3>
             </div>
             <div className="divide-y">
               {order.items?.map((item) => (
@@ -112,7 +112,7 @@ export default function OrderDetailPage() {
 
         <div className="space-y-4">
           <Card className="p-5">
-            <h3 className="text-sm font-semibold mb-3">Order Summary</h3>
+            <h3 className="text-sm font-heading font-semibold mb-3">Order Summary</h3>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between gap-4 font-semibold pt-2 border-t">
                 <span>Total</span>
@@ -123,7 +123,7 @@ export default function OrderDetailPage() {
 
           {(order.poNumber || order.shippingAddress) && (
             <Card className="p-5">
-              <h3 className="text-sm font-semibold mb-3">Details</h3>
+              <h3 className="text-sm font-heading font-semibold mb-3">Details</h3>
               {order.poNumber && (
                 <div className="mb-3">
                   <p className="text-xs text-muted-foreground mb-1">PO Number</p>

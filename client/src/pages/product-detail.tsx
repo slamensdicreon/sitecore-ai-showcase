@@ -74,7 +74,7 @@ export default function ProductDetail() {
     return (
       <div className="max-w-[1400px] mx-auto px-4 py-16 text-center">
         <Package className="h-12 w-12 text-muted-foreground/30 mx-auto mb-4" />
-        <h2 className="font-semibold mb-1">Product not found</h2>
+        <h2 className="font-heading font-semibold mb-1">Product not found</h2>
         <p className="text-sm text-muted-foreground">The requested product does not exist.</p>
       </div>
     );
@@ -110,7 +110,7 @@ export default function ProductDetail() {
               {product.industry && <Badge variant="secondary" className="text-[10px]">{product.industry}</Badge>}
               {product.application && <Badge variant="secondary" className="text-[10px]">{product.application}</Badge>}
             </div>
-            <h1 className="text-xl md:text-2xl font-semibold leading-tight mb-3" data-testid="text-product-name">
+            <h1 className="text-xl md:text-2xl font-heading font-semibold leading-tight mb-3" data-testid="text-product-name">
               {product.name}
             </h1>
             <p className="text-sm text-muted-foreground leading-relaxed" data-testid="text-product-desc">
@@ -122,7 +122,7 @@ export default function ProductDetail() {
             <div className="flex items-center justify-between gap-4 mb-4">
               <div>
                 <p className="text-xs text-muted-foreground mb-1">Unit Price</p>
-                <p className="text-2xl font-bold" data-testid="text-unit-price">
+                <p className="text-2xl font-bold text-[#f28d00]" data-testid="text-unit-price">
                   ${currentPrice.toFixed(4)}
                 </p>
                 <p className="text-xs text-muted-foreground">
@@ -131,7 +131,7 @@ export default function ProductDetail() {
               </div>
               <div className="text-right">
                 {product.inStock ? (
-                  <div className="flex items-center gap-1.5 text-green-600 dark:text-green-400">
+                  <div className="flex items-center gap-1.5 text-[#6a8a2a] dark:text-[#8fb838]">
                     <CheckCircle className="h-4 w-4" />
                     <span className="text-sm font-medium">In Stock</span>
                   </div>
@@ -221,7 +221,7 @@ export default function ProductDetail() {
 
           {product.priceBreaks && product.priceBreaks.length > 0 && (
             <Card className="p-4">
-              <h3 className="text-sm font-semibold mb-3">Volume Pricing</h3>
+              <h3 className="text-sm font-heading font-semibold mb-3">Volume Pricing</h3>
               <div className="grid grid-cols-5 gap-2 text-xs">
                 <div className="font-medium text-muted-foreground">Qty</div>
                 <div className="font-medium text-muted-foreground">Unit Price</div>

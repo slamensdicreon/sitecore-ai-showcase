@@ -55,10 +55,10 @@ export default function Checkout() {
   if (orderPlaced) {
     return (
       <div className="max-w-lg mx-auto px-4 py-16 text-center">
-        <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-6">
-          <CheckCircle className="h-8 w-8 text-green-600 dark:text-green-400" />
+        <div className="w-16 h-16 rounded-full bg-[#8fb838]/10 flex items-center justify-center mx-auto mb-6">
+          <CheckCircle className="h-8 w-8 text-[#6a8a2a] dark:text-[#8fb838]" />
         </div>
-        <h1 className="text-2xl font-bold mb-2">Order Confirmed</h1>
+        <h1 className="text-2xl font-heading font-bold mb-2">Order Confirmed</h1>
         <p className="text-muted-foreground mb-2">
           Your order has been submitted for processing.
         </p>
@@ -78,7 +78,7 @@ export default function Checkout() {
   if (!user) {
     return (
       <div className="max-w-[1400px] mx-auto px-4 py-16 text-center">
-        <h2 className="font-semibold mb-2">Sign in to checkout</h2>
+        <h2 className="font-heading font-semibold mb-2">Sign in to checkout</h2>
         <Link href="/login"><Button>Sign In</Button></Link>
       </div>
     );
@@ -96,14 +96,14 @@ export default function Checkout() {
         <span className="text-foreground">Checkout</span>
       </div>
 
-      <h1 className="text-xl font-semibold mb-6" data-testid="text-checkout-title">Checkout</h1>
+      <h1 className="text-xl font-heading font-semibold mb-6" data-testid="text-checkout-title">Checkout</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
           <Form {...form}>
             <form onSubmit={form.handleSubmit((data) => placeOrderMutation.mutate(data))} className="space-y-4">
               <Card className="p-5">
-                <h3 className="font-semibold mb-4">Shipping Information</h3>
+                <h3 className="font-heading font-semibold mb-4">Shipping Information</h3>
                 <FormField
                   control={form.control}
                   name="shippingAddress"
@@ -121,7 +121,7 @@ export default function Checkout() {
               </Card>
 
               <Card className="p-5">
-                <h3 className="font-semibold mb-4">Purchase Order</h3>
+                <h3 className="font-heading font-semibold mb-4">Purchase Order</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <FormField
                     control={form.control}
@@ -168,7 +168,7 @@ export default function Checkout() {
 
         <div>
           <Card className="p-5 sticky top-24">
-            <h3 className="font-semibold mb-4">Order Review</h3>
+            <h3 className="font-heading font-semibold mb-4">Order Review</h3>
             {isLoading ? (
               <div className="space-y-3">
                 {Array.from({ length: 2 }).map((_, i) => <Skeleton key={i} className="h-12" />)}

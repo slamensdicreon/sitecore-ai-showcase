@@ -29,7 +29,7 @@ export default function Orders() {
     return (
       <div className="max-w-[1400px] mx-auto px-4 py-16 text-center">
         <Package className="h-12 w-12 text-muted-foreground/30 mx-auto mb-4" />
-        <h2 className="font-semibold mb-2">Sign in to view orders</h2>
+        <h2 className="font-heading font-semibold mb-2">Sign in to view orders</h2>
         <Link href="/login"><Button>Sign In</Button></Link>
       </div>
     );
@@ -43,7 +43,7 @@ export default function Orders() {
         <span className="text-foreground">My Orders</span>
       </div>
 
-      <h1 className="text-xl font-semibold mb-6" data-testid="text-orders-title">My Orders</h1>
+      <h1 className="text-xl font-heading font-semibold mb-6" data-testid="text-orders-title">My Orders</h1>
 
       {isLoading ? (
         <div className="space-y-3">
@@ -62,7 +62,7 @@ export default function Orders() {
       ) : !orders || orders.length === 0 ? (
         <div className="text-center py-16">
           <Package className="h-12 w-12 text-muted-foreground/30 mx-auto mb-4" />
-          <h3 className="font-semibold mb-1">No orders yet</h3>
+          <h3 className="font-heading font-semibold mb-1">No orders yet</h3>
           <p className="text-sm text-muted-foreground mb-4">Start shopping to create your first order</p>
           <Link href="/products"><Button data-testid="button-start-shopping">Browse Products</Button></Link>
         </div>

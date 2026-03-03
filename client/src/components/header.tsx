@@ -14,6 +14,18 @@ import { ShoppingCart, User, Search, Menu, Package, ListChecks, LogOut, ChevronD
 import { useState } from "react";
 import type { CartItem, Product } from "@shared/schema";
 
+function TELogo({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 120 48" className={className} aria-label="TE Connectivity">
+      <rect x="0" y="0" width="48" height="48" rx="4" fill="#f28d00" />
+      <text x="24" y="34" textAnchor="middle" fontFamily="Montserrat, Arial, sans-serif" fontWeight="800" fontStyle="italic" fontSize="28" fill="white">TE</text>
+      <line x1="56" y1="14" x2="110" y2="14" stroke="#f28d00" strokeWidth="3" strokeLinecap="round" />
+      <line x1="56" y1="24" x2="100" y2="24" stroke="#2e4957" strokeWidth="3" strokeLinecap="round" />
+      <line x1="56" y1="34" x2="90" y2="34" stroke="#167a87" strokeWidth="3" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export function Header() {
   const { user, logout } = useAuth();
   const [, navigate] = useLocation();
@@ -37,18 +49,18 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b bg-background">
-      <div className="bg-foreground/95 text-background">
+      <div className="bg-[#2e4957] text-white">
         <div className="max-w-[1400px] mx-auto px-4 flex items-center justify-between gap-2 h-8 text-xs">
           <div className="flex items-center gap-4 flex-wrap">
-            <span className="hidden sm:inline opacity-80">OrderCloud B2B Commerce Demo</span>
-            <span className="opacity-60">|</span>
+            <span className="hidden sm:inline opacity-90 font-heading tracking-wide text-[10px] uppercase">Every Connection Counts</span>
+            <span className="opacity-40">|</span>
             <span className="opacity-80">EN / USD</span>
           </div>
           <div className="flex items-center gap-4 flex-wrap">
             {user ? (
               <span className="opacity-80">{user.companyName || user.username}</span>
             ) : (
-              <Link href="/login" className="opacity-80" data-testid="link-login-top">
+              <Link href="/login" className="opacity-80 hover:opacity-100 transition-opacity" data-testid="link-login-top">
                 Sign In / Register
               </Link>
             )}
@@ -67,13 +79,11 @@ export function Header() {
               <Menu className="h-5 w-5" />
             </button>
             <Link href="/" data-testid="link-home-logo">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-md bg-primary flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold text-sm">TE</span>
-                </div>
+              <div className="flex items-center gap-2.5">
+                <TELogo className="h-10 w-auto" />
                 <div className="hidden sm:block">
-                  <div className="font-semibold text-sm leading-tight">TE Connectivity</div>
-                  <div className="text-[10px] text-muted-foreground leading-tight">OrderCloud Demo</div>
+                  <div className="font-heading font-semibold text-sm leading-tight text-[#424241] dark:text-foreground">connectivity</div>
+                  <div className="text-[10px] text-muted-foreground leading-tight">OrderCloud B2B Demo</div>
                 </div>
               </div>
             </Link>
@@ -142,37 +152,37 @@ export function Header() {
 
         <nav className="hidden lg:flex items-center gap-1 pb-2 -mt-1">
           <Link href="/products">
-            <Button variant="ghost" size="sm" className="text-xs" data-testid="nav-products">
+            <Button variant="ghost" size="sm" className="text-xs font-heading" data-testid="nav-products">
               All Products
             </Button>
           </Link>
           <Link href="/products?categorySlug=connectors">
-            <Button variant="ghost" size="sm" className="text-xs" data-testid="nav-connectors">
+            <Button variant="ghost" size="sm" className="text-xs font-heading" data-testid="nav-connectors">
               Connectors
             </Button>
           </Link>
           <Link href="/products?categorySlug=sensors">
-            <Button variant="ghost" size="sm" className="text-xs" data-testid="nav-sensors">
+            <Button variant="ghost" size="sm" className="text-xs font-heading" data-testid="nav-sensors">
               Sensors
             </Button>
           </Link>
           <Link href="/products?categorySlug=relays">
-            <Button variant="ghost" size="sm" className="text-xs" data-testid="nav-relays">
+            <Button variant="ghost" size="sm" className="text-xs font-heading" data-testid="nav-relays">
               Relays
             </Button>
           </Link>
           <Link href="/products?categorySlug=wire-cable">
-            <Button variant="ghost" size="sm" className="text-xs" data-testid="nav-wire-cable">
+            <Button variant="ghost" size="sm" className="text-xs font-heading" data-testid="nav-wire-cable">
               Wire & Cable
             </Button>
           </Link>
           <Link href="/products?categorySlug=circuit-protection">
-            <Button variant="ghost" size="sm" className="text-xs" data-testid="nav-circuit-protection">
+            <Button variant="ghost" size="sm" className="text-xs font-heading" data-testid="nav-circuit-protection">
               Circuit Protection
             </Button>
           </Link>
           <Link href="/products?categorySlug=terminal-blocks">
-            <Button variant="ghost" size="sm" className="text-xs" data-testid="nav-terminal-blocks">
+            <Button variant="ghost" size="sm" className="text-xs font-heading" data-testid="nav-terminal-blocks">
               Terminal Blocks
             </Button>
           </Link>
@@ -196,7 +206,7 @@ export function Header() {
           </form>
           {["connectors", "sensors", "relays", "wire-cable", "circuit-protection", "terminal-blocks"].map((slug) => (
             <Link key={slug} href={`/products?categorySlug=${slug}`} onClick={() => setMobileMenuOpen(false)}>
-              <div className="py-2 text-sm capitalize">{slug.replace("-", " & ")}</div>
+              <div className="py-2 text-sm capitalize font-heading">{slug.replace("-", " & ")}</div>
             </Link>
           ))}
         </div>

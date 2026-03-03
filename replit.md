@@ -7,7 +7,7 @@ A B2B e-commerce demo application inspired by TE Connectivity (te.com), built to
 - **Frontend**: React + TypeScript with Wouter routing, TanStack Query, Shadcn UI components, Tailwind CSS
 - **Backend**: Express.js REST API with session-based authentication
 - **Database**: PostgreSQL with Drizzle ORM
-- **Design**: Industrial B2B aesthetic with blue/gray color scheme inspired by TE.com
+- **Design**: TE Connectivity official brand system — TE Orange (#f28d00) primary, TE Dark Teal (#2e4957) secondary, TE Turquoise (#167a87) tertiary, TE Charcoal (#424241) text, Montserrat headings + Inter body text, TE Eco Green (#8fb838) for stock status, TE Ruby (#bc1f00) for destructive actions
 
 ## Key Files
 - `shared/schema.ts` - All database models: users, categories, products, price_breaks, orders, order_items, cart_items, parts_lists, parts_list_items

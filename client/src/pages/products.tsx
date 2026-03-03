@@ -74,7 +74,7 @@ export default function Products() {
 
       <div className="flex flex-col lg:flex-row gap-6">
         <aside className="lg:w-56 flex-shrink-0">
-          <h3 className="font-semibold text-sm mb-3">Categories</h3>
+          <h3 className="font-heading font-semibold text-sm mb-3">Categories</h3>
           <div className="space-y-1">
             <Link href="/products">
               <div className={`text-sm py-1.5 px-2 rounded-md cursor-pointer ${!categorySlug ? "bg-primary/10 text-primary font-medium" : "text-muted-foreground"}`} data-testid="filter-all">
@@ -92,7 +92,7 @@ export default function Products() {
 
           {industries.length > 0 && (
             <div className="mt-6">
-              <h3 className="font-semibold text-sm mb-3">Industry</h3>
+              <h3 className="font-heading font-semibold text-sm mb-3">Industry</h3>
               <Select value={industryFilter} onValueChange={setIndustryFilter}>
                 <SelectTrigger className="h-8 text-xs" data-testid="select-industry">
                   <SelectValue placeholder="All Industries" />
@@ -111,7 +111,7 @@ export default function Products() {
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between gap-4 mb-5">
             <div>
-              <h1 className="text-xl font-semibold" data-testid="text-page-title">{pageTitle}</h1>
+              <h1 className="text-xl font-heading font-semibold" data-testid="text-page-title">{pageTitle}</h1>
               {productsData && (
                 <p className="text-xs text-muted-foreground mt-1" data-testid="text-product-count">
                   {productsData.total} product{productsData.total !== 1 ? "s" : ""} found
@@ -164,7 +164,7 @@ export default function Products() {
           ) : productsData?.products.length === 0 ? (
             <div className="text-center py-16">
               <Filter className="h-12 w-12 text-muted-foreground/30 mx-auto mb-4" />
-              <h3 className="font-semibold mb-1">No products found</h3>
+              <h3 className="font-heading font-semibold mb-1">No products found</h3>
               <p className="text-sm text-muted-foreground">Try adjusting your search or filters</p>
             </div>
           ) : viewMode === "grid" ? (
@@ -190,7 +190,7 @@ export default function Products() {
                         <div className="flex items-center gap-1">
                           {product.industry && <Badge variant="secondary" className="text-[10px]">{product.industry}</Badge>}
                           {product.inStock ? (
-                            <Badge variant="secondary" className="text-[10px] bg-green-500/10 text-green-700 dark:text-green-400">In Stock</Badge>
+                            <Badge variant="secondary" className="text-[10px] bg-[#8fb838]/10 text-[#6a8a2a] dark:text-[#8fb838]">In Stock</Badge>
                           ) : (
                             <Badge variant="secondary" className="text-[10px]">Lead Time</Badge>
                           )}
@@ -223,7 +223,7 @@ export default function Products() {
                         <div className="font-semibold text-sm">${parseFloat(product.basePrice).toFixed(2)}</div>
                         <div className="flex items-center gap-1 mt-1 justify-end">
                           {product.inStock ? (
-                            <Badge variant="secondary" className="text-[10px] bg-green-500/10 text-green-700 dark:text-green-400">In Stock</Badge>
+                            <Badge variant="secondary" className="text-[10px] bg-[#8fb838]/10 text-[#6a8a2a] dark:text-[#8fb838]">In Stock</Badge>
                           ) : (
                             <Badge variant="secondary" className="text-[10px]">Lead Time</Badge>
                           )}
