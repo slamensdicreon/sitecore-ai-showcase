@@ -52,12 +52,22 @@ function ExternalIcon() {
   );
 }
 
+function getFocusableElements(container: HTMLElement): HTMLElement[] {
+  return Array.from(
+    container.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )
+  );
+}
+
 export default function DrawerNav({ links }: DrawerNavProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   const submenuTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
-  const drawerRef = useRef<HTMLElement>(null);
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const submenuRef = useRef<HTMLDivElement>(null);
+  const firstDrawerItemRef = useRef<HTMLAnchorElement | null>(null);
 
   const closeDrawer = useCallback(() => {
     setDrawerOpen(false);
@@ -65,9 +75,32 @@ export default function DrawerNav({ links }: DrawerNavProps) {
     hamburgerRef.current?.focus();
   }, []);
 
+  const openSubmenu = useCallback((itemId: string) => {
+    setActiveSubmenu(itemId);
+    requestAnimationFrame(() => {
+      if (submenuRef.current) {
+        const firstLink = submenuRef.current.querySelector<HTMLElement>('a, button');
+        firstLink?.focus();
+      }
+    });
+  }, []);
+
+  const closeSubmenu = useCallback(() => {
+    setActiveSubmenu(null);
+  }, []);
+
   const toggleSubmenu = useCallback((itemId: string, hasChildren: boolean) => {
     if (hasChildren) {
-      setActiveSubmenu((prev) => (prev === itemId ? null : itemId));
+      setActiveSubmenu((prev) => {
+        if (prev === itemId) return null;
+        requestAnimationFrame(() => {
+          if (submenuRef.current) {
+            const firstLink = submenuRef.current.querySelector<HTMLElement>('a, button');
+            firstLink?.focus();
+          }
+        });
+        return itemId;
+      });
     } else {
       setActiveSubmenu(null);
     }
@@ -99,14 +132,51 @@ export default function DrawerNav({ links }: DrawerNavProps) {
   }, []);
 
   useEffect(() => {
+    if (drawerOpen) {
+      requestAnimationFrame(() => {
+        if (drawerRef.current) {
+          const firstLink = drawerRef.current.querySelector<HTMLElement>('a[role="menuitem"]');
+          firstLink?.focus();
+        }
+      });
+    }
+  }, [drawerOpen]);
+
+  useEffect(() => {
     if (!drawerOpen) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         if (activeSubmenu) {
           setActiveSubmenu(null);
+          const activeItemEl = drawerRef.current?.querySelector<HTMLElement>(`[data-submenu-id="${activeSubmenu}"]`);
+          activeItemEl?.focus();
         } else {
           closeDrawer();
+        }
+        return;
+      }
+
+      if (e.key === 'Tab') {
+        const activePanel = activeSubmenu && submenuRef.current ? submenuRef.current : drawerRef.current;
+        if (!activePanel) return;
+
+        const focusable = getFocusableElements(activePanel);
+        if (focusable.length === 0) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
         }
       }
     };
@@ -125,6 +195,40 @@ export default function DrawerNav({ links }: DrawerNavProps) {
 
   return (
     <>
+      <style>{`
+        .eaa-drawer {
+          position: fixed; top: 0; right: 0;
+          width: 100vw; height: 100vh;
+          background: #061E40; color: #FFFFFF;
+          z-index: 1060; transition: transform 0.3s ease;
+          display: flex; flex-direction: column;
+          padding-top: 70px;
+        }
+        .eaa-submenu-panel {
+          position: fixed; top: 0; left: 0;
+          width: 100vw; height: 100vh;
+          background: #0076C0; color: #FFFFFF;
+          z-index: 1065;
+          display: flex; flex-direction: column;
+          padding-top: 70px;
+          box-shadow: none;
+        }
+        .eaa-submenu-back { display: flex; }
+        @media (min-width: 640px) {
+          .eaa-drawer {
+            width: 320px; max-width: 80vw;
+            padding-top: 80px;
+          }
+          .eaa-submenu-panel {
+            right: 320px; left: auto;
+            width: 280px;
+            z-index: 1055;
+            padding-top: 80px;
+            box-shadow: -4px 0 24px rgba(0,0,0,0.2);
+          }
+          .eaa-submenu-back { display: none; }
+        }
+      `}</style>
       <button
         ref={hamburgerRef}
         aria-label={drawerOpen ? 'Close menu' : 'Open menu'}
@@ -206,28 +310,38 @@ export default function DrawerNav({ links }: DrawerNavProps) {
       )}
 
       {drawerOpen && hasSubmenu && (
-        <nav
+        <div
+          ref={submenuRef}
+          role="dialog"
+          aria-modal="true"
           aria-label={`${activeItem?.title} submenu`}
+          className="eaa-submenu-panel"
           onMouseEnter={handleSubmenuEnter}
           onMouseLeave={handleSubmenuLeave}
-          style={{
-            position: 'fixed',
-            top: 0,
-            right: '300px',
-            width: '280px',
-            height: '100vh',
-            background: '#0076C0',
-            color: '#FFFFFF',
-            zIndex: 1055,
-            transform: 'translateX(0)',
-            transition: 'opacity 0.25s ease, transform 0.25s ease',
-            display: 'flex',
-            flexDirection: 'column',
-            paddingTop: '80px',
-            boxShadow: '-4px 0 24px rgba(0,0,0,0.2)',
-          }}
         >
-          <div style={{ padding: '0 16px 12px', borderBottom: '1px solid rgba(255,255,255,0.15)', marginBottom: '8px' }}>
+          <div style={{ padding: '0 16px 12px', borderBottom: '1px solid rgba(255,255,255,0.15)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <button
+              onClick={() => {
+                closeSubmenu();
+                const activeItemEl = drawerRef.current?.querySelector<HTMLElement>(`[data-submenu-id="${activeSubmenu}"]`);
+                activeItemEl?.focus();
+              }}
+              aria-label="Back to main menu"
+              className="eaa-submenu-back"
+              style={{
+                background: 'none',
+                border: 'none',
+                color: '#FFFFFF',
+                cursor: 'pointer',
+                padding: '4px',
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M10 4L6 8L10 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
             <span style={{ fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', opacity: 0.7 }}>
               {activeItem?.title}
             </span>
@@ -258,6 +372,14 @@ export default function DrawerNav({ links }: DrawerNavProps) {
                     onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
                     onFocus={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; }}
                     onBlur={(e) => { e.currentTarget.style.background = 'transparent'; }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        closeSubmenu();
+                        const activeItemEl = drawerRef.current?.querySelector<HTMLElement>(`[data-submenu-id="${activeSubmenu}"]`);
+                        activeItemEl?.focus();
+                      }
+                    }}
                   >
                     <span style={{ flex: 1 }}>{child.title}</span>
                     <ExternalIcon />
@@ -272,6 +394,14 @@ export default function DrawerNav({ links }: DrawerNavProps) {
                     onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
                     onFocus={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; }}
                     onBlur={(e) => { e.currentTarget.style.background = 'transparent'; }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        closeSubmenu();
+                        const activeItemEl = drawerRef.current?.querySelector<HTMLElement>(`[data-submenu-id="${activeSubmenu}"]`);
+                        activeItemEl?.focus();
+                      }
+                    }}
                   >
                     <span style={{ flex: 1 }}>{child.title}</span>
                   </NextLink>
@@ -279,28 +409,18 @@ export default function DrawerNav({ links }: DrawerNavProps) {
               </li>
             ))}
           </ul>
-        </nav>
+        </div>
       )}
 
-      <nav
+      <div
         id="main-nav-drawer"
         ref={drawerRef}
+        role="dialog"
+        aria-modal="true"
         aria-label="Main navigation"
+        className="eaa-drawer"
         style={{
-          position: 'fixed',
-          top: 0,
-          right: 0,
-          width: '300px',
-          maxWidth: '80vw',
-          height: '100vh',
-          background: '#061E40',
-          color: '#FFFFFF',
-          zIndex: 1060,
           transform: drawerOpen ? 'translateX(0)' : 'translateX(100%)',
-          transition: 'transform 0.3s ease',
-          display: 'flex',
-          flexDirection: 'column',
-          paddingTop: '80px',
           boxShadow: drawerOpen ? '-4px 0 24px rgba(0,0,0,0.3)' : 'none',
           visibility: drawerOpen ? 'visible' : 'hidden',
         }}
@@ -321,6 +441,7 @@ export default function DrawerNav({ links }: DrawerNavProps) {
             const isActive = activeSubmenu === item.id;
 
             const itemProps = {
+              'data-submenu-id': hasChildren ? item.id : undefined,
               style: {
                 ...linkStyle,
                 background: isActive ? 'rgba(0,118,192,0.2)' : 'transparent',
@@ -342,10 +463,10 @@ export default function DrawerNav({ links }: DrawerNavProps) {
               onKeyDown: (e: React.KeyboardEvent) => {
                 if (hasChildren && (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowRight')) {
                   e.preventDefault();
-                  toggleSubmenu(item.id, true);
+                  openSubmenu(item.id);
                 }
                 if (e.key === 'ArrowLeft' && isActive) {
-                  setActiveSubmenu(null);
+                  closeSubmenu();
                 }
               },
             };
@@ -376,7 +497,7 @@ export default function DrawerNav({ links }: DrawerNavProps) {
                     onClick={(e) => {
                       if (hasChildren) {
                         e.preventDefault();
-                        toggleSubmenu(item.id, true);
+                        openSubmenu(item.id);
                       } else {
                         closeDrawer();
                       }
@@ -394,7 +515,7 @@ export default function DrawerNav({ links }: DrawerNavProps) {
             );
           })}
         </ul>
-      </nav>
+      </div>
     </>
   );
 }
