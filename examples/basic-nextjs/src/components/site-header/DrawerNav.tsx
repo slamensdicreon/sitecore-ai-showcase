@@ -1,20 +1,17 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import NextLink from 'next/link';
-
-interface NavLinkData {
-  id: string;
-  title: string;
-  href: string;
-}
+import type { NavLinkData } from './SiteHeader';
 
 interface DrawerNavProps {
   links: NavLinkData[];
 }
 
 const linkStyle: React.CSSProperties = {
-  display: 'block',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
   padding: '14px 16px',
   color: '#FFFFFF',
   textDecoration: 'none',
@@ -22,18 +19,76 @@ const linkStyle: React.CSSProperties = {
   fontWeight: 500,
   borderRadius: '8px',
   transition: 'background 0.2s ease',
+  cursor: 'pointer',
 };
+
+const subLinkStyle: React.CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '6px',
+  padding: '11px 20px',
+  color: '#FFFFFF',
+  textDecoration: 'none',
+  fontSize: '0.95rem',
+  fontWeight: 400,
+  borderRadius: '6px',
+  transition: 'background 0.15s ease',
+};
+
+function ChevronRight() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ opacity: 0.6, flexShrink: 0 }}>
+      <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+
+function ExternalIcon() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ opacity: 0.5, flexShrink: 0 }}>
+      <path d="M3.5 1.5H10.5V8.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M10.5 1.5L1.5 10.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
 
 export default function DrawerNav({ links }: DrawerNavProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
+  const submenuTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const closeDrawer = useCallback(() => setDrawerOpen(false), []);
-
-  const handleHover = useCallback((e: React.MouseEvent<HTMLAnchorElement>, enter: boolean) => {
-    (e.currentTarget as HTMLElement).style.background = enter
-      ? 'rgba(255,255,255,0.08)'
-      : 'transparent';
+  const closeDrawer = useCallback(() => {
+    setDrawerOpen(false);
+    setActiveSubmenu(null);
   }, []);
+
+  const handleItemHover = useCallback((itemId: string, hasChildren: boolean) => {
+    if (submenuTimeout.current) clearTimeout(submenuTimeout.current);
+    if (hasChildren) {
+      setActiveSubmenu(itemId);
+    } else {
+      setActiveSubmenu(null);
+    }
+  }, []);
+
+  const handleItemLeave = useCallback(() => {
+    submenuTimeout.current = setTimeout(() => {
+      setActiveSubmenu(null);
+    }, 200);
+  }, []);
+
+  const handleSubmenuEnter = useCallback(() => {
+    if (submenuTimeout.current) clearTimeout(submenuTimeout.current);
+  }, []);
+
+  const handleSubmenuLeave = useCallback(() => {
+    submenuTimeout.current = setTimeout(() => {
+      setActiveSubmenu(null);
+    }, 200);
+  }, []);
+
+  const activeItem = links.find((l) => l.id === activeSubmenu);
+  const hasSubmenu = !!activeItem?.children?.length;
 
   return (
     <>
@@ -111,6 +166,75 @@ export default function DrawerNav({ links }: DrawerNavProps) {
         />
       )}
 
+      {drawerOpen && hasSubmenu && (
+        <nav
+          onMouseEnter={handleSubmenuEnter}
+          onMouseLeave={handleSubmenuLeave}
+          style={{
+            position: 'fixed',
+            top: 0,
+            right: '300px',
+            width: '280px',
+            height: '100vh',
+            background: '#0076C0',
+            color: '#FFFFFF',
+            zIndex: 1055,
+            transform: 'translateX(0)',
+            transition: 'opacity 0.25s ease, transform 0.25s ease',
+            display: 'flex',
+            flexDirection: 'column',
+            paddingTop: '80px',
+            boxShadow: '-4px 0 24px rgba(0,0,0,0.2)',
+          }}
+        >
+          <div style={{ padding: '0 16px 12px', borderBottom: '1px solid rgba(255,255,255,0.15)', marginBottom: '8px' }}>
+            <span style={{ fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', opacity: 0.7 }}>
+              {activeItem?.title}
+            </span>
+          </div>
+          <ul
+            style={{
+              listStyle: 'none',
+              margin: 0,
+              padding: '0 12px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '2px',
+              overflowY: 'auto',
+              flex: 1,
+            }}
+          >
+            {activeItem?.children?.map((child) => (
+              <li key={child.id}>
+                {child.external ? (
+                  <a
+                    href={child.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={subLinkStyle}
+                    onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
+                  >
+                    <span style={{ flex: 1 }}>{child.title}</span>
+                    <ExternalIcon />
+                  </a>
+                ) : (
+                  <NextLink
+                    href={child.href}
+                    onClick={closeDrawer}
+                    style={subLinkStyle}
+                    onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
+                  >
+                    <span style={{ flex: 1 }}>{child.title}</span>
+                  </NextLink>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+
       <nav
         style={{
           position: 'fixed',
@@ -140,19 +264,57 @@ export default function DrawerNav({ links }: DrawerNavProps) {
             gap: '4px',
           }}
         >
-          {links.map((item) => (
-            <li key={item.id}>
-              <NextLink
-                href={item.href}
-                onClick={closeDrawer}
-                style={linkStyle}
-                onMouseEnter={(e) => handleHover(e, true)}
-                onMouseLeave={(e) => handleHover(e, false)}
+          {links.map((item) => {
+            const hasChildren = !!item.children?.length;
+            const isActive = activeSubmenu === item.id;
+
+            return (
+              <li
+                key={item.id}
+                onMouseEnter={() => handleItemHover(item.id, hasChildren)}
+                onMouseLeave={handleItemLeave}
               >
-                {item.title}
-              </NextLink>
-            </li>
-          ))}
+                {item.external ? (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      ...linkStyle,
+                      background: isActive ? 'rgba(0,118,192,0.2)' : 'transparent',
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isActive) e.currentTarget.style.background = 'rgba(255,255,255,0.08)';
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive) e.currentTarget.style.background = 'transparent';
+                    }}
+                  >
+                    <span>{item.title}</span>
+                    {hasChildren && <ChevronRight />}
+                  </a>
+                ) : (
+                  <NextLink
+                    href={item.href}
+                    onClick={hasChildren ? undefined : closeDrawer}
+                    style={{
+                      ...linkStyle,
+                      background: isActive ? 'rgba(0,118,192,0.2)' : 'transparent',
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isActive) e.currentTarget.style.background = 'rgba(255,255,255,0.08)';
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive) e.currentTarget.style.background = 'transparent';
+                    }}
+                  >
+                    <span>{item.title}</span>
+                    {hasChildren && <ChevronRight />}
+                  </NextLink>
+                )}
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </>
