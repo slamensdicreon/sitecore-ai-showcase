@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <rect width="200" height="200" fill="#f0f4f8"/>
+  <rect x="65" y="50" width="70" height="70" rx="8" fill="#a0aec0" stroke="#718096" stroke-width="1.5"/>
+  <circle cx="100" cy="85" r="20" fill="#718096"/>
+  <text x="100" y="90" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="sans-serif">PSI</text>
+  <rect x="90" y="120" width="20" height="35" rx="3" fill="#4a5568"/>
+  <rect x="85" y="152" width="30" height="10" rx="2" fill="#2d3748"/>
+  <text x="100" y="185" text-anchor="middle" font-size="10" fill="#718096" font-family="sans-serif">Pressure</text>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <rect width="200" height="200" fill="#f0f4f8"/>
+  <rect x="30" y="80" width="35" height="30" rx="3" fill="#3182ce"/>
+  <rect x="135" y="80" width="35" height="30" rx="3" fill="#3182ce"/>
+  <path d="M65 95 C85 75, 115 115, 135 95" stroke="#3182ce" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <rect x="35" y="86" width="25" height="18" rx="2" fill="#2b6cb0"/>
+  <rect x="140" y="86" width="25" height="18" rx="2" fill="#2b6cb0"/>
+  <text x="100" y="145" text-anchor="middle" font-size="10" fill="#718096" font-family="sans-serif">Cat6A Patch</text>
+</svg>

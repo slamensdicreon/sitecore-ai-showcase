@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <rect width="200" height="200" fill="#f0f4f8"/>
+  <path d="M40 100 C70 60, 130 140, 160 100" stroke="#e53e3e" stroke-width="4" fill="none"/>
+  <path d="M40 105 C70 65, 130 145, 160 105" stroke="#3182ce" stroke-width="4" fill="none"/>
+  <path d="M40 110 C70 70, 130 150, 160 110" stroke="#38a169" stroke-width="4" fill="none"/>
+  <path d="M40 115 C70 75, 130 155, 160 115" stroke="#d69e2e" stroke-width="4" fill="none"/>
+  <circle cx="35" cy="108" r="12" fill="#718096" stroke="#4a5568" stroke-width="1"/>
+  <circle cx="165" cy="108" r="12" fill="#718096" stroke="#4a5568" stroke-width="1"/>
+  <text x="100" y="160" text-anchor="middle" font-size="10" fill="#718096" font-family="sans-serif">Multi-Conductor</text>
+</svg>

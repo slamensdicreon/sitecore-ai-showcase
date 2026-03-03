@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <rect width="200" height="200" fill="#f0f4f8"/>
+  <rect x="70" y="40" width="60" height="80" rx="30" fill="#a0aec0" stroke="#718096" stroke-width="1.5"/>
+  <circle cx="100" cy="65" r="12" fill="#718096"/>
+  <rect x="95" y="120" width="10" height="30" fill="#4a5568"/>
+  <rect x="85" y="148" width="30" height="10" rx="2" fill="#4a5568"/>
+  <text x="100" y="185" text-anchor="middle" font-size="10" fill="#718096" font-family="sans-serif">Accelerometer</text>
+</svg>

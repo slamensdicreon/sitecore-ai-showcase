@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <rect width="200" height="200" fill="#f0f4f8"/>
+  <rect x="80" y="70" width="40" height="60" rx="3" fill="#2d3748" stroke="#1a202c" stroke-width="1"/>
+  <circle cx="100" cy="85" r="5" fill="#4a5568"/>
+  <rect x="88" y="108" width="24" height="12" rx="1" fill="#4a5568"/>
+  <line x1="100" y1="55" x2="100" y2="70" stroke="#a0aec0" stroke-width="2"/>
+  <line x1="100" y1="130" x2="100" y2="145" stroke="#a0aec0" stroke-width="2"/>
+  <text x="100" y="170" text-anchor="middle" font-size="10" fill="#718096" font-family="sans-serif">TVS Diode</text>
+</svg>

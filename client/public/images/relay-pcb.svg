@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <rect width="200" height="200" fill="#f0f4f8"/>
+  <rect x="55" y="50" width="90" height="80" rx="4" fill="#2d3748" stroke="#1a202c" stroke-width="1.5"/>
+  <rect x="65" y="60" width="70" height="50" rx="2" fill="#4a5568"/>
+  <rect x="75" y="70" width="50" height="30" rx="1" fill="#718096"/>
+  <line x1="70" y1="130" x2="70" y2="155" stroke="#a0aec0" stroke-width="3"/>
+  <line x1="90" y1="130" x2="90" y2="155" stroke="#a0aec0" stroke-width="3"/>
+  <line x1="110" y1="130" x2="110" y2="155" stroke="#a0aec0" stroke-width="3"/>
+  <line x1="130" y1="130" x2="130" y2="155" stroke="#a0aec0" stroke-width="3"/>
+  <text x="100" y="180" text-anchor="middle" font-size="10" fill="#718096" font-family="sans-serif">PCB Relay</text>
+</svg>
