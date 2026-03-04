@@ -6,6 +6,8 @@ import session from "express-session";
 import pgSession from "connect-pg-simple";
 import { pool } from "./db";
 import { z } from "zod";
+import { ordercloud } from "./ordercloud";
+import { syncToOrderCloud, pullFromOrderCloud } from "./ordercloud-sync";
 
 export async function registerRoutes(
   httpServer: Server,
@@ -259,6 +261,177 @@ export async function registerRoutes(
   app.delete("/api/parts-list-items/:id", requireAuth, async (req: any, res) => {
     await storage.removePartsListItem(req.params.id);
     res.json({ message: "Removed" });
+  });
+
+  app.get("/api/admin/ordercloud/status", async (_req, res) => {
+    const result = await ordercloud.testConnection();
+    res.json(result);
+  });
+
+  app.post("/api/admin/ordercloud/sync", async (_req, res) => {
+    try {
+      const result = await syncToOrderCloud();
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ success: false, message: err.message });
+    }
+  });
+
+  app.get("/api/admin/ordercloud/catalog", async (_req, res) => {
+    try {
+      const data = await pullFromOrderCloud();
+      res.json(data);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.get("/api/admin/ordercloud/products", async (_req, res) => {
+    try {
+      const result = await ordercloud.listProducts({ pageSize: 100 });
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.get("/api/admin/ordercloud/categories", async (_req, res) => {
+    try {
+      const result = await ordercloud.listCategories();
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.get("/api/admin/ordercloud/priceschedules", async (_req, res) => {
+    try {
+      const result = await ordercloud.listPriceSchedules({ pageSize: 100 });
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  const adminProductSchema = z.object({
+    name: z.string().min(1),
+    sku: z.string().min(1),
+    description: z.string().optional(),
+    categorySlug: z.string().optional(),
+    basePrice: z.number().positive(),
+    active: z.boolean().optional(),
+    specs: z.record(z.string()).optional(),
+    industry: z.string().optional(),
+    application: z.string().optional(),
+    minOrderQty: z.number().int().min(1).optional(),
+    leadTimeDays: z.number().int().min(0).optional(),
+    inStock: z.boolean().optional(),
+    stockQty: z.number().int().min(0).optional(),
+    imageUrl: z.string().optional(),
+    priceBreaks: z.array(z.object({
+      minQty: z.number().int().min(1),
+      price: z.number().positive(),
+    })).optional(),
+  });
+
+  app.post("/api/admin/ordercloud/products", async (req, res) => {
+    const parsed = adminProductSchema.safeParse(req.body);
+    if (!parsed.success) return res.status(400).json({ message: "Invalid input", errors: parsed.error.errors });
+
+    const data = parsed.data;
+    const ocProductId = data.sku;
+    const ocPriceScheduleId = `ps-${data.sku}`;
+
+    try {
+      const breaks = data.priceBreaks || [{ minQty: 1, price: data.basePrice }];
+      await ordercloud.savePriceSchedule(ocPriceScheduleId, {
+        ID: ocPriceScheduleId,
+        Name: `${data.name} Pricing`,
+        MinQuantity: data.minOrderQty || 1,
+        PriceBreaks: breaks.map(b => ({ Quantity: b.minQty, Price: b.price })),
+        Currency: "USD",
+      });
+
+      const ocProduct = await ordercloud.saveProduct(ocProductId, {
+        ID: ocProductId,
+        Name: data.name,
+        Description: data.description || "",
+        Active: data.active ?? true,
+        DefaultPriceScheduleID: ocPriceScheduleId,
+        Inventory: {
+          Enabled: true,
+          QuantityAvailable: data.stockQty || 0,
+          OrderCanExceed: false,
+        },
+        xp: {
+          imageUrl: data.imageUrl || "",
+          specs: data.specs || {},
+          industry: data.industry || "",
+          application: data.application || "",
+          minOrderQty: data.minOrderQty || 1,
+          leadTimeDays: data.leadTimeDays || 5,
+          inStock: data.inStock ?? true,
+        },
+      });
+
+      if (data.categorySlug) {
+        try {
+          await ordercloud.saveCategoryProductAssignment(
+            ordercloud.CATALOG_ID,
+            data.categorySlug,
+            ocProductId
+          );
+        } catch {}
+      }
+
+      const localProduct = await storage.getProductBySku(data.sku);
+      if (localProduct) {
+        const { db: database } = await import("./db");
+        const { products: productsTable, priceBreaks: priceBreaksTable } = await import("@shared/schema");
+        const { eq } = await import("drizzle-orm");
+
+        await database.update(productsTable).set({
+          name: data.name,
+          description: data.description,
+          basePrice: data.basePrice.toFixed(4),
+          active: data.active ?? true,
+          specs: data.specs,
+          industry: data.industry,
+          application: data.application,
+          minOrderQty: data.minOrderQty || 1,
+          leadTimeDays: data.leadTimeDays || 5,
+          inStock: data.inStock ?? true,
+          stockQty: data.stockQty || 0,
+          imageUrl: data.imageUrl,
+        }).where(eq(productsTable.id, localProduct.id));
+
+        await database.delete(priceBreaksTable).where(eq(priceBreaksTable.productId, localProduct.id));
+        for (const pb of breaks) {
+          await database.insert(priceBreaksTable).values({
+            productId: localProduct.id,
+            minQty: pb.minQty,
+            price: pb.price.toFixed(4),
+          });
+        }
+      }
+
+      res.json({ success: true, product: ocProduct });
+    } catch (err: any) {
+      res.status(500).json({ success: false, message: err.message });
+    }
+  });
+
+  app.delete("/api/admin/ordercloud/products/:sku", async (req, res) => {
+    try {
+      const sku = req.params.sku;
+      try {
+        await ordercloud.deletePriceSchedule(`ps-${sku}`);
+      } catch {}
+      await ordercloud.deleteProduct(sku);
+      res.json({ success: true, message: `Deleted product ${sku} from OrderCloud` });
+    } catch (err: any) {
+      res.status(500).json({ success: false, message: err.message });
+    }
   });
 
   return httpServer;

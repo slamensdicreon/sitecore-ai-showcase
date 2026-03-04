@@ -14,6 +14,7 @@ import Orders from "@/pages/orders";
 import OrderDetailPage from "@/pages/order-detail";
 import PartsListsPage from "@/pages/parts-lists";
 import Login from "@/pages/login";
+import AdminPage from "@/pages/admin";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -27,6 +28,7 @@ function Router() {
       <Route path="/orders" component={Orders} />
       <Route path="/orders/:id" component={OrderDetailPage} />
       <Route path="/parts-lists" component={PartsListsPage} />
+      <Route path="/admin" component={AdminPage} />
       <Route path="/login" component={Login} />
       <Route component={NotFound} />
     </Switch>

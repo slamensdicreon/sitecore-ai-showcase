@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ShoppingCart, User, Search, Menu, Package, ListChecks, LogOut, ChevronDown } from "lucide-react";
+import { ShoppingCart, User, Search, Menu, Package, ListChecks, LogOut, ChevronDown, Settings } from "lucide-react";
 import { useState } from "react";
 import type { CartItem, Product } from "@shared/schema";
 
@@ -133,6 +133,10 @@ export function Header() {
                     <DropdownMenuItem onClick={() => navigate("/parts-lists")} data-testid="menu-parts-lists">
                       <ListChecks className="h-4 w-4 mr-2" />
                       My Parts Lists
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => navigate("/admin")} data-testid="menu-admin">
+                      <Settings className="h-4 w-4 mr-2" />
+                      OrderCloud Admin
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem onClick={() => logout()} data-testid="menu-logout">
