@@ -40,3 +40,9 @@ waitForPort = 5000
 
 [agent]
 integrations = ["javascript_database:1.0.0"]
+
+[userenv]
+
+[userenv.shared]
+ORDERCLOUD_CLIENT_ID = "DB58D5B2-8655-44B1-8589-248E9677C4BD"
+ORDERCLOUD_API_URL = "https://sandboxapi.ordercloud.io"
