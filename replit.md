@@ -31,26 +31,16 @@ A B2B e-commerce demo application inspired by TE Connectivity (te.com), built to
 - `/login` - Sign in / register with demo credentials (demo/demo123)
 
 ## Admin App (Standalone - `admin/` folder)
-The OrderCloud admin dashboard lives in a separate `admin/` directory and can be hosted independently from the demo app.
+The OrderCloud admin dashboard lives in a separate `admin/` directory. It is automatically built and served at `/oc-admin` when the project is published. It can also be hosted independently.
 
-### Running the Admin App
-```bash
-cd admin
-npm install
-npm run dev
-```
+### Accessing the Admin
+- **Published**: Visit `https://your-app.replit.app/oc-admin`
+- **Standalone dev**: `cd admin && npm install && npm run dev`
+- **Standalone build**: `cd admin && npm install && npm run build` (output in `admin/dist/`)
 
-### Building for Production
-```bash
-cd admin
-npm install
-npm run build
-# Output in admin/dist/ — deploy as static files
-```
-
-### Configuration
+### Configuration (standalone hosting only)
 Set the `VITE_API_BASE_URL` environment variable to point the admin app at the demo backend:
-- Local development (same machine): leave empty or set to `http://localhost:5000`
+- When served from the same domain (published): leave empty (default)
 - Remote hosting: set to the full URL of the demo backend (e.g. `https://your-demo.replit.app`)
 
 ### Admin Features

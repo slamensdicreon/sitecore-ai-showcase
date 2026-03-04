@@ -10,9 +10,16 @@ export function serveStatic(app: Express) {
     );
   }
 
+  const adminPath = path.resolve(__dirname, "admin");
+  if (fs.existsSync(adminPath)) {
+    app.use("/oc-admin", express.static(adminPath));
+    app.use("/oc-admin/{*path}", (_req, res) => {
+      res.sendFile(path.resolve(adminPath, "index.html"));
+    });
+  }
+
   app.use(express.static(distPath));
 
-  // fall through to index.html if the file doesn't exist
   app.use("/{*path}", (_req, res) => {
     res.sendFile(path.resolve(distPath, "index.html"));
   });
