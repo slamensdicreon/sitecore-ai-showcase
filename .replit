@@ -45,4 +45,4 @@ integrations = ["javascript_database:1.0.0"]
 
 [userenv.shared]
 ORDERCLOUD_CLIENT_ID = "8A75679A-A58C-4396-B4FD-0BA06B01EB6D"
-ORDERCLOUD_API_URL = "https://sandboxapi.ordercloud.io"
+ORDERCLOUD_API_URL = "https://useast-sandbox.ordercloud.io"
