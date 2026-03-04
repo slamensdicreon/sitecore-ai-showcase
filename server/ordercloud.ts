@@ -11,12 +11,15 @@ async function getAccessToken(): Promise<string> {
     return cachedToken;
   }
 
-  const body = new URLSearchParams({
+  const params: Record<string, string> = {
     client_id: OC_CLIENT_ID,
-    client_secret: OC_CLIENT_SECRET,
     grant_type: "client_credentials",
     scope: "FullAccess",
-  });
+  };
+  if (OC_CLIENT_SECRET) {
+    params.client_secret = OC_CLIENT_SECRET;
+  }
+  const body = new URLSearchParams(params);
 
   const res = await fetch(`${OC_API_URL}/oauth/token`, {
     method: "POST",
