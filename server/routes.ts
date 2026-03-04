@@ -1,4 +1,4 @@
-import type { Express } from "express";
+import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { seedDatabase } from "./seed";
@@ -262,6 +262,19 @@ export async function registerRoutes(
     await storage.removePartsListItem(req.params.id);
     res.json({ message: "Removed" });
   });
+
+  const adminCors = (req: Request, res: Response, next: NextFunction) => {
+    res.header("Access-Control-Allow-Origin", req.headers.origin || "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.header("Access-Control-Allow-Credentials", "true");
+    if (req.method === "OPTIONS") {
+      return res.sendStatus(204);
+    }
+    next();
+  };
+
+  app.use("/api/admin", adminCors);
 
   app.get("/api/admin/ordercloud/status", async (_req, res) => {
     const result = await ordercloud.testConnection();
