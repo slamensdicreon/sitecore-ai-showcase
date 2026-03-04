@@ -157,42 +157,39 @@ export async function pullFromOrderCloud(): Promise<{
     imageUrl: c.xp?.imageUrl || "",
   }));
 
-  const ocProducts = await Promise.all(
-    prodResult.Items.map(async (p: any) => {
-      let priceSchedule = null;
-      if (p.DefaultPriceScheduleID) {
-        try {
-          priceSchedule = await ordercloud.listPriceSchedules();
-          const found = priceSchedule.Items.find(
-            (ps: any) => ps.ID === p.DefaultPriceScheduleID
-          );
-          priceSchedule = found || null;
-        } catch {}
-      }
+  const allPriceSchedules = await ordercloud.listPriceSchedules({ pageSize: 100 });
+  const psMap = new Map<string, any>();
+  for (const ps of allPriceSchedules.Items) {
+    psMap.set(ps.ID, ps);
+  }
 
-      return {
-        id: p.xp?.localId || p.ID,
-        name: p.Name,
-        sku: p.ID,
-        description: p.Description,
-        basePrice: priceSchedule?.PriceBreaks?.[0]?.Price?.toFixed(4) || "0.0000",
-        active: p.Active,
-        imageUrl: p.xp?.imageUrl || "",
-        specs: p.xp?.specs || {},
-        industry: p.xp?.industry || "",
-        application: p.xp?.application || "",
-        minOrderQty: p.xp?.minOrderQty || 1,
-        leadTimeDays: p.xp?.leadTimeDays || 5,
-        inStock: p.xp?.inStock ?? true,
-        stockQty: p.Inventory?.QuantityAvailable || 0,
-        datasheetUrl: p.xp?.datasheetUrl || "",
-        priceBreaks: priceSchedule?.PriceBreaks?.map((pb: any) => ({
-          minQty: pb.Quantity,
-          price: pb.Price.toFixed(4),
-        })) || [],
-      };
-    })
-  );
+  const ocProducts = prodResult.Items.map((p: any) => {
+    const priceSchedule = p.DefaultPriceScheduleID
+      ? psMap.get(p.DefaultPriceScheduleID) || null
+      : null;
+
+    return {
+      id: p.xp?.localId || p.ID,
+      name: p.Name,
+      sku: p.ID,
+      description: p.Description,
+      basePrice: priceSchedule?.PriceBreaks?.[0]?.Price?.toFixed(4) || "0.0000",
+      active: p.Active,
+      imageUrl: p.xp?.imageUrl || "",
+      specs: p.xp?.specs || {},
+      industry: p.xp?.industry || "",
+      application: p.xp?.application || "",
+      minOrderQty: p.xp?.minOrderQty || 1,
+      leadTimeDays: p.xp?.leadTimeDays || 5,
+      inStock: p.xp?.inStock ?? true,
+      stockQty: p.Inventory?.QuantityAvailable || 0,
+      datasheetUrl: p.xp?.datasheetUrl || "",
+      priceBreaks: priceSchedule?.PriceBreaks?.map((pb: any) => ({
+        minQty: pb.Quantity,
+        price: pb.Price.toFixed(4),
+      })) || [],
+    };
+  });
 
   return { categories: ocCategories, products: ocProducts };
 }

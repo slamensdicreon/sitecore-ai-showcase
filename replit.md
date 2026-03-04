@@ -11,10 +11,12 @@ A B2B e-commerce demo application inspired by TE Connectivity (te.com), built to
 
 ## Key Files
 - `shared/schema.ts` - All database models: users, categories, products, price_breaks, orders, order_items, cart_items, parts_lists, parts_list_items
-- `server/routes.ts` - REST API endpoints for auth, products, cart, orders, parts lists
+- `server/routes.ts` - REST API endpoints for auth, products, cart, orders, parts lists, OrderCloud admin
 - `server/storage.ts` - DatabaseStorage implementing IStorage interface
 - `server/seed.ts` - Seed data with 14 realistic electronic components across 6 categories
 - `server/db.ts` - PostgreSQL connection pool with Drizzle
+- `server/ordercloud.ts` - OrderCloud API client (auth, products, categories, price schedules, catalog assignments)
+- `server/ordercloud-sync.ts` - Sync script to push/pull catalog data between local DB and OrderCloud
 
 ## Frontend Pages
 - `/` - Home page with hero, category grid, featured products
@@ -26,6 +28,15 @@ A B2B e-commerce demo application inspired by TE Connectivity (te.com), built to
 - `/orders/:id` - Order detail with line items
 - `/parts-lists` - Parts list management (create, expand, add all to cart)
 - `/login` - Sign in / register with demo credentials (demo/demo123)
+- `/admin` - OrderCloud Admin dashboard (connection status, sync, browse OC catalog)
+
+## OrderCloud Integration
+- **API Client**: 8A75679A-A58C-4396-B4FD-0BA06B01EB6D (US East sandbox)
+- **API URL**: https://useast-sandbox.ordercloud.io
+- **Auth**: Client credentials grant with FullAccess scope
+- **Catalog ID**: te-connectivity-catalog
+- **Sync**: Pushes categories (as slug IDs), products (as SKU IDs), and price schedules (as ps-{SKU} IDs) to OrderCloud
+- **Admin routes**: /api/admin/ordercloud/* for status, sync, browse products/categories/price schedules, create/delete products
 
 ## OrderCloud B2B Patterns Implemented
 - Volume/tier-based pricing (price breaks at 1, 25, 100, 500, 1000+ units)
@@ -39,3 +50,6 @@ A B2B e-commerce demo application inspired by TE Connectivity (te.com), built to
 ## Environment
 - `DATABASE_URL` - PostgreSQL connection string (auto-provisioned)
 - `SESSION_SECRET` - Session encryption key
+- `ORDERCLOUD_CLIENT_ID` - OrderCloud API Client ID
+- `ORDERCLOUD_CLIENT_SECRET` - OrderCloud API Client Secret
+- `ORDERCLOUD_API_URL` - OrderCloud API base URL (https://useast-sandbox.ordercloud.io)
