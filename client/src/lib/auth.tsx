@@ -10,6 +10,8 @@ type AuthUser = {
   lastName: string | null;
   email: string | null;
   role: string | null;
+  locale: string | null;
+  preferredCurrency: string | null;
 };
 
 type AuthContextType = {

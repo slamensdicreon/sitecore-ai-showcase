@@ -8,7 +8,10 @@ import {
   type CartItem, type InsertCartItem,
   type PartsList, type InsertPartsList,
   type PartsListItem, type InsertPartsListItem,
+  type ProductRelationship, type InsertProductRelationship,
+  type OrderStatusHistoryEntry, type InsertOrderStatusHistory,
   users, categories, products, priceBreaks, orders, orderItems, cartItems, partsLists, partsListItems,
+  productRelationships, orderStatusHistory,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, ilike, and, sql, desc, asc } from "drizzle-orm";
@@ -17,6 +20,7 @@ export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
+  updateUser(id: string, data: Partial<User>): Promise<User | undefined>;
 
   getCategories(): Promise<Category[]>;
   getCategoryBySlug(slug: string): Promise<Category | undefined>;
@@ -34,6 +38,7 @@ export interface IStorage {
   getOrderById(id: string): Promise<Order | undefined>;
   createOrder(order: InsertOrder): Promise<Order>;
   updateOrderStatus(id: string, status: string): Promise<Order | undefined>;
+  updateOrder(id: string, data: Partial<Order>): Promise<Order | undefined>;
 
   getOrderItems(orderId: string): Promise<(OrderItem & { product?: Product })[]>;
   createOrderItem(item: InsertOrderItem): Promise<OrderItem>;
@@ -50,6 +55,12 @@ export interface IStorage {
   getPartsListItems(partsListId: string): Promise<(PartsListItem & { product?: Product })[]>;
   addPartsListItem(item: InsertPartsListItem): Promise<PartsListItem>;
   removePartsListItem(id: string): Promise<void>;
+
+  getRelatedProducts(productId: string): Promise<(ProductRelationship & { relatedProduct?: Product })[]>;
+  createProductRelationship(rel: InsertProductRelationship): Promise<ProductRelationship>;
+
+  getOrderStatusHistory(orderId: string): Promise<OrderStatusHistoryEntry[]>;
+  addOrderStatusHistory(entry: InsertOrderStatusHistory): Promise<OrderStatusHistoryEntry>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -66,6 +77,11 @@ export class DatabaseStorage implements IStorage {
   async createUser(insertUser: InsertUser): Promise<User> {
     const [user] = await db.insert(users).values(insertUser).returning();
     return user;
+  }
+
+  async updateUser(id: string, data: Partial<User>): Promise<User | undefined> {
+    const [updated] = await db.update(users).set(data).where(eq(users.id, id)).returning();
+    return updated || undefined;
   }
 
   async getCategories(): Promise<Category[]> {
@@ -142,6 +158,11 @@ export class DatabaseStorage implements IStorage {
 
   async updateOrderStatus(id: string, status: string): Promise<Order | undefined> {
     const [updated] = await db.update(orders).set({ status, updatedAt: new Date() }).where(eq(orders.id, id)).returning();
+    return updated || undefined;
+  }
+
+  async updateOrder(id: string, data: Partial<Order>): Promise<Order | undefined> {
+    const [updated] = await db.update(orders).set({ ...data, updatedAt: new Date() }).where(eq(orders.id, id)).returning();
     return updated || undefined;
   }
 
@@ -224,6 +245,30 @@ export class DatabaseStorage implements IStorage {
 
   async removePartsListItem(id: string): Promise<void> {
     await db.delete(partsListItems).where(eq(partsListItems.id, id));
+  }
+
+  async getRelatedProducts(productId: string): Promise<(ProductRelationship & { relatedProduct?: Product })[]> {
+    const rels = await db.select().from(productRelationships).where(eq(productRelationships.productId, productId));
+    const enriched = [];
+    for (const rel of rels) {
+      const [product] = await db.select().from(products).where(eq(products.id, rel.relatedProductId));
+      enriched.push({ ...rel, relatedProduct: product || undefined });
+    }
+    return enriched;
+  }
+
+  async createProductRelationship(rel: InsertProductRelationship): Promise<ProductRelationship> {
+    const [created] = await db.insert(productRelationships).values(rel).returning();
+    return created;
+  }
+
+  async getOrderStatusHistory(orderId: string): Promise<OrderStatusHistoryEntry[]> {
+    return db.select().from(orderStatusHistory).where(eq(orderStatusHistory.orderId, orderId)).orderBy(desc(orderStatusHistory.createdAt));
+  }
+
+  async addOrderStatusHistory(entry: InsertOrderStatusHistory): Promise<OrderStatusHistoryEntry> {
+    const [created] = await db.insert(orderStatusHistory).values(entry).returning();
+    return created;
   }
 }
 

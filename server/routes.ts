@@ -38,9 +38,17 @@ export async function registerRoutes(
   const cartItemSchema = z.object({ productId: z.string().min(1), quantity: z.number().int().min(1).optional() });
   const updateCartSchema = z.object({ quantity: z.number().int().min(1) });
   const placeOrderSchema = z.object({
-    shippingAddress: z.string().min(1),
+    shippingAddress: z.string().optional(),
     poNumber: z.string().optional(),
     notes: z.string().optional(),
+    shippingMethod: z.string().optional(),
+    paymentMethod: z.string().optional(),
+    discountCode: z.string().optional(),
+    streetAddress: z.string().optional(),
+    city: z.string().optional(),
+    stateProvince: z.string().optional(),
+    postalCode: z.string().optional(),
+    country: z.string().optional(),
   });
   const createListSchema = z.object({ name: z.string().min(1) });
   const addListItemSchema = z.object({ productId: z.string().min(1), quantity: z.number().int().min(1).optional() });
@@ -109,11 +117,22 @@ export async function registerRoutes(
     res.json(result);
   });
 
+  app.get("/api/products/sku/:sku", async (req, res) => {
+    const product = await storage.getProductBySku(req.params.sku);
+    if (!product) return res.status(404).json({ message: "Product not found" });
+    res.json(product);
+  });
+
   app.get("/api/products/:id", async (req, res) => {
     const product = await storage.getProductById(req.params.id);
     if (!product) return res.status(404).json({ message: "Product not found" });
     const breaks = await storage.getPriceBreaks(product.id);
     res.json({ ...product, priceBreaks: breaks });
+  });
+
+  app.get("/api/products/:id/related", async (req, res) => {
+    const rels = await storage.getRelatedProducts(req.params.id);
+    res.json(rels);
   });
 
   const requireAuth = (req: any, res: any, next: any) => {
@@ -176,17 +195,68 @@ export async function registerRoutes(
     const order = await storage.getOrderById(req.params.id);
     if (!order) return res.status(404).json({ message: "Order not found" });
     const items = await storage.getOrderItems(order.id);
-    res.json({ ...order, items });
+    const history = await storage.getOrderStatusHistory(order.id);
+    res.json({ ...order, items, statusHistory: history });
+  });
+
+  app.get("/api/orders/:id/history", requireAuth, async (req: any, res) => {
+    const history = await storage.getOrderStatusHistory(req.params.id);
+    res.json(history);
+  });
+
+  app.post("/api/orders/:id/cancel", requireAuth, async (req: any, res) => {
+    const order = await storage.getOrderById(req.params.id);
+    if (!order) return res.status(404).json({ message: "Order not found" });
+    if (order.userId !== req.userId) return res.status(403).json({ message: "Not authorized" });
+    if (order.status !== "submitted" && order.status !== "pending") {
+      return res.status(400).json({ message: "Only submitted orders can be cancelled" });
+    }
+    const updated = await storage.updateOrderStatus(order.id, "cancelled");
+    await storage.addOrderStatusHistory({ orderId: order.id, status: "cancelled", note: "Cancelled by customer" });
+    res.json(updated);
+  });
+
+  app.patch("/api/users/preferences", requireAuth, async (req: any, res) => {
+    const { locale, preferredCurrency, role } = req.body;
+    const updates: any = {};
+    if (locale) updates.locale = locale;
+    if (preferredCurrency) updates.preferredCurrency = preferredCurrency;
+    if (role) updates.role = role;
+    const user = await storage.updateUser(req.userId, updates);
+    if (!user) return res.status(404).json({ message: "User not found" });
+    const { password: _, ...safe } = user;
+    res.json(safe);
+  });
+
+  const DISCOUNT_CODES: Record<string, number> = {
+    "TE10": 0.10,
+    "VOLUME20": 0.20,
+  };
+
+  const SHIPPING_RATES: Record<string, number> = {
+    "standard": 0,
+    "express": 15,
+    "nextday": 35,
+  };
+
+  app.post("/api/orders/validate-discount", requireAuth, async (req: any, res) => {
+    const { code } = req.body;
+    const upperCode = (code || "").toUpperCase();
+    if (DISCOUNT_CODES[upperCode]) {
+      res.json({ valid: true, code: upperCode, percentage: DISCOUNT_CODES[upperCode] * 100 });
+    } else {
+      res.json({ valid: false, message: "Invalid discount code" });
+    }
   });
 
   app.post("/api/orders", requireAuth, async (req: any, res) => {
     const parsed = placeOrderSchema.safeParse(req.body);
     if (!parsed.success) return res.status(400).json({ message: "Invalid input" });
-    const { shippingAddress, poNumber, notes } = parsed.data;
+    const { shippingAddress, poNumber, notes, shippingMethod, paymentMethod, discountCode, streetAddress, city, stateProvince, postalCode, country } = parsed.data;
     const cartItems = await storage.getCartItems(req.userId);
     if (cartItems.length === 0) return res.status(400).json({ message: "Cart is empty" });
 
-    let total = 0;
+    let subtotal = 0;
     for (const item of cartItems) {
       if (item.product) {
         const breaks = await storage.getPriceBreaks(item.product.id);
@@ -194,17 +264,49 @@ export async function registerRoutes(
         for (const pb of breaks) {
           if (item.quantity >= pb.minQty) unitPrice = parseFloat(pb.price);
         }
-        total += unitPrice * item.quantity;
+        subtotal += unitPrice * item.quantity;
       }
     }
+
+    const shippingCost = SHIPPING_RATES[shippingMethod || "standard"] || 0;
+    const taxRate = 0.0825;
+    const taxAmount = subtotal * taxRate;
+
+    let discountAmount = 0;
+    let validDiscountCode = discountCode || null;
+    if (discountCode) {
+      const upperCode = discountCode.toUpperCase();
+      if (DISCOUNT_CODES[upperCode]) {
+        discountAmount = subtotal * DISCOUNT_CODES[upperCode];
+        validDiscountCode = upperCode;
+      }
+    }
+
+    const total = subtotal + shippingCost + taxAmount - discountAmount;
+
+    const fullAddress = streetAddress
+      ? `${streetAddress}, ${city || ""}, ${stateProvince || ""} ${postalCode || ""}, ${country || ""}`
+      : shippingAddress || "";
 
     const order = await storage.createOrder({
       userId: req.userId,
       status: "submitted",
       total: total.toFixed(2),
-      shippingAddress,
+      shippingAddress: fullAddress,
       poNumber,
       notes,
+      shippingMethod: shippingMethod || "standard",
+      shippingCost: shippingCost.toFixed(2),
+      taxAmount: taxAmount.toFixed(2),
+      discountCode: validDiscountCode,
+      discountAmount: discountAmount.toFixed(2),
+      paymentMethod: paymentMethod || "purchase_order",
+      paymentStatus: "pending",
+      streetAddress,
+      city,
+      stateProvince,
+      postalCode,
+      country,
     });
 
     for (const item of cartItems) {
@@ -224,6 +326,7 @@ export async function registerRoutes(
       }
     }
 
+    await storage.addOrderStatusHistory({ orderId: order.id, status: "submitted", note: "Order placed" });
     await storage.clearCart(req.userId);
     res.json(order);
   });

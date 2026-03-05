@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@/lib/auth";
+import { useI18n } from "@/lib/i18n";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -19,6 +20,7 @@ const statusConfig: Record<string, { label: string; icon: typeof Clock; classNam
 
 export default function Orders() {
   const { user } = useAuth();
+  const { t, formatPrice } = useI18n();
 
   const { data: orders, isLoading } = useQuery<Order[]>({
     queryKey: ["/api/orders"],
@@ -29,8 +31,8 @@ export default function Orders() {
     return (
       <div className="max-w-[1400px] mx-auto px-4 py-16 text-center">
         <Package className="h-12 w-12 text-muted-foreground/30 mx-auto mb-4" />
-        <h2 className="font-heading font-semibold mb-2">Sign in to view orders</h2>
-        <Link href="/login"><Button>Sign In</Button></Link>
+        <h2 className="font-heading font-semibold mb-2">{t("auth.signIn")} to view orders</h2>
+        <Link href="/login"><Button>{t("auth.signIn")}</Button></Link>
       </div>
     );
   }
@@ -40,10 +42,10 @@ export default function Orders() {
       <div className="flex items-center gap-2 text-xs text-muted-foreground mb-6">
         <Link href="/">Home</Link>
         <span>/</span>
-        <span className="text-foreground">My Orders</span>
+        <span className="text-foreground">{t("orders.title")}</span>
       </div>
 
-      <h1 className="text-xl font-heading font-semibold mb-6" data-testid="text-orders-title">My Orders</h1>
+      <h1 className="text-xl font-heading font-semibold mb-6" data-testid="text-orders-title">{t("orders.title")}</h1>
 
       {isLoading ? (
         <div className="space-y-3">
@@ -62,9 +64,9 @@ export default function Orders() {
       ) : !orders || orders.length === 0 ? (
         <div className="text-center py-16">
           <Package className="h-12 w-12 text-muted-foreground/30 mx-auto mb-4" />
-          <h3 className="font-heading font-semibold mb-1">No orders yet</h3>
+          <h3 className="font-heading font-semibold mb-1">{t("orders.empty")}</h3>
           <p className="text-sm text-muted-foreground mb-4">Start shopping to create your first order</p>
-          <Link href="/products"><Button data-testid="button-start-shopping">Browse Products</Button></Link>
+          <Link href="/products"><Button data-testid="button-start-shopping">{t("nav.products")}</Button></Link>
         </div>
       ) : (
         <div className="space-y-3">
@@ -91,11 +93,12 @@ export default function Orders() {
                         <div className="flex items-center gap-3 text-xs text-muted-foreground mt-1">
                           {order.poNumber && <span>PO: {order.poNumber}</span>}
                           <span>{order.createdAt ? new Date(order.createdAt).toLocaleDateString() : ""}</span>
+                          {order.shippingMethod && <span className="capitalize">{order.shippingMethod}</span>}
                         </div>
                       </div>
                     </div>
                     <div className="text-right">
-                      <span className="font-semibold text-sm">${parseFloat(order.total || "0").toFixed(2)}</span>
+                      <span className="font-semibold text-sm">{formatPrice(parseFloat(order.total || "0"))}</span>
                     </div>
                   </div>
                 </Card>

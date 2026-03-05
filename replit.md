@@ -1,81 +1,104 @@
 # TE Connectivity - OrderCloud B2B Commerce Demo
 
 ## Overview
-A B2B e-commerce demo application inspired by TE Connectivity (te.com), built to demonstrate Sitecore OrderCloud commerce patterns. Features a product catalog of electronic components (connectors, sensors, relays, wire & cable, circuit protection, terminal blocks) with volume pricing, shopping cart, order management, and parts list functionality.
+A comprehensive B2B e-commerce demo inspired by TE Connectivity (te.com), built to demonstrate Sitecore OrderCloud commerce patterns. Addresses TE's Digital Ecosystem RFP requirements: enriched PDPs, multi-language/currency switching, quick-add by part number, enhanced checkout with shipping/tax/payment, product relationships, AI recommendations/chatbot, order management improvements, and role-based personalization.
 
 ## Architecture
 - **Frontend**: React + TypeScript with Wouter routing, TanStack Query, Shadcn UI components, Tailwind CSS
 - **Backend**: Express.js REST API with session-based authentication
 - **Database**: PostgreSQL with Drizzle ORM
-- **Admin**: Standalone React app in `admin/` folder (separately hostable)
-- **Design**: TE Connectivity official brand system — TE Orange (#f28d00) primary, TE Dark Teal (#2e4957) secondary, TE Turquoise (#167a87) tertiary, TE Charcoal (#424241) text, Montserrat headings + Inter body text, TE Eco Green (#8fb838) for stock status, TE Ruby (#bc1f00) for destructive actions
+- **Admin**: Standalone React app in `admin/` folder, served at `/oc-admin`
+- **Design**: TE Connectivity brand — TE Orange (#f28d00), Dark Teal (#2e4957), Turquoise (#167a87), Charcoal (#424241), Eco Green (#8fb838)
 
 ## Key Files
-- `shared/schema.ts` - All database models: users, categories, products, price_breaks, orders, order_items, cart_items, parts_lists, parts_list_items
-- `server/routes.ts` - REST API endpoints for auth, products, cart, orders, parts lists, OrderCloud admin (with CORS)
-- `server/storage.ts` - DatabaseStorage implementing IStorage interface
-- `server/seed.ts` - Seed data with 14 realistic electronic components across 6 categories
-- `server/db.ts` - PostgreSQL connection pool with Drizzle
-- `server/ordercloud.ts` - OrderCloud API client (auth, products, categories, price schedules, catalog assignments)
-- `server/ordercloud-sync.ts` - Sync script to push/pull catalog data between local DB and OrderCloud
+- `shared/schema.ts` - Database models: users, categories, products, price_breaks, orders, order_items, cart_items, parts_lists, parts_list_items, product_relationships, order_status_history
+- `server/routes.ts` - REST API endpoints for auth, products, cart, orders, parts lists, OrderCloud admin, AI chat
+- `server/storage.ts` - DatabaseStorage implementing IStorage interface with related products, SKU lookup, discount validation, order cancellation, status history
+- `server/seed.ts` - Seed data with 14 electronic components, 6 categories, 28 product relationships
+- `client/src/lib/i18n.tsx` - I18n context with EN/DE/ZH translations, USD/EUR/CNY currency conversion
+- `client/src/lib/auth.tsx` - Auth context with persona switching (engineer/purchaser)
+- `client/src/components/ai-chatbot.tsx` - AI chatbot with product search, order status, and navigation
+- `client/src/components/header.tsx` - Header with language/currency switcher, persona dropdown, quick-add by part number
 
-## Frontend Pages (Demo App)
-- `/` - Home page with hero, category grid, featured products
-- `/products` - Product catalog with category/industry filters, grid/list views
-- `/products/:id` - Product detail with specs, volume pricing, add to cart
-- `/cart` - Shopping cart with quantity controls
-- `/checkout` - Checkout with shipping address and PO number
-- `/orders` - Order history list
-- `/orders/:id` - Order detail with line items
-- `/parts-lists` - Parts list management (create, expand, add all to cart)
-- `/login` - Sign in / register with demo credentials (demo/demo123)
+## Frontend Pages
+- `/` - Home with hero, categories, featured products, AI recommendations (browsing history)
+- `/products` - Catalog with category/industry filters, grid/list views, i18n pricing
+- `/products/:id` - Enriched PDP: related/alternative/accessory products, distributor links (Digi-Key/Mouser/Arrow), availability indicators, engineer resources panel, recently-viewed tracking
+- `/cart` - Cart with stock availability badges, quantity controls, i18n pricing
+- `/checkout` - 4-step checkout: Address → Shipping → Payment → Review. Structured address, shipping methods (Standard/Express/Next Day), tax/VAT calculation, discount codes (TE10=10%, VOLUME20=20%), payment options (Credit Card/PayPal/PO)
+- `/orders` - Order history with status badges, PO numbers
+- `/orders/:id` - Order detail with status history timeline, tracking, cancel/reorder
+- `/parts-lists` - Parts list management
+- `/login` - Sign in / register (demo: demo/demo123)
 
-## Admin App (Standalone - `admin/` folder)
-The OrderCloud admin dashboard lives in a separate `admin/` directory. It is automatically built and served at `/oc-admin` when the project is published. It can also be hosted independently.
-
-### Accessing the Admin
-- **Published**: Visit `https://your-app.replit.app/oc-admin`
-- **Standalone dev**: `cd admin && npm install && npm run dev`
-- **Standalone build**: `cd admin && npm install && npm run build` (output in `admin/dist/`)
-
-### Configuration (standalone hosting only)
-Set the `VITE_API_BASE_URL` environment variable to point the admin app at the demo backend:
-- When served from the same domain (published): leave empty (default)
-- Remote hosting: set to the full URL of the demo backend (e.g. `https://your-demo.replit.app`)
+## Admin App (`admin/`)
+Served at `/oc-admin` when published. Standalone dev: `cd admin && npm run dev`.
 
 ### Admin Features
-- OrderCloud connection status monitoring
-- Catalog sync (push local products/categories/prices to OrderCloud)
-- Browse OrderCloud products, categories, and price schedules
-- Delete individual products from OrderCloud
+- OrderCloud connection status and catalog sync
+- Products, Categories, Price Schedules tabs
+- **Product Relationships** tab: view related/alternative/accessory mappings
+- **Audit Log** tab: tracks all admin actions with timestamps and status
+- **Monitoring** tab: API response times, request counts, error rates, system health
+- Bulk operations: "Sync All" with progress bar, "Delete All Products" with confirmation
 
-## OrderCloud Integration
-- **API Client**: 8A75679A-A58C-4396-B4FD-0BA06B01EB6D (US East sandbox)
-- **API URL**: https://useast-sandbox.ordercloud.io
-- **Auth**: Client credentials grant with FullAccess scope
-- **Catalog ID**: te-connectivity-catalog
-- **Sync**: Pushes categories (as slug IDs), products (as SKU IDs), and price schedules (as ps-{SKU} IDs) to OrderCloud
-- **Admin API routes**: `/api/admin/ordercloud/*` — CORS-enabled so the admin app can call them from a different domain
-  - GET `/api/admin/ordercloud/status` - Connection test
-  - POST `/api/admin/ordercloud/sync` - Push catalog to OrderCloud
-  - GET `/api/admin/ordercloud/products` - List OC products
-  - GET `/api/admin/ordercloud/categories` - List OC categories
-  - GET `/api/admin/ordercloud/priceschedules` - List OC price schedules
-  - POST `/api/admin/ordercloud/products` - Create/update product in OC
-  - DELETE `/api/admin/ordercloud/products/:sku` - Delete product from OC
+## RFP Features Demonstrated
+1. **Enriched PDP**: Specs tabs, volume pricing, distributor links, availability indicators, related products
+2. **Multi-language/Currency**: EN/DE/ZH language switching, USD/EUR/CNY with live conversion
+3. **Quick-add by Part Number**: SKU lookup in header, instant add-to-cart
+4. **Enhanced Checkout**: Structured address, shipping methods with costs, tax/VAT, discount codes, multiple payment methods
+5. **Product Relationships**: Related, alternative, accessory product mappings (28 seeded relationships)
+6. **AI Features**: Chatbot with product search and navigation, AI-powered recommendations on home page
+7. **Order Management**: Status history timeline, tracking numbers, cancel/reorder, audit trail
+8. **Role-based Personalization**: Engineer vs Purchaser personas with adapted UI emphasis
+9. **B2B Patterns**: Volume pricing, PO numbers, parts lists, company-specific catalogs
 
-## OrderCloud B2B Patterns Implemented
-- Volume/tier-based pricing (price breaks at 1, 25, 100, 500, 1000+ units)
-- Customer-specific catalogs (authenticated user experience)
-- PO number support on orders
-- Parts lists for saved product collections
-- Product specifications and datasheet references
-- SKU-based product identification
-- B2B registration with company name
+## API Endpoints
+### Auth
+- `POST /api/auth/register` - Register new user
+- `POST /api/auth/login` - Login
+- `POST /api/auth/logout` - Logout
+- `GET /api/auth/me` - Current user
+
+### Products
+- `GET /api/products` - List products (query: categorySlug, search)
+- `GET /api/products/:id` - Product detail with price breaks
+- `GET /api/products/:id/related` - Related/alternative/accessory products
+- `GET /api/products/sku/:sku` - Lookup product by SKU (for quick-add)
+
+### Cart & Orders
+- `GET /api/cart` - Get cart items
+- `POST /api/cart` - Add to cart
+- `PATCH /api/cart/:id` - Update quantity
+- `DELETE /api/cart/:id` - Remove item
+- `GET /api/orders` - List orders
+- `POST /api/orders` - Create order (with shipping/tax/discount/payment)
+- `GET /api/orders/:id` - Order detail
+- `GET /api/orders/:id/history` - Order status history
+- `POST /api/orders/:id/cancel` - Cancel order
+- `POST /api/orders/validate-discount` - Validate discount code
+
+### User
+- `PUT /api/users/preferences` - Update locale, currency, role
+
+### OrderCloud Admin
+- `GET /api/admin/ordercloud/status` - Connection test
+- `POST /api/admin/ordercloud/sync` - Push catalog
+- `GET /api/admin/ordercloud/products` - List OC products
+- `GET /api/admin/ordercloud/categories` - List OC categories
+- `GET /api/admin/ordercloud/priceschedules` - List OC price schedules
+- `DELETE /api/admin/ordercloud/products/:sku` - Delete OC product
+
+## Demo Data
+- **Discount codes**: TE10 (10% off), VOLUME20 (20% off)
+- **Shipping**: Standard (Free), Express ($15), Next Day ($35)
+- **Tax rate**: 8.25% (labeled as VAT for EUR)
+- **Currency rates**: 1 USD = 0.92 EUR = 7.24 CNY
+- **Credentials**: demo / demo123
 
 ## Environment
-- `DATABASE_URL` - PostgreSQL connection string (auto-provisioned)
+- `DATABASE_URL` - PostgreSQL connection string
 - `SESSION_SECRET` - Session encryption key
 - `ORDERCLOUD_CLIENT_ID` - OrderCloud API Client ID
 - `ORDERCLOUD_CLIENT_SECRET` - OrderCloud API Client Secret
-- `ORDERCLOUD_API_URL` - OrderCloud API base URL (https://useast-sandbox.ordercloud.io)
+- `ORDERCLOUD_API_URL` - OrderCloud API base URL

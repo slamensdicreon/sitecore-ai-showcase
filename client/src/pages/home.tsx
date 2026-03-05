@@ -1,10 +1,13 @@
 import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
+import { useI18n } from "@/lib/i18n";
+import { useAuth } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ArrowRight, Zap, Shield, Globe, TrendingUp, Box, Cpu } from "lucide-react";
+import { ArrowRight, Zap, Shield, Globe, TrendingUp, Box, Cpu, Sparkles } from "lucide-react";
+import { useState, useEffect } from "react";
 import type { Category, Product } from "@shared/schema";
 
 const industryIcons: Record<string, typeof Zap> = {
@@ -26,7 +29,22 @@ function ConnectivityLines({ className = "" }: { className?: string }) {
   );
 }
 
+function useRecentlyViewed() {
+  const [ids, setIds] = useState<string[]>([]);
+  useEffect(() => {
+    try {
+      const stored = JSON.parse(localStorage.getItem("te_recently_viewed") || "[]");
+      setIds(stored.slice(0, 4));
+    } catch {}
+  }, []);
+  return ids;
+}
+
 export default function Home() {
+  const { t, formatPrice } = useI18n();
+  const { user } = useAuth();
+  const recentIds = useRecentlyViewed();
+
   const { data: categories, isLoading: catsLoading } = useQuery<Category[]>({
     queryKey: ["/api/categories"],
   });
@@ -34,6 +52,10 @@ export default function Home() {
   const { data: productsData, isLoading: prodsLoading } = useQuery<{ products: Product[]; total: number }>({
     queryKey: ["/api/products"],
   });
+
+  const aiRecommended = productsData?.products
+    .filter(p => !recentIds.includes(p.id))
+    .slice(0, 4) || [];
 
   return (
     <div className="min-h-screen">
@@ -44,23 +66,23 @@ export default function Home() {
         </div>
         <div className="relative max-w-[1400px] mx-auto px-4 py-16 md:py-24">
           <div className="max-w-2xl">
-            <Badge className="mb-4 bg-[#f28d00] text-white border-[#f28d00]">OrderCloud B2B Commerce</Badge>
+            <Badge className="mb-4 bg-[#f28d00] text-white border-[#f28d00]">{t("hero.badge")}</Badge>
             <h1 className="text-3xl md:text-5xl font-heading font-bold leading-tight mb-4">
-              Engineering Your Connected Future
+              {t("hero.title")}
             </h1>
             <p className="text-lg md:text-xl opacity-80 mb-8 leading-relaxed">
-              Discover 14,000+ electronic components. Industrial-grade connectors, sensors, relays, and more with volume pricing and fast delivery.
+              {t("hero.subtitle")}
             </p>
             <div className="flex items-center gap-3 flex-wrap">
               <Link href="/products">
                 <Button size="lg" className="bg-[#f28d00] text-white font-heading" data-testid="button-browse-products">
-                  Browse Catalog
+                  {t("hero.browse")}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
               <Link href="/login">
                 <Button size="lg" variant="outline" className="bg-transparent border-white/30 text-white font-heading" data-testid="button-create-account">
-                  Create B2B Account
+                  {t("hero.account")}
                 </Button>
               </Link>
             </div>
@@ -68,15 +90,56 @@ export default function Home() {
         </div>
       </section>
 
+      {user && aiRecommended.length > 0 && (
+        <section className="max-w-[1400px] mx-auto px-4 py-10">
+          <div className="flex items-center gap-2 mb-6">
+            <Sparkles className="h-5 w-5 text-[#f28d00]" />
+            <h2 className="text-xl font-heading font-semibold">{t("ai.recommended")}</h2>
+            <Badge variant="secondary" className="text-[9px] bg-[#f28d00]/10 text-[#f28d00]" data-testid="badge-ai">
+              {t("ai.badge")}
+            </Badge>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {aiRecommended.map((product) => (
+              <Link key={product.id} href={`/products/${product.id}`}>
+                <Card className="hover-elevate cursor-pointer h-full" data-testid={`card-ai-product-${product.id}`}>
+                  <div className="p-3">
+                    <div className="aspect-square rounded-md bg-accent/50 flex items-center justify-center mb-3">
+                      {product.imageUrl ? (
+                        <img src={product.imageUrl} alt={product.name} className="w-3/4 h-3/4 object-contain" />
+                      ) : (
+                        <Box className="h-12 w-12 text-muted-foreground/30" />
+                      )}
+                    </div>
+                  </div>
+                  <div className="px-3 pb-4">
+                    <p className="text-[10px] text-muted-foreground mb-1 font-mono">{product.sku}</p>
+                    <h3 className="text-sm font-medium mb-2 line-clamp-2 leading-snug">{product.name}</h3>
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="font-semibold text-sm text-[#f28d00]">
+                        {formatPrice(parseFloat(product.basePrice))}
+                      </span>
+                      {product.inStock && (
+                        <Badge variant="secondary" className="text-[10px] bg-[#8fb838]/10 text-[#6a8a2a] dark:text-[#8fb838]">{t("product.inStock")}</Badge>
+                      )}
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
       <section className="max-w-[1400px] mx-auto px-4 py-12">
         <div className="flex items-center justify-between gap-4 mb-8">
           <div>
-            <h2 className="text-2xl font-heading font-semibold mb-1">Product Categories</h2>
-            <p className="text-muted-foreground text-sm">Browse by product family</p>
+            <h2 className="text-2xl font-heading font-semibold mb-1">{t("categories.title")}</h2>
+            <p className="text-muted-foreground text-sm">{t("categories.subtitle")}</p>
           </div>
           <Link href="/products">
             <Button variant="ghost" size="sm" data-testid="link-view-all-categories">
-              View All <ArrowRight className="ml-1 h-3 w-3" />
+              {t("viewAll")} <ArrowRight className="ml-1 h-3 w-3" />
             </Button>
           </Link>
         </div>
@@ -115,8 +178,8 @@ export default function Home() {
         <div className="max-w-[1400px] mx-auto px-4 py-12">
           <div className="flex items-center justify-between gap-4 mb-8">
             <div>
-              <h2 className="text-2xl font-heading font-semibold mb-1">Featured Products</h2>
-              <p className="text-muted-foreground text-sm">Popular items from our catalog</p>
+              <h2 className="text-2xl font-heading font-semibold mb-1">{t("featured.title")}</h2>
+              <p className="text-muted-foreground text-sm">{t("featured.subtitle")}</p>
             </div>
           </div>
 
@@ -150,10 +213,10 @@ export default function Home() {
                         <h3 className="text-sm font-medium mb-2 line-clamp-2 leading-snug">{product.name}</h3>
                         <div className="flex items-center justify-between gap-2">
                           <span className="font-semibold text-sm text-[#f28d00]">
-                            ${parseFloat(product.basePrice).toFixed(2)}
+                            {formatPrice(parseFloat(product.basePrice))}
                           </span>
                           {product.inStock && (
-                            <Badge variant="secondary" className="text-[10px] bg-[#8fb838]/10 text-[#6a8a2a] dark:text-[#8fb838]">In Stock</Badge>
+                            <Badge variant="secondary" className="text-[10px] bg-[#8fb838]/10 text-[#6a8a2a] dark:text-[#8fb838]">{t("product.inStock")}</Badge>
                           )}
                         </div>
                       </div>
@@ -243,7 +306,7 @@ export default function Home() {
                 </div>
                 <span className="text-xs opacity-60">TE Connectivity OrderCloud B2B Demo</span>
               </div>
-              <span className="text-[10px] opacity-40 font-heading tracking-widest uppercase">Every Connection Counts</span>
+              <span className="text-[10px] opacity-40 font-heading tracking-widest uppercase">{t("tagline")}</span>
             </div>
           </div>
         </div>

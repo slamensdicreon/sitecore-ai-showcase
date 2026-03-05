@@ -2,26 +2,78 @@ import { useRoute, Link } from "wouter";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useAuth } from "@/lib/auth";
+import { useI18n } from "@/lib/i18n";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
-import { ShoppingCart, Package, FileText, Box, CheckCircle, Clock, Minus, Plus, ListChecks } from "lucide-react";
-import { useState } from "react";
-import type { Product, PriceBreak, PartsList } from "@shared/schema";
+import { ShoppingCart, Package, FileText, Box, CheckCircle, Clock, Minus, Plus, ListChecks, ExternalLink, AlertTriangle, XCircle, Wrench, Download, ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import type { Product, PriceBreak, PartsList, ProductRelationship } from "@shared/schema";
 
 type ProductDetail = Product & { priceBreaks: PriceBreak[] };
+type RelatedProductData = ProductRelationship & { relatedProduct?: Product };
+
+function getAvailabilityStatus(product: Product) {
+  const qty = product.stockQty || 0;
+  if (!product.inStock && qty === 0) return { label: "contactSales", color: "text-destructive", icon: XCircle, bg: "bg-destructive/10" };
+  if (!product.inStock) return { label: "backorder", color: "text-orange-600 dark:text-orange-400", icon: Clock, bg: "bg-orange-500/10" };
+  if (qty > 0 && qty < 50) return { label: "limited", color: "text-amber-600 dark:text-amber-400", icon: AlertTriangle, bg: "bg-amber-500/10" };
+  return { label: "inStock", color: "text-[#6a8a2a] dark:text-[#8fb838]", icon: CheckCircle, bg: "bg-[#8fb838]/10" };
+}
+
+function RelatedProductCard({ product, formatPrice }: { product: Product; formatPrice: (p: number) => string }) {
+  return (
+    <Link href={`/products/${product.id}`}>
+      <Card className="hover-elevate cursor-pointer h-full" data-testid={`card-related-${product.id}`}>
+        <div className="p-3">
+          <div className="aspect-[4/3] rounded-md bg-accent/50 flex items-center justify-center">
+            {product.imageUrl ? (
+              <img src={product.imageUrl} alt={product.name} className="w-2/3 h-2/3 object-contain" />
+            ) : (
+              <Box className="h-8 w-8 text-muted-foreground/30" />
+            )}
+          </div>
+        </div>
+        <div className="px-3 pb-3">
+          <p className="text-[10px] text-muted-foreground font-mono mb-1">{product.sku}</p>
+          <h4 className="text-xs font-medium mb-1 line-clamp-2 leading-snug">{product.name}</h4>
+          <span className="font-semibold text-xs text-[#f28d00]">{formatPrice(parseFloat(product.basePrice))}</span>
+        </div>
+      </Card>
+    </Link>
+  );
+}
 
 export default function ProductDetail() {
   const [, routeParams] = useRoute("/products/:id");
   const { user } = useAuth();
   const { toast } = useToast();
+  const { t, formatPrice, currency } = useI18n();
   const [quantity, setQuantity] = useState(1);
+
+  const isEngineer = user?.role === "engineer";
 
   const { data: product, isLoading } = useQuery<ProductDetail>({
     queryKey: ["/api/products", routeParams?.id],
+    enabled: !!routeParams?.id,
+  });
+
+  useEffect(() => {
+    if (routeParams?.id) {
+      try {
+        const stored = JSON.parse(localStorage.getItem("te_recently_viewed") || "[]");
+        const filtered = stored.filter((id: string) => id !== routeParams.id);
+        filtered.unshift(routeParams.id);
+        localStorage.setItem("te_recently_viewed", JSON.stringify(filtered.slice(0, 10)));
+      } catch {}
+    }
+  }, [routeParams?.id]);
+
+  const { data: relatedProducts } = useQuery<RelatedProductData[]>({
+    queryKey: ["/api/products", routeParams?.id, "related"],
     enabled: !!routeParams?.id,
   });
 
@@ -34,7 +86,7 @@ export default function ProductDetail() {
     mutationFn: () => apiRequest("POST", "/api/cart", { productId: product!.id, quantity }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
-      toast({ title: "Added to cart", description: `${quantity}x ${product!.name}` });
+      toast({ title: t("product.addToCart"), description: `${quantity}x ${product!.name}` });
     },
   });
 
@@ -81,13 +133,25 @@ export default function ProductDetail() {
   }
 
   const specs = product.specs as Record<string, string> | null;
+  const availability = getAvailabilityStatus(product);
+  const AvailIcon = availability.icon;
+
+  const relatedItems = relatedProducts?.filter(r => r.relationshipType === "related" && r.relatedProduct) || [];
+  const alternativeItems = relatedProducts?.filter(r => r.relationshipType === "alternative" && r.relatedProduct) || [];
+  const accessoryItems = relatedProducts?.filter(r => r.relationshipType === "accessory" && r.relatedProduct) || [];
+
+  const distributorLinks = [
+    { name: "Digi-Key", url: `https://www.digikey.com/en/products/result?keywords=${product.sku}` },
+    { name: "Mouser", url: `https://www.mouser.com/Search/Refine?Keyword=${product.sku}` },
+    { name: "Arrow", url: `https://www.arrow.com/en/products/search?q=${product.sku}` },
+  ];
 
   return (
     <div className="max-w-[1400px] mx-auto px-4 py-6">
-      <div className="flex items-center gap-2 text-xs text-muted-foreground mb-6">
+      <div className="flex items-center gap-2 text-xs text-muted-foreground mb-6" data-testid="breadcrumb">
         <Link href="/">Home</Link>
         <span>/</span>
-        <Link href="/products">Products</Link>
+        <Link href="/products">{t("nav.products")}</Link>
         <span>/</span>
         <span className="text-foreground">{product.sku}</span>
       </div>
@@ -101,6 +165,32 @@ export default function ProductDetail() {
               <Box className="h-24 w-24 text-muted-foreground/20" />
             )}
           </div>
+
+          {isEngineer && (
+            <Card className="p-4 mt-4">
+              <h4 className="text-xs font-heading font-semibold mb-3 flex items-center gap-1.5">
+                <Wrench className="h-3.5 w-3.5 text-[#167a87]" />
+                Engineering Resources
+              </h4>
+              <div className="space-y-2">
+                <Button variant="outline" size="sm" className="w-full justify-start text-xs" data-testid="button-download-datasheet">
+                  <FileText className="h-3.5 w-3.5 mr-2" />
+                  Datasheet - {product.sku}.pdf
+                  <Download className="h-3 w-3 ml-auto" />
+                </Button>
+                <Button variant="outline" size="sm" className="w-full justify-start text-xs" data-testid="button-download-cad">
+                  <Box className="h-3.5 w-3.5 mr-2" />
+                  3D CAD Model - STEP
+                  <Download className="h-3 w-3 ml-auto" />
+                </Button>
+                <Button variant="outline" size="sm" className="w-full justify-start text-xs" data-testid="button-download-drawing">
+                  <FileText className="h-3.5 w-3.5 mr-2" />
+                  Product Drawing
+                  <Download className="h-3 w-3 ml-auto" />
+                </Button>
+              </div>
+            </Card>
+          )}
         </div>
 
         <div className="lg:col-span-3 space-y-5">
@@ -121,29 +211,29 @@ export default function ProductDetail() {
           <Card className="p-4">
             <div className="flex items-center justify-between gap-4 mb-4">
               <div>
-                <p className="text-xs text-muted-foreground mb-1">Unit Price</p>
+                <p className="text-xs text-muted-foreground mb-1">{t("product.unitPrice")}</p>
                 <p className="text-2xl font-bold text-[#f28d00]" data-testid="text-unit-price">
-                  ${currentPrice.toFixed(4)}
+                  {formatPrice(currentPrice)}
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  Extended: ${(currentPrice * quantity).toFixed(2)}
+                  Extended: {formatPrice(currentPrice * quantity)}
                 </p>
               </div>
               <div className="text-right">
-                {product.inStock ? (
-                  <div className="flex items-center gap-1.5 text-[#6a8a2a] dark:text-[#8fb838]">
-                    <CheckCircle className="h-4 w-4" />
-                    <span className="text-sm font-medium">In Stock</span>
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-1.5 text-muted-foreground">
-                    <Clock className="h-4 w-4" />
-                    <span className="text-sm">Lead Time: {product.leadTimeDays} days</span>
-                  </div>
-                )}
-                {product.stockQty && (
+                <div className={`flex items-center gap-1.5 ${availability.color}`}>
+                  <AvailIcon className="h-4 w-4" />
+                  <span className="text-sm font-medium" data-testid="text-availability">
+                    {t(`product.${availability.label}`)}
+                  </span>
+                </div>
+                {product.stockQty !== null && product.stockQty !== undefined && (
                   <p className="text-xs text-muted-foreground mt-1">
                     {product.stockQty.toLocaleString()} available
+                  </p>
+                )}
+                {!product.inStock && product.leadTimeDays && (
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Lead Time: {product.leadTimeDays} days
                   </p>
                 )}
               </div>
@@ -188,11 +278,11 @@ export default function ProductDetail() {
                 data-testid="button-add-to-cart"
               >
                 <ShoppingCart className="h-4 w-4 mr-2" />
-                {addToCartMutation.isPending ? "Adding..." : "Add to Cart"}
+                {addToCartMutation.isPending ? "Adding..." : t("product.addToCart")}
               </Button>
               {!user && (
                 <Link href="/login">
-                  <Button variant="outline" size="sm">Sign in to order</Button>
+                  <Button variant="outline" size="sm">{t("auth.signIn")} to order</Button>
                 </Link>
               )}
             </div>
@@ -219,12 +309,12 @@ export default function ProductDetail() {
             )}
           </Card>
 
-          {product.priceBreaks && product.priceBreaks.length > 0 && (
+          {product.priceBreaks && product.priceBreaks.length > 0 && (user?.role !== "engineer") && (
             <Card className="p-4">
-              <h3 className="text-sm font-heading font-semibold mb-3">Volume Pricing</h3>
+              <h3 className="text-sm font-heading font-semibold mb-3">{t("product.volume")}</h3>
               <div className="grid grid-cols-5 gap-2 text-xs">
                 <div className="font-medium text-muted-foreground">Qty</div>
-                <div className="font-medium text-muted-foreground">Unit Price</div>
+                <div className="font-medium text-muted-foreground">{t("product.unitPrice")}</div>
                 <div className="font-medium text-muted-foreground">Savings</div>
                 <div className="font-medium text-muted-foreground col-span-2"></div>
                 {product.priceBreaks.map((pb) => {
@@ -235,7 +325,7 @@ export default function ProductDetail() {
                   return (
                     <div key={pb.id} className={`contents ${isActive ? "font-medium" : "text-muted-foreground"}`}>
                       <div>{pb.minQty}+</div>
-                      <div>${price.toFixed(4)}</div>
+                      <div>{formatPrice(price)}</div>
                       <div>{savings !== "0" ? `-${savings}%` : "List"}</div>
                       <div className="col-span-2">
                         {isActive && <Badge variant="secondary" className="text-[9px]">Current</Badge>}
@@ -246,15 +336,29 @@ export default function ProductDetail() {
               </div>
             </Card>
           )}
+
+          <Card className="p-4">
+            <h3 className="text-sm font-heading font-semibold mb-3">{t("product.distributors")}</h3>
+            <div className="flex items-center gap-2 flex-wrap">
+              {distributorLinks.map((d) => (
+                <a key={d.name} href={d.url} target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" size="sm" className="text-xs" data-testid={`link-distributor-${d.name.toLowerCase()}`}>
+                    {d.name}
+                    <ExternalLink className="h-3 w-3 ml-1" />
+                  </Button>
+                </a>
+              ))}
+            </div>
+          </Card>
         </div>
       </div>
 
       <div className="mt-8">
-        <Tabs defaultValue="specs">
+        <Tabs defaultValue={isEngineer ? "specs" : "details"}>
           <TabsList>
-            <TabsTrigger value="specs" data-testid="tab-specs">Specifications</TabsTrigger>
-            <TabsTrigger value="details" data-testid="tab-details">Product Details</TabsTrigger>
-            <TabsTrigger value="docs" data-testid="tab-docs">Documentation</TabsTrigger>
+            <TabsTrigger value="specs" data-testid="tab-specs">{t("product.specs")}</TabsTrigger>
+            <TabsTrigger value="details" data-testid="tab-details">{t("product.details")}</TabsTrigger>
+            <TabsTrigger value="docs" data-testid="tab-docs">{t("product.docs")}</TabsTrigger>
           </TabsList>
           <TabsContent value="specs">
             {specs && Object.keys(specs).length > 0 ? (
@@ -296,12 +400,45 @@ export default function ProductDetail() {
                   <p className="font-medium text-foreground">Datasheet - {product.sku}</p>
                   <p className="text-xs">PDF technical documentation</p>
                 </div>
-                <Button variant="outline" size="sm" className="ml-auto">Download</Button>
+                <Button variant="outline" size="sm" className="ml-auto" data-testid="button-download-doc">Download</Button>
               </div>
             </Card>
           </TabsContent>
         </Tabs>
       </div>
+
+      {relatedItems.length > 0 && (
+        <div className="mt-10">
+          <h2 className="text-lg font-heading font-semibold mb-4" data-testid="text-related-title">{t("product.related")}</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {relatedItems.map((rel) => (
+              <RelatedProductCard key={rel.id} product={rel.relatedProduct!} formatPrice={formatPrice} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {alternativeItems.length > 0 && (
+        <div className="mt-8">
+          <h2 className="text-lg font-heading font-semibold mb-4" data-testid="text-alternatives-title">{t("product.alternatives")}</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {alternativeItems.map((rel) => (
+              <RelatedProductCard key={rel.id} product={rel.relatedProduct!} formatPrice={formatPrice} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {accessoryItems.length > 0 && (
+        <div className="mt-8">
+          <h2 className="text-lg font-heading font-semibold mb-4" data-testid="text-accessories-title">{t("product.accessories")}</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {accessoryItems.map((rel) => (
+              <RelatedProductCard key={rel.id} product={rel.relatedProduct!} formatPrice={formatPrice} />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

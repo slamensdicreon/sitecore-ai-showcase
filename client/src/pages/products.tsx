@@ -1,5 +1,6 @@
 import { Link, useLocation, useSearch } from "wouter";
 import { useQuery } from "@tanstack/react-query";
+import { useI18n } from "@/lib/i18n";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -10,6 +11,7 @@ import { useState, useMemo } from "react";
 import type { Category, Product } from "@shared/schema";
 
 export default function Products() {
+  const { t, formatPrice } = useI18n();
   const searchString = useSearch();
   const params = new URLSearchParams(searchString);
   const categorySlug = params.get("categorySlug") || "";
@@ -186,11 +188,11 @@ export default function Products() {
                       <h3 className="text-sm font-medium mb-2 line-clamp-2 leading-snug">{product.name}</h3>
                       <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{product.description}</p>
                       <div className="flex items-center justify-between gap-2">
-                        <span className="font-semibold text-sm">${parseFloat(product.basePrice).toFixed(2)}</span>
+                        <span className="font-semibold text-sm">{formatPrice(parseFloat(product.basePrice))}</span>
                         <div className="flex items-center gap-1">
                           {product.industry && <Badge variant="secondary" className="text-[10px]">{product.industry}</Badge>}
                           {product.inStock ? (
-                            <Badge variant="secondary" className="text-[10px] bg-[#8fb838]/10 text-[#6a8a2a] dark:text-[#8fb838]">In Stock</Badge>
+                            <Badge variant="secondary" className="text-[10px] bg-[#8fb838]/10 text-[#6a8a2a] dark:text-[#8fb838]">{t("product.inStock")}</Badge>
                           ) : (
                             <Badge variant="secondary" className="text-[10px]">Lead Time</Badge>
                           )}
@@ -220,10 +222,10 @@ export default function Products() {
                         <p className="text-xs text-muted-foreground line-clamp-1">{product.description}</p>
                       </div>
                       <div className="text-right flex-shrink-0">
-                        <div className="font-semibold text-sm">${parseFloat(product.basePrice).toFixed(2)}</div>
+                        <div className="font-semibold text-sm">{formatPrice(parseFloat(product.basePrice))}</div>
                         <div className="flex items-center gap-1 mt-1 justify-end">
                           {product.inStock ? (
-                            <Badge variant="secondary" className="text-[10px] bg-[#8fb838]/10 text-[#6a8a2a] dark:text-[#8fb838]">In Stock</Badge>
+                            <Badge variant="secondary" className="text-[10px] bg-[#8fb838]/10 text-[#6a8a2a] dark:text-[#8fb838]">{t("product.inStock")}</Badge>
                           ) : (
                             <Badge variant="secondary" className="text-[10px]">Lead Time</Badge>
                           )}

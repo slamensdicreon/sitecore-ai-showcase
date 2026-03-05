@@ -12,6 +12,8 @@ export const users = pgTable("users", {
   lastName: text("last_name"),
   email: text("email"),
   role: text("role").default("buyer"),
+  locale: text("locale").default("en"),
+  preferredCurrency: text("preferred_currency").default("USD"),
 });
 
 export const categories = pgTable("categories", {
@@ -59,6 +61,19 @@ export const orders = pgTable("orders", {
   shippingAddress: text("shipping_address"),
   poNumber: text("po_number"),
   notes: text("notes"),
+  shippingMethod: text("shipping_method"),
+  shippingCost: decimal("shipping_cost", { precision: 10, scale: 2 }).default("0"),
+  taxAmount: decimal("tax_amount", { precision: 10, scale: 2 }).default("0"),
+  discountCode: text("discount_code"),
+  discountAmount: decimal("discount_amount", { precision: 10, scale: 2 }).default("0"),
+  paymentMethod: text("payment_method"),
+  paymentStatus: text("payment_status").default("pending"),
+  trackingNumber: text("tracking_number"),
+  streetAddress: text("street_address"),
+  city: text("city"),
+  stateProvince: text("state_province"),
+  postalCode: text("postal_code"),
+  country: text("country"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
@@ -93,6 +108,21 @@ export const partsListItems = pgTable("parts_list_items", {
   quantity: integer("quantity").default(1),
 });
 
+export const productRelationships = pgTable("product_relationships", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  productId: varchar("product_id").references(() => products.id).notNull(),
+  relatedProductId: varchar("related_product_id").references(() => products.id).notNull(),
+  relationshipType: text("relationship_type").notNull(),
+});
+
+export const orderStatusHistory = pgTable("order_status_history", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  orderId: varchar("order_id").references(() => orders.id).notNull(),
+  status: text("status").notNull(),
+  note: text("note"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const categoriesRelations = relations(categories, ({ one, many }) => ({
   parent: one(categories, { fields: [categories.parentId], references: [categories.id], relationName: "categoryParent" }),
   children: many(categories, { relationName: "categoryParent" }),
@@ -102,6 +132,7 @@ export const categoriesRelations = relations(categories, ({ one, many }) => ({
 export const productsRelations = relations(products, ({ one, many }) => ({
   category: one(categories, { fields: [products.categoryId], references: [categories.id] }),
   priceBreaks: many(priceBreaks),
+  relationships: many(productRelationships, { relationName: "productRelationships" }),
 }));
 
 export const priceBreaksRelations = relations(priceBreaks, ({ one }) => ({
@@ -111,6 +142,16 @@ export const priceBreaksRelations = relations(priceBreaks, ({ one }) => ({
 export const ordersRelations = relations(orders, ({ one, many }) => ({
   user: one(users, { fields: [orders.userId], references: [users.id] }),
   items: many(orderItems),
+  statusHistory: many(orderStatusHistory),
+}));
+
+export const productRelationshipsRelations = relations(productRelationships, ({ one }) => ({
+  product: one(products, { fields: [productRelationships.productId], references: [products.id], relationName: "productRelationships" }),
+  relatedProduct: one(products, { fields: [productRelationships.relatedProductId], references: [products.id], relationName: "relatedProducts" }),
+}));
+
+export const orderStatusHistoryRelations = relations(orderStatusHistory, ({ one }) => ({
+  order: one(orders, { fields: [orderStatusHistory.orderId], references: [orders.id] }),
 }));
 
 export const orderItemsRelations = relations(orderItems, ({ one }) => ({
@@ -150,6 +191,8 @@ export const insertOrderItemSchema = createInsertSchema(orderItems).omit({ id: t
 export const insertCartItemSchema = createInsertSchema(cartItems).omit({ id: true });
 export const insertPartsListSchema = createInsertSchema(partsLists).omit({ id: true, createdAt: true });
 export const insertPartsListItemSchema = createInsertSchema(partsListItems).omit({ id: true });
+export const insertProductRelationshipSchema = createInsertSchema(productRelationships).omit({ id: true });
+export const insertOrderStatusHistorySchema = createInsertSchema(orderStatusHistory).omit({ id: true, createdAt: true });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
@@ -169,3 +212,7 @@ export type PartsList = typeof partsLists.$inferSelect;
 export type InsertPartsList = z.infer<typeof insertPartsListSchema>;
 export type PartsListItem = typeof partsListItems.$inferSelect;
 export type InsertPartsListItem = z.infer<typeof insertPartsListItemSchema>;
+export type ProductRelationship = typeof productRelationships.$inferSelect;
+export type InsertProductRelationship = z.infer<typeof insertProductRelationshipSchema>;
+export type OrderStatusHistoryEntry = typeof orderStatusHistory.$inferSelect;
+export type InsertOrderStatusHistory = z.infer<typeof insertOrderStatusHistorySchema>;
