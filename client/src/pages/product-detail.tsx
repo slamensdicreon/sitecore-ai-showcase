@@ -94,6 +94,10 @@ export default function ProductDetail() {
       queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
       toast({ title: t("product.addToCart"), description: `${quantity}x ${product!.name}` });
     },
+    onError: (err: Error) => {
+      const msg = err.message.includes("401") ? "Please sign in to add items to your cart" : err.message;
+      toast({ title: "Unable to add to cart", description: msg, variant: "destructive" });
+    },
   });
 
   const addToListMutation = useMutation({

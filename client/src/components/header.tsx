@@ -62,8 +62,9 @@ export function Header() {
       toast({ title: t("product.addToCart"), description: `1x ${product.name} (${product.sku})` });
       setQuickAddSku("");
     },
-    onError: () => {
-      toast({ title: "Part number not found", description: "Please check the SKU and try again", variant: "destructive" });
+    onError: (err: Error) => {
+      const msg = err.message.includes("401") ? "Please sign in to add items to your cart" : "Please check the SKU and try again";
+      toast({ title: err.message.includes("401") ? "Not signed in" : "Part number not found", description: msg, variant: "destructive" });
     },
   });
 
