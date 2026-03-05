@@ -772,5 +772,46 @@ export async function registerRoutes(
     }
   });
 
+  app.get("/api/feature-flags", async (_req, res) => {
+    try {
+      const flags = await storage.getFeatureFlags();
+      const map: Record<string, boolean> = {};
+      for (const f of flags) map[f.key] = f.enabled;
+      res.json(map);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.get("/api/admin/feature-flags", async (_req, res) => {
+    try {
+      const flags = await storage.getFeatureFlags();
+      res.json(flags);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.patch("/api/admin/feature-flags/:key", async (req, res) => {
+    try {
+      const { key } = req.params;
+      const { enabled } = req.body;
+      if (typeof enabled !== "boolean") {
+        return res.status(400).json({ message: "enabled must be a boolean" });
+      }
+      const updated = await storage.setFeatureFlag(key, enabled);
+      if (!updated) return res.status(404).json({ message: "Feature flag not found" });
+      await storage.addAuditLog({
+        action: `Feature Flag ${enabled ? "Enabled" : "Disabled"}`,
+        details: `${key} set to ${enabled}`,
+        status: "success",
+        category: "system",
+      });
+      res.json(updated);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
   return httpServer;
 }

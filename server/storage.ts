@@ -11,8 +11,9 @@ import {
   type ProductRelationship, type InsertProductRelationship,
   type OrderStatusHistoryEntry, type InsertOrderStatusHistory,
   type AdminAuditLogEntry, type InsertAdminAuditLog,
+  type FeatureFlag,
   users, categories, products, priceBreaks, orders, orderItems, cartItems, partsLists, partsListItems,
-  productRelationships, orderStatusHistory, adminAuditLog,
+  productRelationships, orderStatusHistory, adminAuditLog, featureFlags,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, ilike, and, sql, desc, asc } from "drizzle-orm";
@@ -80,6 +81,10 @@ export interface IStorage {
 
   getAuditLog(filters?: { category?: string; limit?: number; offset?: number }): Promise<{ entries: AdminAuditLogEntry[]; total: number }>;
   addAuditLog(entry: InsertAdminAuditLog): Promise<AdminAuditLogEntry>;
+
+  getFeatureFlags(): Promise<FeatureFlag[]>;
+  getFeatureFlag(key: string): Promise<FeatureFlag | undefined>;
+  setFeatureFlag(key: string, enabled: boolean): Promise<FeatureFlag | undefined>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -434,6 +439,23 @@ export class DatabaseStorage implements IStorage {
   async addAuditLog(entry: InsertAdminAuditLog): Promise<AdminAuditLogEntry> {
     const [created] = await db.insert(adminAuditLog).values(entry).returning();
     return created;
+  }
+
+  async getFeatureFlags(): Promise<FeatureFlag[]> {
+    return db.select().from(featureFlags).orderBy(featureFlags.key);
+  }
+
+  async getFeatureFlag(key: string): Promise<FeatureFlag | undefined> {
+    const [flag] = await db.select().from(featureFlags).where(eq(featureFlags.key, key));
+    return flag || undefined;
+  }
+
+  async setFeatureFlag(key: string, enabled: boolean): Promise<FeatureFlag | undefined> {
+    const [updated] = await db.update(featureFlags)
+      .set({ enabled, updatedAt: new Date() })
+      .where(eq(featureFlags.key, key))
+      .returning();
+    return updated || undefined;
   }
 }
 

@@ -8,10 +8,10 @@ A comprehensive B2B e-commerce demo inspired by TE Connectivity (te.com), built 
 - **Backend**: Express.js REST API with session-based authentication (trust proxy enabled, explicit session save on login/register)
 - **Database**: PostgreSQL with Drizzle ORM
 - **Admin**: Standalone React app in `admin/` folder, served at `/oc-admin`
-- **Design**: TE Connectivity brand — TE Orange (#f28d00), Dark Teal (#2e4957), Turquoise (#167a87), Charcoal (#424241), Eco Green (#8fb838)
+- **Admin Design**: Sitecore Blok Design System — Primary #5548D9 (purple-blue), Ring #6987f9, Inter font, rounded-4xl pill buttons, collapsible sidebar nav, semantic status colors (success green, warning amber, destructive red)
 
 ## Key Files
-- `shared/schema.ts` - Database models: users, categories, products, price_breaks, orders, order_items, cart_items, parts_lists, parts_list_items, product_relationships, order_status_history
+- `shared/schema.ts` - Database models: users, categories, products, price_breaks, orders, order_items, cart_items, parts_lists, parts_list_items, product_relationships, order_status_history, feature_flags, audit_log
 - `server/routes.ts` - REST API endpoints for auth, products, cart, orders, parts lists, OrderCloud admin, AI chat
 - `server/storage.ts` - DatabaseStorage implementing IStorage interface with related products, SKU lookup, discount validation, order cancellation, status history
 - `server/seed.ts` - Seed data with 14 electronic components, 6 categories, 28 product relationships
@@ -34,7 +34,9 @@ A comprehensive B2B e-commerce demo inspired by TE Connectivity (te.com), built 
 ## Admin App (`admin/`)
 Served at `/oc-admin` when published. Standalone dev: `cd admin && npm run dev`.
 
-### Admin Tabs
+### Admin Sidebar Navigation (Blok Design System)
+Collapsible left sidebar (w-60 expanded / w-16 collapsed), 10 nav items with active state, OC connection indicator at bottom.
+
 - **Dashboard**: KPI cards (products, categories, orders, buyers, revenue, avg order value, OC synced count), revenue trend area chart, orders-by-status donut chart, top selling products, low stock alerts, recent orders feed, quick actions (sync, pull, add product, export CSV)
 - **Analytics**: Business analytics with top products by revenue/units bar charts, user role & language pie charts, top buyers table, inventory overview by category
 - **Products**: Full CRUD — searchable table, create/edit modal, delete, stock/status badges, price breaks count, CSV export
@@ -44,7 +46,14 @@ Served at `/oc-admin` when published. Standalone dev: `cd admin && npm run dev`.
 - **OC Sync**: Consolidated OrderCloud management — connection status, products/categories/price schedules tables, sync/pull/delete all actions, sync log
 - **Relationships**: Product relationship mappings (related/alternative/accessory)
 - **Audit Log**: Persistent DB-backed audit log with category filters (system/product/order/category/sync), actor tracking, CSV export
-- **Settings**: Integration health dashboard, AI configuration panel with transparency/governance controls, notification templates, export center for all data types
+- **Settings**: Integration health dashboard, real AI feature flag toggles (persisted to DB), notification templates, export center
+
+### Feature Flags System
+DB table `feature_flags` with 4 AI flags: `ai_chatbot`, `ai_recommendations`, `ai_segmentation`, `ai_related_products` (all default true).
+- Admin toggles in Settings tab call `PATCH /api/admin/feature-flags/:key` to persist changes and write audit log entries
+- Storefront reads `GET /api/feature-flags` (public, returns `{key: boolean}` map) with 30s stale time
+- `client/src/App.tsx` conditionally renders AIChatbot based on `ai_chatbot` flag
+- `client/src/pages/product-detail.tsx` conditionally fetches/shows related products based on `ai_related_products` flag
 
 ## RFP Features Demonstrated
 1. **Enriched PDP**: Specs tabs, volume pricing, distributor links, availability indicators, related products
@@ -98,6 +107,11 @@ Served at `/oc-admin` when published. Standalone dev: `cd admin && npm run dev`.
 - `PUT /api/admin/categories/:id` - Update category
 - `DELETE /api/admin/categories/:id` - Delete category
 - `POST /api/admin/pull-from-oc` - Pull catalog from OrderCloud
+
+### Feature Flags
+- `GET /api/feature-flags` - Public: get all flags as `{key: boolean}` map
+- `GET /api/admin/feature-flags` - Admin: get all flags with metadata
+- `PATCH /api/admin/feature-flags/:key` - Toggle a feature flag (body: `{enabled: boolean}`)
 
 ### OrderCloud Admin
 - `GET /api/admin/ordercloud/status` - Connection test

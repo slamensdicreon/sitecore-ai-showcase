@@ -1,6 +1,6 @@
 import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
-import { QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider, useQuery } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/lib/auth";
@@ -35,21 +35,33 @@ function Router() {
   );
 }
 
+function AppContent() {
+  const { data: featureFlags } = useQuery<Record<string, boolean>>({
+    queryKey: ["/api/feature-flags"],
+    staleTime: 30000,
+  });
+  const chatbotEnabled = featureFlags?.ai_chatbot !== false;
+
+  return (
+    <AuthProvider>
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main>
+          <Router />
+        </main>
+      </div>
+      {chatbotEnabled && <AIChatbot />}
+      <Toaster />
+    </AuthProvider>
+  );
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <I18nProvider>
-          <AuthProvider>
-            <div className="min-h-screen bg-background">
-              <Header />
-              <main>
-                <Router />
-              </main>
-            </div>
-            <AIChatbot />
-            <Toaster />
-          </AuthProvider>
+          <AppContent />
         </I18nProvider>
       </TooltipProvider>
     </QueryClientProvider>

@@ -72,9 +72,15 @@ export default function ProductDetail() {
     }
   }, [routeParams?.id]);
 
+  const { data: featureFlags } = useQuery<Record<string, boolean>>({
+    queryKey: ["/api/feature-flags"],
+    staleTime: 30000,
+  });
+  const relatedEnabled = featureFlags?.ai_related_products !== false;
+
   const { data: relatedProducts } = useQuery<RelatedProductData[]>({
     queryKey: ["/api/products", routeParams?.id, "related"],
-    enabled: !!routeParams?.id,
+    enabled: !!routeParams?.id && relatedEnabled,
   });
 
   const { data: partsLists } = useQuery<PartsList[]>({

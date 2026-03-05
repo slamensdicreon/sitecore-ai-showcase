@@ -231,3 +231,13 @@ export type InsertOrderStatusHistory = z.infer<typeof insertOrderStatusHistorySc
 export const insertAdminAuditLogSchema = createInsertSchema(adminAuditLog).omit({ id: true, createdAt: true });
 export type AdminAuditLogEntry = typeof adminAuditLog.$inferSelect;
 export type InsertAdminAuditLog = z.infer<typeof insertAdminAuditLogSchema>;
+
+export const featureFlags = pgTable("feature_flags", {
+  key: varchar("key").primaryKey(),
+  enabled: boolean("enabled").default(true).notNull(),
+  description: text("description"),
+  category: varchar("category").default("general"),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export type FeatureFlag = typeof featureFlags.$inferSelect;
