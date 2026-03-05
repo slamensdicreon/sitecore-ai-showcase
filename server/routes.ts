@@ -704,5 +704,73 @@ export async function registerRoutes(
     }
   });
 
+  app.get("/api/admin/analytics/revenue", async (_req, res) => {
+    try {
+      const data = await storage.getRevenueOverTime();
+      res.json(data);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.get("/api/admin/analytics/orders-by-status", async (_req, res) => {
+    try {
+      const data = await storage.getOrdersByStatus();
+      res.json(data);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.get("/api/admin/analytics/top-products", async (req, res) => {
+    try {
+      const limit = parseInt(req.query.limit as string) || 10;
+      const data = await storage.getTopProducts(limit);
+      res.json(data);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.get("/api/admin/analytics/low-stock", async (req, res) => {
+    try {
+      const threshold = parseInt(req.query.threshold as string) || 50;
+      const data = await storage.getLowStockProducts(threshold);
+      res.json(data);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.get("/api/admin/analytics/customers", async (_req, res) => {
+    try {
+      const data = await storage.getCustomerAnalytics();
+      res.json(data);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.get("/api/admin/audit-log", async (req, res) => {
+    try {
+      const category = req.query.category as string | undefined;
+      const limit = parseInt(req.query.limit as string) || 50;
+      const offset = parseInt(req.query.offset as string) || 0;
+      const data = await storage.getAuditLog({ category, limit, offset });
+      res.json(data);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.post("/api/admin/audit-log", async (req, res) => {
+    try {
+      const entry = await storage.addAuditLog(req.body);
+      res.json(entry);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
   return httpServer;
 }

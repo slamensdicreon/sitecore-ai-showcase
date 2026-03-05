@@ -10,8 +10,9 @@ import {
   type PartsListItem, type InsertPartsListItem,
   type ProductRelationship, type InsertProductRelationship,
   type OrderStatusHistoryEntry, type InsertOrderStatusHistory,
+  type AdminAuditLogEntry, type InsertAdminAuditLog,
   users, categories, products, priceBreaks, orders, orderItems, cartItems, partsLists, partsListItems,
-  productRelationships, orderStatusHistory,
+  productRelationships, orderStatusHistory, adminAuditLog,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, ilike, and, sql, desc, asc } from "drizzle-orm";
@@ -70,6 +71,15 @@ export interface IStorage {
   updateCategory(id: string, data: Partial<Category>): Promise<Category | undefined>;
   deleteCategory(id: string): Promise<void>;
   getStats(): Promise<{ totalProducts: number; totalCategories: number; totalOrders: number; totalUsers: number; totalRevenue: number }>;
+
+  getRevenueOverTime(): Promise<{ date: string; revenue: number; orderCount: number }[]>;
+  getOrdersByStatus(): Promise<{ status: string; count: number }[]>;
+  getTopProducts(limit?: number): Promise<{ productId: string; name: string; sku: string; totalQty: number; totalRevenue: number }[]>;
+  getLowStockProducts(threshold?: number): Promise<Product[]>;
+  getCustomerAnalytics(): Promise<{ byRole: Record<string, number>; byLocale: Record<string, number>; byCurrency: Record<string, number>; topBuyers: { userId: string; username: string; companyName: string | null; orderCount: number; totalSpent: number }[] }>;
+
+  getAuditLog(filters?: { category?: string; limit?: number; offset?: number }): Promise<{ entries: AdminAuditLogEntry[]; total: number }>;
+  addAuditLog(entry: InsertAdminAuditLog): Promise<AdminAuditLogEntry>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -333,6 +343,97 @@ export class DatabaseStorage implements IStorage {
       totalUsers: userCount.count,
       totalRevenue: parseFloat(revenueResult.total || "0"),
     };
+  }
+
+  async getRevenueOverTime(): Promise<{ date: string; revenue: number; orderCount: number }[]> {
+    const rows = await db.select({
+      date: sql<string>`TO_CHAR(created_at, 'YYYY-MM-DD')`,
+      revenue: sql<string>`COALESCE(SUM(total::numeric), 0)::text`,
+      orderCount: sql<number>`count(*)::int`,
+    }).from(orders).groupBy(sql`TO_CHAR(created_at, 'YYYY-MM-DD')`).orderBy(sql`TO_CHAR(created_at, 'YYYY-MM-DD')`);
+    return rows.map(r => ({ date: r.date, revenue: parseFloat(r.revenue), orderCount: r.orderCount }));
+  }
+
+  async getOrdersByStatus(): Promise<{ status: string; count: number }[]> {
+    return db.select({
+      status: sql<string>`COALESCE(status, 'pending')`,
+      count: sql<number>`count(*)::int`,
+    }).from(orders).groupBy(orders.status);
+  }
+
+  async getTopProducts(limit = 10): Promise<{ productId: string; name: string; sku: string; totalQty: number; totalRevenue: number }[]> {
+    const rows = await db.select({
+      productId: orderItems.productId,
+      totalQty: sql<number>`SUM(${orderItems.quantity})::int`,
+      totalRevenue: sql<string>`COALESCE(SUM(${orderItems.totalPrice}::numeric), 0)::text`,
+    }).from(orderItems).groupBy(orderItems.productId).orderBy(sql`SUM(${orderItems.totalPrice}::numeric) DESC`).limit(limit);
+
+    const enriched = [];
+    for (const row of rows) {
+      const [product] = await db.select().from(products).where(eq(products.id, row.productId));
+      enriched.push({
+        productId: row.productId,
+        name: product?.name || "Unknown",
+        sku: product?.sku || "N/A",
+        totalQty: row.totalQty,
+        totalRevenue: parseFloat(row.totalRevenue),
+      });
+    }
+    return enriched;
+  }
+
+  async getLowStockProducts(threshold = 50): Promise<Product[]> {
+    return db.select().from(products).where(
+      and(eq(products.active, true), sql`${products.stockQty} < ${threshold}`)
+    ).orderBy(asc(products.stockQty));
+  }
+
+  async getCustomerAnalytics(): Promise<{ byRole: Record<string, number>; byLocale: Record<string, number>; byCurrency: Record<string, number>; topBuyers: { userId: string; username: string; companyName: string | null; orderCount: number; totalSpent: number }[] }> {
+    const allUsers = await db.select().from(users);
+    const byRole: Record<string, number> = {};
+    const byLocale: Record<string, number> = {};
+    const byCurrency: Record<string, number> = {};
+    for (const u of allUsers) {
+      byRole[u.role || "buyer"] = (byRole[u.role || "buyer"] || 0) + 1;
+      byLocale[u.locale || "en"] = (byLocale[u.locale || "en"] || 0) + 1;
+      byCurrency[u.preferredCurrency || "USD"] = (byCurrency[u.preferredCurrency || "USD"] || 0) + 1;
+    }
+
+    const topBuyersRows = await db.select({
+      userId: orders.userId,
+      orderCount: sql<number>`count(*)::int`,
+      totalSpent: sql<string>`COALESCE(SUM(total::numeric), 0)::text`,
+    }).from(orders).groupBy(orders.userId).orderBy(sql`SUM(total::numeric) DESC`).limit(10);
+
+    const topBuyers = [];
+    for (const row of topBuyersRows) {
+      const [user] = await db.select().from(users).where(eq(users.id, row.userId));
+      topBuyers.push({
+        userId: row.userId,
+        username: user?.username || "Unknown",
+        companyName: user?.companyName || null,
+        orderCount: row.orderCount,
+        totalSpent: parseFloat(row.totalSpent),
+      });
+    }
+    return { byRole, byLocale, byCurrency, topBuyers };
+  }
+
+  async getAuditLog(filters?: { category?: string; limit?: number; offset?: number }): Promise<{ entries: AdminAuditLogEntry[]; total: number }> {
+    const limit = filters?.limit || 50;
+    const offset = filters?.offset || 0;
+    const conditions = [];
+    if (filters?.category) conditions.push(eq(adminAuditLog.category, filters.category));
+    const where = conditions.length > 0 ? and(...conditions) : undefined;
+
+    const [countResult] = await db.select({ count: sql<number>`count(*)::int` }).from(adminAuditLog).where(where);
+    const entries = await db.select().from(adminAuditLog).where(where).orderBy(desc(adminAuditLog.createdAt)).limit(limit).offset(offset);
+    return { entries, total: countResult.count };
+  }
+
+  async addAuditLog(entry: InsertAdminAuditLog): Promise<AdminAuditLogEntry> {
+    const [created] = await db.insert(adminAuditLog).values(entry).returning();
+    return created;
   }
 }
 

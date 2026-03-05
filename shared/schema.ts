@@ -123,6 +123,17 @@ export const orderStatusHistory = pgTable("order_status_history", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const adminAuditLog = pgTable("admin_audit_log", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  action: text("action").notNull(),
+  details: text("details"),
+  actor: text("actor").default("admin"),
+  category: text("category").default("system"),
+  status: text("status").default("info"),
+  metadata: jsonb("metadata").$type<Record<string, any>>(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const categoriesRelations = relations(categories, ({ one, many }) => ({
   parent: one(categories, { fields: [categories.parentId], references: [categories.id], relationName: "categoryParent" }),
   children: many(categories, { relationName: "categoryParent" }),
@@ -216,3 +227,7 @@ export type ProductRelationship = typeof productRelationships.$inferSelect;
 export type InsertProductRelationship = z.infer<typeof insertProductRelationshipSchema>;
 export type OrderStatusHistoryEntry = typeof orderStatusHistory.$inferSelect;
 export type InsertOrderStatusHistory = z.infer<typeof insertOrderStatusHistorySchema>;
+
+export const insertAdminAuditLogSchema = createInsertSchema(adminAuditLog).omit({ id: true, createdAt: true });
+export type AdminAuditLogEntry = typeof adminAuditLog.$inferSelect;
+export type InsertAdminAuditLog = z.infer<typeof insertAdminAuditLogSchema>;

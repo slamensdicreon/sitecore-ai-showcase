@@ -35,17 +35,16 @@ A comprehensive B2B e-commerce demo inspired by TE Connectivity (te.com), built 
 Served at `/oc-admin` when published. Standalone dev: `cd admin && npm run dev`.
 
 ### Admin Tabs
-- **Dashboard**: Stats cards (products, categories, orders, users, revenue), recent orders, quick action buttons (Sync to OC, Pull from OC, Add Product, Bulk Sync)
-- **Products**: Full local products CRUD — searchable table, create/edit modal, delete with confirmation, stock/status badges
-- **Categories**: Local category CRUD — create/edit/delete with slug auto-generation
-- **Orders**: All orders across all users — inline status update dropdown, order detail modal with items/shipping/payment/tracking
-- **Buyers**: All registered users with company, role, locale, currency
-- **OC Products**: OrderCloud synced products — sync, delete individual, bulk delete with confirmation
-- **OC Categories**: OrderCloud categories view
-- **Pricing**: OrderCloud price schedules with volume tiers
+- **Dashboard**: KPI cards (products, categories, orders, buyers, revenue, avg order value, OC synced count), revenue trend area chart, orders-by-status donut chart, top selling products, low stock alerts, recent orders feed, quick actions (sync, pull, add product, export CSV)
+- **Analytics**: Business analytics with top products by revenue/units bar charts, user role & language pie charts, top buyers table, inventory overview by category
+- **Products**: Full CRUD — searchable table, create/edit modal, delete, stock/status badges, price breaks count, CSV export
+- **Categories**: CRUD with product counts per category, slug auto-generation
+- **Orders**: All orders with status filter dropdown, inline status update, risk indicators (high/medium/low by value), order detail modal with financial breakdown, CSV export
+- **Buyers**: Users table with order count & total spent per user, locale/currency info, CSV export
+- **OC Sync**: Consolidated OrderCloud management — connection status, products/categories/price schedules tables, sync/pull/delete all actions, sync log
 - **Relationships**: Product relationship mappings (related/alternative/accessory)
-- **Audit Log**: Tracks all admin actions with timestamps and status
-- **Monitoring**: API response times, request counts, error rates, system health status
+- **Audit Log**: Persistent DB-backed audit log with category filters (system/product/order/category/sync), actor tracking, CSV export
+- **Settings**: Integration health dashboard, AI configuration panel with transparency/governance controls, notification templates, export center for all data types
 
 ## RFP Features Demonstrated
 1. **Enriched PDP**: Specs tabs, volume pricing, distributor links, availability indicators, related products
