@@ -348,8 +348,8 @@ function AdminDashboard() {
 
         {/* ─── DASHBOARD ──────────────────────────────────────────── */}
         {activeTab === "dashboard" && (
-          <div className="space-y-6">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+          <div className="space-y-8">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {[
                 { label: "Products", value: stats?.totalProducts ?? "—", icon: Package, color: "text-primary" },
                 { label: "Categories", value: stats?.totalCategories ?? "—", icon: FolderTree, color: "text-violet-500" },
@@ -376,7 +376,7 @@ function AdminDashboard() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div className="rounded-xl border border-border bg-card">
                 <div className="px-6 py-4 border-b border-border"><h3 className="text-sm font-semibold">Revenue Trend</h3></div>
-                <div className="p-5 h-[280px]">
+                <div className="p-6 h-[260px]">
                   {revenueData.length > 0 ? (
                     <ResponsiveContainer width="100%" height="100%">
                       <AreaChart data={revenueData}>
@@ -394,7 +394,7 @@ function AdminDashboard() {
 
               <div className="rounded-xl border border-border bg-card">
                 <div className="px-6 py-4 border-b border-border"><h3 className="text-sm font-semibold">Orders by Status</h3></div>
-                <div className="p-5 h-[280px]">
+                <div className="p-6 h-[260px]">
                   {ordersByStatus.length > 0 ? (
                     <ResponsiveContainer width="100%" height="100%">
                       <PieChart>
@@ -415,9 +415,9 @@ function AdminDashboard() {
                   <h3 className="text-sm font-semibold">Recent Orders</h3>
                   <button onClick={() => setActiveTab("orders")} className="text-xs text-primary hover:underline" data-testid="link-view-all-orders">View All</button>
                 </div>
-                <div className="divide-y divide-border">
+                <div className="divide-y divide-border pb-2">
                   {adminOrders.slice(0, 5).map((order: any) => (
-                    <div key={order.id} className="px-6 py-3 flex items-center justify-between" data-testid={`recent-order-${order.id}`}>
+                    <div key={order.id} className="px-6 py-3.5 flex items-center justify-between" data-testid={`recent-order-${order.id}`}>
                       <div><p className="text-sm font-medium font-mono">{order.id.substring(0, 8).toUpperCase()}</p><p className="text-xs text-muted-foreground">{order.user?.companyName || order.user?.username || "Unknown"}</p></div>
                       <div className="text-right"><p className="text-sm font-semibold">${parseFloat(order.total || "0").toFixed(2)}</p><Badge variant={statusBadgeVariant[order.status] || "secondary"}>{order.status}</Badge></div>
                     </div>
@@ -428,9 +428,9 @@ function AdminDashboard() {
 
               <div className="rounded-xl border border-border bg-card">
                 <div className="px-6 py-4 border-b border-border"><h3 className="text-sm font-semibold">Top Products</h3></div>
-                <div className="divide-y divide-border">
+                <div className="divide-y divide-border pb-2">
                   {topProducts.slice(0, 5).map((p, i) => (
-                    <div key={p.productId} className="px-6 py-3 flex items-center justify-between">
+                    <div key={p.productId} className="px-6 py-3.5 flex items-center justify-between">
                       <div className="flex items-center gap-2.5"><span className="text-xs font-bold text-muted-foreground w-5">#{i + 1}</span><div><p className="text-sm font-medium truncate max-w-[150px]">{p.name}</p><p className="text-[10px] text-muted-foreground font-mono">{p.sku}</p></div></div>
                       <div className="text-right"><p className="text-sm font-semibold">${p.totalRevenue.toFixed(2)}</p><p className="text-[10px] text-muted-foreground">{p.totalQty} units</p></div>
                     </div>
@@ -441,9 +441,9 @@ function AdminDashboard() {
 
               <div className="rounded-xl border border-border bg-card">
                 <div className="px-6 py-4 border-b border-border flex items-center gap-2"><AlertTriangle className="h-4 w-4 text-warning" /><h3 className="text-sm font-semibold">Low Stock</h3></div>
-                <div className="divide-y divide-border">
+                <div className="divide-y divide-border pb-2">
                   {lowStockProducts.slice(0, 5).map((p: any) => (
-                    <div key={p.id} className="px-6 py-3 flex items-center justify-between">
+                    <div key={p.id} className="px-6 py-3.5 flex items-center justify-between">
                       <div><p className="text-sm font-medium truncate max-w-[150px]">{p.name}</p><p className="text-[10px] text-muted-foreground font-mono">{p.sku}</p></div>
                       <Badge variant={p.stockQty <= 10 ? "destructive" : "warning"}>{p.stockQty} left</Badge>
                     </div>
@@ -455,7 +455,7 @@ function AdminDashboard() {
 
             <div className="rounded-xl border border-border bg-card">
               <div className="px-6 py-4 border-b border-border"><h3 className="text-sm font-semibold">Quick Actions</h3></div>
-              <div className="p-5 grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
                   { label: "Sync to OC", icon: Upload, action: () => syncMutation.mutate(), pending: syncMutation.isPending, disabled: !isConnected, testId: "button-sync" },
                   { label: "Pull from OC", icon: Download, action: () => pullFromOCMutation.mutate(), pending: pullFromOCMutation.isPending, disabled: !isConnected, testId: "button-pull-oc" },
@@ -477,7 +477,7 @@ function AdminDashboard() {
 
         {/* ─── ANALYTICS ──────────────────────────────────────────── */}
         {activeTab === "analytics" && (
-          <div className="space-y-6">
+          <div className="space-y-8">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div><h2 className="text-lg font-semibold">Business Analytics</h2><p className="text-xs text-muted-foreground mt-0.5">Revenue, product performance, and customer insights</p></div>
               <button onClick={() => { downloadCSV(topProducts, "top-products"); toast({ title: "Exported" }); }} className="inline-flex items-center gap-1.5 rounded-4xl border border-border px-4 py-2 text-xs font-medium hover:bg-accent/60 transition-colors whitespace-nowrap" data-testid="button-export-analytics"><FileDown className="h-3.5 w-3.5" /> Export Data</button>
@@ -486,7 +486,7 @@ function AdminDashboard() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div className="rounded-xl border border-border bg-card">
                 <div className="px-6 py-4 border-b border-border"><h3 className="text-sm font-semibold">Top Products by Revenue</h3></div>
-                <div className="p-5 h-[320px]">
+                <div className="p-6 h-[300px]">
                   {topProducts.length > 0 ? (
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={topProducts.slice(0, 8)} layout="vertical" margin={{ left: 100 }}>
@@ -503,7 +503,7 @@ function AdminDashboard() {
 
               <div className="rounded-xl border border-border bg-card">
                 <div className="px-6 py-4 border-b border-border"><h3 className="text-sm font-semibold">Units Sold</h3></div>
-                <div className="p-5 h-[320px]">
+                <div className="p-6 h-[300px]">
                   {topProducts.length > 0 ? (
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={topProducts.slice(0, 8)} layout="vertical" margin={{ left: 100 }}>
@@ -522,7 +522,7 @@ function AdminDashboard() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div className="rounded-xl border border-border bg-card">
                 <div className="px-6 py-4 border-b border-border"><h3 className="text-sm font-semibold">User Roles</h3></div>
-                <div className="p-4 h-[240px]">
+                <div className="p-6 h-[240px]">
                   {roleDistribution.length > 0 ? (
                     <ResponsiveContainer width="100%" height="100%">
                       <PieChart><Pie data={roleDistribution} cx="50%" cy="50%" innerRadius={40} outerRadius={75} paddingAngle={3} dataKey="value" nameKey="name" label={({ name, value }) => `${name} (${value})`} labelLine={false}>{roleDistribution.map((_, i) => <Cell key={i} fill={BLOK_COLORS[i % BLOK_COLORS.length]} />)}</Pie><Tooltip contentStyle={chartTooltipStyle} /></PieChart>
@@ -533,7 +533,7 @@ function AdminDashboard() {
 
               <div className="rounded-xl border border-border bg-card">
                 <div className="px-6 py-4 border-b border-border"><h3 className="text-sm font-semibold">Language Preferences</h3></div>
-                <div className="p-4 h-[240px]">
+                <div className="p-6 h-[240px]">
                   {localeDistribution.length > 0 ? (
                     <ResponsiveContainer width="100%" height="100%">
                       <PieChart><Pie data={localeDistribution} cx="50%" cy="50%" innerRadius={40} outerRadius={75} paddingAngle={3} dataKey="value" nameKey="name" label={({ name, value }) => `${name} (${value})`} labelLine={false}>{localeDistribution.map((_, i) => <Cell key={i} fill={BLOK_COLORS[(i + 3) % BLOK_COLORS.length]} />)}</Pie><Tooltip contentStyle={chartTooltipStyle} /></PieChart>
@@ -544,9 +544,9 @@ function AdminDashboard() {
 
               <div className="rounded-xl border border-border bg-card">
                 <div className="px-6 py-4 border-b border-border"><h3 className="text-sm font-semibold">Top Buyers</h3></div>
-                <div className="divide-y divide-border">
+                <div className="divide-y divide-border pb-2">
                   {(customerAnalytics?.topBuyers || []).slice(0, 5).map((b: any) => (
-                    <div key={b.userId} className="px-6 py-3 flex items-center justify-between">
+                    <div key={b.userId} className="px-6 py-3.5 flex items-center justify-between">
                       <div><p className="text-sm font-medium">{b.companyName || b.username}</p><p className="text-[10px] text-muted-foreground">{b.orderCount} orders</p></div>
                       <p className="text-sm font-semibold">${b.totalSpent.toFixed(2)}</p>
                     </div>
@@ -762,8 +762,8 @@ function AdminDashboard() {
 
         {/* ─── OC SYNC ──────────────────────────────────────────── */}
         {activeTab === "oc-sync" && (
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="rounded-xl border border-border bg-card p-5">
                 <div className="flex items-center justify-between mb-3"><span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">API Status</span><Cloud className={`h-4 w-4 ${isConnected ? "text-success" : "text-destructive"}`} /></div>
                 <p className="text-lg font-semibold">{isConnected ? "Connected" : "Disconnected"}</p>
@@ -822,7 +822,7 @@ function AdminDashboard() {
             {syncLog.length > 0 && (
               <div className="rounded-xl border border-border bg-card">
                 <div className="px-6 py-4 border-b border-border"><h3 className="text-sm font-semibold">Sync Log</h3></div>
-                <div className="p-5"><div className="bg-muted rounded-lg p-4 max-h-48 overflow-y-auto font-mono text-xs space-y-0.5">{syncLog.map((line, i) => (<div key={i} className={line.includes("Error") ? "text-destructive" : "text-foreground"}>{line}</div>))}</div></div>
+                <div className="p-6"><div className="bg-muted rounded-lg p-4 max-h-48 overflow-y-auto font-mono text-xs space-y-0.5">{syncLog.map((line, i) => (<div key={i} className={line.includes("Error") ? "text-destructive" : "text-foreground"}>{line}</div>))}</div></div>
               </div>
             )}
           </div>
@@ -876,10 +876,10 @@ function AdminDashboard() {
 
         {/* ─── SETTINGS ──────────────────────────────────────────── */}
         {activeTab === "settings" && (
-          <div className="space-y-6">
+          <div className="space-y-8">
             <div className="rounded-xl border border-border bg-card">
               <div className="px-6 py-5 border-b border-border"><h2 className="text-lg font-semibold">Integration Health</h2><p className="text-xs text-muted-foreground mt-0.5">Status of connected services</p></div>
-              <div className="p-5 space-y-2">
+              <div className="p-6 space-y-3">
                 {[
                   { icon: Cloud, label: "Sitecore OrderCloud API", status: isConnected ? "Connected" : "Disconnected", ok: isConnected, detail: statusQuery.data?.message || "" },
                   { icon: Database, label: "PostgreSQL Database", status: "Connected", ok: true, detail: "Local persistence layer active" },
@@ -899,7 +899,7 @@ function AdminDashboard() {
 
             <div className="rounded-xl border border-border bg-card">
               <div className="px-6 py-5 border-b border-border flex items-center gap-2"><Bot className="h-4 w-4 text-primary" /><div><h2 className="text-lg font-semibold">AI Configuration</h2><p className="text-xs text-muted-foreground mt-0.5">Toggle AI features on and off across the storefront</p></div></div>
-              <div className="p-5 space-y-2">
+              <div className="p-6 space-y-3">
                 {featureFlags.map((flag: any) => (
                   <div key={flag.key} className="flex items-center justify-between p-4 rounded-xl border border-border hover:bg-accent/30 transition-colors" data-testid={`feature-flag-${flag.key}`}>
                     <div className="flex-1 min-w-0 mr-4">
@@ -930,7 +930,7 @@ function AdminDashboard() {
 
             <div className="rounded-xl border border-border bg-card">
               <div className="px-6 py-5 border-b border-border flex items-center gap-2"><Bell className="h-4 w-4 text-primary" /><h2 className="text-lg font-semibold">Notification Templates</h2></div>
-              <div className="p-5 space-y-2">
+              <div className="p-6 space-y-3">
                 {[
                   { event: "Order Received", channel: "Email", template: "order_confirmation", active: true },
                   { event: "Order Shipped", channel: "Email", template: "shipment_notification", active: true },
@@ -949,7 +949,7 @@ function AdminDashboard() {
 
             <div className="rounded-xl border border-border bg-card">
               <div className="px-6 py-5 border-b border-border"><h2 className="text-lg font-semibold">Export Center</h2><p className="text-xs text-muted-foreground mt-0.5">Download data as CSV files</p></div>
-              <div className="p-5 grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
                   { label: "Products", action: () => downloadCSV(localProducts.map((p: any) => ({ sku: p.sku, name: p.name, price: p.basePrice, stock: p.stockQty, active: p.active })), "products") },
                   { label: "Orders", action: () => downloadCSV(adminOrders.map((o: any) => ({ id: o.id, status: o.status, total: o.total, customer: o.user?.username, company: o.user?.companyName, date: o.createdAt })), "orders") },
