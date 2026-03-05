@@ -15,6 +15,7 @@ export const users = pgTable("users", {
   locale: text("locale").default("en"),
   preferredCurrency: text("preferred_currency").default("USD"),
   ocBuyerId: text("oc_buyer_id"),
+  authToken: text("auth_token"),
 });
 
 export const categories = pgTable("categories", {

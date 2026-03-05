@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import type { ReactNode } from "react";
-import { apiRequest, queryClient } from "./queryClient";
+import { apiRequest, queryClient, setAuthToken, getAuthToken } from "./queryClient";
 
 type AuthUser = {
   id: string;
@@ -30,7 +30,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/auth/me", { credentials: "include" })
+    const headers: Record<string, string> = {};
+    const token = getAuthToken();
+    if (token) {
+      headers["Authorization"] = `Bearer ${token}`;
+    }
+    fetch("/api/auth/me", { credentials: "include", headers })
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => setUser(data))
       .catch(() => setUser(null))
@@ -40,19 +45,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = useCallback(async (username: string, password: string) => {
     const res = await apiRequest("POST", "/api/auth/login", { username, password });
     const data = await res.json();
+    const { token, ...userData } = data;
+    if (token) setAuthToken(token);
     queryClient.clear();
-    setUser(data);
+    setUser(userData);
   }, []);
 
   const register = useCallback(async (data: { username: string; password: string; companyName: string; firstName: string; lastName: string; email: string }) => {
     const res = await apiRequest("POST", "/api/auth/register", data);
-    const userData = await res.json();
+    const responseData = await res.json();
+    const { token, ...userData } = responseData;
+    if (token) setAuthToken(token);
     queryClient.clear();
     setUser(userData);
   }, []);
 
   const logout = useCallback(async () => {
     await apiRequest("POST", "/api/auth/logout");
+    setAuthToken(null);
     queryClient.clear();
     setUser(null);
   }, []);

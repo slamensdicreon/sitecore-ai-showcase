@@ -6,8 +6,13 @@ import session from "express-session";
 import pgSession from "connect-pg-simple";
 import { pool } from "./db";
 import { z } from "zod";
+import crypto from "crypto";
 import { ordercloud } from "./ordercloud";
 import { syncToOrderCloud, pullFromOrderCloud, ensureBuyerOrganization, syncBuyerToOrderCloud, syncOrderToOrderCloud, syncAllBuyersToOrderCloud, syncAllOrdersToOrderCloud } from "./ordercloud-sync";
+
+function generateAuthToken(): string {
+  return crypto.randomBytes(32).toString("hex");
+}
 
 export async function registerRoutes(
   httpServer: Server,
@@ -71,10 +76,12 @@ export async function registerRoutes(
     if (!user || user.password !== password) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
+    const token = generateAuthToken();
+    await storage.updateUser(user.id, { authToken: token });
     (req.session as any).userId = user.id;
-    const { password: _, ...safe } = user;
+    const { password: _, authToken: _t, ...safe } = user;
     req.session.save(() => {
-      res.json(safe);
+      res.json({ ...safe, token });
     });
   });
 
@@ -84,9 +91,10 @@ export async function registerRoutes(
     const { username, password, companyName, firstName, lastName, email } = parsed.data;
     const existing = await storage.getUserByUsername(username);
     if (existing) return res.status(400).json({ message: "Username already exists" });
-    const user = await storage.createUser({ username, password, companyName, firstName, lastName, email });
+    const token = generateAuthToken();
+    const user = await storage.createUser({ username, password, companyName, firstName, lastName, email, authToken: token });
     (req.session as any).userId = user.id;
-    const { password: _, ...safe } = user;
+    const { password: _, authToken: _t, ...safe } = user;
 
     syncBuyerToOrderCloud(user).then(result => {
       if (result.success) console.log(`[OC] ${result.message}`);
@@ -94,20 +102,37 @@ export async function registerRoutes(
     }).catch(err => console.warn("[OC] Buyer sync error:", err.message));
 
     req.session.save(() => {
-      res.json(safe);
+      res.json({ ...safe, token });
     });
   });
 
+  async function resolveUser(req: any): Promise<any | null> {
+    const sessionUserId = req.session?.userId;
+    if (sessionUserId) {
+      const user = await storage.getUser(sessionUserId);
+      if (user) return user;
+    }
+    const authHeader = req.headers.authorization;
+    if (authHeader?.startsWith("Bearer ")) {
+      const token = authHeader.slice(7);
+      const user = await storage.getUserByAuthToken(token);
+      if (user) return user;
+    }
+    return null;
+  }
+
   app.get("/api/auth/me", async (req, res) => {
-    const userId = (req.session as any)?.userId;
-    if (!userId) return res.status(401).json({ message: "Not authenticated" });
-    const user = await storage.getUser(userId);
+    const user = await resolveUser(req);
     if (!user) return res.status(401).json({ message: "Not authenticated" });
-    const { password: _, ...safe } = user;
+    const { password: _, authToken: _t, ...safe } = user;
     res.json(safe);
   });
 
-  app.post("/api/auth/logout", (req, res) => {
+  app.post("/api/auth/logout", async (req, res) => {
+    const user = await resolveUser(req);
+    if (user) {
+      await storage.updateUser(user.id, { authToken: null });
+    }
     req.session.destroy(() => {
       res.json({ message: "Logged out" });
     });
@@ -155,10 +180,10 @@ export async function registerRoutes(
     res.json(rels);
   });
 
-  const requireAuth = (req: any, res: any, next: any) => {
-    const userId = req.session?.userId;
-    if (!userId) return res.status(401).json({ message: "Not authenticated" });
-    req.userId = userId;
+  const requireAuth = async (req: any, res: any, next: any) => {
+    const user = await resolveUser(req);
+    if (!user) return res.status(401).json({ message: "Not authenticated" });
+    req.userId = user.id;
     next();
   };
 

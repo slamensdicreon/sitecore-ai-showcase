@@ -5,7 +5,7 @@ A comprehensive B2B e-commerce demo inspired by TE Connectivity (te.com), built 
 
 ## Architecture
 - **Frontend**: React + TypeScript with Wouter routing, TanStack Query, Shadcn UI components, Tailwind CSS
-- **Backend**: Express.js REST API with session-based authentication (trust proxy enabled, explicit session save on login/register)
+- **Backend**: Express.js REST API with token-based authentication (Bearer token in Authorization header, with session cookie fallback)
 - **Database**: PostgreSQL with Drizzle ORM (local cache/session store; OrderCloud is primary system of record)
 - **OrderCloud Integration**: Sitecore OrderCloud is the primary system of record for products, buyers (customer users), and orders. Local PostgreSQL serves as cache and session store.
 - **Admin**: Standalone React app in `admin/` folder, served at `/oc-admin`
@@ -19,14 +19,15 @@ A comprehensive B2B e-commerce demo inspired by TE Connectivity (te.com), built 
 - **Bulk Sync**: Admin can trigger `syncAllBuyersToOrderCloud()` and `syncAllOrdersToOrderCloud()` from OC Sync tab
 
 ## Key Files
-- `shared/schema.ts` - Database models: users (with `ocBuyerId`), categories, products, price_breaks, orders (with `ocOrderId`), order_items, cart_items, parts_lists, parts_list_items, product_relationships, order_status_history, feature_flags, audit_log
+- `shared/schema.ts` - Database models: users (with `ocBuyerId`, `authToken`), categories, products, price_breaks, orders (with `ocOrderId`), order_items, cart_items, parts_lists, parts_list_items, product_relationships, order_status_history, feature_flags, audit_log
 - `server/routes.ts` - REST API endpoints for auth (with OC buyer sync), products, cart, orders (with OC order sync), parts lists, OrderCloud admin, AI chat
 - `server/ordercloud.ts` - OrderCloud API client: products, categories, price schedules, buyers, buyer users, orders, line items
 - `server/ordercloud-sync.ts` - Sync module: catalog sync, buyer sync, order sync, bulk sync operations
 - `server/storage.ts` - DatabaseStorage implementing IStorage interface with related products, SKU lookup, discount validation, order cancellation, status history
 - `server/seed.ts` - Seed data with 14 electronic components, 6 categories, 28 product relationships
 - `client/src/lib/i18n.tsx` - I18n context with EN/DE/ZH translations, USD/EUR/CNY currency conversion
-- `client/src/lib/auth.tsx` - Auth context with persona switching (engineer/purchaser), query cache clearing on login/logout, setUser for direct state updates
+- `client/src/lib/auth.tsx` - Auth context with token-based auth (localStorage `te_auth_token`), persona switching, query cache clearing on login/logout
+- `client/src/lib/queryClient.ts` - API client with auth token management (getAuthToken/setAuthToken), Authorization header injection on all requests
 - `client/src/components/ai-chatbot.tsx` - AI chatbot with product search, order status, and navigation
 - `client/src/components/header.tsx` - Header with language/currency switcher, persona dropdown, quick-add by part number
 
