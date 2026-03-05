@@ -35,7 +35,18 @@ export async function setupVite(server: Server, app: Express) {
     try {
       const tailwindcss = (await import("tailwindcss")).default;
       const autoprefixer = (await import("autoprefixer")).default;
-      const tailwindConfig = path.resolve(adminRoot, "tailwind.config.ts");
+      const jiti = (await import("jiti")).default;
+      const jitiLoader = jiti(adminRoot, { interopDefault: true });
+      const adminTwConfig = jitiLoader(path.resolve(adminRoot, "tailwind.config.ts"));
+      const resolvedConfig = adminTwConfig.default || adminTwConfig;
+
+      const inlineTwConfig = {
+        ...resolvedConfig,
+        content: [
+          path.resolve(adminRoot, "index.html"),
+          path.resolve(adminRoot, "src/**/*.{js,jsx,ts,tsx}"),
+        ],
+      };
 
       adminVite = await createViteServer({
         configFile: false,
@@ -45,7 +56,7 @@ export async function setupVite(server: Server, app: Express) {
         css: {
           postcss: {
             plugins: [
-              tailwindcss({ config: tailwindConfig }),
+              tailwindcss(inlineTwConfig),
               autoprefixer(),
             ],
           },
