@@ -542,6 +542,155 @@ export async function registerRoutes(
     }
   });
 
+  app.get("/api/admin/stats", async (_req, res) => {
+    try {
+      const stats = await storage.getStats();
+      res.json(stats);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.get("/api/admin/orders", async (_req, res) => {
+    try {
+      const allOrders = await storage.getAllOrders();
+      const enriched = [];
+      for (const order of allOrders) {
+        const items = await storage.getOrderItems(order.id);
+        const user = await storage.getUser(order.userId);
+        const safeUser = user ? { id: user.id, username: user.username, companyName: user.companyName, firstName: user.firstName, lastName: user.lastName, email: user.email } : null;
+        enriched.push({ ...order, items, user: safeUser });
+      }
+      res.json(enriched);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.patch("/api/admin/orders/:id/status", async (req, res) => {
+    try {
+      const { status, trackingNumber, note } = req.body;
+      const order = await storage.getOrderById(req.params.id);
+      if (!order) return res.status(404).json({ message: "Order not found" });
+      const updates: any = {};
+      if (status) updates.status = status;
+      if (trackingNumber !== undefined) updates.trackingNumber = trackingNumber;
+      const updated = await storage.updateOrder(order.id, updates);
+      if (status) {
+        await storage.addOrderStatusHistory({
+          orderId: order.id,
+          status,
+          note: note || `Status changed to ${status}`,
+        });
+      }
+      res.json(updated);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.get("/api/admin/users", async (_req, res) => {
+    try {
+      const allUsers = await storage.getAllUsers();
+      res.json(allUsers);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.get("/api/admin/local-products", async (_req, res) => {
+    try {
+      const allProducts = await storage.getAllProductsWithBreaks();
+      res.json(allProducts);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  const localProductSchema = z.object({
+    name: z.string().min(1),
+    sku: z.string().min(1),
+    description: z.string().optional(),
+    categoryId: z.string().optional(),
+    basePrice: z.string(),
+    active: z.boolean().optional(),
+    specs: z.record(z.string()).optional(),
+    industry: z.string().optional(),
+    application: z.string().optional(),
+    minOrderQty: z.number().int().min(1).optional(),
+    leadTimeDays: z.number().int().min(0).optional(),
+    inStock: z.boolean().optional(),
+    stockQty: z.number().int().min(0).optional(),
+    imageUrl: z.string().optional(),
+  });
+
+  app.post("/api/admin/local-products", async (req, res) => {
+    const parsed = localProductSchema.safeParse(req.body);
+    if (!parsed.success) return res.status(400).json({ message: "Invalid input", errors: parsed.error.errors });
+    try {
+      const product = await storage.createProduct(parsed.data as any);
+      res.json(product);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.put("/api/admin/local-products/:id", async (req, res) => {
+    try {
+      const updated = await storage.updateProduct(req.params.id, req.body);
+      if (!updated) return res.status(404).json({ message: "Product not found" });
+      res.json(updated);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.delete("/api/admin/local-products/:id", async (req, res) => {
+    try {
+      await storage.deleteProduct(req.params.id);
+      res.json({ message: "Deleted" });
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.post("/api/admin/categories", async (req, res) => {
+    try {
+      const cat = await storage.createCategory(req.body);
+      res.json(cat);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.put("/api/admin/categories/:id", async (req, res) => {
+    try {
+      const updated = await storage.updateCategory(req.params.id, req.body);
+      if (!updated) return res.status(404).json({ message: "Category not found" });
+      res.json(updated);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.delete("/api/admin/categories/:id", async (req, res) => {
+    try {
+      await storage.deleteCategory(req.params.id);
+      res.json({ message: "Deleted" });
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.post("/api/admin/pull-from-oc", async (_req, res) => {
+    try {
+      const data = await pullFromOrderCloud();
+      res.json({ success: true, ...data });
+    } catch (err: any) {
+      res.status(500).json({ success: false, message: err.message });
+    }
+  });
+
   app.delete("/api/admin/ordercloud/products/:sku", async (req, res) => {
     try {
       const sku = req.params.sku;

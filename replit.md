@@ -34,13 +34,18 @@ A comprehensive B2B e-commerce demo inspired by TE Connectivity (te.com), built 
 ## Admin App (`admin/`)
 Served at `/oc-admin` when published. Standalone dev: `cd admin && npm run dev`.
 
-### Admin Features
-- OrderCloud connection status and catalog sync
-- Products, Categories, Price Schedules tabs
-- **Product Relationships** tab: view related/alternative/accessory mappings
-- **Audit Log** tab: tracks all admin actions with timestamps and status
-- **Monitoring** tab: API response times, request counts, error rates, system health
-- Bulk operations: "Sync All" with progress bar, "Delete All Products" with confirmation
+### Admin Tabs
+- **Dashboard**: Stats cards (products, categories, orders, users, revenue), recent orders, quick action buttons (Sync to OC, Pull from OC, Add Product, Bulk Sync)
+- **Products**: Full local products CRUD — searchable table, create/edit modal, delete with confirmation, stock/status badges
+- **Categories**: Local category CRUD — create/edit/delete with slug auto-generation
+- **Orders**: All orders across all users — inline status update dropdown, order detail modal with items/shipping/payment/tracking
+- **Buyers**: All registered users with company, role, locale, currency
+- **OC Products**: OrderCloud synced products — sync, delete individual, bulk delete with confirmation
+- **OC Categories**: OrderCloud categories view
+- **Pricing**: OrderCloud price schedules with volume tiers
+- **Relationships**: Product relationship mappings (related/alternative/accessory)
+- **Audit Log**: Tracks all admin actions with timestamps and status
+- **Monitoring**: API response times, request counts, error rates, system health status
 
 ## RFP Features Demonstrated
 1. **Enriched PDP**: Specs tabs, volume pricing, distributor links, availability indicators, related products
@@ -80,6 +85,20 @@ Served at `/oc-admin` when published. Standalone dev: `cd admin && npm run dev`.
 
 ### User
 - `PATCH /api/users/preferences` - Update locale, currency, role
+
+### Admin Dashboard API
+- `GET /api/admin/stats` - Dashboard stats (products, categories, orders, users, revenue)
+- `GET /api/admin/orders` - All orders with items and user info
+- `PATCH /api/admin/orders/:id/status` - Update order status + tracking
+- `GET /api/admin/users` - All users (without passwords)
+- `GET /api/admin/local-products` - All products with price breaks
+- `POST /api/admin/local-products` - Create product
+- `PUT /api/admin/local-products/:id` - Update product
+- `DELETE /api/admin/local-products/:id` - Delete product
+- `POST /api/admin/categories` - Create category
+- `PUT /api/admin/categories/:id` - Update category
+- `DELETE /api/admin/categories/:id` - Delete category
+- `POST /api/admin/pull-from-oc` - Pull catalog from OrderCloud
 
 ### OrderCloud Admin
 - `GET /api/admin/ordercloud/status` - Connection test

@@ -61,6 +61,15 @@ export interface IStorage {
 
   getOrderStatusHistory(orderId: string): Promise<OrderStatusHistoryEntry[]>;
   addOrderStatusHistory(entry: InsertOrderStatusHistory): Promise<OrderStatusHistoryEntry>;
+
+  getAllOrders(): Promise<Order[]>;
+  getAllUsers(): Promise<Omit<User, 'password'>[]>;
+  getAllProductsWithBreaks(): Promise<(Product & { priceBreaks: PriceBreak[] })[]>;
+  updateProduct(id: string, data: Partial<Product>): Promise<Product | undefined>;
+  deleteProduct(id: string): Promise<void>;
+  updateCategory(id: string, data: Partial<Category>): Promise<Category | undefined>;
+  deleteCategory(id: string): Promise<void>;
+  getStats(): Promise<{ totalProducts: number; totalCategories: number; totalOrders: number; totalUsers: number; totalRevenue: number }>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -269,6 +278,61 @@ export class DatabaseStorage implements IStorage {
   async addOrderStatusHistory(entry: InsertOrderStatusHistory): Promise<OrderStatusHistoryEntry> {
     const [created] = await db.insert(orderStatusHistory).values(entry).returning();
     return created;
+  }
+
+  async getAllOrders(): Promise<Order[]> {
+    return db.select().from(orders).orderBy(desc(orders.createdAt));
+  }
+
+  async getAllUsers(): Promise<Omit<User, 'password'>[]> {
+    const allUsers = await db.select().from(users).orderBy(asc(users.username));
+    return allUsers.map(({ password: _, ...rest }) => rest);
+  }
+
+  async getAllProductsWithBreaks(): Promise<(Product & { priceBreaks: PriceBreak[] })[]> {
+    const allProducts = await db.select().from(products).orderBy(asc(products.name));
+    const enriched = [];
+    for (const prod of allProducts) {
+      const breaks = await db.select().from(priceBreaks).where(eq(priceBreaks.productId, prod.id)).orderBy(asc(priceBreaks.minQty));
+      enriched.push({ ...prod, priceBreaks: breaks });
+    }
+    return enriched;
+  }
+
+  async updateProduct(id: string, data: Partial<Product>): Promise<Product | undefined> {
+    const [updated] = await db.update(products).set(data).where(eq(products.id, id)).returning();
+    return updated || undefined;
+  }
+
+  async deleteProduct(id: string): Promise<void> {
+    await db.delete(priceBreaks).where(eq(priceBreaks.productId, id));
+    await db.delete(productRelationships).where(eq(productRelationships.productId, id));
+    await db.delete(productRelationships).where(eq(productRelationships.relatedProductId, id));
+    await db.delete(products).where(eq(products.id, id));
+  }
+
+  async updateCategory(id: string, data: Partial<Category>): Promise<Category | undefined> {
+    const [updated] = await db.update(categories).set(data).where(eq(categories.id, id)).returning();
+    return updated || undefined;
+  }
+
+  async deleteCategory(id: string): Promise<void> {
+    await db.delete(categories).where(eq(categories.id, id));
+  }
+
+  async getStats(): Promise<{ totalProducts: number; totalCategories: number; totalOrders: number; totalUsers: number; totalRevenue: number }> {
+    const [prodCount] = await db.select({ count: sql<number>`count(*)::int` }).from(products);
+    const [catCount] = await db.select({ count: sql<number>`count(*)::int` }).from(categories);
+    const [orderCount] = await db.select({ count: sql<number>`count(*)::int` }).from(orders);
+    const [userCount] = await db.select({ count: sql<number>`count(*)::int` }).from(users);
+    const [revenueResult] = await db.select({ total: sql<string>`COALESCE(SUM(total::numeric), 0)::text` }).from(orders);
+    return {
+      totalProducts: prodCount.count,
+      totalCategories: catCount.count,
+      totalOrders: orderCount.count,
+      totalUsers: userCount.count,
+      totalRevenue: parseFloat(revenueResult.total || "0"),
+    };
   }
 }
 

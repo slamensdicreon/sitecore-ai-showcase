@@ -29,6 +29,61 @@ export async function setupVite(server: Server, app: Express) {
     appType: "custom",
   });
 
+  const adminRoot = path.resolve(import.meta.dirname, "..", "admin");
+  let adminVite: any = null;
+  if (fs.existsSync(adminRoot)) {
+    try {
+      adminVite = await createViteServer({
+        configFile: false,
+        root: adminRoot,
+        base: "/oc-admin/",
+        plugins: [(await import("@vitejs/plugin-react")).default()],
+        server: {
+          middlewareMode: true,
+          hmr: { server, path: "/admin-hmr" },
+          allowedHosts: true as any,
+        },
+        appType: "custom",
+      });
+    } catch (e) {
+      console.log("[admin] Could not start admin dev server:", (e as Error).message);
+    }
+  }
+
+  if (adminVite) {
+    app.use("/oc-admin", adminVite.middlewares);
+    app.use("/oc-admin", async (req, res, next) => {
+      try {
+        const adminTemplate = path.resolve(adminRoot, "index.html");
+        let template = await fs.promises.readFile(adminTemplate, "utf-8");
+        template = template.replace(
+          `src="/src/main.tsx"`,
+          `src="/src/main.tsx?v=${nanoid()}"`,
+        );
+        const page = await adminVite.transformIndexHtml(req.originalUrl, template);
+        res.status(200).set({ "Content-Type": "text/html" }).end(page);
+      } catch (e) {
+        adminVite.ssrFixStacktrace(e as Error);
+        next(e);
+      }
+    });
+    app.use("/oc-admin/{*path}", async (req, res, next) => {
+      try {
+        const adminTemplate = path.resolve(adminRoot, "index.html");
+        let template = await fs.promises.readFile(adminTemplate, "utf-8");
+        template = template.replace(
+          `src="/src/main.tsx"`,
+          `src="/src/main.tsx?v=${nanoid()}"`,
+        );
+        const page = await adminVite.transformIndexHtml(req.originalUrl, template);
+        res.status(200).set({ "Content-Type": "text/html" }).end(page);
+      } catch (e) {
+        adminVite.ssrFixStacktrace(e as Error);
+        next(e);
+      }
+    });
+  }
+
   app.use(vite.middlewares);
 
   app.use("/{*path}", async (req, res, next) => {
@@ -42,7 +97,6 @@ export async function setupVite(server: Server, app: Express) {
         "index.html",
       );
 
-      // always reload the index.html file from disk incase it changes
       let template = await fs.promises.readFile(clientTemplate, "utf-8");
       template = template.replace(
         `src="/src/main.tsx"`,
