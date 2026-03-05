@@ -33,11 +33,23 @@ export async function setupVite(server: Server, app: Express) {
   let adminVite: any = null;
   if (fs.existsSync(adminRoot)) {
     try {
+      const tailwindcss = (await import("tailwindcss")).default;
+      const autoprefixer = (await import("autoprefixer")).default;
+      const tailwindConfig = path.resolve(adminRoot, "tailwind.config.ts");
+
       adminVite = await createViteServer({
         configFile: false,
         root: adminRoot,
         base: "/oc-admin/",
         plugins: [(await import("@vitejs/plugin-react")).default()],
+        css: {
+          postcss: {
+            plugins: [
+              tailwindcss({ config: tailwindConfig }),
+              autoprefixer(),
+            ],
+          },
+        },
         server: {
           middlewareMode: true,
           hmr: { server, path: "/admin-hmr" },
