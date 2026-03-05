@@ -20,7 +20,12 @@ export async function registerRoutes(
       secret: process.env.SESSION_SECRET || "te-ordercloud-demo-secret",
       resave: false,
       saveUninitialized: false,
-      cookie: { secure: false, sameSite: "lax", maxAge: 24 * 60 * 60 * 1000 },
+      cookie: {
+        secure: process.env.NODE_ENV === "production" || process.env.REPL_SLUG ? true : false,
+        sameSite: process.env.REPL_SLUG ? "none" as const : "lax" as const,
+        maxAge: 24 * 60 * 60 * 1000,
+        httpOnly: true,
+      },
     })
   );
 
