@@ -6,13 +6,23 @@ A comprehensive B2B e-commerce demo inspired by TE Connectivity (te.com), built 
 ## Architecture
 - **Frontend**: React + TypeScript with Wouter routing, TanStack Query, Shadcn UI components, Tailwind CSS
 - **Backend**: Express.js REST API with session-based authentication (trust proxy enabled, explicit session save on login/register)
-- **Database**: PostgreSQL with Drizzle ORM
+- **Database**: PostgreSQL with Drizzle ORM (local cache/session store; OrderCloud is primary system of record)
+- **OrderCloud Integration**: Sitecore OrderCloud is the primary system of record for products, buyers (customer users), and orders. Local PostgreSQL serves as cache and session store.
 - **Admin**: Standalone React app in `admin/` folder, served at `/oc-admin`
 - **Admin Design**: Sitecore Blok Design System — Primary #5548D9 (purple-blue), Ring #6987f9, Inter font, rounded-4xl pill buttons, collapsible sidebar nav, semantic status colors (success green, warning amber, destructive red)
 
+## OrderCloud Sync Flows
+- **Products**: Catalog (categories, products, price schedules) synced via `syncToOrderCloud()` in `server/ordercloud-sync.ts`
+- **Buyer Sync**: Registration → `syncBuyerToOrderCloud(user)` creates OC Buyer User under `DEFAULT_BUYER_ID = "te-connectivity-buyers"`. Buyer user ID = sanitized username. Fire-and-forget (non-blocking). Local user gets `ocBuyerId` column updated.
+- **Order Sync**: Order placement → `syncOrderToOrderCloud(order, items, user)` creates OC Order with line items (using product SKU as ProductID) and submits it. Fire-and-forget. Local order gets `ocOrderId` column updated.
+- **Buyer Org Init**: `ensureBuyerOrganization()` called at startup to ensure the default buyer org exists in OC
+- **Bulk Sync**: Admin can trigger `syncAllBuyersToOrderCloud()` and `syncAllOrdersToOrderCloud()` from OC Sync tab
+
 ## Key Files
-- `shared/schema.ts` - Database models: users, categories, products, price_breaks, orders, order_items, cart_items, parts_lists, parts_list_items, product_relationships, order_status_history, feature_flags, audit_log
-- `server/routes.ts` - REST API endpoints for auth, products, cart, orders, parts lists, OrderCloud admin, AI chat
+- `shared/schema.ts` - Database models: users (with `ocBuyerId`), categories, products, price_breaks, orders (with `ocOrderId`), order_items, cart_items, parts_lists, parts_list_items, product_relationships, order_status_history, feature_flags, audit_log
+- `server/routes.ts` - REST API endpoints for auth (with OC buyer sync), products, cart, orders (with OC order sync), parts lists, OrderCloud admin, AI chat
+- `server/ordercloud.ts` - OrderCloud API client: products, categories, price schedules, buyers, buyer users, orders, line items
+- `server/ordercloud-sync.ts` - Sync module: catalog sync, buyer sync, order sync, bulk sync operations
 - `server/storage.ts` - DatabaseStorage implementing IStorage interface with related products, SKU lookup, discount validation, order cancellation, status history
 - `server/seed.ts` - Seed data with 14 electronic components, 6 categories, 28 product relationships
 - `client/src/lib/i18n.tsx` - I18n context with EN/DE/ZH translations, USD/EUR/CNY currency conversion
@@ -42,8 +52,8 @@ Collapsible left sidebar (w-60 expanded / w-16 collapsed), 10 nav items with act
 - **Products**: Full CRUD — searchable table, create/edit modal, delete, stock/status badges, price breaks count, CSV export
 - **Categories**: CRUD with product counts per category, slug auto-generation
 - **Orders**: All orders with status filter dropdown, inline status update, risk indicators (high/medium/low by value), order detail modal with financial breakdown, CSV export
-- **Buyers**: Users table with order count & total spent per user, locale/currency info, CSV export
-- **OC Sync**: Consolidated OrderCloud management — connection status, products/categories/price schedules tables, sync/pull/delete all actions, sync log
+- **Buyers**: Users table with order count & total spent per user, locale/currency info, OC sync status indicators, CSV export
+- **OC Sync**: Consolidated OrderCloud management — connection status, products/categories/price schedules/buyer users/orders tables, sync all/sync buyers/sync orders/pull/delete all actions, sync log
 - **Relationships**: Product relationship mappings (related/alternative/accessory)
 - **Audit Log**: Persistent DB-backed audit log with category filters (system/product/order/category/sync), actor tracking, CSV export
 - **Settings**: Integration health dashboard, real AI feature flag toggles (persisted to DB), notification templates, export center
@@ -115,10 +125,14 @@ DB table `feature_flags` with 4 AI flags: `ai_chatbot`, `ai_recommendations`, `a
 
 ### OrderCloud Admin
 - `GET /api/admin/ordercloud/status` - Connection test
-- `POST /api/admin/ordercloud/sync` - Push catalog
+- `POST /api/admin/ordercloud/sync` - Push catalog + buyers to OrderCloud
 - `GET /api/admin/ordercloud/products` - List OC products
 - `GET /api/admin/ordercloud/categories` - List OC categories
 - `GET /api/admin/ordercloud/priceschedules` - List OC price schedules
+- `GET /api/admin/ordercloud/buyers` - List OC buyer users
+- `GET /api/admin/ordercloud/orders` - List OC orders (incoming)
+- `POST /api/admin/ordercloud/sync-buyers` - Bulk sync all local users to OC
+- `POST /api/admin/ordercloud/sync-orders` - Bulk sync unsynced orders to OC
 - `DELETE /api/admin/ordercloud/products/:sku` - Delete OC product
 
 ## Demo Data

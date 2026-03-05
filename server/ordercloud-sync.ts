@@ -1,6 +1,6 @@
 import { db } from "./db";
-import { categories, products, priceBreaks } from "@shared/schema";
-import { asc, eq } from "drizzle-orm";
+import { categories, products, priceBreaks, users, orders, orderItems } from "@shared/schema";
+import { asc, eq, isNull } from "drizzle-orm";
 import { ordercloud } from "./ordercloud";
 
 export async function syncToOrderCloud(): Promise<{ success: boolean; message: string; details: string[] }> {
@@ -192,4 +192,228 @@ export async function pullFromOrderCloud(): Promise<{
   });
 
   return { categories: ocCategories, products: ocProducts };
+}
+
+export async function ensureBuyerOrganization(): Promise<{ success: boolean; message: string }> {
+  try {
+    const conn = await ordercloud.testConnection();
+    if (!conn.success) return { success: false, message: conn.message };
+
+    try {
+      await ordercloud.getBuyer(ordercloud.DEFAULT_BUYER_ID);
+      return { success: true, message: "Buyer organization already exists" };
+    } catch {
+      await ordercloud.createBuyer({
+        ID: ordercloud.DEFAULT_BUYER_ID,
+        Name: "TE Connectivity Buyers",
+        Active: true,
+        xp: { description: "Default buyer organization for B2B storefront" },
+      });
+
+      try {
+        await ordercloud.createCatalogAssignment({
+          CatalogID: ordercloud.CATALOG_ID,
+          BuyerID: ordercloud.DEFAULT_BUYER_ID,
+          ViewAllCategories: true,
+          ViewAllProducts: true,
+        });
+      } catch (err: any) {
+        if (!err.message.includes("409")) {
+          console.warn("Catalog assignment warning:", err.message);
+        }
+      }
+
+      return { success: true, message: "Created buyer organization" };
+    }
+  } catch (err: any) {
+    return { success: false, message: err.message };
+  }
+}
+
+function sanitizeOcId(input: string): string {
+  return input.replace(/[^a-zA-Z0-9_-]/g, "_").substring(0, 100);
+}
+
+export async function syncBuyerToOrderCloud(user: {
+  id: string;
+  username: string;
+  firstName?: string | null;
+  lastName?: string | null;
+  email?: string | null;
+  companyName?: string | null;
+  role?: string | null;
+}): Promise<{ success: boolean; ocBuyerId?: string; message: string }> {
+  try {
+    const buyerUserId = sanitizeOcId(user.username);
+
+    try {
+      await ordercloud.saveBuyerUser(ordercloud.DEFAULT_BUYER_ID, buyerUserId, {
+        ID: buyerUserId,
+        Username: user.username,
+        FirstName: user.firstName || user.username,
+        LastName: user.lastName || "Buyer",
+        Email: user.email || `${user.username}@demo.com`,
+        Active: true,
+        xp: {
+          localId: user.id,
+          companyName: user.companyName || "",
+          role: user.role || "buyer",
+        },
+      });
+    } catch (err: any) {
+      if (err.message.includes("404") || err.message.includes("Not Found")) {
+        await ordercloud.createBuyerUser(ordercloud.DEFAULT_BUYER_ID, {
+          ID: buyerUserId,
+          Username: user.username,
+          FirstName: user.firstName || user.username,
+          LastName: user.lastName || "Buyer",
+          Email: user.email || `${user.username}@demo.com`,
+          Active: true,
+          xp: {
+            localId: user.id,
+            companyName: user.companyName || "",
+            role: user.role || "buyer",
+          },
+        });
+      } else {
+        throw err;
+      }
+    }
+
+    await db.update(users).set({ ocBuyerId: buyerUserId }).where(eq(users.id, user.id));
+
+    return { success: true, ocBuyerId: buyerUserId, message: `Synced buyer: ${user.username}` };
+  } catch (err: any) {
+    return { success: false, message: `Failed to sync buyer ${user.username}: ${err.message}` };
+  }
+}
+
+export async function syncOrderToOrderCloud(
+  order: any,
+  items: Array<{ productId: string; quantity: number; unitPrice: string; totalPrice: string; product?: any }>,
+  user: any
+): Promise<{ success: boolean; ocOrderId?: string; message: string }> {
+  try {
+    let buyerUserId = user.ocBuyerId || null;
+    if (!buyerUserId) {
+      const buyerResult = await syncBuyerToOrderCloud(user);
+      if (!buyerResult.success) {
+        return { success: false, message: `Order sync failed: buyer sync failed for ${user.username}: ${buyerResult.message}` };
+      }
+      buyerUserId = buyerResult.ocBuyerId || sanitizeOcId(user.username);
+    }
+
+    const ocOrder = await ordercloud.createOrder("incoming", {
+      FromUserID: buyerUserId,
+      Comments: order.notes || undefined,
+      xp: {
+        localOrderId: order.id,
+        poNumber: order.poNumber || "",
+        shippingMethod: order.shippingMethod || "standard",
+        paymentMethod: order.paymentMethod || "purchase_order",
+        shippingAddress: order.shippingAddress || "",
+        shippingCost: order.shippingCost || "0",
+        taxAmount: order.taxAmount || "0",
+        discountCode: order.discountCode || "",
+        discountAmount: order.discountAmount || "0",
+        total: order.total || "0",
+      },
+    });
+
+    let lineItemErrors = 0;
+    for (const item of items) {
+      const productSku = item.product?.sku || item.productId;
+      try {
+        await ordercloud.createLineItem("incoming", ocOrder.ID, {
+          ProductID: productSku,
+          Quantity: item.quantity,
+          UnitPrice: parseFloat(item.unitPrice),
+          xp: {
+            localProductId: item.productId,
+            totalPrice: item.totalPrice,
+          },
+        });
+      } catch (err: any) {
+        lineItemErrors++;
+        console.warn(`Line item sync warning for ${productSku}:`, err.message);
+      }
+    }
+
+    if (lineItemErrors === items.length && items.length > 0) {
+      return { success: false, message: `Order ${order.id} created in OC (${ocOrder.ID}) but all ${lineItemErrors} line items failed` };
+    }
+
+    try {
+      await ordercloud.submitOrder("incoming", ocOrder.ID);
+    } catch (err: any) {
+      console.warn("Order submit warning:", err.message);
+    }
+
+    await db.update(orders).set({ ocOrderId: ocOrder.ID }).where(eq(orders.id, order.id));
+
+    const warnings = lineItemErrors > 0 ? ` (${lineItemErrors} line item(s) failed)` : "";
+    return { success: true, ocOrderId: ocOrder.ID, message: `Synced order ${order.id} → OC ${ocOrder.ID}${warnings}` };
+  } catch (err: any) {
+    return { success: false, message: `Failed to sync order ${order.id}: ${err.message}` };
+  }
+}
+
+export async function syncAllBuyersToOrderCloud(): Promise<{ success: boolean; message: string; details: string[] }> {
+  const details: string[] = [];
+  try {
+    const ensureResult = await ensureBuyerOrganization();
+    if (!ensureResult.success) return { success: false, message: ensureResult.message, details };
+    details.push(ensureResult.message);
+
+    const allUsers = await db.select().from(users);
+    let synced = 0;
+    for (const user of allUsers) {
+      const result = await syncBuyerToOrderCloud(user);
+      details.push(result.message);
+      if (result.success) synced++;
+    }
+
+    return { success: true, message: `Synced ${synced}/${allUsers.length} buyers to OrderCloud`, details };
+  } catch (err: any) {
+    return { success: false, message: err.message, details };
+  }
+}
+
+export async function syncAllOrdersToOrderCloud(): Promise<{ success: boolean; message: string; details: string[] }> {
+  const details: string[] = [];
+  try {
+    const unsyncedOrders = await db.select().from(orders).where(isNull(orders.ocOrderId));
+    let synced = 0;
+    for (const order of unsyncedOrders) {
+      const user = await db.select().from(users).where(eq(users.id, order.userId)).then(r => r[0]);
+      if (!user) {
+        details.push(`Skipped order ${order.id}: user not found`);
+        continue;
+      }
+
+      if (!user.ocBuyerId) {
+        const buyerResult = await syncBuyerToOrderCloud(user);
+        if (!buyerResult.success) {
+          details.push(`Skipped order ${order.id}: ${buyerResult.message}`);
+          continue;
+        }
+        user.ocBuyerId = buyerResult.ocBuyerId || null;
+      }
+
+      const items = await db.select().from(orderItems).where(eq(orderItems.orderId, order.id));
+      const itemsWithProducts = [];
+      for (const item of items) {
+        const prod = await db.select().from(products).where(eq(products.id, item.productId)).then(r => r[0]);
+        itemsWithProducts.push({ ...item, product: prod });
+      }
+
+      const result = await syncOrderToOrderCloud(order, itemsWithProducts, user);
+      details.push(result.message);
+      if (result.success) synced++;
+    }
+
+    return { success: true, message: `Synced ${synced}/${unsyncedOrders.length} orders to OrderCloud`, details };
+  } catch (err: any) {
+    return { success: false, message: err.message, details };
+  }
 }

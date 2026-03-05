@@ -14,6 +14,7 @@ export const users = pgTable("users", {
   role: text("role").default("buyer"),
   locale: text("locale").default("en"),
   preferredCurrency: text("preferred_currency").default("USD"),
+  ocBuyerId: text("oc_buyer_id"),
 });
 
 export const categories = pgTable("categories", {
@@ -74,6 +75,7 @@ export const orders = pgTable("orders", {
   stateProvince: text("state_province"),
   postalCode: text("postal_code"),
   country: text("country"),
+  ocOrderId: text("oc_order_id"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });

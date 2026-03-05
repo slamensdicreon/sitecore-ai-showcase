@@ -124,6 +124,8 @@ function AdminDashboard() {
   const customerAnalyticsQuery = useQuery<{ byRole: Record<string, number>; byLocale: Record<string, number>; byCurrency: Record<string, number>; topBuyers: any[] }>({ queryKey: ["/api/admin/analytics/customers"] });
   const auditLogQuery = useQuery<{ entries: any[]; total: number }>({ queryKey: ["/api/admin/audit-log", auditCategoryFilter === "all" ? "" : `?category=${auditCategoryFilter}`] });
   const featureFlagsQuery = useQuery<any[]>({ queryKey: ["/api/admin/feature-flags"] });
+  const ocBuyersQuery = useQuery<{ Items: any[]; Meta: any }>({ queryKey: ["/api/admin/ordercloud/buyers"], enabled: statusQuery.data?.success === true });
+  const ocOrdersQuery = useQuery<{ Items: any[]; Meta: any }>({ queryKey: ["/api/admin/ordercloud/orders"], enabled: statusQuery.data?.success === true });
   const relationshipsQuery = useQuery<any[]>({
     queryKey: ["/api/admin/relationships"],
     queryFn: async () => {
@@ -146,6 +148,8 @@ function AdminDashboard() {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/ordercloud/products"] });
       queryClient.invalidateQueries({ queryKey: ["/api/admin/ordercloud/categories"] });
       queryClient.invalidateQueries({ queryKey: ["/api/admin/ordercloud/priceschedules"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/ordercloud/buyers"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/ordercloud/orders"] });
     },
     onError: (err: Error) => { toast({ title: "Sync Error", description: err.message, variant: "destructive" }); },
   });
@@ -198,6 +202,26 @@ function AdminDashboard() {
     onError: (err: Error) => toast({ title: "Pull Error", description: err.message, variant: "destructive" }),
   });
 
+  const syncBuyersMutation = useMutation({
+    mutationFn: async () => { const res = await apiRequest("POST", "/api/admin/ordercloud/sync-buyers"); return res.json(); },
+    onSuccess: (data: any) => {
+      toast({ title: data.success ? "Buyers Synced" : "Buyer Sync Failed", description: data.message, variant: data.success ? "default" : "destructive" });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/ordercloud/buyers"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/users"] });
+    },
+    onError: (err: Error) => toast({ title: "Buyer Sync Error", description: err.message, variant: "destructive" }),
+  });
+
+  const syncOrdersMutation = useMutation({
+    mutationFn: async () => { const res = await apiRequest("POST", "/api/admin/ordercloud/sync-orders"); return res.json(); },
+    onSuccess: (data: any) => {
+      toast({ title: data.success ? "Orders Synced" : "Order Sync Failed", description: data.message, variant: data.success ? "default" : "destructive" });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/ordercloud/orders"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/orders"] });
+    },
+    onError: (err: Error) => toast({ title: "Order Sync Error", description: err.message, variant: "destructive" }),
+  });
+
   const toggleFeatureFlagMutation = useMutation({
     mutationFn: async ({ key, enabled }: { key: string; enabled: boolean }) => {
       const res = await apiRequest("PATCH", `/api/admin/feature-flags/${key}`, { enabled });
@@ -215,6 +239,8 @@ function AdminDashboard() {
   const ocProducts = ocProductsQuery.data?.Items || [];
   const ocCategories = ocCategoriesQuery.data?.Items || [];
   const ocPriceSchedules = ocPriceSchedulesQuery.data?.Items || [];
+  const ocBuyers = ocBuyersQuery.data?.Items || [];
+  const ocOrders = ocOrdersQuery.data?.Items || [];
   const localProducts = localProductsQuery.data || [];
   const localCategories = localCategoriesQuery.data || [];
   const adminOrders = adminOrdersQuery.data || [];
@@ -689,6 +715,7 @@ function AdminDashboard() {
                     <th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">Status</th>
                     <th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">Risk</th>
                     <th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">Payment</th>
+                    <th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">OC Sync</th>
                     <th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">Date</th>
                     <th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide"></th>
                   </tr></thead>
@@ -705,6 +732,7 @@ function AdminDashboard() {
                           <td className="p-4"><select value={order.status} onChange={(e) => updateOrderMutation.mutate({ id: order.id, status: e.target.value })} className="h-7 px-2 rounded-md border border-border bg-background text-xs" data-testid={`select-order-status-${order.id}`}>{ORDER_STATUSES.map((s) => <option key={s} value={s}>{s}</option>)}</select></td>
                           <td className="p-4"><Badge variant={riskLevel === "high" ? "destructive" : riskLevel === "medium" ? "warning" : "success"} className="text-[10px]"><Shield className="h-2.5 w-2.5 mr-0.5" />{riskLevel}</Badge></td>
                           <td className="p-4"><Badge variant="outline" className="text-[10px]"><CreditCard className="h-2.5 w-2.5 mr-1" />{(order.paymentMethod || "N/A").replace("_", " ")}</Badge></td>
+                          <td className="p-4">{order.ocOrderId ? <Badge variant="default" className="text-[10px]"><Cloud className="h-2.5 w-2.5 mr-1" />Synced</Badge> : <Badge variant="secondary" className="text-[10px]">Local</Badge>}</td>
                           <td className="p-4 text-xs text-muted-foreground">{order.createdAt ? new Date(order.createdAt).toLocaleDateString() : ""}</td>
                           <td className="p-4"><button onClick={() => setOrderDetail(order)} className="p-1.5 rounded-lg hover:bg-accent transition-colors" data-testid={`button-view-order-${order.id}`}><Eye className="h-3.5 w-3.5 text-muted-foreground" /></button></td>
                         </tr>
@@ -735,6 +763,7 @@ function AdminDashboard() {
                     <th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">Role</th>
                     <th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">Locale</th>
                     <th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">Orders</th>
+                    <th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">OC Sync</th>
                   </tr></thead>
                   <tbody>
                     {adminUsers.map((user: any) => {
@@ -749,6 +778,7 @@ function AdminDashboard() {
                           <td className="p-4"><Badge variant="outline">{user.role || "buyer"}</Badge></td>
                           <td className="p-4 text-xs"><Globe className="inline h-3 w-3 mr-1 text-muted-foreground" />{user.locale || "en"} / {user.preferredCurrency || "USD"}</td>
                           <td className="p-4"><div><p className="text-xs font-medium">{userOrders.length} orders</p><p className="text-[10px] text-muted-foreground">${totalSpent.toFixed(2)}</p></div></td>
+                          <td className="p-4">{user.ocBuyerId ? <Badge variant="default" className="text-[10px]"><Cloud className="h-2.5 w-2.5 mr-1" />Synced</Badge> : <Badge variant="secondary" className="text-[10px]">Local</Badge>}</td>
                         </tr>
                       );
                     })}
@@ -763,7 +793,7 @@ function AdminDashboard() {
         {/* ─── OC SYNC ──────────────────────────────────────────── */}
         {activeTab === "oc-sync" && (
           <div className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
               <div className="rounded-xl border border-border bg-card p-5">
                 <div className="flex items-center justify-between mb-3"><span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">API Status</span><Cloud className={`h-4 w-4 ${isConnected ? "text-success" : "text-destructive"}`} /></div>
                 <p className="text-lg font-semibold">{isConnected ? "Connected" : "Disconnected"}</p>
@@ -776,6 +806,14 @@ function AdminDashboard() {
                 <div className="flex items-center justify-between mb-3"><span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Price Schedules</span><DollarSign className="h-4 w-4 text-muted-foreground" /></div>
                 <p className="text-lg font-semibold">{ocPriceSchedules.length}</p>
               </div>
+              <div className="rounded-xl border border-border bg-card p-5">
+                <div className="flex items-center justify-between mb-3"><span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">OC Buyers</span><Users className="h-4 w-4 text-muted-foreground" /></div>
+                <p className="text-lg font-semibold" data-testid="text-oc-buyers-count">{ocBuyers.length}</p>
+              </div>
+              <div className="rounded-xl border border-border bg-card p-5">
+                <div className="flex items-center justify-between mb-3"><span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">OC Orders</span><ShoppingCart className="h-4 w-4 text-muted-foreground" /></div>
+                <p className="text-lg font-semibold" data-testid="text-oc-orders-count">{ocOrders.length}</p>
+              </div>
             </div>
 
             <div className="rounded-xl border border-border bg-card">
@@ -784,6 +822,8 @@ function AdminDashboard() {
                   <div><h2 className="text-lg font-semibold">OrderCloud Products</h2><p className="text-xs text-muted-foreground mt-0.5">Products synced to your OrderCloud marketplace</p></div>
                   <div className="flex items-center gap-2 flex-wrap">
                     <button onClick={() => syncMutation.mutate()} disabled={syncMutation.isPending || !isConnected} className="inline-flex items-center gap-1.5 rounded-4xl bg-primary px-4 py-2 text-xs font-medium text-primary-foreground disabled:opacity-40 hover:bg-primary/90 transition-colors whitespace-nowrap" data-testid="button-sync-oc">{syncMutation.isPending ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Upload className="h-3.5 w-3.5" />} Sync All</button>
+                    <button onClick={() => syncBuyersMutation.mutate()} disabled={syncBuyersMutation.isPending || !isConnected} className="inline-flex items-center gap-1.5 rounded-4xl border border-border px-4 py-2 text-xs font-medium disabled:opacity-40 hover:bg-accent/60 transition-colors whitespace-nowrap" data-testid="button-sync-buyers">{syncBuyersMutation.isPending ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Users className="h-3.5 w-3.5" />} Sync Buyers</button>
+                    <button onClick={() => syncOrdersMutation.mutate()} disabled={syncOrdersMutation.isPending || !isConnected} className="inline-flex items-center gap-1.5 rounded-4xl border border-border px-4 py-2 text-xs font-medium disabled:opacity-40 hover:bg-accent/60 transition-colors whitespace-nowrap" data-testid="button-sync-orders">{syncOrdersMutation.isPending ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <ShoppingCart className="h-3.5 w-3.5" />} Sync Orders</button>
                     <button onClick={() => pullFromOCMutation.mutate()} disabled={pullFromOCMutation.isPending || !isConnected} className="inline-flex items-center gap-1.5 rounded-4xl border border-border px-4 py-2 text-xs font-medium disabled:opacity-40 hover:bg-accent/60 transition-colors whitespace-nowrap" data-testid="button-pull-oc"><Download className="h-3.5 w-3.5" /> Pull</button>
                     {!deleteConfirm ? <button onClick={() => setDeleteConfirm(true)} disabled={ocProducts.length === 0} className="inline-flex items-center gap-1.5 rounded-4xl border border-destructive/30 px-4 py-2 text-xs font-medium text-destructive disabled:opacity-40 hover:bg-destructive/5 transition-colors whitespace-nowrap"><Trash2 className="h-3.5 w-3.5" /> Delete All</button> : <div className="flex items-center gap-2"><button onClick={() => { deleteAllMutation.mutate(); setDeleteConfirm(false); }} className="inline-flex items-center gap-1.5 rounded-4xl bg-destructive px-4 py-2 text-xs font-medium text-destructive-foreground whitespace-nowrap">Confirm</button><button onClick={() => setDeleteConfirm(false)} className="rounded-4xl border border-border px-3 py-2 text-xs whitespace-nowrap">Cancel</button></div>}
                   </div>
@@ -818,6 +858,42 @@ function AdminDashboard() {
                 <div className="overflow-x-auto"><table className="w-full text-sm"><thead><tr className="border-b border-border bg-muted/50"><th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">ID</th><th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">Name</th><th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">Currency</th><th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">Price Breaks</th></tr></thead><tbody>{ocPriceSchedules.map((ps: any) => (<tr key={ps.ID} className="border-b border-border hover:bg-accent/30 transition-colors"><td className="p-4 font-mono text-xs">{ps.ID}</td><td className="p-4">{ps.Name}</td><td className="p-4">{ps.Currency || "USD"}</td><td className="p-4"><div className="flex flex-wrap gap-1">{ps.PriceBreaks?.map((pb: any, i: number) => (<Badge key={i} variant="outline">{pb.Quantity}+ @ ${pb.Price?.toFixed(2)}</Badge>))}</div></td></tr>))}</tbody></table></div>
               </div>
             )}
+
+            <div className="rounded-xl border border-border bg-card">
+              <div className="px-6 py-4 border-b border-border"><h3 className="text-sm font-semibold">OC Buyer Users ({ocBuyers.length})</h3></div>
+              {ocBuyersQuery.isLoading ? <div className="flex items-center justify-center py-12"><Loader2 className="h-5 w-5 animate-spin text-muted-foreground" /></div> : ocBuyers.length === 0 ? <div className="text-center py-12 text-muted-foreground"><Users className="h-8 w-8 mx-auto mb-2 opacity-30" /><p className="text-sm">No buyer users in OrderCloud</p><p className="text-xs mt-1">Click "Sync Buyers" to push local users</p></div> : (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead><tr className="border-b border-border bg-muted/50"><th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">ID</th><th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">Username</th><th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">Name</th><th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">Email</th><th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">Active</th></tr></thead>
+                    <tbody>
+                      {ocBuyers.map((buyer: any) => (
+                        <tr key={buyer.ID} className="border-b border-border hover:bg-accent/30 transition-colors" data-testid={`row-oc-buyer-${buyer.ID}`}>
+                          <td className="p-4 font-mono text-xs">{buyer.ID}</td><td className="p-4">{buyer.Username}</td><td className="p-4 font-medium">{buyer.FirstName} {buyer.LastName}</td><td className="p-4 text-muted-foreground">{buyer.Email}</td><td className="p-4"><Badge variant={buyer.Active ? "default" : "secondary"}>{buyer.Active ? "Active" : "Inactive"}</Badge></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+
+            <div className="rounded-xl border border-border bg-card">
+              <div className="px-6 py-4 border-b border-border"><h3 className="text-sm font-semibold">OC Orders ({ocOrders.length})</h3></div>
+              {ocOrdersQuery.isLoading ? <div className="flex items-center justify-center py-12"><Loader2 className="h-5 w-5 animate-spin text-muted-foreground" /></div> : ocOrders.length === 0 ? <div className="text-center py-12 text-muted-foreground"><ShoppingCart className="h-8 w-8 mx-auto mb-2 opacity-30" /><p className="text-sm">No orders in OrderCloud</p><p className="text-xs mt-1">Orders sync automatically when placed</p></div> : (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead><tr className="border-b border-border bg-muted/50"><th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">Order ID</th><th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">Status</th><th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">Buyer</th><th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">Total</th><th className="text-left p-4 font-medium text-muted-foreground text-xs uppercase tracking-wide">Submitted</th></tr></thead>
+                    <tbody>
+                      {ocOrders.map((order: any) => (
+                        <tr key={order.ID} className="border-b border-border hover:bg-accent/30 transition-colors" data-testid={`row-oc-order-${order.ID}`}>
+                          <td className="p-4 font-mono text-xs">{order.ID}</td><td className="p-4"><Badge variant={order.Status === "Open" ? "default" : order.Status === "Completed" ? "success" : "secondary"}>{order.Status}</Badge></td><td className="p-4">{order.FromUserID || "—"}</td><td className="p-4 font-medium">${(order.Total || 0).toFixed(2)}</td><td className="p-4 text-xs text-muted-foreground">{order.DateSubmitted ? new Date(order.DateSubmitted).toLocaleDateString() : "—"}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
 
             {syncLog.length > 0 && (
               <div className="rounded-xl border border-border bg-card">

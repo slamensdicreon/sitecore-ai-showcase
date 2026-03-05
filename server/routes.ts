@@ -7,7 +7,7 @@ import pgSession from "connect-pg-simple";
 import { pool } from "./db";
 import { z } from "zod";
 import { ordercloud } from "./ordercloud";
-import { syncToOrderCloud, pullFromOrderCloud } from "./ordercloud-sync";
+import { syncToOrderCloud, pullFromOrderCloud, ensureBuyerOrganization, syncBuyerToOrderCloud, syncOrderToOrderCloud, syncAllBuyersToOrderCloud, syncAllOrdersToOrderCloud } from "./ordercloud-sync";
 
 export async function registerRoutes(
   httpServer: Server,
@@ -25,6 +25,11 @@ export async function registerRoutes(
   );
 
   await seedDatabase();
+
+  ensureBuyerOrganization().then(r => {
+    if (r.success) console.log("[OC] Buyer org:", r.message);
+    else console.warn("[OC] Buyer org warning:", r.message);
+  }).catch(err => console.warn("[OC] Buyer org init error:", err.message));
 
   const loginSchema = z.object({ username: z.string().min(1), password: z.string().min(1) });
   const registerSchema = z.object({
@@ -77,6 +82,12 @@ export async function registerRoutes(
     const user = await storage.createUser({ username, password, companyName, firstName, lastName, email });
     (req.session as any).userId = user.id;
     const { password: _, ...safe } = user;
+
+    syncBuyerToOrderCloud(user).then(result => {
+      if (result.success) console.log(`[OC] ${result.message}`);
+      else console.warn(`[OC] ${result.message}`);
+    }).catch(err => console.warn("[OC] Buyer sync error:", err.message));
+
     req.session.save(() => {
       res.json(safe);
     });
@@ -333,6 +344,32 @@ export async function registerRoutes(
 
     await storage.addOrderStatusHistory({ orderId: order.id, status: "submitted", note: "Order placed" });
     await storage.clearCart(req.userId);
+
+    const user = await storage.getUser(req.userId);
+    if (user) {
+      const orderItemsForSync = [];
+      for (const item of cartItems) {
+        if (item.product) {
+          const breaks = await storage.getPriceBreaks(item.product.id);
+          let unitPrice = parseFloat(item.product.basePrice);
+          for (const pb of breaks) {
+            if (item.quantity >= pb.minQty) unitPrice = parseFloat(pb.price);
+          }
+          orderItemsForSync.push({
+            productId: item.productId,
+            quantity: item.quantity,
+            unitPrice: unitPrice.toFixed(4),
+            totalPrice: (unitPrice * item.quantity).toFixed(2),
+            product: item.product,
+          });
+        }
+      }
+      syncOrderToOrderCloud(order, orderItemsForSync, user).then(result => {
+        if (result.success) console.log(`[OC] ${result.message}`);
+        else console.warn(`[OC] ${result.message}`);
+      }).catch(err => console.warn("[OC] Order sync error:", err.message));
+    }
+
     res.json(order);
   });
 
@@ -392,6 +429,9 @@ export async function registerRoutes(
   app.post("/api/admin/ordercloud/sync", async (_req, res) => {
     try {
       const result = await syncToOrderCloud();
+      const buyerResult = await syncAllBuyersToOrderCloud();
+      result.details.push(...buyerResult.details);
+      result.message += ` | ${buyerResult.message}`;
       res.json(result);
     } catch (err: any) {
       res.status(500).json({ success: false, message: err.message });
@@ -431,6 +471,48 @@ export async function registerRoutes(
       res.json(result);
     } catch (err: any) {
       res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.get("/api/admin/ordercloud/buyers", async (_req, res) => {
+    try {
+      const result = await ordercloud.listBuyerUsers(ordercloud.DEFAULT_BUYER_ID, { pageSize: 100 });
+      res.json(result);
+    } catch (err: any) {
+      res.json({ Items: [], Meta: { TotalCount: 0 } });
+    }
+  });
+
+  app.get("/api/admin/ordercloud/orders", async (_req, res) => {
+    try {
+      const result = await ordercloud.listOrders("incoming", { pageSize: 100 });
+      res.json(result);
+    } catch (err: any) {
+      res.json({ Items: [], Meta: { TotalCount: 0 } });
+    }
+  });
+
+  app.post("/api/admin/ordercloud/sync-buyers", async (_req, res) => {
+    try {
+      const result = await syncAllBuyersToOrderCloud();
+      if (result.success) {
+        await storage.createAuditEntry({ action: "Sync Buyers to OrderCloud", details: result.message, category: "sync", status: "success" });
+      }
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ success: false, message: err.message });
+    }
+  });
+
+  app.post("/api/admin/ordercloud/sync-orders", async (_req, res) => {
+    try {
+      const result = await syncAllOrdersToOrderCloud();
+      if (result.success) {
+        await storage.createAuditEntry({ action: "Sync Orders to OrderCloud", details: result.message, category: "sync", status: "success" });
+      }
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ success: false, message: err.message });
     }
   });
 
