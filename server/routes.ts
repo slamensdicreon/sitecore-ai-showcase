@@ -20,7 +20,7 @@ export async function registerRoutes(
       secret: process.env.SESSION_SECRET || "te-ordercloud-demo-secret",
       resave: false,
       saveUninitialized: false,
-      cookie: { secure: false, maxAge: 24 * 60 * 60 * 1000 },
+      cookie: { secure: false, sameSite: "lax", maxAge: 24 * 60 * 60 * 1000 },
     })
   );
 
@@ -63,7 +63,9 @@ export async function registerRoutes(
     }
     (req.session as any).userId = user.id;
     const { password: _, ...safe } = user;
-    res.json(safe);
+    req.session.save(() => {
+      res.json(safe);
+    });
   });
 
   app.post("/api/auth/register", async (req, res) => {
@@ -75,7 +77,9 @@ export async function registerRoutes(
     const user = await storage.createUser({ username, password, companyName, firstName, lastName, email });
     (req.session as any).userId = user.id;
     const { password: _, ...safe } = user;
-    res.json(safe);
+    req.session.save(() => {
+      res.json(safe);
+    });
   });
 
   app.get("/api/auth/me", async (req, res) => {
@@ -194,6 +198,7 @@ export async function registerRoutes(
   app.get("/api/orders/:id", requireAuth, async (req: any, res) => {
     const order = await storage.getOrderById(req.params.id);
     if (!order) return res.status(404).json({ message: "Order not found" });
+    if (order.userId !== req.userId) return res.status(403).json({ message: "Not authorized" });
     const items = await storage.getOrderItems(order.id);
     const history = await storage.getOrderStatusHistory(order.id);
     res.json({ ...order, items, statusHistory: history });

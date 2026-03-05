@@ -5,7 +5,7 @@ A comprehensive B2B e-commerce demo inspired by TE Connectivity (te.com), built 
 
 ## Architecture
 - **Frontend**: React + TypeScript with Wouter routing, TanStack Query, Shadcn UI components, Tailwind CSS
-- **Backend**: Express.js REST API with session-based authentication
+- **Backend**: Express.js REST API with session-based authentication (trust proxy enabled, explicit session save on login/register)
 - **Database**: PostgreSQL with Drizzle ORM
 - **Admin**: Standalone React app in `admin/` folder, served at `/oc-admin`
 - **Design**: TE Connectivity brand — TE Orange (#f28d00), Dark Teal (#2e4957), Turquoise (#167a87), Charcoal (#424241), Eco Green (#8fb838)
@@ -16,7 +16,7 @@ A comprehensive B2B e-commerce demo inspired by TE Connectivity (te.com), built 
 - `server/storage.ts` - DatabaseStorage implementing IStorage interface with related products, SKU lookup, discount validation, order cancellation, status history
 - `server/seed.ts` - Seed data with 14 electronic components, 6 categories, 28 product relationships
 - `client/src/lib/i18n.tsx` - I18n context with EN/DE/ZH translations, USD/EUR/CNY currency conversion
-- `client/src/lib/auth.tsx` - Auth context with persona switching (engineer/purchaser)
+- `client/src/lib/auth.tsx` - Auth context with persona switching (engineer/purchaser), query cache clearing on login/logout, setUser for direct state updates
 - `client/src/components/ai-chatbot.tsx` - AI chatbot with product search, order status, and navigation
 - `client/src/components/header.tsx` - Header with language/currency switcher, persona dropdown, quick-add by part number
 
@@ -79,7 +79,7 @@ Served at `/oc-admin` when published. Standalone dev: `cd admin && npm run dev`.
 - `POST /api/orders/validate-discount` - Validate discount code
 
 ### User
-- `PUT /api/users/preferences` - Update locale, currency, role
+- `PATCH /api/users/preferences` - Update locale, currency, role
 
 ### OrderCloud Admin
 - `GET /api/admin/ordercloud/status` - Connection test

@@ -34,7 +34,7 @@ const LOCALE_LABELS: Record<Locale, string> = { en: "EN", de: "DE", zh: "中文"
 const CURRENCY_LABELS: Record<Currency, string> = { USD: "USD", EUR: "EUR", CNY: "CNY" };
 
 export function Header() {
-  const { user, logout } = useAuth();
+  const { user, logout, setUser } = useAuth();
   const { locale, currency, setLocale, setCurrency, t } = useI18n();
   const [, navigate] = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
@@ -71,7 +71,8 @@ export function Header() {
     mutationFn: (role: string) => apiRequest("PATCH", "/api/users/preferences", { role }),
     onSuccess: async (res) => {
       const data = await res.json();
-      window.location.reload();
+      setUser(data);
+      queryClient.invalidateQueries({ queryKey: ["/api/products"] });
     },
   });
 
