@@ -271,10 +271,15 @@ function AdminDashboard() {
 
   const chartTooltipStyle = { background: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: 8, fontSize: 12 };
 
+  const sidebarWidth = sidebarCollapsed ? 64 : 240;
+
   return (
-    <div className="min-h-screen bg-background flex">
+    <div className="min-h-screen bg-background">
       {/* ─── SIDEBAR ──────────────────────────────────────────── */}
-      <aside className={`fixed top-0 left-0 h-screen bg-sidebar border-r border-sidebar-border flex flex-col transition-all duration-200 z-40 ${sidebarCollapsed ? "w-16" : "w-60"}`}>
+      <aside
+        className="fixed top-0 left-0 h-screen bg-sidebar border-r border-sidebar-border flex flex-col z-40"
+        style={{ width: sidebarWidth, transition: "width 200ms ease" }}
+      >
         <div className={`h-14 flex items-center border-b border-sidebar-border shrink-0 ${sidebarCollapsed ? "justify-center px-2" : "px-5"}`}>
           {!sidebarCollapsed && (
             <div className="flex items-center gap-2.5">
@@ -302,7 +307,7 @@ function AdminDashboard() {
               <button
                 key={item.key}
                 onClick={() => setActiveTab(item.key)}
-                className={`w-full flex items-center gap-2.5 rounded-lg text-sm transition-colors ${sidebarCollapsed ? "justify-center px-2 py-2.5" : "px-3 py-2"} ${isActive ? "bg-primary/10 text-primary font-medium" : "text-muted-foreground hover:bg-accent hover:text-foreground"}`}
+                className={`w-full flex items-center gap-2.5 rounded-lg text-sm transition-colors ${sidebarCollapsed ? "justify-center p-2.5" : "px-3 py-2.5"} ${isActive ? "bg-primary/10 text-primary font-medium" : "text-muted-foreground hover:bg-accent hover:text-foreground"}`}
                 title={sidebarCollapsed ? item.label : undefined}
                 data-testid={`tab-${item.key}`}
               >
@@ -330,28 +335,34 @@ function AdminDashboard() {
       </aside>
 
       {/* ─── MAIN CONTENT ──────────────────────────────────────────── */}
-      <main className={`flex-1 transition-all duration-200 ${sidebarCollapsed ? "ml-16" : "ml-60"}`}>
-        <header className="h-14 border-b border-border bg-card/50 backdrop-blur-sm flex items-center justify-between px-6 sticky top-0 z-30">
+      <main
+        className="min-h-screen overflow-x-hidden"
+        style={{ marginLeft: sidebarWidth, transition: "margin-left 200ms ease" }}
+      >
+        <header className="h-14 border-b border-border bg-card/80 backdrop-blur-sm flex items-center justify-between px-8 sticky top-0 z-30">
           <h2 className="text-sm font-semibold capitalize">{activeTab === "oc-sync" ? "OrderCloud Sync" : activeTab.replace("-", " ")}</h2>
           <button onClick={() => queryClient.invalidateQueries()} className="p-2 rounded-lg hover:bg-accent text-muted-foreground transition-colors" data-testid="button-refresh"><RefreshCw className="h-4 w-4" /></button>
         </header>
 
-        <div className="p-6 max-w-[1280px] mx-auto">
+        <div className="p-8 max-w-[1400px] mx-auto">
 
         {/* ─── DASHBOARD ──────────────────────────────────────────── */}
         {activeTab === "dashboard" && (
           <div className="space-y-6">
-            <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
               {[
                 { label: "Products", value: stats?.totalProducts ?? "—", icon: Package, color: "text-primary" },
                 { label: "Categories", value: stats?.totalCategories ?? "—", icon: FolderTree, color: "text-violet-500" },
                 { label: "Orders", value: stats?.totalOrders ?? "—", icon: ShoppingCart, color: "text-warning" },
                 { label: "Buyers", value: stats?.totalUsers ?? "—", icon: Users, color: "text-success" },
                 { label: "Revenue", value: stats ? `$${stats.totalRevenue.toLocaleString("en-US", { minimumFractionDigits: 2 })}` : "—", icon: TrendingUp, color: "text-primary" },
+                { label: "Avg Order", value: `$${avgOrderValue.toFixed(2)}`, icon: DollarSign, color: "text-violet-500" },
+                { label: "OC Synced", value: ocProducts.length, icon: Cloud, color: "text-muted-foreground" },
+                { label: "Low Stock", value: lowStockProducts.length, icon: AlertTriangle, color: "text-warning" },
               ].map((stat) => {
                 const Icon = stat.icon;
                 return (
-                  <div key={stat.label} className="rounded-xl border border-border bg-card p-5" data-testid={`stat-${stat.label.toLowerCase()}`}>
+                  <div key={stat.label} className="rounded-xl border border-border bg-card p-5" data-testid={`stat-${stat.label.toLowerCase().replace(/\s+/g, "-")}`}>
                     <div className="flex items-center justify-between mb-3">
                       <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">{stat.label}</span>
                       <Icon className={`h-4 w-4 ${stat.color}`} />
@@ -360,17 +371,6 @@ function AdminDashboard() {
                   </div>
                 );
               })}
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div className="rounded-xl border border-border bg-card p-5">
-                <div className="flex items-center justify-between mb-3"><span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Avg Order Value</span><DollarSign className="h-4 w-4 text-muted-foreground" /></div>
-                <p className="text-2xl font-semibold">${avgOrderValue.toFixed(2)}</p>
-              </div>
-              <div className="rounded-xl border border-border bg-card p-5">
-                <div className="flex items-center justify-between mb-3"><span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">OC Synced</span><Cloud className="h-4 w-4 text-muted-foreground" /></div>
-                <p className="text-2xl font-semibold">{ocProducts.length}</p>
-              </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -455,7 +455,7 @@ function AdminDashboard() {
 
             <div className="rounded-xl border border-border bg-card">
               <div className="px-6 py-4 border-b border-border"><h3 className="text-sm font-semibold">Quick Actions</h3></div>
-              <div className="p-5 grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="p-5 grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
                   { label: "Sync to OC", icon: Upload, action: () => syncMutation.mutate(), pending: syncMutation.isPending, disabled: !isConnected, testId: "button-sync" },
                   { label: "Pull from OC", icon: Download, action: () => pullFromOCMutation.mutate(), pending: pullFromOCMutation.isPending, disabled: !isConnected, testId: "button-pull-oc" },
@@ -478,9 +478,9 @@ function AdminDashboard() {
         {/* ─── ANALYTICS ──────────────────────────────────────────── */}
         {activeTab === "analytics" && (
           <div className="space-y-6">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div><h2 className="text-lg font-semibold">Business Analytics</h2><p className="text-xs text-muted-foreground mt-0.5">Revenue, product performance, and customer insights</p></div>
-              <button onClick={() => { downloadCSV(topProducts, "top-products"); toast({ title: "Exported" }); }} className="inline-flex items-center gap-1.5 rounded-4xl border border-border px-4 py-2 text-xs font-medium hover:bg-accent/60 transition-colors" data-testid="button-export-analytics"><FileDown className="h-3.5 w-3.5" /> Export Data</button>
+              <button onClick={() => { downloadCSV(topProducts, "top-products"); toast({ title: "Exported" }); }} className="inline-flex items-center gap-1.5 rounded-4xl border border-border px-4 py-2 text-xs font-medium hover:bg-accent/60 transition-colors whitespace-nowrap" data-testid="button-export-analytics"><FileDown className="h-3.5 w-3.5" /> Export Data</button>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -578,12 +578,14 @@ function AdminDashboard() {
         {/* ─── PRODUCTS ──────────────────────────────────────────── */}
         {activeTab === "products" && (
           <div className="rounded-xl border border-border bg-card">
-            <div className="px-6 py-5 border-b border-border flex items-center justify-between gap-4">
-              <div><h2 className="text-lg font-semibold">Products</h2><p className="text-xs text-muted-foreground mt-0.5">Manage your product catalog</p></div>
-              <div className="flex items-center gap-3">
-                <div className="relative"><Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" /><input type="text" placeholder="Search..." value={productSearch} onChange={(e) => setProductSearch(e.target.value)} className="h-9 pl-9 pr-3 w-52 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring/40" data-testid="input-product-search" /></div>
-                <button onClick={() => downloadCSV(localProducts.map((p: any) => ({ sku: p.sku, name: p.name, price: p.basePrice, stock: p.stockQty, active: p.active, category: localCategories.find((c: any) => c.id === p.categoryId)?.name || "" })), "products")} className="inline-flex items-center gap-1.5 rounded-4xl border border-border px-4 py-2 text-xs font-medium hover:bg-accent/60 transition-colors"><FileDown className="h-3.5 w-3.5" /> CSV</button>
-                <button onClick={() => setProductModal({ open: true })} className="inline-flex items-center gap-1.5 rounded-4xl bg-primary px-4 py-2 text-xs font-medium text-primary-foreground hover:bg-primary/90 transition-colors" data-testid="button-create-product"><Plus className="h-3.5 w-3.5" /> New Product</button>
+            <div className="px-6 py-5 border-b border-border">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div><h2 className="text-lg font-semibold">Products</h2><p className="text-xs text-muted-foreground mt-0.5">Manage your product catalog</p></div>
+                <div className="flex items-center gap-3 flex-wrap">
+                  <div className="relative"><Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" /><input type="text" placeholder="Search..." value={productSearch} onChange={(e) => setProductSearch(e.target.value)} className="h-9 pl-9 pr-3 w-48 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring/40" data-testid="input-product-search" /></div>
+                  <button onClick={() => downloadCSV(localProducts.map((p: any) => ({ sku: p.sku, name: p.name, price: p.basePrice, stock: p.stockQty, active: p.active, category: localCategories.find((c: any) => c.id === p.categoryId)?.name || "" })), "products")} className="inline-flex items-center gap-1.5 rounded-4xl border border-border px-4 py-2 text-xs font-medium hover:bg-accent/60 transition-colors whitespace-nowrap" data-testid="button-export-csv"><FileDown className="h-3.5 w-3.5" /> CSV</button>
+                  <button onClick={() => setProductModal({ open: true })} className="inline-flex items-center gap-1.5 rounded-4xl bg-primary px-4 py-2 text-xs font-medium text-primary-foreground hover:bg-primary/90 transition-colors whitespace-nowrap" data-testid="button-create-product"><Plus className="h-3.5 w-3.5" /> New Product</button>
+                </div>
               </div>
             </div>
             <div className="overflow-x-auto">
@@ -667,11 +669,13 @@ function AdminDashboard() {
         {/* ─── ORDERS ──────────────────────────────────────────── */}
         {activeTab === "orders" && (
           <div className="rounded-xl border border-border bg-card">
-            <div className="px-6 py-5 border-b border-border flex items-center justify-between gap-4">
-              <div><h2 className="text-lg font-semibold">Orders</h2><p className="text-xs text-muted-foreground mt-0.5">Manage customer orders</p></div>
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-1.5"><Filter className="h-3.5 w-3.5 text-muted-foreground" /><select value={orderStatusFilter} onChange={(e) => setOrderStatusFilter(e.target.value)} className="h-9 px-3 rounded-lg border border-border bg-background text-xs focus:outline-none focus:ring-2 focus:ring-ring/40" data-testid="select-order-filter"><option value="all">All Statuses</option>{ORDER_STATUSES.map(s => <option key={s} value={s}>{s}</option>)}</select></div>
-                <button onClick={() => downloadCSV(adminOrders.map((o: any) => ({ id: o.id, status: o.status, total: o.total, customer: o.user?.username, company: o.user?.companyName, date: o.createdAt, po: o.poNumber })), "orders")} className="inline-flex items-center gap-1.5 rounded-4xl border border-border px-4 py-2 text-xs font-medium hover:bg-accent/60 transition-colors" data-testid="button-export-orders"><FileDown className="h-3.5 w-3.5" /> Export</button>
+            <div className="px-6 py-5 border-b border-border">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div><h2 className="text-lg font-semibold">Orders</h2><p className="text-xs text-muted-foreground mt-0.5">Manage customer orders</p></div>
+                <div className="flex items-center gap-3 flex-wrap">
+                  <div className="flex items-center gap-1.5"><Filter className="h-3.5 w-3.5 text-muted-foreground" /><select value={orderStatusFilter} onChange={(e) => setOrderStatusFilter(e.target.value)} className="h-9 px-3 rounded-lg border border-border bg-background text-xs focus:outline-none focus:ring-2 focus:ring-ring/40" data-testid="select-order-filter"><option value="all">All Statuses</option>{ORDER_STATUSES.map(s => <option key={s} value={s}>{s}</option>)}</select></div>
+                  <button onClick={() => downloadCSV(adminOrders.map((o: any) => ({ id: o.id, status: o.status, total: o.total, customer: o.user?.username, company: o.user?.companyName, date: o.createdAt, po: o.poNumber })), "orders")} className="inline-flex items-center gap-1.5 rounded-4xl border border-border px-4 py-2 text-xs font-medium hover:bg-accent/60 transition-colors whitespace-nowrap" data-testid="button-export-orders"><FileDown className="h-3.5 w-3.5" /> Export</button>
+                </div>
               </div>
             </div>
             {adminOrdersQuery.isLoading ? <div className="flex items-center justify-center py-16"><Loader2 className="h-5 w-5 animate-spin text-muted-foreground" /></div> : filteredOrders.length === 0 ? <div className="text-center py-16 text-muted-foreground"><ShoppingCart className="h-8 w-8 mx-auto mb-2 opacity-30" /><p className="text-sm">No orders found</p></div> : (
@@ -775,12 +779,14 @@ function AdminDashboard() {
             </div>
 
             <div className="rounded-xl border border-border bg-card">
-              <div className="px-6 py-5 border-b border-border flex items-center justify-between">
-                <div><h2 className="text-lg font-semibold">OrderCloud Products</h2><p className="text-xs text-muted-foreground mt-0.5">Products synced to your OrderCloud marketplace</p></div>
-                <div className="flex items-center gap-2">
-                  <button onClick={() => syncMutation.mutate()} disabled={syncMutation.isPending || !isConnected} className="inline-flex items-center gap-1.5 rounded-4xl bg-primary px-4 py-2 text-xs font-medium text-primary-foreground disabled:opacity-40 hover:bg-primary/90 transition-colors" data-testid="button-sync-oc">{syncMutation.isPending ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Upload className="h-3.5 w-3.5" />} Sync All</button>
-                  <button onClick={() => pullFromOCMutation.mutate()} disabled={pullFromOCMutation.isPending || !isConnected} className="inline-flex items-center gap-1.5 rounded-4xl border border-border px-4 py-2 text-xs font-medium disabled:opacity-40 hover:bg-accent/60 transition-colors"><Download className="h-3.5 w-3.5" /> Pull</button>
-                  {!deleteConfirm ? <button onClick={() => setDeleteConfirm(true)} disabled={ocProducts.length === 0} className="inline-flex items-center gap-1.5 rounded-4xl border border-destructive/30 px-4 py-2 text-xs font-medium text-destructive disabled:opacity-40 hover:bg-destructive/5 transition-colors"><Trash2 className="h-3.5 w-3.5" /> Delete All</button> : <div className="flex items-center gap-2"><button onClick={() => { deleteAllMutation.mutate(); setDeleteConfirm(false); }} className="inline-flex items-center gap-1.5 rounded-4xl bg-destructive px-4 py-2 text-xs font-medium text-destructive-foreground">Confirm</button><button onClick={() => setDeleteConfirm(false)} className="rounded-4xl border border-border px-3 py-2 text-xs">Cancel</button></div>}
+              <div className="px-6 py-5 border-b border-border">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div><h2 className="text-lg font-semibold">OrderCloud Products</h2><p className="text-xs text-muted-foreground mt-0.5">Products synced to your OrderCloud marketplace</p></div>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <button onClick={() => syncMutation.mutate()} disabled={syncMutation.isPending || !isConnected} className="inline-flex items-center gap-1.5 rounded-4xl bg-primary px-4 py-2 text-xs font-medium text-primary-foreground disabled:opacity-40 hover:bg-primary/90 transition-colors whitespace-nowrap" data-testid="button-sync-oc">{syncMutation.isPending ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Upload className="h-3.5 w-3.5" />} Sync All</button>
+                    <button onClick={() => pullFromOCMutation.mutate()} disabled={pullFromOCMutation.isPending || !isConnected} className="inline-flex items-center gap-1.5 rounded-4xl border border-border px-4 py-2 text-xs font-medium disabled:opacity-40 hover:bg-accent/60 transition-colors whitespace-nowrap" data-testid="button-pull-oc"><Download className="h-3.5 w-3.5" /> Pull</button>
+                    {!deleteConfirm ? <button onClick={() => setDeleteConfirm(true)} disabled={ocProducts.length === 0} className="inline-flex items-center gap-1.5 rounded-4xl border border-destructive/30 px-4 py-2 text-xs font-medium text-destructive disabled:opacity-40 hover:bg-destructive/5 transition-colors whitespace-nowrap"><Trash2 className="h-3.5 w-3.5" /> Delete All</button> : <div className="flex items-center gap-2"><button onClick={() => { deleteAllMutation.mutate(); setDeleteConfirm(false); }} className="inline-flex items-center gap-1.5 rounded-4xl bg-destructive px-4 py-2 text-xs font-medium text-destructive-foreground whitespace-nowrap">Confirm</button><button onClick={() => setDeleteConfirm(false)} className="rounded-4xl border border-border px-3 py-2 text-xs whitespace-nowrap">Cancel</button></div>}
+                  </div>
                 </div>
               </div>
               {ocProductsQuery.isLoading ? <div className="flex items-center justify-center py-16"><Loader2 className="h-5 w-5 animate-spin text-muted-foreground" /></div> : ocProducts.length === 0 ? <div className="text-center py-16 text-muted-foreground"><Database className="h-8 w-8 mx-auto mb-2 opacity-30" /><p className="text-sm">No products in OrderCloud</p><p className="text-xs mt-1">Click "Sync All" to push your catalog</p></div> : (
@@ -840,11 +846,13 @@ function AdminDashboard() {
         {/* ─── AUDIT LOG ──────────────────────────────────────────── */}
         {activeTab === "audit" && (
           <div className="rounded-xl border border-border bg-card">
-            <div className="px-6 py-5 border-b border-border flex items-center justify-between gap-4">
-              <div><h2 className="text-lg font-semibold">Audit Log</h2><p className="text-xs text-muted-foreground mt-0.5">Persistent record of all admin actions</p></div>
-              <div className="flex items-center gap-3">
-                <select value={auditCategoryFilter} onChange={(e) => { setAuditCategoryFilter(e.target.value); queryClient.invalidateQueries({ queryKey: ["/api/admin/audit-log"] }); }} className="h-9 px-3 rounded-lg border border-border bg-background text-xs focus:outline-none focus:ring-2 focus:ring-ring/40" data-testid="select-audit-filter"><option value="all">All Categories</option><option value="system">System</option><option value="product">Product</option><option value="order">Order</option><option value="category">Category</option><option value="sync">Sync</option></select>
-                <button onClick={() => downloadCSV(auditEntries.map((e: any) => ({ action: e.action, details: e.details, status: e.status, category: e.category, actor: e.actor, timestamp: e.createdAt })), "audit-log")} className="inline-flex items-center gap-1.5 rounded-4xl border border-border px-4 py-2 text-xs font-medium hover:bg-accent/60 transition-colors"><FileDown className="h-3.5 w-3.5" /> Export</button>
+            <div className="px-6 py-5 border-b border-border">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div><h2 className="text-lg font-semibold">Audit Log</h2><p className="text-xs text-muted-foreground mt-0.5">Persistent record of all admin actions</p></div>
+                <div className="flex items-center gap-3 flex-wrap">
+                  <select value={auditCategoryFilter} onChange={(e) => { setAuditCategoryFilter(e.target.value); queryClient.invalidateQueries({ queryKey: ["/api/admin/audit-log"] }); }} className="h-9 px-3 rounded-lg border border-border bg-background text-xs focus:outline-none focus:ring-2 focus:ring-ring/40" data-testid="select-audit-filter"><option value="all">All Categories</option><option value="system">System</option><option value="product">Product</option><option value="order">Order</option><option value="category">Category</option><option value="sync">Sync</option></select>
+                  <button onClick={() => downloadCSV(auditEntries.map((e: any) => ({ action: e.action, details: e.details, status: e.status, category: e.category, actor: e.actor, timestamp: e.createdAt })), "audit-log")} className="inline-flex items-center gap-1.5 rounded-4xl border border-border px-4 py-2 text-xs font-medium hover:bg-accent/60 transition-colors whitespace-nowrap"><FileDown className="h-3.5 w-3.5" /> Export</button>
+                </div>
               </div>
             </div>
             {auditLogQuery.isLoading ? <div className="flex items-center justify-center py-16"><Loader2 className="h-5 w-5 animate-spin text-muted-foreground" /></div> : auditEntries.length === 0 ? <div className="text-center py-16 text-muted-foreground"><History className="h-8 w-8 mx-auto mb-2 opacity-30" /><p className="text-sm">No audit entries</p></div> : (
