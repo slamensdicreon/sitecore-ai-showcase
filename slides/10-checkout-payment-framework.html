@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>Checkout & Payment Integration Framework</title>
+<link rel="stylesheet" href="slide-styles.css">
+</head>
+<body>
+<div class="slide">
+  <div class="gradient-line"></div>
+  <div class="slide-header">
+    <div class="logo-area">
+      <div class="logo-mark">S</div>
+      <span class="logo-text">SITECORE + ORDERCLOUD</span>
+    </div>
+    <span class="slide-number">10 / 10</span>
+  </div>
+
+  <div class="slide-title-area">
+    <div class="slide-label">Commerce Infrastructure</div>
+    <h1 class="slide-title">Checkout & Payment Integration Framework</h1>
+    <p class="slide-subtitle">Tax, shipping, fraud, payment tokenization, and trade compliance — all via integration events</p>
+  </div>
+
+  <div class="slide-body">
+    <div style="margin-bottom: 14px;">
+      <h3 style="font-size: 14px; font-weight: 600; margin-bottom: 8px; color: var(--text-muted);">OrderCloud Integration Event Pipeline</h3>
+      <div class="flow-row">
+        <div class="flow-box"><div class="label">Event</div><div class="value">Order Calculate</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box"><div class="label">Tax</div><div class="value">Avalara / Vertex</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box"><div class="label">Shipping</div><div class="value">Carrier Rate API</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box"><div class="label">Fraud</div><div class="value">Kount / Sift</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box highlight"><div class="label">Payment</div><div class="value">Stripe / PayPal</div></div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom: 14px;">
+      <div class="card card-accent">
+        <div class="icon-box icon-purple">&#128179;</div>
+        <h3>Tax & Shipping</h3>
+        <ul>
+          <li>Integration event fires on order calculate</li>
+          <li>Middleware calls Avalara/Vertex for tax lines</li>
+          <li>Tax, VAT, tariff returned as separate line items</li>
+          <li>Carrier APIs: FedEx, UPS, DHL for live rates</li>
+          <li>Shipping options presented at checkout</li>
+        </ul>
+        <div class="tag-row">
+          <span class="badge badge-green">Checkout Live in Demo</span>
+        </div>
+      </div>
+      <div class="card card-accent">
+        <div class="icon-box icon-blue">&#128179;</div>
+        <h3>Payment Tokenization</h3>
+        <ul>
+          <li>Stripe: PCI-compliant client-side tokenization</li>
+          <li>Token stored in OC Payment object (never in middleware)</li>
+          <li>Auth &#8594; Capture flow on order submit</li>
+          <li>PayPal: redirect + callback pattern</li>
+          <li>PO / Net Terms: approval workflow, no gateway</li>
+        </ul>
+        <div class="tag-row">
+          <span class="badge badge-green">CC/PayPal/PO Live</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon-box icon-red">&#128721;</div>
+        <h3>Fraud Decisioning</h3>
+        <ul>
+          <li>Pre-auth webhook &#8594; Kount risk score</li>
+          <li>Auto-approve / hold / reject thresholds</li>
+          <li>Exception queue in admin for manual review</li>
+          <li>Kount transaction ID stored in order xp</li>
+          <li>Full audit trail of fraud decisions</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="icon-box icon-amber">&#128195;</div>
+        <h3>Trade Compliance</h3>
+        <ul>
+          <li>Incoterms stored in order xp</li>
+          <li>ECCN classification on product xp</li>
+          <li>Denied party screening (BIS, OFAC)</li>
+          <li>Export control gating before submit</li>
+          <li>Compliance check results logged</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="icon-box icon-green">&#128230;</div>
+        <h3>Post-Purchase</h3>
+        <p style="margin-bottom: 4px;"><span class="badge badge-green">Live in Demo</span></p>
+        <ul>
+          <li>Order history with status timeline</li>
+          <li>Tracking numbers & shipment updates</li>
+          <li>Cancel / reorder capabilities</li>
+          <li>Notification templates (admin config)</li>
+          <li>Order audit history</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span>TE Digital Ecosystem Simplification</span>
+    <span>Confidential</span>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>Authenticated & Personalized Experience</title>
+<link rel="stylesheet" href="slide-styles.css">
+</head>
+<body>
+<div class="slide">
+  <div class="gradient-line"></div>
+  <div class="slide-header">
+    <div class="logo-area">
+      <div class="logo-mark">S</div>
+      <span class="logo-text">SITECORE + ORDERCLOUD</span>
+    </div>
+    <span class="slide-number">05 / 10</span>
+  </div>
+
+  <div class="slide-title-area">
+    <div class="slide-label">Identity & Personalization</div>
+    <h1 class="slide-title">Authenticated & Personalized Experience</h1>
+    <p class="slide-subtitle">Enterprise identity federation, unified profiles, and role-based personalization across channels</p>
+  </div>
+
+  <div class="slide-body">
+    <div class="grid-2" style="margin-bottom: 16px;">
+      <div class="card card-accent">
+        <div class="icon-box icon-purple">&#128272;</div>
+        <h3>Enterprise Identity Integration</h3>
+        <ul>
+          <li>SAML 2.0 and OpenID Connect SSO</li>
+          <li>Federation with Azure AD, Okta, Ping</li>
+          <li>Multi-factor authentication support</li>
+          <li>OrderCloud Buyer User provisioning via API</li>
+          <li>Just-in-time user creation on first SSO login</li>
+        </ul>
+      </div>
+      <div class="card card-accent">
+        <div class="icon-box icon-blue">&#128100;</div>
+        <h3>Unified Customer Profiles</h3>
+        <ul>
+          <li>CDP merges anonymous + authenticated sessions</li>
+          <li>Single identity across web, mobile, email, offline</li>
+          <li>Cross-device session continuity</li>
+          <li>Behavioral + transactional + firmographic data</li>
+          <li>Profile enrichment from 3rd-party sources</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-3" style="margin-bottom: 16px;">
+      <div class="card">
+        <h3>Role & Attribute Access</h3>
+        <p style="margin-bottom: 6px;"><span class="badge badge-green">Live in Demo</span></p>
+        <ul>
+          <li>Engineer vs. Purchaser personas</li>
+          <li>Adapted UI emphasis per role</li>
+          <li>OrderCloud user groups for catalog visibility</li>
+          <li>Spending limits & approval rules</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Session Management</h3>
+        <p style="margin-bottom: 6px;"><span class="badge badge-green">Live in Demo</span></p>
+        <ul>
+          <li>Token-based auth (Bearer tokens)</li>
+          <li>Persistent sessions with auto-refresh</li>
+          <li>Secure cookie + token fallback</li>
+          <li>Cross-tab session sync</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Personalization</h3>
+        <p style="margin-bottom: 6px;"><span class="badge badge-green">Live in Demo</span></p>
+        <ul>
+          <li>Locale & currency preferences</li>
+          <li>Browsing-history recommendations</li>
+          <li>Persona-specific product emphasis</li>
+          <li>Consistent across page loads</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size: 14px; font-weight: 600; margin-bottom: 8px; color: var(--text-muted);">SSO Authentication Flow</h3>
+      <div class="flow-row">
+        <div class="flow-box"><div class="label">User</div><div class="value">Visits Storefront</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box"><div class="label">Redirect</div><div class="value">Azure AD / Okta</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box"><div class="label">Auth</div><div class="value">SAML / OIDC Token</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box"><div class="label">Provision</div><div class="value">OC Buyer User</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box highlight"><div class="label">Access</div><div class="value">Personalized Store</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span>TE Digital Ecosystem Simplification</span>
+    <span>Confidential</span>
+  </div>
+</div>
+</body>
+</html>

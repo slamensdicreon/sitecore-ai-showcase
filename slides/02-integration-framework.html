@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>Integration Development & Management</title>
+<link rel="stylesheet" href="slide-styles.css">
+</head>
+<body>
+<div class="slide">
+  <div class="gradient-line"></div>
+  <div class="slide-header">
+    <div class="logo-area">
+      <div class="logo-mark">S</div>
+      <span class="logo-text">SITECORE + ORDERCLOUD</span>
+    </div>
+    <span class="slide-number">02 / 10</span>
+  </div>
+
+  <div class="slide-title-area">
+    <div class="slide-label">Integration</div>
+    <h1 class="slide-title">Integration Development & Management</h1>
+    <p class="slide-subtitle">API-first architecture with pre-built connectors and flexible middleware</p>
+  </div>
+
+  <div class="slide-body">
+    <div class="grid-3">
+      <div class="card card-accent">
+        <div class="icon-box icon-purple">&#9881;</div>
+        <h3>Development Tools</h3>
+        <ul>
+          <li>OrderCloud Portal — visual API explorer</li>
+          <li>TypeScript SDK (auto-generated from OpenAPI)</li>
+          <li>Webhook config & integration events</li>
+          <li>Middleware pattern — Express / Next.js</li>
+          <li>Local dev with hot reload</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="icon-box icon-blue">&#128268;</div>
+        <h3>OOTB Connectors</h3>
+        <p style="margin-bottom:8px;">Via Sitecore Connect:</p>
+        <ul>
+          <li>SAP ERP (pricing, inventory, fulfillment)</li>
+          <li>Salesforce CRM (contacts, opps)</li>
+          <li>Stripe / PayPal / Adyen</li>
+          <li>Avalara / Vertex (tax)</li>
+          <li>EasyPost / ShipStation</li>
+          <li>CDP & analytics platforms</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="icon-box icon-green">&#9889;</div>
+        <h3>Custom Integrations</h3>
+        <ul>
+          <li>Integration events fire on order calculate, submit, approve</li>
+          <li>Webhooks for real-time sync</li>
+          <li>Scheduled jobs for batch operations</li>
+          <li>xp (extended properties) for custom data on any object</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top: 18px;">
+      <h3 style="font-size: 14px; font-weight: 600; margin-bottom: 10px; color: var(--text-muted);">Configuration vs. Code</h3>
+      <div class="grid-2" style="gap:12px;">
+        <div class="card" style="padding:16px;">
+          <h3 style="color:var(--success);">&#9679; Configuration (No Code)</h3>
+          <p>Pricing rules, promotions, approval workflows, buyer visibility, catalog assignments, user groups, spending limits, feature flags</p>
+        </div>
+        <div class="card" style="padding:16px;">
+          <h3 style="color:var(--primary-light);">&#9679; Code (Middleware)</h3>
+          <p>Trade compliance checks, fraud screening, ERP order sync, tax engine calls, custom business logic, AI pipelines</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 14px;">
+      <h3 style="font-size: 14px; font-weight: 600; margin-bottom: 8px; color: var(--text-muted);">CI/CD Pipeline</h3>
+      <div class="flow-row">
+        <div class="flow-box"><div class="label">Source</div><div class="value">Git Repository</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box"><div class="label">Build</div><div class="value">GitHub Actions</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box"><div class="label">Test</div><div class="value">Automated Suite</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box"><div class="label">Staging</div><div class="value">OC Sandbox</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box highlight"><div class="label">Production</div><div class="value">OC Production</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span>TE Digital Ecosystem Simplification</span>
+    <span>Confidential</span>
+  </div>
+</div>
+</body>
+</html>

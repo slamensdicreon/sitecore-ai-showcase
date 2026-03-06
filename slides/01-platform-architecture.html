@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>Target State Platform Architecture</title>
+<link rel="stylesheet" href="slide-styles.css">
+</head>
+<body>
+<div class="slide">
+  <div class="gradient-line"></div>
+  <div class="slide-header">
+    <div class="logo-area">
+      <div class="logo-mark">S</div>
+      <span class="logo-text">SITECORE + ORDERCLOUD</span>
+    </div>
+    <span class="slide-number">01 / 10</span>
+  </div>
+
+  <div class="slide-title-area">
+    <div class="slide-label">Architecture</div>
+    <h1 class="slide-title">Target State Platform Architecture</h1>
+    <p class="slide-subtitle">Composable DXP replacing fragmented point solutions with a unified, API-first ecosystem</p>
+  </div>
+
+  <div class="slide-body">
+    <div class="comparison">
+      <div>
+        <h3 style="font-size:14px; color:var(--destructive); margin-bottom:12px; font-weight:600;">Current State</h3>
+        <div class="card" style="border-color: rgba(239,68,68,0.2);">
+          <ul>
+            <li>8+ disparate systems across BUs</li>
+            <li>Manual data sync between platforms</li>
+            <li>Region-specific CMS instances</li>
+            <li>Disconnected asset repositories</li>
+            <li>Point-to-point integrations</li>
+            <li>Siloed product data & taxonomies</li>
+            <li>No unified customer identity</li>
+            <li>High operational overhead</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="comparison-arrow">&#10132;</div>
+
+      <div>
+        <h3 style="font-size:14px; color:var(--success); margin-bottom:12px; font-weight:600;">Future State — Sitecore DXP</h3>
+        <div class="card card-accent">
+          <ul>
+            <li>Unified composable platform</li>
+            <li>API-first, real-time data flow</li>
+            <li>Multi-site from single XM Cloud</li>
+            <li>Centralized DAM (Content Hub)</li>
+            <li>Hub-and-spoke via Sitecore Connect</li>
+            <li>OrderCloud as commerce SOR</li>
+            <li>CDP for unified customer profiles</li>
+            <li>SaaS — zero infrastructure mgmt</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 16px;">
+      <div class="arch-diagram">
+        <div class="arch-layer">
+          <div class="arch-box" style="flex:3; background: rgba(85,72,217,0.06); border-color: var(--border-accent);">
+            <div class="arch-label">Presentation Layer</div>
+            <div class="arch-value" style="color:var(--primary-light)">React / Next.js Headless Frontend</div>
+          </div>
+        </div>
+        <div class="arch-layer">
+          <div class="arch-box active"><div class="arch-label">Commerce</div><div class="arch-value">OrderCloud</div></div>
+          <div class="arch-box"><div class="arch-label">WCMS</div><div class="arch-value">XM Cloud</div></div>
+          <div class="arch-box"><div class="arch-label">DAM + PCM</div><div class="arch-value">Content Hub</div></div>
+          <div class="arch-box"><div class="arch-label">CDP</div><div class="arch-value">Personalize</div></div>
+          <div class="arch-box"><div class="arch-label">Marketing</div><div class="arch-value">Send</div></div>
+        </div>
+        <div class="arch-layer">
+          <div class="arch-box" style="flex:3;">
+            <div class="arch-label">Integration</div>
+            <div class="arch-value">Sitecore Connect + Custom Middleware + Webhooks</div>
+          </div>
+        </div>
+        <div class="arch-layer">
+          <div class="arch-box"><div class="arch-label">ERP</div><div class="arch-value">SAP</div></div>
+          <div class="arch-box"><div class="arch-label">CRM</div><div class="arch-value">Salesforce</div></div>
+          <div class="arch-box"><div class="arch-label">Tax</div><div class="arch-value">Avalara</div></div>
+          <div class="arch-box"><div class="arch-label">Payments</div><div class="arch-value">Stripe / PayPal</div></div>
+          <div class="arch-box"><div class="arch-label">Identity</div><div class="arch-value">Azure AD</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span>TE Digital Ecosystem Simplification</span>
+    <span>Confidential</span>
+  </div>
+</div>
+</body>
+</html>

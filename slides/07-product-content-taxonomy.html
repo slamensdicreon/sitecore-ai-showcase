@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>Product Content Management & Taxonomy</title>
+<link rel="stylesheet" href="slide-styles.css">
+</head>
+<body>
+<div class="slide">
+  <div class="gradient-line"></div>
+  <div class="slide-header">
+    <div class="logo-area">
+      <div class="logo-mark">S</div>
+      <span class="logo-text">SITECORE + ORDERCLOUD</span>
+    </div>
+    <span class="slide-number">07 / 10</span>
+  </div>
+
+  <div class="slide-title-area">
+    <div class="slide-label">Product Content</div>
+    <h1 class="slide-title">Advanced Taxonomy & Product Data Model</h1>
+    <p class="slide-subtitle">Owning vs. non-owning categories, rule-based classification, and deep hierarchies</p>
+  </div>
+
+  <div class="slide-body">
+    <div class="grid-2" style="margin-bottom: 14px;">
+      <div class="card card-accent">
+        <div class="icon-box icon-purple">&#128194;</div>
+        <h3>Owning (Physical) Taxonomy</h3>
+        <ul>
+          <li>Single primary category per product</li>
+          <li>Deep nested hierarchies supported</li>
+          <li>Referential integrity enforced</li>
+          <li>Product inherits category-level attributes</li>
+          <li>PDP breadcrumb always from primary leaf node</li>
+          <li>No product duplication across categories</li>
+        </ul>
+      </div>
+      <div class="card card-accent">
+        <div class="icon-box icon-blue">&#128301;</div>
+        <h3>Non-Owning (Rule-Based) Categories</h3>
+        <ul>
+          <li>Business users configure via UI (no code)</li>
+          <li>Rules use: attributes, facets, conditional logic</li>
+          <li>Product appears in multiple trees simultaneously</li>
+          <li>Independent from owning classification</li>
+          <li>Scheduled rule execution & materialization</li>
+          <li>Export resolved paths (UI + Excel)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 14px;">
+      <h3 style="font-size: 14px; font-weight: 600; margin-bottom: 8px; color: var(--text-muted);">Example: AMPSEAL Connector in Multiple Trees</h3>
+      <div class="grid-3" style="gap:10px;">
+        <div class="card" style="padding:14px; text-align:center;">
+          <div style="font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:1px;">Owning Category</div>
+          <div style="font-size:13px; font-weight:600; color:var(--primary-light); margin-top:4px;">Connectors &#8594; Automotive &#8594; Sealed</div>
+          <div style="font-size:11px; color:var(--text-dim); margin-top:4px;">Primary path (breadcrumb source)</div>
+        </div>
+        <div class="card" style="padding:14px; text-align:center;">
+          <div style="font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:1px;">Navigation Tree 1</div>
+          <div style="font-size:13px; font-weight:600; color:var(--accent); margin-top:4px;">By Industry &#8594; Automotive &#8594; Powertrain</div>
+          <div style="font-size:11px; color:var(--text-dim); margin-top:4px;">Rule: industry = "Automotive"</div>
+        </div>
+        <div class="card" style="padding:14px; text-align:center;">
+          <div style="font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:1px;">Navigation Tree 2</div>
+          <div style="font-size:13px; font-weight:600; color:var(--success); margin-top:4px;">By IP Rating &#8594; IP67+ &#8594; Harsh Env</div>
+          <div style="font-size:11px; color:var(--text-dim); margin-top:4px;">Rule: IP Rating >= IP67</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card" style="padding:16px;">
+        <h3>Product Relationships</h3>
+        <p style="margin-bottom: 4px;"><span class="badge badge-green">Live in Demo</span></p>
+        <ul>
+          <li>One-way & two-way relationships</li>
+          <li>Typed: related, alternative, accessory</li>
+          <li>28 seeded relationship mappings</li>
+          <li>Admin CRUD for relationship management</li>
+        </ul>
+      </div>
+      <div class="card" style="padding:16px;">
+        <h3>Data Model Capabilities</h3>
+        <ul>
+          <li>Global part master (SKU-based)</li>
+          <li>Extended properties (xp) for custom fields</li>
+          <li>Specs, variants, inherited structures</li>
+          <li>Engineering, compliance, feature visibility flags</li>
+          <li>Full audit history on changes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span>TE Digital Ecosystem Simplification</span>
+    <span>Confidential</span>
+  </div>
+</div>
+</body>
+</html>

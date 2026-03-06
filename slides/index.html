@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>TE Digital Ecosystem — Presentation Slides</title>
+<link rel="stylesheet" href="slide-styles.css">
+<style>
+  body { overflow: auto; }
+  .index-page {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 40px;
+  }
+  .index-header {
+    margin-bottom: 48px;
+  }
+  .index-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .index-header p {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .slide-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .slide-link {
+    display: block;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .slide-link:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+  }
+  .slide-link .num {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary-light);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .slide-link h2 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .slide-link p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .slide-link .tags {
+    margin-top: 10px;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+</style>
+</head>
+<body>
+<div class="gradient-line" style="position:fixed;top:0;left:0;right:0;z-index:10;"></div>
+<div class="index-page">
+  <div class="index-header">
+    <div class="logo-area" style="margin-bottom:24px;">
+      <div class="logo-mark">S</div>
+      <span class="logo-text">SITECORE + ORDERCLOUD</span>
+    </div>
+    <h1>TE Digital Ecosystem Simplification</h1>
+    <p>Vendor Demonstration — Narration Slides<br>
+    10 slides covering platform architecture, integration, AI, globalization, and more.<br>
+    Each slide is 1280 x 720 (16:9) and can be opened full-screen or exported to PDF.</p>
+  </div>
+
+  <div class="slide-list">
+    <a href="01-platform-architecture.html" class="slide-link">
+      <div class="num">SLIDE 01</div>
+      <h2>Target State Platform Architecture</h2>
+      <p>Current vs. future state. Composable DXP with OrderCloud, XM Cloud, Content Hub, CDP, and Connect.</p>
+      <div class="tags"><span class="badge badge-purple">Architecture</span><span class="badge badge-amber">Executive</span></div>
+    </a>
+    <a href="02-integration-framework.html" class="slide-link">
+      <div class="num">SLIDE 02</div>
+      <h2>Integration Development & Management</h2>
+      <p>Dev tools, OOTB connectors, config vs. code, CI/CD pipeline.</p>
+      <div class="tags"><span class="badge badge-purple">Integration</span><span class="badge badge-blue">Technical</span></div>
+    </a>
+    <a href="03-ai-capabilities.html" class="slide-link">
+      <div class="num">SLIDE 03</div>
+      <h2>AI Capabilities & Governance</h2>
+      <p>Chatbot, recommendations, behavior-based segmentation, feature flags, audit trails.</p>
+      <div class="tags"><span class="badge badge-purple">AI</span><span class="badge badge-amber">Executive</span></div>
+    </a>
+    <a href="04-monitoring-observability.html" class="slide-link">
+      <div class="num">SLIDE 04</div>
+      <h2>Monitoring & Observability</h2>
+      <p>Built-in monitoring, Dynatrace/Datadog integration, alerting, health checks.</p>
+      <div class="tags"><span class="badge badge-blue">Technical</span><span class="badge badge-purple">Operations</span></div>
+    </a>
+    <a href="05-authenticated-experience.html" class="slide-link">
+      <div class="num">SLIDE 05</div>
+      <h2>Authenticated & Personalized Experience</h2>
+      <p>SSO federation, unified profiles, role-based access, cross-device personalization.</p>
+      <div class="tags"><span class="badge badge-purple">Identity</span><span class="badge badge-green">Live Demo</span></div>
+    </a>
+    <a href="06-multilingual-globalization.html" class="slide-link">
+      <div class="num">SLIDE 06</div>
+      <h2>Multilingual & Globalization</h2>
+      <p>7 languages, 2 domains, AI translation, geolocation routing, governance.</p>
+      <div class="tags"><span class="badge badge-purple">Globalization</span><span class="badge badge-green">Live Demo</span></div>
+    </a>
+    <a href="07-product-content-taxonomy.html" class="slide-link">
+      <div class="num">SLIDE 07</div>
+      <h2>Product Content & Taxonomy</h2>
+      <p>Owning vs. non-owning categories, rule-based classification, product relationships.</p>
+      <div class="tags"><span class="badge badge-purple">PCM</span><span class="badge badge-blue">Technical</span></div>
+    </a>
+    <a href="08-wcms-dam.html" class="slide-link">
+      <div class="num">SLIDE 08</div>
+      <h2>WCMS & Digital Asset Management</h2>
+      <p>XM Cloud authoring, Content Hub DAM, editorial workflows, AI content creation.</p>
+      <div class="tags"><span class="badge badge-purple">Content</span><span class="badge badge-amber">Brand COE</span></div>
+    </a>
+    <a href="09-marketing-automation.html" class="slide-link">
+      <div class="num">SLIDE 09</div>
+      <h2>Marketing Automation</h2>
+      <p>Lead scoring, journey builder, Salesforce integration, attribution, AI optimization.</p>
+      <div class="tags"><span class="badge badge-purple">Marketing</span><span class="badge badge-amber">Marketing Ops</span></div>
+    </a>
+    <a href="10-checkout-payment-framework.html" class="slide-link">
+      <div class="num">SLIDE 10</div>
+      <h2>Checkout & Payment Framework</h2>
+      <p>Tax, shipping, fraud, payment tokenization, trade compliance, post-purchase.</p>
+      <div class="tags"><span class="badge badge-purple">Commerce</span><span class="badge badge-green">Live Demo</span></div>
+    </a>
+  </div>
+
+  <div style="margin-top:48px; padding:24px; background:var(--bg-card); border-radius:14px; border:1px solid var(--border);">
+    <h3 style="font-size:15px; font-weight:600; margin-bottom:8px;">How to Use These Slides</h3>
+    <ul style="font-size:13px; color:var(--text-muted); line-height:1.8; list-style:none; padding:0;">
+      <li style="padding-left:18px; position:relative;"><span style="position:absolute;left:0;">1.</span> Open any slide in a browser at full 1280x720 resolution</li>
+      <li style="padding-left:18px; position:relative;"><span style="position:absolute;left:0;">2.</span> Use browser Print &#8594; Save as PDF for a portable deck</li>
+      <li style="padding-left:18px; position:relative;"><span style="position:absolute;left:0;">3.</span> Green "Live in Demo" badges indicate features you can switch to the live app to demonstrate</li>
+      <li style="padding-left:18px; position:relative;"><span style="position:absolute;left:0;">4.</span> Purple/Blue badges indicate narration-only platform capabilities</li>
+      <li style="padding-left:18px; position:relative;"><span style="position:absolute;left:0;">5.</span> Amber badges indicate content particularly relevant to executive stakeholders</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
