@@ -1,0 +1,697 @@
+🧠 What TE Connectivity actually is
+
+TE Connectivity (NYSE: TEL) is a global industrial technology company that designs and manufactures connectivity and sensor solutions — the invisible infrastructure that allows power, data, and signals to move reliably across systems.
+
+Think of them as:
+
+“The nervous system of modern industry.”
+
+They don’t build end products.
+They build the critical components inside everything.
+
+🧬 Core Value Proposition
+
+TE operates in one simple but powerful space:
+
+👉 “Harsh-environment connectivity”
+High heat
+High vibration
+High voltage
+Mission-critical reliability
+
+Their products are engineered to never fail, because failure = catastrophic (cars, planes, medical devices, power grids).
+
+💰 Scale & Financials (Reality Check)
+Revenue (TTM): ~$18B+
+FY2025 revenue: ~$17.3B record
+Quarterly revenue: ~$4.7B (2026 Q1)
+Employees: ~90,000+ globally
+Countries served: ~140
+Engineers: 8,000+
+
+👉 This is not a niche supplier.
+This is a Tier 1 backbone player across multiple industries.
+
+🏗️ Business Structure (How They Make Money)
+1. Transportation Solutions
+Automotive (EV + ICE)
+Commercial vehicles
+Sensors & safety systems
+
+👉 Used in:
+
+Battery systems
+Autonomous driving
+Infotainment
+Powertrain
+2. Industrial Solutions
+Factory automation
+Energy & utilities
+Aerospace & defense
+Medical devices
+
+👉 This is their fastest growth segment, especially driven by:
+
+AI data centers
+Electrification
+Grid modernization
+3. Communications Solutions
+Data centers
+Consumer appliances
+Networking infrastructure
+
+👉 Smaller but strategic for:
+
+Cloud
+5G
+Edge compute
+🔌 What They Actually Sell (Product-Level)
+
+At a granular level, TE sells:
+
+Connectors
+Wire-to-wire
+Board-to-board
+High-speed data connectors
+RF/coaxial systems
+Sensors
+Pressure
+Temperature
+Position
+Motion
+Power & Signal Components
+Terminals
+Relays
+Switches
+Circuit protection
+
+👉 They literally enable electricity and data to move safely across systems.
+
+🌍 Where TE Shows Up (End Markets)
+
+This is where it gets interesting strategically.
+
+🚗 Automotive (massive)
+Tesla, OEMs, EV platforms
+Battery + charging systems
+☁️ Data Centers / AI
+Hyperscalers (Amazon, Google, Meta)
+AI infrastructure wiring + power systems
+⚡ Energy & Grid
+Renewable energy
+Grid modernization
+Utility infrastructure
+🏭 Industrial Automation
+Robotics
+Manufacturing lines
+✈️ Aerospace & Defense
+Avionics
+Military systems
+🏥 Medical Devices
+Imaging
+Surgical equipment
+🚀 Strategic Positioning (This is the real story)
+
+TE is positioned at the intersection of three mega-trends:
+
+1. Electrification
+EVs
+Renewable energy
+Smart grids
+2. AI Infrastructure
+Data center expansion
+Power demand explosion
+3. Automation
+Robotics
+Smart factories
+
+👉 They benefit from every single one simultaneously.
+
+🤖 The AI Angle (Underrated)
+
+TE is not an “AI company”…
+but it’s quietly an AI infrastructure enabler.
+
+Data centers need:
+Power distribution
+High-speed connectivity
+TE supplies both
+
+👉 AI-driven energy demand is expected to triple power consumption → direct tailwind for TE.
+
+🧠 Business Model (Why It’s Powerful)
+High-margin, sticky, long lifecycle
+Products are designed into systems
+Switching costs are extremely high
+Lifecycles can be 10–20+ years
+
+👉 Once TE is in, they stay in.
+
+Local-for-local manufacturing
+~70% produced where sold
+Reduces:
+Tariffs
+Supply chain risk
+Engineering-led sales
+Deep integration with OEMs
+Not transactional
+Co-design model
+🏆 Competitive Landscape
+Primary competitors:
+Amphenol
+Aptiv
+Molex (Koch Industries)
+Sensata Technologies
+TE’s edge:
+Breadth across industries
+Depth in harsh environments
+Scale + engineering density
+🧭 Strategic Moves
+🔹 Acquisition: Richards Manufacturing (~$2.3B)
+Expands into utility grid infrastructure
+Direct play on:
+Energy demand
+AI-driven electricity growth
+🔹 Portfolio simplification
+Moving toward:
+Industrial + Transportation focus
+Shedding lower-margin businesses
+⚠️ Risks & Weaknesses
+1. Cyclical exposure
+Automotive
+Industrial manufacturing
+2. Not a “brand company”
+Invisible to end consumers
+Harder narrative positioning
+3. Margin pressure from:
+Commoditization in some connectors
+Raw material costs
+🧩 TE.com (Digital Presence Insight)
+
+Their website (TE.com) is:
+
+Massive product catalog
+Engineering-first UX
+Built for:
+Engineers
+Procurement teams
+OEMs
+Strengths:
+Deep technical specs
+Strong search/filtering
+CAD + documentation
+Weaknesses (DXP perspective):
+Not storytelling-driven
+Limited emotional narrative
+Fragmented journey across industries
+
+👉 This is where a Sitecore / DXP transformation play becomes very real.
+
+🎯 If You Had to Summarize TE in One Line
+
+TE Connectivity is the invisible infrastructure powering electrification, AI, and industrial automation at global scale.
+
+🧠 Strategic Take (Your Lens, Steve)
+
+This is the angle you should lean into in a pitch:
+
+TE is not a components company
+TE is a system enabler of the future economy
+
+Your narrative:
+
+They don’t sell connectors
+They enable the flow of energy and intelligence
+
+If you want, I can:
+
+Break down TE’s digital experience gaps (Sitecore angle)
+Map DXP opportunities by business unit
+Or build a killer pursuit narrative / pitch deck positioning for TE
+When you think about the company and then look at it's website te.com what is not working
+
+Alright — let’s look at this the way you would in a pursuit room, not a UX audit.
+
+Not “what’s wrong with the website”
+but
+“where the digital experience is misaligned with the power of the company.”
+
+🧠 The Core Problem
+
+TE is:
+
+The nervous system of electrification, AI infrastructure, and industrial automation
+
+TE.com feels like:
+
+A very well-organized parts catalog
+
+That gap is everything.
+
+⚠️ 1. No Translation From Component → Impact
+
+TE sells small things with massive consequence
+But the site communicates small things as small things
+
+What’s happening:
+Connectors are shown as products
+Not as enablers of:
+EV range
+AI compute density
+Grid resilience
+What’s missing:
+“Why this matters” at a system level
+No narrative from:
+Component → System → Outcome → Business impact
+
+👉 Right now:
+
+Engineers understand it
+Executives feel nothing
+
+🧩 2. The Experience Is Built for Engineers Only
+
+The site is optimized for:
+
+Part numbers
+Specs
+CAD downloads
+
+Which is necessary — but incomplete.
+
+The problem:
+
+Buying committees now include:
+
+Digital leaders
+Innovation teams
+Business stakeholders
+
+These audiences:
+
+Don’t search by SKU
+Think in problems and outcomes
+
+👉 TE.com forces everyone to think like an engineer
+
+🔍 3. Search Solves Retrieval — Not Discovery
+
+Search is actually strong…
+
+…but only if you know what you’re looking for.
+
+The gap:
+
+There is no:
+
+Guided discovery
+“Help me solve this problem” entry point
+Intelligent recommendation layer
+Example:
+
+A user thinking:
+
+“How do I improve EV charging reliability?”
+
+Gets:
+
+A list of connectors
+
+Instead of:
+
+A solution pathway
+
+🧭 4. Industry Navigation ≠ Use Case Navigation
+
+TE organizes by:
+
+Automotive
+Industrial
+Aerospace
+
+That’s how TE is structured internally.
+
+That’s NOT how customers think.
+
+Customers think in:
+“High voltage safety”
+“Thermal management”
+“Signal integrity in AI racks”
+
+👉 The IA reflects TE’s org chart
+not the customer’s mental model
+
+⚡ 5. No Cohesive “System Thinking” Layer
+
+TE is a systems company disguised as a component company
+
+But the site:
+
+Shows products in isolation
+Not how they work together
+Missing:
+System architectures
+Reference designs
+Interactive solution maps
+
+👉 There’s no way to see:
+
+“How all of TE fits into my ecosystem”
+
+🧱 6. Content Is Deep — But Not Orchestrated
+
+They have:
+
+Whitepapers
+Technical docs
+Application notes
+
+But it’s:
+
+Fragmented
+Not sequenced
+Not personalized
+What’s missing:
+Content journeys
+Progressive disclosure
+Role-based experiences
+
+👉 It’s a library
+not a guided experience
+
+🎯 7. No Commercial Journey
+
+This is a big one.
+
+There is no clear path from:
+
+Exploration → Evaluation → Engagement → Conversion
+Instead:
+Browse
+Download
+Contact
+
+That’s it.
+
+Missing:
+Configurators
+Solution builders
+ROI tools
+Guided qualification
+
+👉 The site informs
+but doesn’t advance deals
+
+🤖 8. AI Is Absent Where It Should Dominate
+
+For a company enabling AI infrastructure…
+
+The digital experience is largely:
+
+Static
+Deterministic
+No:
+Conversational guidance
+Context-aware recommendations
+Dynamic product matching
+
+👉 This is a massive strategic miss
+
+Especially given:
+
+Complexity of product catalog
+Diversity of users
+🧬 9. No Identity Layer / Personalization
+
+Everyone gets:
+
+The same experience
+
+No awareness of:
+
+Industry
+Role
+Behavior
+Intent
+Impact:
+High friction
+Low relevance
+Missed cross-sell opportunities
+🧠 10. The Brand Feels Smaller Than the Company
+
+This is subtle but critical.
+
+TE as a company:
+
+Powers AI
+Powers EVs
+Powers global infrastructure
+
+TE.com:
+
+Feels like a supplier catalog
+Missing:
+Authority
+Vision
+Narrative
+
+👉 It undersells their importance in the world
+
+🧨 The Big Insight (This is your pitch anchor)
+
+TE does not have a website problem
+TE has a translation problem
+
+They have not translated engineering excellence into commercial storytelling
+
+🎯 If You Had to Boil It Down to 5 Gaps
+1. No system-level storytelling
+2. No guided discovery
+3. IA reflects TE, not the customer
+4. No AI-driven experience layer
+5. No commercial journey orchestration
+🧠 Your Strategic Angle (Where you win)
+
+This is not:
+
+“Let’s redesign the website”
+
+This is:
+
+“Let’s build a digital system that matches the intelligence of your products”
+
+🔥 The Reframe You Should Use
+
+“Right now, TE.com helps customers find products
+It should help customers solve problems”
+
+If you want next step, I can:
+
+Turn this into a 9-slide McKinsey narrative
+Map Sitecore XM Cloud + AI architecture specifically for TE
+Or build a “future state TE.com” experience concept (wireframe + story)
+give me a talk track narrative to speak to TE about
+
+Got it — this needs to land like a boardroom narrative, not a UX critique.
+Confident. Precise. A little provocative. And anchored in their reality.
+
+Here’s a talk track you can deliver live — paced, intentional, with moments to pause.
+
+🎤 TALK TRACK: “From Components to Consequence”
+Opening — Establish Respect + Authority (0:00–0:30)
+
+Let me start here.
+
+TE Connectivity is not a component company.
+TE Connectivity is an enabler of the modern world.
+
+Every signal, every watt of power, every connection that needs to survive heat, vibration, and time…
+somewhere in that chain, TE is present.
+
+You are the infrastructure behind electrification.
+You are the infrastructure behind AI.
+You are the infrastructure behind industrial automation.
+
+That is not a small story.
+
+The Tension — Introduce the Gap (0:30–1:30)
+
+But when we step into TE.com…
+we don’t feel that.
+
+We see an incredibly deep, incredibly capable… product system.
+
+We see precision.
+We see engineering excellence.
+We see a catalog that works.
+
+But we don’t see the full consequence of what you do.
+
+There’s a gap between:
+
+The impact TE has on the world
+and
+The experience TE delivers digitally
+
+And that gap is not about design.
+
+It’s about translation.
+
+The Insight — Reframe the Problem (1:30–2:30)
+
+Today, TE.com is optimized for one type of user:
+
+The engineer who knows exactly what they’re looking for.
+
+Part number. Spec. Download. Done.
+
+And that experience is strong.
+
+But the market has changed.
+
+Your buyers now include:
+
+Innovation leaders
+Digital teams
+Business stakeholders
+Procurement groups thinking in outcomes, not SKUs
+
+These audiences don’t start with a connector.
+
+They start with a problem:
+
+How do I improve EV reliability
+How do I scale AI infrastructure
+How do I modernize my energy systems
+
+And right now, TE.com asks them to think like an engineer
+before it helps them think like a customer.
+
+The Friction — Make It Real (2:30–3:30)
+
+So what happens?
+
+A customer comes in with a high-value problem…
+
+And instead of being guided to a solution,
+they’re presented with a list of components.
+
+No system view.
+No pathway.
+No orchestration.
+
+Which means:
+
+Discovery is hard
+Cross-sell is missed
+And TE’s role in the larger system is under-communicated
+
+You are solving billion-dollar problems…
+but the experience is still anchored at the part level.
+
+The Opportunity — Elevate the Vision (3:30–4:30)
+
+The opportunity is not to redesign a website.
+
+The opportunity is to build a digital system that reflects how TE actually creates value.
+
+A system that connects:
+
+Components
+To systems
+To outcomes
+To business impact
+
+Where a customer can move from:
+“I need help with high-voltage reliability”
+
+To:
+“Here is the architecture, the components, the content, and the path forward”
+
+All in one continuous experience.
+
+The Future State — Paint It Clearly (4:30–5:30)
+
+Imagine this:
+
+A customer lands on TE.com and instead of starting with products…
+they start with intent.
+
+They describe a challenge.
+
+The platform responds with:
+
+Guided solution pathways
+Recommended architectures
+Relevant products
+Supporting content
+And next best actions
+
+The experience adapts based on:
+
+Industry
+Role
+Behavior
+
+And over time, TE.com becomes:
+
+Not just a place to find parts…
+but a place to design solutions with TE.
+
+The Strategic Layer — Bring in AI Without Buzzwords (5:30–6:15)
+
+This is where AI becomes meaningful.
+
+Not as a feature…
+but as an orchestration layer.
+
+Helping customers:
+
+Navigate complexity
+Discover solutions
+Accelerate decision-making
+
+Because the complexity of your portfolio is not a weakness.
+
+It’s an advantage…
+
+If the experience knows how to guide through it.
+
+The Close — Anchor the Reframe (6:15–7:00)
+
+So when we look at TE.com, we don’t see something broken.
+
+We see something incomplete.
+
+You’ve built an exceptional foundation for product discovery.
+
+Now is the moment to extend that into:
+
+Solution discovery
+System storytelling
+And commercial acceleration
+
+Because TE doesn’t just connect components.
+
+TE connects the systems that power the world.
+
+And your digital experience should feel exactly the same.
+
+🧠 Delivery Notes (How to land this)
+Slow down on:
+“TE is not a component company”
+“It’s about translation”
+“We don’t see the consequence”
+
+Make eye contact after:
+
+“That gap is not about design”
+
+Let this line breathe:
+
+“You are solving billion-dollar problems… but the experience is still anchored at the part level”
+
+If you want next, I can turn this into:
+
+A tight 6-slide exec deck
+Or layer in Sitecore XM Cloud + AI architecture directly into the narrative so it becomes a pitch, not just a perspective
