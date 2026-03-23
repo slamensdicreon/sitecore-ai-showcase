@@ -1,4 +1,4 @@
-import { Link, useParams, useLocation } from "wouter";
+import { Link, useParams } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { useI18n } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
@@ -6,14 +6,14 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
-  BatteryCharging, Server, Factory, Cpu, Shield, Zap,
+  BatteryCharging, Server, Factory, Shield, Zap,
   ChevronRight, ArrowRight, ArrowLeft, Box, Cable,
-  Thermometer, Gauge, Radio, CircuitBoard, Heart, Plane,
-  CheckCircle2, Layers, Target
+  Thermometer, Gauge, Radio, CircuitBoard,
+  CheckCircle2, Layers
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
-  FadeIn, SlideUp, StaggerContainer, StaggerItem, ConnectivityMotif
+  FadeIn, StaggerContainer, StaggerItem, ConnectivityMotif
 } from "@/components/animations";
 import type { Product } from "@shared/schema";
 
