@@ -32,7 +32,7 @@ A comprehensive B2B e-commerce demo inspired by TE Connectivity (te.com), built 
 - `client/src/components/header.tsx` - Header with language/currency switcher, persona dropdown, quick-add by part number
 
 ## Frontend Pages
-- `/` - Home with hero, categories, featured products, AI recommendations (browsing history)
+- `/` - Brand storytelling homepage: manifesto hero ("Every Connection Counts"), mega-trends section (Electrification, AI Infrastructure, Industrial Automation), solution pathways ("What problem are you solving?"), company authority stats (animated counters), then categories/featured products/B2B value prop. Uses Framer Motion scroll-triggered animations. Animation components in `client/src/components/animations.tsx` (FadeIn, StaggerContainer, StaggerItem, AnimatedCounter, ConnectivityMotif).
 - `/products` - Catalog with category/industry filters, grid/list views, i18n pricing
 - `/products/:id` - Enriched PDP: related/alternative/accessory products, distributor links (Digi-Key/Mouser/Arrow), availability indicators, engineer resources panel, recently-viewed tracking
 - `/cart` - Cart with stock availability badges, quantity controls, i18n pricing
