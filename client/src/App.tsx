@@ -16,6 +16,8 @@ import Orders from "@/pages/orders";
 import OrderDetailPage from "@/pages/order-detail";
 import PartsListsPage from "@/pages/parts-lists";
 import Login from "@/pages/login";
+import Solutions from "@/pages/solutions";
+import Applications from "@/pages/applications";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -30,6 +32,8 @@ function Router() {
       <Route path="/orders/:id" component={OrderDetailPage} />
       <Route path="/parts-lists" component={PartsListsPage} />
       <Route path="/login" component={Login} />
+      <Route path="/solutions/:slug" component={Solutions} />
+      <Route path="/applications" component={Applications} />
       <Route component={NotFound} />
     </Switch>
   );
