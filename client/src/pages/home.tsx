@@ -40,53 +40,69 @@ function useRecentlyViewed() {
 }
 
 function HeroVideoBackground() {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [videoFailed, setVideoFailed] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const prefersReducedMotion = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const showVideo = !videoFailed && !prefersReducedMotion && !isPaused;
 
   return (
     <div className="absolute inset-0 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-[#04215d]/90 via-[#2e4957]/85 to-[#167a87]/70 z-10" />
-      {isPlaying ? (
+      {!videoFailed && !prefersReducedMotion && (
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          onError={() => setIsPlaying(false)}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${showVideo ? "opacity-100" : "opacity-0"}`}
+          onError={() => setVideoFailed(true)}
         >
           <source src="https://assets.mixkit.co/videos/preview/mixkit-circuit-board-with-neon-lights-close-up-view-77488-large.mp4" type="video/mp4" />
         </video>
-      ) : (
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[#2e4957]" />
-          <svg className="absolute inset-0 w-full h-full opacity-[0.04]" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="0.5" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-          </svg>
-          <motion.div
-            className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-[#f28d00]/5 blur-3xl"
-            animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="absolute bottom-1/4 left-1/4 w-80 h-80 rounded-full bg-[#167a87]/8 blur-3xl"
-            animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.4, 0.2] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </div>
       )}
-      <button
-        onClick={() => setIsPlaying(!isPlaying)}
-        className="absolute bottom-6 right-6 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-white/60 text-xs hover:bg-white/20 transition-colors"
-        data-testid="button-toggle-video"
-      >
-        <Play className="h-3 w-3" />
-        {isPlaying ? "Pause" : "Play Video"}
-      </button>
+      <div className={`absolute inset-0 transition-opacity duration-500 ${showVideo ? "opacity-0" : "opacity-100"}`}>
+        <div className="absolute inset-0 bg-[#2e4957]" />
+        <svg className="absolute inset-0 w-full h-full opacity-[0.04]" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
+        {!prefersReducedMotion && (
+          <>
+            <motion.div
+              className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-[#f28d00]/5 blur-3xl"
+              animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="absolute bottom-1/4 left-1/4 w-80 h-80 rounded-full bg-[#167a87]/8 blur-3xl"
+              animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.4, 0.2] }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </>
+        )}
+      </div>
+      {!videoFailed && !prefersReducedMotion && (
+        <button
+          onClick={() => {
+            setIsPaused(!isPaused);
+            if (videoRef.current) {
+              isPaused ? videoRef.current.play() : videoRef.current.pause();
+            }
+          }}
+          className="absolute bottom-6 right-6 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-white/60 text-xs hover:bg-white/20 transition-colors"
+          data-testid="button-toggle-video"
+        >
+          <Play className="h-3 w-3" />
+          {isPaused ? "Play Video" : "Pause"}
+        </button>
+      )}
     </div>
   );
 }
@@ -259,7 +275,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              <Link href="/products">
+              <Link href="/solutions/transportation">
                 <Button
                   size="lg"
                   className="bg-[#f28d00] hover:bg-[#e07d00] text-white font-heading text-base px-8 h-12"
