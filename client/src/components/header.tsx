@@ -210,6 +210,7 @@ export function Header() {
   useEffect(() => {
     setMobileMenuOpen(false);
     setSolutionsOpen(false);
+    setMobileSolutionsExpanded(false);
   }, [location]);
 
   const isActive = (path: string) => {
