@@ -29,16 +29,21 @@ A comprehensive B2B e-commerce demo inspired by TE Connectivity (te.com), built 
 - `client/src/lib/auth.tsx` - Auth context with token-based auth (localStorage `te_auth_token`), persona switching, query cache clearing on login/logout
 - `client/src/lib/queryClient.ts` - API client with auth token management (getAuthToken/setAuthToken), Authorization header injection on all requests
 - `client/src/components/ai-chatbot.tsx` - AI chatbot with product search, order status, and navigation
-- `client/src/components/header.tsx` - Header with language/currency switcher, persona dropdown, quick-add by part number
+- `client/src/components/header.tsx` - Restructured header with customer-mental-model nav: Solutions (mega-menu dropdown with Transportation/Industrial/Communications), Applications, Products, Innovation. Framer Motion animated mega-menu and mobile nav. Active state highlighting for current route/section.
+- `client/src/pages/innovation.tsx` - Innovation & engineering authority page: mega-trends, company stats, engineering pillars, industry recognition
 
 ## Frontend Pages
 - `/` - Brand storytelling homepage: manifesto hero ("Every Connection Counts"), mega-trends section (Electrification, AI Infrastructure, Industrial Automation), solution pathways ("What problem are you solving?"), company authority stats (animated counters), then categories/featured products/B2B value prop. Uses Framer Motion scroll-triggered animations. Animation components in `client/src/components/animations.tsx` (FadeIn, StaggerContainer, StaggerItem, AnimatedCounter, ConnectivityMotif).
-- `/products` - Catalog with category/industry filters, grid/list views, i18n pricing
+- `/products` - Catalog with category/industry/application filters, grid/list views, i18n pricing
 - `/products/:id` - Enriched PDP: related/alternative/accessory products, distributor links (Digi-Key/Mouser/Arrow), availability indicators, engineer resources panel, recently-viewed tracking
 - `/cart` - Cart with stock availability badges, quantity controls, i18n pricing
 - `/checkout` - 4-step checkout: Address → Shipping → Payment → Review. Structured address, shipping methods (Standard/Express/Next Day), tax/VAT calculation, discount codes (TE10=10%, VOLUME20=20%), payment options (Credit Card/PayPal/PO)
 - `/orders` - Order history with status badges, PO numbers
 - `/orders/:id` - Order detail with status history timeline, tracking, cancel/reorder
+- `/solutions/:slug` - Industry solution pages (transportation, industrial, communications): hero with ambient video, narrative challenges, system approach, proof-point counters, real product discovery, cross-navigation
+- `/applications` - Application discovery landing with 12 application cards grouped by industry (Transportation, Communications, Industrial, Cross-Industry)
+- `/applications/:slug` - Application detail views: challenge/system narrative, inline product discovery filtered by application field, related applications
+- `/innovation` - Innovation & engineering authority: mega-trends positioning, company scale stats (animated counters), engineering pillars (co-design, harsh-environment, scale, R&D), industry recognitions, patents
 - `/parts-lists` - Parts list management
 - `/login` - Sign in / register (demo: demo/demo123)
 

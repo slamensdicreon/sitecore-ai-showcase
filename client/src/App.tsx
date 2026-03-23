@@ -18,6 +18,7 @@ import PartsListsPage from "@/pages/parts-lists";
 import Login from "@/pages/login";
 import Solutions from "@/pages/solutions";
 import Applications from "@/pages/applications";
+import Innovation from "@/pages/innovation";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -35,6 +36,7 @@ function Router() {
       <Route path="/solutions/:slug" component={Solutions} />
       <Route path="/applications/:slug" component={Applications} />
       <Route path="/applications" component={Applications} />
+      <Route path="/innovation" component={Innovation} />
       <Route component={NotFound} />
     </Switch>
   );

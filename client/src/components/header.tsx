@@ -13,8 +13,13 @@ import {
   DropdownMenuTrigger,
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
-import { ShoppingCart, User, Search, Menu, Package, ListChecks, LogOut, ChevronDown, Globe, Zap, Plus, Briefcase, Wrench } from "lucide-react";
-import { useState } from "react";
+import {
+  ShoppingCart, User, Search, Menu, Package, ListChecks, LogOut,
+  ChevronDown, ChevronRight, Globe, Plus, Briefcase, Wrench, X,
+  BatteryCharging, Server, Factory, Lightbulb, LayoutGrid, Layers
+} from "lucide-react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 import type { CartItem, Product } from "@shared/schema";
 
@@ -33,14 +38,113 @@ function TELogo({ className = "" }: { className?: string }) {
 const LOCALE_LABELS: Record<Locale, string> = { en: "EN", de: "DE", zh: "中文" };
 const CURRENCY_LABELS: Record<Currency, string> = { USD: "USD", EUR: "EUR", CNY: "CNY" };
 
+const solutionsMenu = [
+  {
+    slug: "transportation",
+    label: "Transportation",
+    description: "EV powertrains, autonomous systems, and next-gen vehicle architectures",
+    icon: BatteryCharging,
+    color: "#f28d00",
+  },
+  {
+    slug: "industrial",
+    label: "Industrial",
+    description: "Factory automation, robotics, energy management, and harsh-environment connectivity",
+    icon: Factory,
+    color: "#2e4957",
+  },
+  {
+    slug: "communications",
+    label: "Communications",
+    description: "Data center infrastructure, 5G networks, and high-speed signal integrity",
+    icon: Server,
+    color: "#167a87",
+  },
+];
+
+function SolutionsMegaMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        onClose();
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [open, onClose]);
+
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          ref={menuRef}
+          initial={{ opacity: 0, y: -4 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -4 }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
+          className="absolute left-0 right-0 top-full z-50 border-b bg-background shadow-lg"
+          data-testid="megamenu-solutions"
+        >
+          <div className="max-w-[1400px] mx-auto px-4 py-6">
+            <div className="grid grid-cols-3 gap-4">
+              {solutionsMenu.map((item) => (
+                <Link
+                  key={item.slug}
+                  href={`/solutions/${item.slug}`}
+                  onClick={onClose}
+                >
+                  <div
+                    className="group flex items-start gap-4 rounded-lg p-4 hover:bg-muted/60 transition-colors cursor-pointer"
+                    data-testid={`megamenu-${item.slug}`}
+                  >
+                    <div
+                      className="w-11 h-11 rounded-lg flex items-center justify-center shrink-0 transition-transform group-hover:scale-110"
+                      style={{ backgroundColor: `${item.color}12` }}
+                    >
+                      <item.icon className="h-5 w-5" style={{ color: item.color }} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span className="font-heading font-semibold text-sm">{item.label}</span>
+                        <ChevronRight className="h-3.5 w-3.5 text-muted-foreground opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{item.description}</p>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <div className="mt-4 pt-4 border-t border-border/50 flex items-center justify-between">
+              <p className="text-xs text-muted-foreground">
+                Discover how TE solves challenges across industries
+              </p>
+              <Link href="/applications" onClick={onClose}>
+                <span className="text-xs font-heading font-medium text-[#167a87] hover:text-[#167a87]/80 flex items-center gap-1 transition-colors">
+                  View All Applications <ChevronRight className="h-3 w-3" />
+                </span>
+              </Link>
+            </div>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 export function Header() {
   const { user, logout, setUser } = useAuth();
   const { locale, currency, setLocale, setCurrency, t } = useI18n();
-  const [, navigate] = useLocation();
+  const [location, navigate] = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
   const [quickAddSku, setQuickAddSku] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [solutionsOpen, setSolutionsOpen] = useState(false);
+  const [mobileSolutionsExpanded, setMobileSolutionsExpanded] = useState(false);
   const { toast } = useToast();
+  const solutionsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const { data: cartItems } = useQuery<(CartItem & { product?: Product })[]>({
     queryKey: ["/api/cart"],
@@ -92,15 +196,36 @@ export function Header() {
     }
   };
 
-  const navItems = [
-    { href: "/products", label: t("nav.products"), testId: "nav-products" },
-    { href: "/products?categorySlug=connectors", label: t("nav.connectors"), testId: "nav-connectors" },
-    { href: "/products?categorySlug=sensors", label: t("nav.sensors"), testId: "nav-sensors" },
-    { href: "/products?categorySlug=relays", label: t("nav.relays"), testId: "nav-relays" },
-    { href: "/products?categorySlug=wire-cable", label: t("nav.wireCable"), testId: "nav-wire-cable" },
-    { href: "/products?categorySlug=circuit-protection", label: t("nav.circuitProtection"), testId: "nav-circuit-protection" },
-    { href: "/products?categorySlug=terminal-blocks", label: t("nav.terminalBlocks"), testId: "nav-terminal-blocks" },
-  ];
+  const closeSolutionsMenu = useCallback(() => setSolutionsOpen(false), []);
+
+  const handleSolutionsEnter = useCallback(() => {
+    if (solutionsTimeoutRef.current) clearTimeout(solutionsTimeoutRef.current);
+    setSolutionsOpen(true);
+  }, []);
+
+  const handleSolutionsLeave = useCallback(() => {
+    solutionsTimeoutRef.current = setTimeout(() => setSolutionsOpen(false), 200);
+  }, []);
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+    setSolutionsOpen(false);
+  }, [location]);
+
+  const isActive = (path: string) => {
+    if (path === "/products") return location === "/products" || location.startsWith("/products/");
+    if (path === "/applications") return location === "/applications" || location.startsWith("/applications/");
+    if (path === "/innovation") return location === "/innovation";
+    if (path.startsWith("/solutions")) return location.startsWith("/solutions");
+    return location === path;
+  };
+
+  const navLinkClasses = (path: string) =>
+    `text-xs font-heading font-medium px-3 py-1.5 rounded-md transition-colors ${
+      isActive(path)
+        ? "bg-[#f28d00]/10 text-[#f28d00]"
+        : "text-foreground/80 hover:text-foreground hover:bg-muted/60"
+    }`;
 
   return (
     <header className="sticky top-0 z-50 border-b bg-background">
@@ -166,7 +291,7 @@ export function Header() {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               data-testid="button-mobile-menu"
             >
-              <Menu className="h-5 w-5" />
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
             <Link href="/" data-testid="link-home-logo">
               <div className="flex items-center gap-2.5">
@@ -297,39 +422,166 @@ export function Header() {
           </div>
         </div>
 
-        <nav className="hidden lg:flex items-center gap-1 pb-2 -mt-1">
-          {navItems.map((item) => (
-            <Link key={item.testId} href={item.href}>
-              <Button variant="ghost" size="sm" className="text-xs font-heading" data-testid={item.testId}>
-                {item.label}
-              </Button>
-            </Link>
-          ))}
+        <nav className="hidden lg:flex items-center gap-1 pb-2 -mt-1 relative">
+          <div
+            className="relative"
+            onMouseEnter={handleSolutionsEnter}
+            onMouseLeave={handleSolutionsLeave}
+          >
+            <button
+              className={`flex items-center gap-1 ${navLinkClasses("/solutions")}`}
+              onClick={() => setSolutionsOpen(!solutionsOpen)}
+              data-testid="nav-solutions"
+            >
+              <Layers className="h-3.5 w-3.5 mr-0.5" />
+              {t("nav.solutions")}
+              <ChevronDown className={`h-3 w-3 transition-transform ${solutionsOpen ? "rotate-180" : ""}`} />
+            </button>
+          </div>
+
+          <Link href="/applications">
+            <button className={navLinkClasses("/applications")} data-testid="nav-applications">
+              <LayoutGrid className="h-3.5 w-3.5 mr-1 inline-block" />
+              {t("nav.applications")}
+            </button>
+          </Link>
+
+          <Link href="/products">
+            <button className={navLinkClasses("/products")} data-testid="nav-products">
+              {t("nav.products")}
+            </button>
+          </Link>
+
+          <Link href="/innovation">
+            <button className={navLinkClasses("/innovation")} data-testid="nav-innovation">
+              <Lightbulb className="h-3.5 w-3.5 mr-1 inline-block" />
+              {t("nav.innovation")}
+            </button>
+          </Link>
         </nav>
       </div>
 
-      {mobileMenuOpen && (
-        <div className="lg:hidden border-t bg-background px-4 py-3 space-y-2">
-          <form onSubmit={handleSearch} className="mb-3">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <input
-                type="search"
-                placeholder="Search products..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full h-9 pl-9 pr-4 rounded-md border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
-                data-testid="input-search-mobile"
-              />
+      <div
+        onMouseEnter={handleSolutionsEnter}
+        onMouseLeave={handleSolutionsLeave}
+      >
+        <SolutionsMegaMenu open={solutionsOpen} onClose={closeSolutionsMenu} />
+      </div>
+
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="lg:hidden border-t bg-background overflow-hidden"
+            data-testid="mobile-menu"
+          >
+            <div className="px-4 py-3 space-y-1">
+              <form onSubmit={handleSearch} className="mb-3">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <input
+                    type="search"
+                    placeholder="Search products..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full h-9 pl-9 pr-4 rounded-md border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+                    data-testid="input-search-mobile"
+                  />
+                </div>
+              </form>
+
+              <div>
+                <button
+                  className="w-full flex items-center justify-between py-2.5 px-3 text-sm font-heading font-medium rounded-md hover:bg-muted/60 transition-colors"
+                  onClick={() => setMobileSolutionsExpanded(!mobileSolutionsExpanded)}
+                  data-testid="mobile-nav-solutions"
+                >
+                  <span className="flex items-center gap-2">
+                    <Layers className="h-4 w-4 text-[#167a87]" />
+                    {t("nav.solutions")}
+                  </span>
+                  <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform ${mobileSolutionsExpanded ? "rotate-180" : ""}`} />
+                </button>
+                <AnimatePresence>
+                  {mobileSolutionsExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="pl-6 pb-2 space-y-1">
+                        {solutionsMenu.map((item) => (
+                          <Link
+                            key={item.slug}
+                            href={`/solutions/${item.slug}`}
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            <div
+                              className={`flex items-center gap-3 py-2 px-3 rounded-md text-sm transition-colors ${
+                                location === `/solutions/${item.slug}`
+                                  ? "bg-[#f28d00]/10 text-[#f28d00]"
+                                  : "hover:bg-muted/60"
+                              }`}
+                              data-testid={`mobile-nav-solution-${item.slug}`}
+                            >
+                              <item.icon className="h-4 w-4" style={{ color: item.color }} />
+                              <div>
+                                <div className="font-medium">{item.label}</div>
+                                <div className="text-[11px] text-muted-foreground">{item.description}</div>
+                              </div>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <Link href="/applications" onClick={() => setMobileMenuOpen(false)}>
+                <div
+                  className={`flex items-center gap-2 py-2.5 px-3 text-sm font-heading font-medium rounded-md transition-colors ${
+                    isActive("/applications") ? "bg-[#f28d00]/10 text-[#f28d00]" : "hover:bg-muted/60"
+                  }`}
+                  data-testid="mobile-nav-applications"
+                >
+                  <LayoutGrid className="h-4 w-4 text-[#f28d00]" />
+                  {t("nav.applications")}
+                </div>
+              </Link>
+
+              <Link href="/products" onClick={() => setMobileMenuOpen(false)}>
+                <div
+                  className={`flex items-center gap-2 py-2.5 px-3 text-sm font-heading font-medium rounded-md transition-colors ${
+                    isActive("/products") ? "bg-[#f28d00]/10 text-[#f28d00]" : "hover:bg-muted/60"
+                  }`}
+                  data-testid="mobile-nav-products"
+                >
+                  <Package className="h-4 w-4 text-[#2e4957]" />
+                  {t("nav.products")}
+                </div>
+              </Link>
+
+              <Link href="/innovation" onClick={() => setMobileMenuOpen(false)}>
+                <div
+                  className={`flex items-center gap-2 py-2.5 px-3 text-sm font-heading font-medium rounded-md transition-colors ${
+                    isActive("/innovation") ? "bg-[#f28d00]/10 text-[#f28d00]" : "hover:bg-muted/60"
+                  }`}
+                  data-testid="mobile-nav-innovation"
+                >
+                  <Lightbulb className="h-4 w-4 text-[#167a87]" />
+                  {t("nav.innovation")}
+                </div>
+              </Link>
             </div>
-          </form>
-          {navItems.slice(1).map((item) => (
-            <Link key={item.testId} href={item.href} onClick={() => setMobileMenuOpen(false)}>
-              <div className="py-2 text-sm font-heading">{item.label}</div>
-            </Link>
-          ))}
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
