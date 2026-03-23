@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import ReactPlayer from "react-player";
 import {
   FadeIn, StaggerContainer, StaggerItem,
   AnimatedCounter, ConnectivityMotif
@@ -40,28 +41,41 @@ function useRecentlyViewed() {
 }
 
 function HeroVideoBackground() {
+  const [videoReady, setVideoReady] = useState(false);
   const [videoFailed, setVideoFailed] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const playerRef = useRef<ReactPlayer>(null);
   const prefersReducedMotion = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const showVideo = !videoFailed && !prefersReducedMotion;
+  const showVideo = videoReady && !videoFailed && !prefersReducedMotion;
 
   return (
     <div className="absolute inset-0 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-[#04215d]/90 via-[#2e4957]/85 to-[#167a87]/70 z-10" />
-      {showVideo && (
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100"
-          onError={() => setVideoFailed(true)}
-        >
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-circuit-board-with-neon-lights-close-up-view-77488-large.mp4" type="video/mp4" />
-        </video>
+      {!prefersReducedMotion && !videoFailed && (
+        <div className="absolute inset-0 [&>div]:!w-full [&>div]:!h-full">
+          <ReactPlayer
+            ref={playerRef}
+            url="https://assets.mixkit.co/videos/preview/mixkit-circuit-board-with-neon-lights-close-up-view-77488-large.mp4"
+            playing={!isPaused}
+            loop
+            muted
+            playsinline
+            width="100%"
+            height="100%"
+            style={{ objectFit: "cover" }}
+            className={`transition-opacity duration-500 ${showVideo ? "opacity-100" : "opacity-0"}`}
+            onReady={() => setVideoReady(true)}
+            onError={() => setVideoFailed(true)}
+            config={{
+              file: {
+                attributes: {
+                  style: { objectFit: "cover", width: "100%", height: "100%" },
+                },
+              },
+            }}
+          />
+        </div>
       )}
       <div className={`absolute inset-0 transition-opacity duration-500 ${showVideo ? "opacity-0" : "opacity-100"}`}>
         <div className="absolute inset-0 bg-[#2e4957]" />
@@ -90,12 +104,7 @@ function HeroVideoBackground() {
       </div>
       {!videoFailed && !prefersReducedMotion && (
         <button
-          onClick={() => {
-            setIsPaused(!isPaused);
-            if (videoRef.current) {
-              isPaused ? videoRef.current.play() : videoRef.current.pause();
-            }
-          }}
+          onClick={() => setIsPaused(!isPaused)}
           className="absolute bottom-6 right-6 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-white/60 text-xs hover:bg-white/20 transition-colors"
           data-testid="button-toggle-video"
         >
