@@ -16,9 +16,11 @@ export default function Products() {
   const params = new URLSearchParams(searchString);
   const categorySlug = params.get("categorySlug") || "";
   const searchParam = params.get("search") || "";
+  const applicationParam = params.get("application") || "";
+  const industryParam = params.get("industry") || "";
   const [, navigate] = useLocation();
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-  const [industryFilter, setIndustryFilter] = useState<string>("all");
+  const [industryFilter, setIndustryFilter] = useState<string>(industryParam || "all");
   const [localSearch, setLocalSearch] = useState(searchParam);
 
   const { data: categories } = useQuery<Category[]>({
@@ -35,9 +37,10 @@ export default function Products() {
     if (selectedCategory) p.set("categoryId", selectedCategory.id);
     if (searchParam) p.set("search", searchParam);
     if (industryFilter && industryFilter !== "all") p.set("industry", industryFilter);
+    if (applicationParam) p.set("application", applicationParam);
     p.set("limit", "50");
     return p.toString();
-  }, [selectedCategory, searchParam, industryFilter]);
+  }, [selectedCategory, searchParam, industryFilter, applicationParam]);
 
   const { data: productsData, isLoading } = useQuery<{ products: Product[]; total: number }>({
     queryKey: ["/api/products?" + queryParams],
