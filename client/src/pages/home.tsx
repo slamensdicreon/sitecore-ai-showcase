@@ -45,19 +45,19 @@ function HeroVideoBackground() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const prefersReducedMotion = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const showVideo = !videoFailed && !prefersReducedMotion && !isPaused;
+  const showVideo = !videoFailed && !prefersReducedMotion;
 
   return (
     <div className="absolute inset-0 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-[#04215d]/90 via-[#2e4957]/85 to-[#167a87]/70 z-10" />
-      {!videoFailed && !prefersReducedMotion && (
+      {showVideo && (
         <video
           ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${showVideo ? "opacity-100" : "opacity-0"}`}
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100"
           onError={() => setVideoFailed(true)}
         >
           <source src="https://assets.mixkit.co/videos/preview/mixkit-circuit-board-with-neon-lights-close-up-view-77488-large.mp4" type="video/mp4" />
