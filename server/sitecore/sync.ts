@@ -1,9 +1,22 @@
 import { createItem, deleteItem, getItem, getChildren, publishSite, updateItem } from "./authoring-api";
 import {
-  componentTemplates, pageDefinitions, renderingDefinitions, placeholderSettings,
+  componentTemplates, pageDefinitions, renderingDefinitions,
   SITE_ROOT, TEMPLATES_ROOT, RENDERINGS_ROOT, DATA_ROOT, HOME_PATH,
-  type PageComponentInstance, type ComponentTemplate
+  type ComponentTemplate
 } from "./content-model";
+
+function formatGuid(raw: string): string {
+  const clean = raw.replace(/[{}-]/g, "").toUpperCase();
+  if (clean.length !== 32) return `{${raw}}`;
+  return `{${clean.slice(0,8)}-${clean.slice(8,12)}-${clean.slice(12,16)}-${clean.slice(16,20)}-${clean.slice(20)}}`;
+}
+
+const JSON_RENDERING_TEMPLATE = "{04646A89-996F-4EE7-878A-FFDBF1F0EF0D}";
+const TEMPLATE_TEMPLATE = "{AB86861A-6030-46C5-B394-E8F99E8B87DB}";
+const TEMPLATE_SECTION = "{E269FBB5-3750-427A-9149-7AA950B49301}";
+const TEMPLATE_FIELD = "{455A3E98-A627-4B40-8035-E683A0331AC7}";
+const FOLDER_TEMPLATE = "{A87A00B1-E6DB-45AB-8B54-636FEC3B5523}";
+const NODE_TEMPLATE = "{35E75C72-4985-4E09-88C3-0EAC6CD1E64F}";
 
 export interface SyncResult {
   success: boolean;
@@ -18,49 +31,28 @@ export interface SyncStep {
   message?: string;
 }
 
+const TE_RENDERING_NAMES = renderingDefinitions.map(r => r.name);
+const TE_TEMPLATE_NAMES = componentTemplates.map(t => t.name);
+const TE_DATASOURCE_NAMES = pageDefinitions.flatMap(p => p.components.map(c => c.datasourceName));
+
 export async function cleanNxpSite(): Promise<SyncResult> {
   const result: SyncResult = { success: true, steps: [], errors: [] };
-  console.log("[sitecore-sync] Starting NXP site cleanup...");
+  console.log("[sitecore-sync] Cleaning TE demo content only (preserving existing site items)...");
 
   const dataFolder = await getItem(DATA_ROOT);
   if (dataFolder) {
     const children = await getChildren(DATA_ROOT);
     for (const child of children) {
-      const deleted = await deleteItem(child.id);
-      result.steps.push({
-        action: "delete",
-        target: child.path,
-        status: deleted ? "success" : "error",
-        message: deleted ? `Deleted data item: ${child.name}` : `Failed to delete: ${child.name}`,
-      });
-      if (!deleted) result.errors.push(`Failed to delete data item: ${child.path}`);
-    }
-  }
-
-  const homePage = await getItem(HOME_PATH);
-  if (homePage) {
-    const homeChildren = await getChildren(HOME_PATH);
-    for (const child of homeChildren) {
-      const deleted = await deleteItem(child.id);
-      result.steps.push({
-        action: "delete",
-        target: child.path,
-        status: deleted ? "success" : "error",
-      });
-      if (!deleted) result.errors.push(`Failed to delete page: ${child.path}`);
-    }
-  }
-
-  const templateFolder = await getItem(TEMPLATES_ROOT);
-  if (templateFolder) {
-    const children = await getChildren(TEMPLATES_ROOT);
-    for (const child of children) {
-      const deleted = await deleteItem(child.id);
-      result.steps.push({
-        action: "delete",
-        target: child.path,
-        status: deleted ? "success" : "error",
-      });
+      if (TE_DATASOURCE_NAMES.includes(child.name)) {
+        const deleted = await deleteItem(child.id);
+        result.steps.push({
+          action: "delete",
+          target: child.path,
+          status: deleted ? "success" : "error",
+          message: deleted ? `Deleted TE datasource: ${child.name}` : `Failed to delete: ${child.name}`,
+        });
+        if (!deleted) result.errors.push(`Failed to delete datasource: ${child.path}`);
+      }
     }
   }
 
@@ -68,12 +60,30 @@ export async function cleanNxpSite(): Promise<SyncResult> {
   if (renderingFolder) {
     const children = await getChildren(RENDERINGS_ROOT);
     for (const child of children) {
-      const deleted = await deleteItem(child.id);
-      result.steps.push({
-        action: "delete",
-        target: child.path,
-        status: deleted ? "success" : "error",
-      });
+      if (TE_RENDERING_NAMES.includes(child.name)) {
+        const deleted = await deleteItem(child.id);
+        result.steps.push({
+          action: "delete",
+          target: child.path,
+          status: deleted ? "success" : "error",
+          message: deleted ? `Deleted TE rendering: ${child.name}` : `Failed to delete: ${child.name}`,
+        });
+      }
+    }
+  }
+
+  const templateFolder = await getItem(TEMPLATES_ROOT);
+  if (templateFolder) {
+    const children = await getChildren(TEMPLATES_ROOT);
+    for (const child of children) {
+      if (TE_TEMPLATE_NAMES.includes(child.name)) {
+        const deleted = await deleteItem(child.id);
+        result.steps.push({
+          action: "delete",
+          target: child.path,
+          status: deleted ? "success" : "error",
+        });
+      }
     }
   }
 
@@ -88,17 +98,7 @@ export async function createTemplates(): Promise<SyncResult> {
 
   const templateFolder = await getItem(TEMPLATES_ROOT);
   if (!templateFolder) {
-    const created = await createItem({
-      name: "NXP",
-      parentPath: "/sitecore/templates/Project",
-      templateId: "{35E75C72-4985-4E09-88C3-0EAC6CD1E64F}",
-    });
-    if (!created) {
-      result.errors.push("Failed to create templates root folder");
-      result.success = false;
-      return result;
-    }
-    result.steps.push({ action: "create", target: TEMPLATES_ROOT, status: "success", message: "Created template folder" });
+    result.steps.push({ action: "info", target: TEMPLATES_ROOT, status: "skipped", message: "Templates root already exists" });
   }
 
   for (const template of componentTemplates) {
@@ -112,7 +112,7 @@ export async function createTemplates(): Promise<SyncResult> {
       const templateItem = await createItem({
         name: template.name,
         parentPath: TEMPLATES_ROOT,
-        templateId: "{AB86861A-6030-46C5-B394-E8F99E8B87DB}",
+        templateId: TEMPLATE_TEMPLATE,
       });
 
       if (!templateItem) {
@@ -125,7 +125,7 @@ export async function createTemplates(): Promise<SyncResult> {
         await createItem({
           name: sectionName,
           parentPath: template.path,
-          templateId: "{E269FBB5-E840-44C9-B554-21F40D006296}",
+          templateId: TEMPLATE_SECTION,
         });
       }
 
@@ -133,12 +133,11 @@ export async function createTemplates(): Promise<SyncResult> {
         await createItem({
           name: field.name,
           parentPath: `${template.path}/${field.section || "Content"}`,
-          templateId: "{455A3E98-A627-4B40-8035-E683A20A8288}",
+          templateId: TEMPLATE_FIELD,
           fields: {
             Type: field.type,
             Shared: field.shared ? "1" : "",
             Unversioned: field.unversioned ? "1" : "",
-            "Standard Value": field.standardValue || "",
           },
         });
       }
@@ -158,58 +157,47 @@ export async function createTemplates(): Promise<SyncResult> {
 
 export async function createRenderings(): Promise<SyncResult> {
   const result: SyncResult = { success: true, steps: [], errors: [] };
-  console.log("[sitecore-sync] Creating rendering definitions...");
+  console.log("[sitecore-sync] Creating rendering definitions under build/NovaTech...");
 
   const renderingFolder = await getItem(RENDERINGS_ROOT);
   if (!renderingFolder) {
-    const created = await createItem({
-      name: "NXP",
-      parentPath: "/sitecore/layout/Renderings/Project",
-      templateId: "{35E75C72-4985-4E09-88C3-0EAC6CD1E64F}",
-    });
-    if (!created) {
-      result.errors.push("Failed to create renderings folder");
-      result.success = false;
-      return result;
-    }
+    result.errors.push(`Renderings folder not found at ${RENDERINGS_ROOT}`);
+    result.success = false;
+    return result;
   }
 
   for (const rendering of renderingDefinitions) {
     try {
       const existing = await getItem(rendering.path);
       if (existing) {
-        result.steps.push({ action: "create", target: rendering.path, status: "skipped", message: "Rendering already exists" });
+        await updateItem({
+          itemId: existing.id,
+          fields: {
+            componentName: rendering.componentName,
+            "Data source": rendering.datasourceTemplate || "",
+            "Datasource Location": rendering.datasourceLocation || "",
+          },
+        });
+        result.steps.push({ action: "update", target: rendering.path, status: "success", message: `Updated rendering: ${rendering.componentName}` });
         continue;
       }
 
       const renderingItem = await createItem({
         name: rendering.name,
         parentPath: RENDERINGS_ROOT,
-        templateId: "{04646A89-996F-4EE7-878A-FFDBF1F0EF0D}",
+        templateId: JSON_RENDERING_TEMPLATE,
         fields: {
-          "Component Name": rendering.componentName,
-          "Datasource Template": rendering.datasourceTemplate || "",
+          componentName: rendering.componentName,
+          "Data source": rendering.datasourceTemplate || "",
           "Datasource Location": rendering.datasourceLocation || "",
-          "Placeholders": rendering.allowedPlaceholders?.join(",") || "",
         },
       });
 
-      if (renderingItem && rendering.variants) {
-        for (const variant of rendering.variants) {
-          await createItem({
-            name: variant.name,
-            parentPath: rendering.path,
-            templateId: "{6C1C8492-2C76-47B5-B3A5-CF0D8E2A2E5F}",
-            fields: {
-              "Variant Name": variant.name,
-              "Description": variant.description,
-              "CSS Class": variant.cssClass,
-            },
-          });
-        }
+      if (renderingItem) {
+        result.steps.push({ action: "create", target: rendering.path, status: "success", message: `Created rendering: ${rendering.componentName}` });
+      } else {
+        result.errors.push(`Failed to create rendering: ${rendering.name}`);
       }
-
-      result.steps.push({ action: "create", target: rendering.path, status: "success", message: `Created rendering: ${rendering.componentName}` });
     } catch (e) {
       const msg = `Error creating rendering ${rendering.name}: ${(e as Error).message}`;
       result.errors.push(msg);
@@ -229,46 +217,14 @@ export async function createPages(): Promise<SyncResult> {
   if (!dataFolder) {
     await createItem({
       name: "Data",
-      parentPath: SITE_ROOT,
-      templateId: "{A87A00B1-E6DB-45AB-8B54-636FEC3B5523}",
+      parentPath: HOME_PATH,
+      templateId: FOLDER_TEMPLATE,
     });
     result.steps.push({ action: "create", target: DATA_ROOT, status: "success", message: "Created Data folder" });
   }
 
   for (const pageDef of pageDefinitions) {
     try {
-      if (pageDef.name !== "Home") {
-        const pathParts = pageDef.path.replace(HOME_PATH + "/", "").split("/");
-        let currentPath = HOME_PATH;
-        for (let i = 0; i < pathParts.length - 1; i++) {
-          const folderPath = `${currentPath}/${pathParts[i]}`;
-          const existing = await getItem(folderPath);
-          if (!existing) {
-            await createItem({
-              name: pathParts[i],
-              parentPath: currentPath,
-              templateId: "{76036F5E-CBCE-46D1-AF0A-4143F9B557AA}",
-            });
-          }
-          currentPath = folderPath;
-        }
-
-        const existing = await getItem(pageDef.path);
-        if (!existing) {
-          const pageItem = await createItem({
-            name: pageDef.name,
-            parentPath: currentPath,
-            templateId: "{76036F5E-CBCE-46D1-AF0A-4143F9B557AA}",
-            fields: {
-              Title: pageDef.displayName,
-            },
-          });
-          if (pageItem) {
-            result.steps.push({ action: "create", target: pageDef.path, status: "success", message: `Created page: ${pageDef.displayName}` });
-          }
-        }
-      }
-
       for (const comp of pageDef.components) {
         const datasourcePath = `${DATA_ROOT}/${comp.datasourceName}`;
         const existingDs = await getItem(datasourcePath);
@@ -277,31 +233,40 @@ export async function createPages(): Promise<SyncResult> {
           result.steps.push({ action: "update", target: datasourcePath, status: "success", message: `Updated datasource: ${comp.datasourceName}` });
         } else {
           const template = componentTemplates.find(t => t.name === comp.renderingName);
+          let templateId = FOLDER_TEMPLATE;
           if (template) {
-            const dsItem = await createItem({
-              name: comp.datasourceName,
-              parentPath: DATA_ROOT,
-              templateId: template.path,
-              fields: comp.fields,
-            });
-            if (dsItem) {
-              result.steps.push({ action: "create", target: datasourcePath, status: "success", message: `Created datasource: ${comp.datasourceName}` });
+            const templateItem = await getItem(template.path);
+            if (templateItem) {
+              templateId = formatGuid(templateItem.id);
+            }
+          }
+          const dsItem = await createItem({
+            name: comp.datasourceName,
+            parentPath: DATA_ROOT,
+            templateId,
+            fields: comp.fields,
+          });
+          if (dsItem) {
+            result.steps.push({ action: "create", target: datasourcePath, status: "success", message: `Created datasource: ${comp.datasourceName}` });
 
-              if (comp.children) {
-                const childTemplate = componentTemplates.find(t => t.name === comp.children!.templateName);
-                if (childTemplate) {
-                  for (const childItem of comp.children.items) {
-                    await createItem({
-                      name: childItem.name,
-                      parentPath: datasourcePath,
-                      templateId: childTemplate.path,
-                      fields: childItem.fields,
-                    });
-                  }
-                  result.steps.push({ action: "create", target: `${datasourcePath}/*`, status: "success", message: `Created ${comp.children.items.length} child items` });
+            if (comp.children) {
+              const childTemplate = componentTemplates.find(t => t.name === comp.children!.templateName);
+              if (childTemplate) {
+                const childTemplateItem = await getItem(childTemplate.path);
+                const childTemplateId = childTemplateItem ? formatGuid(childTemplateItem.id) : FOLDER_TEMPLATE;
+                for (const childItem of comp.children.items) {
+                  await createItem({
+                    name: childItem.name,
+                    parentPath: datasourcePath,
+                    templateId: childTemplateId,
+                    fields: childItem.fields,
+                  });
                 }
+                result.steps.push({ action: "create", target: `${datasourcePath}/*`, status: "success", message: `Created ${comp.children.items.length} child items` });
               }
             }
+          } else {
+            result.errors.push(`Failed to create datasource: ${comp.datasourceName}`);
           }
         }
       }
@@ -324,7 +289,7 @@ export async function publishToEdge(): Promise<SyncResult> {
   const published = await publishSite();
   result.steps.push({
     action: "publish",
-    target: "NXP site",
+    target: "nxp site",
     status: published ? "success" : "error",
     message: published ? "Full site publish initiated" : "Publish failed",
   });
@@ -340,7 +305,7 @@ export async function fullSync(): Promise<SyncResult> {
 
   console.log("[sitecore-sync] === Starting full NXP site sync ===");
 
-  console.log("[sitecore-sync] Step 1/5: Cleaning existing content...");
+  console.log("[sitecore-sync] Step 1/5: Cleaning existing TE content...");
   const cleanResult = await cleanNxpSite();
   allSteps.push(...cleanResult.steps);
   allErrors.push(...cleanResult.errors);

@@ -20,6 +20,12 @@ Core features include:
 - **B2B Patterns**: Implementation of volume pricing, purchase order numbers, and parts lists.
 - **Feature Flags**: A database-backed system for toggling AI features (`ai_chatbot`, `ai_recommendations`, `ai_segmentation`, `ai_related_products`) via the admin interface.
 - **Sitecore XM Cloud Integration**: Content authoring, Edge delivery, and in-context editing for specific pages (Homepage, Solutions). This involves a custom Content SDK replacement and an editing host for Sitecore Pages communication.
+  - CM URL: `xmc-icreonpartn828a-novatech15a9-novatechf6c7.sitecorecloud.io`
+  - Uses `SITECORE_AUTOMATION2_*` credentials for authoring API
+  - Site root: `/sitecore/content/nxp/nxp`; Templates: `/sitecore/templates/Project/nxp`
+  - Renderings: `/sitecore/layout/Renderings/Project/build/NovaTech`
+  - Sync pipeline creates 16 templates, 10 renderings, 16+ datasource items
+  - Key XM Cloud GraphQL differences: `parent` field is `ID!` (GUID, not path); `itemId` returns bare lowercase GUIDs; Template Section ID `{E269FBB5-3750-427A-9149-7AA950B49301}`; Template Field ID `{455A3E98-A627-4B40-8035-E683A0331AC7}`; publish uses `experienceedge` target database
 
 ## External Dependencies
 - **Sitecore OrderCloud**: Primary system of record for commerce data (products, buyers, orders).

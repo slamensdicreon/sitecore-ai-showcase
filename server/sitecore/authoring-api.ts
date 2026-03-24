@@ -1,8 +1,7 @@
 import { getAuthoringToken } from "./auth";
 
-const CM_BASE = process.env.SITECORE_CM_URL || "https://xmcloudcm.sitecorecloud.io";
+const CM_BASE = process.env.SITECORE_CM_URL || "https://xmc-icreonpartn828a-novatech15a9-novatechf6c7.sitecorecloud.io";
 const GRAPHQL_ENDPOINT = `${CM_BASE}/sitecore/api/authoring/graphql/v1`;
-const REST_ENDPOINT = `${CM_BASE}/sitecore/api/management/v1`;
 
 export interface SitecoreItem {
   id: string;
@@ -50,74 +49,37 @@ async function authoringGraphQL<T = any>(query: string, variables?: Record<strin
   return data.data;
 }
 
-async function managementAPI(method: string, path: string, body?: any): Promise<any> {
-  const token = await getAuthoringToken();
-  const url = `${REST_ENDPOINT}${path}`;
-  const res = await fetch(url, {
-    method,
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: body ? JSON.stringify(body) : undefined,
-  });
-
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`Management API error: ${res.status} ${text} [${method} ${path}]`);
-  }
-
-  const contentType = res.headers.get("content-type") || "";
-  if (contentType.includes("application/json")) {
-    return res.json();
-  }
-  return null;
-}
-
-export async function getItem(path: string, language = "en"): Promise<SitecoreItem | null> {
+export async function getItem(path: string): Promise<SitecoreItem | null> {
   try {
     const data = await authoringGraphQL(`
-      query GetItem($path: String!, $language: String!) {
-        item(path: $path, language: $language) {
-          id
+      query GetItem($path: String!) {
+        item(where: { path: $path }) {
+          itemId
           name
           path
           template {
-            id
-          }
-          fields {
+            templateId
             name
-            value
           }
-          children {
-            results {
-              id
+          fields(ownFields: true) {
+            nodes {
               name
-              path
-              template {
-                id
-              }
+              value
             }
           }
         }
       }
-    `, { path, language });
+    `, { path });
     if (!data?.item) return null;
     return {
-      id: data.item.id,
+      id: data.item.itemId,
       name: data.item.name,
       path: data.item.path,
-      templateId: data.item.template?.id || "",
-      fields: data.item.fields?.reduce((acc: Record<string, any>, f: any) => {
+      templateId: data.item.template?.templateId || "",
+      fields: data.item.fields?.nodes?.reduce((acc: Record<string, any>, f: any) => {
         acc[f.name] = f.value;
         return acc;
       }, {}),
-      children: data.item.children?.results?.map((c: any) => ({
-        id: c.id,
-        name: c.name,
-        path: c.path,
-        templateId: c.template?.id || "",
-      })),
     };
   } catch (e) {
     console.error("[sitecore] getItem error:", (e as Error).message);
@@ -127,39 +89,52 @@ export async function getItem(path: string, language = "en"): Promise<SitecoreIt
 
 export async function createItem(input: CreateItemInput): Promise<SitecoreItem | null> {
   try {
+    const parentItem = await getItem(input.parentPath);
+    if (!parentItem) {
+      console.error(`[sitecore] createItem: parent not found at path: ${input.parentPath}`);
+      return null;
+    }
+
     const data = await authoringGraphQL(`
-      mutation CreateItem($input: CreateItemInput!) {
-        createItem(input: $input) {
+      mutation CreateItem(
+        $name: String!
+        $parent: ID!
+        $templateId: ID!
+        $language: String!
+        $fields: [FieldValueInput!]
+      ) {
+        createItem(input: {
+          name: $name
+          parent: $parent
+          templateId: $templateId
+          language: $language
+          fields: $fields
+        }) {
           item {
-            id
+            itemId
             name
             path
-            template {
-              id
-            }
           }
         }
       }
     `, {
-      input: {
-        name: input.name,
-        parent: input.parentPath,
-        templateId: input.templateId,
-        language: input.language || "en",
-        fields: input.fields ? Object.entries(input.fields).map(([name, value]) => ({
-          name,
-          value,
-        })) : [],
-      },
+      name: input.name,
+      parent: parentItem.id,
+      templateId: input.templateId,
+      language: input.language || "en",
+      fields: input.fields ? Object.entries(input.fields).map(([name, value]) => ({
+        name,
+        value: value || "",
+      })) : [],
     });
 
     const item = data?.createItem?.item;
     if (!item) return null;
     return {
-      id: item.id,
+      id: item.itemId,
       name: item.name,
       path: item.path,
-      templateId: item.template?.id || "",
+      templateId: "",
     };
   } catch (e) {
     console.error("[sitecore] createItem error:", (e as Error).message);
@@ -170,22 +145,28 @@ export async function createItem(input: CreateItemInput): Promise<SitecoreItem |
 export async function updateItem(input: UpdateItemInput): Promise<boolean> {
   try {
     await authoringGraphQL(`
-      mutation UpdateItem($input: UpdateItemInput!) {
-        updateItem(input: $input) {
+      mutation UpdateItem(
+        $itemId: ID!
+        $language: String!
+        $fields: [FieldValueInput!]!
+      ) {
+        updateItem(input: {
+          itemId: $itemId
+          language: $language
+          fields: $fields
+        }) {
           item {
-            id
+            itemId
           }
         }
       }
     `, {
-      input: {
-        itemId: input.itemId,
-        language: input.language || "en",
-        fields: Object.entries(input.fields).map(([name, value]) => ({
-          name,
-          value,
-        })),
-      },
+      itemId: input.itemId,
+      language: input.language || "en",
+      fields: Object.entries(input.fields).map(([name, value]) => ({
+        name,
+        value: value || "",
+      })),
     });
     return true;
   } catch (e) {
@@ -197,14 +178,12 @@ export async function updateItem(input: UpdateItemInput): Promise<boolean> {
 export async function deleteItem(itemIdOrPath: string): Promise<boolean> {
   try {
     await authoringGraphQL(`
-      mutation DeleteItem($input: DeleteItemInput!) {
-        deleteItem(input: $input) {
+      mutation DeleteItem($itemId: ID!) {
+        deleteItem(input: { itemId: $itemId }) {
           successful
         }
       }
-    `, {
-      input: { itemId: itemIdOrPath },
-    });
+    `, { itemId: itemIdOrPath });
     return true;
   } catch (e) {
     console.error("[sitecore] deleteItem error:", (e as Error).message);
@@ -216,18 +195,21 @@ export async function getChildren(path: string): Promise<SitecoreItem[]> {
   try {
     const data = await authoringGraphQL(`
       query GetChildren($path: String!) {
-        item(path: $path) {
+        item(where: { path: $path }) {
           children {
-            results {
-              id
+            nodes {
+              itemId
               name
               path
               template {
-                id
-              }
-              fields {
+                templateId
                 name
-                value
+              }
+              fields(ownFields: true) {
+                nodes {
+                  name
+                  value
+                }
               }
             }
           }
@@ -235,12 +217,12 @@ export async function getChildren(path: string): Promise<SitecoreItem[]> {
       }
     `, { path });
 
-    return data?.item?.children?.results?.map((c: any) => ({
-      id: c.id,
+    return data?.item?.children?.nodes?.map((c: any) => ({
+      id: c.itemId,
       name: c.name,
       path: c.path,
-      templateId: c.template?.id || "",
-      fields: c.fields?.reduce((acc: Record<string, any>, f: any) => {
+      templateId: c.template?.templateId || "",
+      fields: c.fields?.nodes?.reduce((acc: Record<string, any>, f: any) => {
         acc[f.name] = f.value;
         return acc;
       }, {}),
@@ -254,18 +236,23 @@ export async function getChildren(path: string): Promise<SitecoreItem[]> {
 export async function publishItem(itemId: string, publishSubItems = true): Promise<boolean> {
   try {
     await authoringGraphQL(`
-      mutation PublishItem($input: PublishItemInput!) {
-        publishItem(input: $input) {
+      mutation PublishItem(
+        $itemId: ID!
+        $publishSubItems: Boolean!
+        $languages: [String!]!
+      ) {
+        publishItem(input: {
+          itemId: $itemId
+          publishSubItems: $publishSubItems
+          languages: $languages
+        }) {
           jobId
         }
       }
     `, {
-      input: {
-        itemId,
-        publishSubItems,
-        languages: ["en"],
-        targets: ["edge"],
-      },
+      itemId,
+      publishSubItems,
+      languages: ["en"],
     });
     console.log(`[sitecore] Published item ${itemId}`);
     return true;
@@ -278,49 +265,28 @@ export async function publishItem(itemId: string, publishSubItems = true): Promi
 export async function publishSite(): Promise<boolean> {
   try {
     await authoringGraphQL(`
-      mutation PublishSite {
+      mutation PublishSite(
+        $languages: [String!]!
+        $publishSiteMode: PublishSiteMode!
+        $targetDatabases: [String!]!
+      ) {
         publishSite(input: {
-          siteName: "${process.env.SITECORE_SITE_NAME || "NXP"}"
-          languages: ["en"]
-          publishSubItems: true
+          publishSiteMode: $publishSiteMode
+          languages: $languages
+          targetDatabases: $targetDatabases
         }) {
-          jobId
+          operationId
         }
       }
-    `);
+    `, {
+      languages: ["en"],
+      publishSiteMode: "SMART",
+      targetDatabases: ["experienceedge"],
+    });
     console.log("[sitecore] Full site publish initiated");
     return true;
   } catch (e) {
     console.error("[sitecore] publishSite error:", (e as Error).message);
     return false;
-  }
-}
-
-export async function getItemByQuery(query: string): Promise<SitecoreItem[]> {
-  try {
-    const data = await authoringGraphQL(`
-      query SearchItems($query: String!) {
-        search(query: $query, first: 100) {
-          results {
-            id
-            name
-            path
-            template {
-              id
-            }
-          }
-        }
-      }
-    `, { query });
-
-    return data?.search?.results?.map((c: any) => ({
-      id: c.id,
-      name: c.name,
-      path: c.path,
-      templateId: c.template?.id || "",
-    })) || [];
-  } catch (e) {
-    console.error("[sitecore] getItemByQuery error:", (e as Error).message);
-    return [];
   }
 }

@@ -17,8 +17,8 @@ const AUTH_URL = process.env.SITECORE_AUTH_URL || "https://auth.sitecorecloud.io
 export async function getAuthoringToken(): Promise<string> {
   return getToken(
     "authoring",
-    process.env.SITECORE_AUTOMATION_CLIENT_ID!,
-    process.env.SITECORE_AUTOMATION_CLIENT_SECRET!,
+    process.env.SITECORE_AUTOMATION2_CLIENT_ID!,
+    process.env.SITECORE_AUTOMATION2_CLIENT_SECRET!,
     "https://api.sitecorecloud.io"
   );
 }

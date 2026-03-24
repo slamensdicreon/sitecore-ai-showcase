@@ -13,7 +13,7 @@ import { fullSync, cleanNxpSite, createTemplates, createRenderings, createPages,
 import { getLayoutData, getItemFromEdge } from "./sitecore/edge-api";
 import { getItem, getChildren } from "./sitecore/authoring-api";
 import { clearTokenCache } from "./sitecore/auth";
-import { pageDefinitions, componentTemplates, renderingDefinitions, DATA_ROOT } from "./sitecore/content-model";
+import { pageDefinitions, componentTemplates, renderingDefinitions, DATA_ROOT, SITE_ROOT, RENDERINGS_ROOT, TEMPLATES_ROOT } from "./sitecore/content-model";
 
 function generateAuthToken(): string {
   return crypto.randomBytes(32).toString("hex");
@@ -1094,18 +1094,23 @@ export async function registerRoutes(
 
   app.get("/api/admin/sitecore/status", async (_req, res) => {
     const hasCreds = !!(
-      process.env.SITECORE_AUTOMATION_CLIENT_ID &&
-      process.env.SITECORE_AUTOMATION_CLIENT_SECRET
+      process.env.SITECORE_AUTOMATION2_CLIENT_ID &&
+      process.env.SITECORE_AUTOMATION2_CLIENT_SECRET
     );
     const hasEdgeCreds = !!(
       process.env.SITECORE_EDGE_CLIENT_ID &&
       process.env.SITECORE_EDGE_CLIENT_SECRET
     );
+    const cmUrl = process.env.SITECORE_CM_URL || "https://xmc-icreonpartn828a-novatech15a9-novatechf6c7.sitecorecloud.io";
     res.json({
       configured: hasCreds,
       edgeConfigured: hasEdgeCreds,
-      siteName: process.env.SITECORE_SITE_NAME || "NXP",
+      cmUrl,
+      siteName: process.env.SITECORE_SITE_NAME || "nxp",
       tenant: process.env.SITECORE_TENANT || "novatech",
+      siteRoot: SITE_ROOT,
+      renderingsRoot: RENDERINGS_ROOT,
+      templatesRoot: TEMPLATES_ROOT,
       templateCount: componentTemplates.length,
       renderingCount: renderingDefinitions.length,
       pageCount: pageDefinitions.length,

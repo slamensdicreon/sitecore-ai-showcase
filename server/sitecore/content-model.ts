@@ -4,11 +4,11 @@ export const TEMPLATE_IDS = {
   DATASOURCE_FOLDER: "{56776E93-EC70-4244-B93B-CAE1F743E4FA}",
 };
 
-export const SITE_ROOT = "/sitecore/content/novatech/NXP";
-export const TEMPLATES_ROOT = "/sitecore/templates/Project/NXP";
-export const RENDERINGS_ROOT = "/sitecore/layout/Renderings/Project/NXP";
-export const MEDIA_ROOT = "/sitecore/media library/Project/NXP";
-export const DATA_ROOT = `${SITE_ROOT}/Data`;
+export const SITE_ROOT = "/sitecore/content/nxp/nxp";
+export const TEMPLATES_ROOT = "/sitecore/templates/Project/nxp";
+export const RENDERINGS_ROOT = "/sitecore/layout/Renderings/Project/build/NovaTech";
+export const MEDIA_ROOT = "/sitecore/media library/Project/nxp";
+export const DATA_ROOT = `${SITE_ROOT}/Home/Data`;
 export const HOME_PATH = `${SITE_ROOT}/Home`;
 
 export interface TemplateField {
