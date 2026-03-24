@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/lib/auth";
 import { I18nProvider } from "@/lib/i18n";
+import { SitecoreProvider, initializeSitecoreComponents, injectEditingScripts, setupEditingMessageListener, isEditingRequest } from "@/sitecore";
 import { Header } from "@/components/header";
 import { AIChatbot } from "@/components/ai-chatbot";
 import Home from "@/pages/home";
@@ -20,6 +21,13 @@ import Solutions from "@/pages/solutions";
 import Applications from "@/pages/applications";
 import Innovation from "@/pages/innovation";
 import NotFound from "@/pages/not-found";
+
+initializeSitecoreComponents();
+
+if (typeof window !== "undefined" && isEditingRequest()) {
+  injectEditingScripts();
+  setupEditingMessageListener();
+}
 
 function Router() {
   return (
@@ -50,16 +58,18 @@ function AppContent() {
   const chatbotEnabled = featureFlags?.ai_chatbot !== false;
 
   return (
-    <AuthProvider>
-      <div className="min-h-screen bg-background">
-        <Header />
-        <main>
-          <Router />
-        </main>
-      </div>
-      {chatbotEnabled && <AIChatbot />}
-      <Toaster />
-    </AuthProvider>
+    <SitecoreProvider>
+      <AuthProvider>
+        <div className="min-h-screen bg-background">
+          <Header />
+          <main>
+            <Router />
+          </main>
+        </div>
+        {chatbotEnabled && <AIChatbot />}
+        <Toaster />
+      </AuthProvider>
+    </SitecoreProvider>
   );
 }
 

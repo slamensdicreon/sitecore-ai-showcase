@@ -9,6 +9,11 @@ import { z } from "zod";
 import crypto from "crypto";
 import { ordercloud } from "./ordercloud";
 import { syncToOrderCloud, pullFromOrderCloud, ensureBuyerOrganization, syncBuyerToOrderCloud, syncOrderToOrderCloud, syncAllBuyersToOrderCloud, syncAllOrdersToOrderCloud } from "./ordercloud-sync";
+import { fullSync, cleanNxpSite, createTemplates, createRenderings, createPages, publishToEdge } from "./sitecore/sync";
+import { getLayoutData, getItemFromEdge } from "./sitecore/edge-api";
+import { getItem, getChildren } from "./sitecore/authoring-api";
+import { clearTokenCache } from "./sitecore/auth";
+import { pageDefinitions, componentTemplates, renderingDefinitions, DATA_ROOT } from "./sitecore/content-model";
 
 function generateAuthToken(): string {
   return crypto.randomBytes(32).toString("hex");
@@ -920,6 +925,268 @@ export async function registerRoutes(
         category: "system",
       });
       res.json(updated);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  function parseFieldValue(key: string, val: string): { value: any } {
+    if (val.startsWith("<link ")) {
+      const urlMatch = val.match(/url="([^"]*)"/);
+      const typeMatch = val.match(/linktype="([^"]*)"/);
+      const textMatch = val.match(/text="([^"]*)"/);
+      const targetMatch = val.match(/target="([^"]*)"/);
+      const href = urlMatch ? urlMatch[1] : "";
+      const linktype = typeMatch ? typeMatch[1] : "internal";
+      return { value: { href, linktype, text: textMatch ? textMatch[1] : "", target: targetMatch ? targetMatch[1] : "" } };
+    }
+    if (val.startsWith("<image ")) {
+      const srcMatch = val.match(/src="([^"]*)"/);
+      const altMatch = val.match(/alt="([^"]*)"/);
+      return { value: { src: srcMatch ? srcMatch[1] : "", alt: altMatch ? altMatch[1] : "" } };
+    }
+    if (key.endsWith("Image") || key === "Background Image") {
+      return { value: { src: val, alt: "" } };
+    }
+    return { value: val };
+  }
+
+  app.use("/api/sitecore", adminCors);
+  app.use("/api/admin/sitecore", adminCors);
+
+  app.get("/api/sitecore/layout", async (req, res) => {
+    try {
+      const { path, language, site } = req.query;
+      const layoutData = await getLayoutData(
+        (path as string) || "/",
+        (language as string) || "en",
+        site as string
+      );
+      if (!layoutData) {
+        return res.status(404).json({ message: "Layout data not found" });
+      }
+      res.json(layoutData);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.get("/api/sitecore/item", async (req, res) => {
+    try {
+      const { path, language } = req.query;
+      if (!path) return res.status(400).json({ message: "path is required" });
+      const item = await getItemFromEdge(path as string, (language as string) || "en");
+      if (!item) return res.status(404).json({ message: "Item not found" });
+      res.json(item);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.get("/api/sitecore/children", async (req, res) => {
+    try {
+      const { path: itemPath } = req.query;
+      if (!itemPath) return res.status(400).json({ message: "path is required" });
+
+      try {
+        const children = await getChildren(itemPath as string);
+        if (children.length > 0) {
+          const mapped = children.map(child => ({
+            id: child.id,
+            name: child.name,
+            path: child.path,
+            fields: child.fields ? Object.entries(child.fields).reduce((acc, [key, val]) => {
+              acc[key] = typeof val === "string" ? parseFieldValue(key, val) : { value: val };
+              return acc;
+            }, {} as Record<string, any>) : {},
+          }));
+          return res.json(mapped);
+        }
+      } catch (apiErr: any) {
+        console.log(`[sitecore/children] Authoring API unavailable for "${itemPath}", falling back to content model: ${apiErr.message}`);
+      }
+
+      const dsName = (itemPath as string).split("/").pop() || "";
+      for (const pageDef of pageDefinitions) {
+        for (const comp of pageDef.components) {
+          if (comp.datasourceName === dsName && comp.children) {
+            const childItems = comp.children.items.map((child, idx) => ({
+              id: `local-${dsName}-${idx}`,
+              name: child.name,
+              path: `${itemPath}/${child.name}`,
+              fields: Object.entries(child.fields).reduce((acc, [key, val]) => {
+                acc[key] = parseFieldValue(key, val);
+                return acc;
+              }, {} as Record<string, any>),
+            }));
+            return res.json(childItems);
+          }
+        }
+      }
+
+      res.json([]);
+    } catch (err: any) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+
+  app.get("/api/sitecore/content-model", async (_req, res) => {
+    res.json({
+      templates: componentTemplates.map(t => ({
+        name: t.name,
+        path: t.path,
+        fields: t.fields.map(f => ({ name: f.name, type: f.type })),
+        variants: t.variants || [],
+      })),
+      renderings: renderingDefinitions.map(r => ({
+        name: r.name,
+        componentName: r.componentName,
+        variants: r.variants || [],
+      })),
+      pages: pageDefinitions.map(p => ({
+        name: p.name,
+        route: p.route,
+        displayName: p.displayName,
+        componentCount: p.components.length,
+      })),
+    });
+  });
+
+  app.get("/api/sitecore/page-data", async (req, res) => {
+    const route = (req.query.route as string) || "/";
+    const pageDef = pageDefinitions.find(p => p.route === route);
+    if (!pageDef) return res.status(404).json({ message: "Page not found in content model" });
+
+    const components = pageDef.components.map((comp, idx) => ({
+      uid: `${pageDef.name.toLowerCase()}-${comp.renderingName.replace(/\s+/g, "").toLowerCase()}-${idx}`,
+      componentName: comp.renderingName.replace(/\s+/g, ""),
+      dataSource: `${DATA_ROOT}/${comp.datasourceName}`,
+      fields: Object.entries(comp.fields).reduce((acc, [key, val]) => {
+        acc[key] = parseFieldValue(key, val);
+        return acc;
+      }, {} as Record<string, any>),
+      params: comp.variant ? { FieldNames: comp.variant.toLowerCase().replace(/\s+/g, "-") } : {},
+      placeholders: {},
+    }));
+
+    const layoutResponse = {
+      sitecore: {
+        context: {
+          pageEditing: false,
+          site: { name: process.env.SITECORE_SITE_NAME || "NXP" },
+          language: "en",
+        },
+        route: {
+          name: pageDef.name,
+          displayName: pageDef.displayName,
+          fields: { Title: { value: pageDef.displayName } },
+          placeholders: { "headless-main": components },
+          itemId: "",
+          templateId: "",
+          templateName: "Page",
+          itemLanguage: "en",
+        },
+      },
+    };
+
+    res.json(layoutResponse);
+  });
+
+  app.get("/api/admin/sitecore/status", async (_req, res) => {
+    const hasCreds = !!(
+      process.env.SITECORE_AUTOMATION_CLIENT_ID &&
+      process.env.SITECORE_AUTOMATION_CLIENT_SECRET
+    );
+    const hasEdgeCreds = !!(
+      process.env.SITECORE_EDGE_CLIENT_ID &&
+      process.env.SITECORE_EDGE_CLIENT_SECRET
+    );
+    res.json({
+      configured: hasCreds,
+      edgeConfigured: hasEdgeCreds,
+      siteName: process.env.SITECORE_SITE_NAME || "NXP",
+      tenant: process.env.SITECORE_TENANT || "novatech",
+      templateCount: componentTemplates.length,
+      renderingCount: renderingDefinitions.length,
+      pageCount: pageDefinitions.length,
+    });
+  });
+
+  app.post("/api/admin/sitecore/sync", async (_req, res) => {
+    try {
+      const result = await fullSync();
+      if (result.success) {
+        await storage.addAuditLog({
+          action: "Sitecore Full Sync",
+          details: `${result.steps.length} steps completed`,
+          category: "sync",
+          status: "success",
+        });
+      }
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ success: false, message: err.message, steps: [], errors: [err.message] });
+    }
+  });
+
+  app.post("/api/admin/sitecore/clean", async (_req, res) => {
+    try {
+      const result = await cleanNxpSite();
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ success: false, message: err.message });
+    }
+  });
+
+  app.post("/api/admin/sitecore/create-templates", async (_req, res) => {
+    try {
+      const result = await createTemplates();
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ success: false, message: err.message });
+    }
+  });
+
+  app.post("/api/admin/sitecore/create-renderings", async (_req, res) => {
+    try {
+      const result = await createRenderings();
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ success: false, message: err.message });
+    }
+  });
+
+  app.post("/api/admin/sitecore/create-pages", async (_req, res) => {
+    try {
+      const result = await createPages();
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ success: false, message: err.message });
+    }
+  });
+
+  app.post("/api/admin/sitecore/publish", async (_req, res) => {
+    try {
+      const result = await publishToEdge();
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ success: false, message: err.message });
+    }
+  });
+
+  app.post("/api/admin/sitecore/clear-cache", async (_req, res) => {
+    clearTokenCache();
+    res.json({ message: "Token cache cleared" });
+  });
+
+  app.get("/api/admin/sitecore/inspect", async (req, res) => {
+    try {
+      const itemPath = req.query.path as string;
+      if (!itemPath) return res.status(400).json({ message: "path query parameter is required" });
+      const item = await getItem(itemPath);
+      if (!item) return res.status(404).json({ message: "Item not found" });
+      const children = await getChildren(itemPath);
+      res.json({ ...item, children });
     } catch (err: any) {
       res.status(500).json({ message: err.message });
     }
