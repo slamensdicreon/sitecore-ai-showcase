@@ -2,7 +2,7 @@ import { createEditingConfigRouteHandler } from '@sitecore-content-sdk/nextjs/ro
 
 export const { GET } = createEditingConfigRouteHandler({
   components: async () => {
-    const { componentMap } = await import('../../../../.sitecore/component-map');
+    const { componentMap } = await import('../../../../../.sitecore/component-map');
     return new Map(Object.entries(componentMap));
   },
 });

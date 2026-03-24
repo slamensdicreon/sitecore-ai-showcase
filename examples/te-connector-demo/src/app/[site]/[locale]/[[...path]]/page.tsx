@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { draftMode } from 'next/headers';
 import client from 'src/lib/sitecore-client';
 import Layout, { RouteFields } from 'src/Layout';
-import componentMap from '.sitecore/component-map';
+import componentMap from '../../../../../.sitecore/component-map';
 import Providers from 'src/Providers';
 
 export const dynamic = 'force-dynamic';
