@@ -1,0 +1,12 @@
+---
+ID: "{15E36E4F-93F7-4FD5-820C-1A353AE0FE1F}"
+Parent: "{B382F1FD-7910-4B41-93EB-A379055692A5}"
+Template: "{455A3E98-A627-4B40-8035-E683A0331AC7}"
+Path: "/sitecore/templates/Project/nxp/Solution Hero/Content/Title"
+SharedFields:
+- ID: "{AB162CC0-DC80-4ABF-8871-998EE5D7BA32}"
+  Hint: Type
+  Value: "Single-Line Text"
+- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
+  Hint: __Display name
+  Value: "Title"

@@ -1,0 +1,12 @@
+---
+ID: "{A32264A5-B397-46D8-AB99-4DAF507F3509}"
+Parent: "{295A3897-C4AD-4F38-92FD-0BEF31BBA5A9}"
+Template: "{455A3E98-A627-4B40-8035-E683A0331AC7}"
+Path: "/sitecore/templates/Project/nxp/Product Discovery/CTA/CTA Link"
+SharedFields:
+- ID: "{AB162CC0-DC80-4ABF-8871-998EE5D7BA32}"
+  Hint: Type
+  Value: "General Link"
+- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
+  Hint: __Display name
+  Value: "CTA Link"

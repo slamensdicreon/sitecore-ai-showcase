@@ -1,0 +1,12 @@
+---
+ID: "{19798736-2924-43C1-8C9B-B56237FA46C3}"
+Parent: "{09AEBBB4-8FF2-47EF-98F9-C15F3CC2874D}"
+Template: "{455A3E98-A627-4B40-8035-E683A0331AC7}"
+Path: "/sitecore/templates/Project/nxp/Cross Navigation/Content/Heading"
+SharedFields:
+- ID: "{AB162CC0-DC80-4ABF-8871-998EE5D7BA32}"
+  Hint: Type
+  Value: "Single-Line Text"
+- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
+  Hint: __Display name
+  Value: "Heading"

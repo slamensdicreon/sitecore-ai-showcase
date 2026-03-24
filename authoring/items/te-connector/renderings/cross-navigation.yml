@@ -1,0 +1,23 @@
+---
+ID: "{B35FD97D-9FC0-4244-A9C2-33E1C084B67C}"
+Parent: "/sitecore/layout/Renderings/Project/build/NovaTech"
+Template: "{04646A89-996F-4EE7-878A-FFDBF1F0EF0D}"
+Path: "/sitecore/layout/Renderings/Project/build/NovaTech/Cross Navigation"
+SharedFields:
+- ID: "{1CE71C66-B3A1-4AC5-A75D-DA4AEB0FF8F5}"
+  Hint: componentName
+  Value: "CrossNavigation"
+- ID: "{B5C95305-1673-4DAE-903A-15E7990DBF41}"
+  Hint: "Data source"
+  Value: "/sitecore/templates/Project/nxp/Cross Navigation"
+- ID: "{AA27DD07-A9F7-48C0-BAA4-5FD48C95CF95}"
+  Hint: "Datasource Location"
+  Value: "/sitecore/content/nxp/nxp/Home/Data"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
+      Hint: __Display name
+      Value: "Cross Navigation"

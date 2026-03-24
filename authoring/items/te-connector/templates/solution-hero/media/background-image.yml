@@ -1,0 +1,12 @@
+---
+ID: "{410238F0-E69F-4960-9489-B13F5132F100}"
+Parent: "{0FDBEA1F-60FD-4C13-9C44-6793217C077E}"
+Template: "{455A3E98-A627-4B40-8035-E683A0331AC7}"
+Path: "/sitecore/templates/Project/nxp/Solution Hero/Media/Background Image"
+SharedFields:
+- ID: "{AB162CC0-DC80-4ABF-8871-998EE5D7BA32}"
+  Hint: Type
+  Value: "Image"
+- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
+  Hint: __Display name
+  Value: "Background Image"

@@ -1,0 +1,12 @@
+---
+ID: "{3E0E2548-17B3-4B88-93F9-3D41FBA79F77}"
+Parent: "{6B5746F0-7F8D-45FD-87D2-07B910EF847C}"
+Template: "{455A3E98-A627-4B40-8035-E683A0331AC7}"
+Path: "/sitecore/templates/Project/nxp/Cross Nav Link/Display/Icon Name"
+SharedFields:
+- ID: "{AB162CC0-DC80-4ABF-8871-998EE5D7BA32}"
+  Hint: Type
+  Value: "Single-Line Text"
+- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
+  Hint: __Display name
+  Value: "Icon Name"

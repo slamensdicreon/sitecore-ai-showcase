@@ -1,0 +1,9 @@
+---
+ID: "{295A3897-C4AD-4F38-92FD-0BEF31BBA5A9}"
+Parent: "{05C35C16-CA96-4B95-8A83-354D9BEAEBA4}"
+Template: "{E269FBB5-3750-427A-9149-7AA950B49301}"
+Path: "/sitecore/templates/Project/nxp/Product Discovery/CTA"
+SharedFields:
+- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
+  Hint: __Display name
+  Value: "CTA"

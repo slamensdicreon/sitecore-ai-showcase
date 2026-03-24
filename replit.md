@@ -26,6 +26,12 @@ Core features include:
   - Renderings: `/sitecore/layout/Renderings/Project/build/NovaTech`
   - Sync pipeline creates 16 templates, 10 renderings, 16+ datasource items
   - Key XM Cloud GraphQL differences: `parent` field is `ID!` (GUID, not path); `itemId` returns bare lowercase GUIDs; Template Section ID `{E269FBB5-3750-427A-9149-7AA950B49301}`; Template Field ID `{455A3E98-A627-4B40-8035-E683A0331AC7}`; publish uses `experienceedge` target database
+- **Sitecore CLI Serialization**: Item serialization for XM Cloud deployment pipeline
+  - `authoring/items/te-connector/` — 131 YAML files (16 templates, 10 renderings with sections/fields)
+  - `authoring/items/te-connector/te-connector.module.json` — Sitecore CLI module config
+  - `sitecore.json` — Root serialization config pointing to module glob
+  - `xmcloud.build.json` — XM Cloud build config registering `te-connector-demo` rendering host
+  - `scripts/push-to-github.sh` — Push script for `slamensdicreon/sitecore-ai-showcase` repo
 
 ## External Dependencies
 - **Sitecore OrderCloud**: Primary system of record for commerce data (products, buyers, orders).

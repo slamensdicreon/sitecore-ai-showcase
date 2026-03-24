@@ -1,0 +1,9 @@
+---
+ID: "{2BDF286D-6B8D-4A9C-8FB2-200FA1DE18F6}"
+Parent: "{B54F0BEB-2A97-4BAE-9C62-2C58F0373A92}"
+Template: "{E269FBB5-3750-427A-9149-7AA950B49301}"
+Path: "/sitecore/templates/Project/nxp/Mega Trends/Content"
+SharedFields:
+- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
+  Hint: __Display name
+  Value: "Content"

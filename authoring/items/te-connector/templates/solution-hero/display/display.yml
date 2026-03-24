@@ -1,0 +1,9 @@
+---
+ID: "{01F1B6D2-13AF-478E-A965-948100A54AA5}"
+Parent: "{BD13E2E1-2148-4711-B00C-54A4805617BB}"
+Template: "{E269FBB5-3750-427A-9149-7AA950B49301}"
+Path: "/sitecore/templates/Project/nxp/Solution Hero/Display"
+SharedFields:
+- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
+  Hint: __Display name
+  Value: "Display"

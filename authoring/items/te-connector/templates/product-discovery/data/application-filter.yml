@@ -1,0 +1,12 @@
+---
+ID: "{D02959A7-72FA-4731-BEA0-51B95872EF02}"
+Parent: "{5FF3454A-D381-4586-979A-BC5275D8A6CB}"
+Template: "{455A3E98-A627-4B40-8035-E683A0331AC7}"
+Path: "/sitecore/templates/Project/nxp/Product Discovery/Data/Application Filter"
+SharedFields:
+- ID: "{AB162CC0-DC80-4ABF-8871-998EE5D7BA32}"
+  Hint: Type
+  Value: "Single-Line Text"
+- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
+  Hint: __Display name
+  Value: "Application Filter"

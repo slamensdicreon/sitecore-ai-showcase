@@ -1,0 +1,17 @@
+---
+ID: "{466E5E2C-D16A-49D0-AE29-0B761BD536C4}"
+Parent: "/sitecore/templates/Project/nxp"
+Template: "{AB86861A-6030-46C5-B394-E8F99E8B87DB}"
+Path: "/sitecore/templates/Project/nxp/Solution Narrative"
+SharedFields:
+- ID: "{06D5295C-ED2F-4A54-9BF2-26228D113318}"
+  Hint: __Icon
+  Value: "Office/32x32/document_text.png"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
+      Hint: __Display name
+      Value: "Solution Narrative"

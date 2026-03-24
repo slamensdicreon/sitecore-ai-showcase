@@ -1,0 +1,9 @@
+---
+ID: "{A9623C50-4C20-4579-ADA4-791442F005ED}"
+Parent: "{C090B15F-15A5-4FE5-B68B-CA58A53AF19A}"
+Template: "{E269FBB5-3750-427A-9149-7AA950B49301}"
+Path: "/sitecore/templates/Project/nxp/Authority Stats/Content"
+SharedFields:
+- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
+  Hint: __Display name
+  Value: "Content"

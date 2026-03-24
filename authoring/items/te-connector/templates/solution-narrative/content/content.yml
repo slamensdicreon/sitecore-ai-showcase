@@ -1,0 +1,9 @@
+---
+ID: "{5D8A9C00-13C3-48AD-A8DF-946E4B1B5D52}"
+Parent: "{466E5E2C-D16A-49D0-AE29-0B761BD536C4}"
+Template: "{E269FBB5-3750-427A-9149-7AA950B49301}"
+Path: "/sitecore/templates/Project/nxp/Solution Narrative/Content"
+SharedFields:
+- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
+  Hint: __Display name
+  Value: "Content"

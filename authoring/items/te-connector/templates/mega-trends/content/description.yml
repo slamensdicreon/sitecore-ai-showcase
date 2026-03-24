@@ -1,0 +1,12 @@
+---
+ID: "{84C66AAE-9C61-4640-9CCD-BA61FFDDEAD0}"
+Parent: "{2BDF286D-6B8D-4A9C-8FB2-200FA1DE18F6}"
+Template: "{455A3E98-A627-4B40-8035-E683A0331AC7}"
+Path: "/sitecore/templates/Project/nxp/Mega Trends/Content/Description"
+SharedFields:
+- ID: "{AB162CC0-DC80-4ABF-8871-998EE5D7BA32}"
+  Hint: Type
+  Value: "Multi-Line Text"
+- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
+  Hint: __Display name
+  Value: "Description"

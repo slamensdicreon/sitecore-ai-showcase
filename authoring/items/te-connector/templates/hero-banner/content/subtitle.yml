@@ -1,0 +1,12 @@
+---
+ID: "{800A03EC-2256-4CF6-A720-5DAB99868B58}"
+Parent: "{851DFF6B-A8A7-4F5F-BA85-8DFFC5C653D1}"
+Template: "{455A3E98-A627-4B40-8035-E683A0331AC7}"
+Path: "/sitecore/templates/Project/nxp/Hero Banner/Content/Subtitle"
+SharedFields:
+- ID: "{AB162CC0-DC80-4ABF-8871-998EE5D7BA32}"
+  Hint: Type
+  Value: "Multi-Line Text"
+- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
+  Hint: __Display name
+  Value: "Subtitle"

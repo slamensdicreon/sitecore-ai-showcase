@@ -1,0 +1,9 @@
+---
+ID: "{6B5746F0-7F8D-45FD-87D2-07B910EF847C}"
+Parent: "{F89DF1B6-E718-4E5B-849A-0F7ABEAD75B1}"
+Template: "{E269FBB5-3750-427A-9149-7AA950B49301}"
+Path: "/sitecore/templates/Project/nxp/Cross Nav Link/Display"
+SharedFields:
+- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
+  Hint: __Display name
+  Value: "Display"

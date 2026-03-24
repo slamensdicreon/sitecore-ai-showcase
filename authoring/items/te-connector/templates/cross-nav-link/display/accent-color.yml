@@ -1,0 +1,12 @@
+---
+ID: "{2D4A25C0-E6AB-41A6-8C5B-03882C7B0775}"
+Parent: "{6B5746F0-7F8D-45FD-87D2-07B910EF847C}"
+Template: "{455A3E98-A627-4B40-8035-E683A0331AC7}"
+Path: "/sitecore/templates/Project/nxp/Cross Nav Link/Display/Accent Color"
+SharedFields:
+- ID: "{AB162CC0-DC80-4ABF-8871-998EE5D7BA32}"
+  Hint: Type
+  Value: "Single-Line Text"
+- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
+  Hint: __Display name
+  Value: "Accent Color"

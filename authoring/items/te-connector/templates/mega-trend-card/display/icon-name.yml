@@ -1,0 +1,12 @@
+---
+ID: "{FB20E87F-C28B-43AC-84D6-4DB09A46346D}"
+Parent: "{E1C6A10E-19EA-4A75-9AF0-51142B620ED9}"
+Template: "{455A3E98-A627-4B40-8035-E683A0331AC7}"
+Path: "/sitecore/templates/Project/nxp/Mega Trend Card/Display/Icon Name"
+SharedFields:
+- ID: "{AB162CC0-DC80-4ABF-8871-998EE5D7BA32}"
+  Hint: Type
+  Value: "Single-Line Text"
+- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
+  Hint: __Display name
+  Value: "Icon Name"

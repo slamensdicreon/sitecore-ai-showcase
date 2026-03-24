@@ -1,0 +1,9 @@
+---
+ID: "{BBEE5F4C-2FF0-4FD3-9551-5182751333DC}"
+Parent: "{1647162B-3BBE-46F8-956E-1696868E50F0}"
+Template: "{E269FBB5-3750-427A-9149-7AA950B49301}"
+Path: "/sitecore/templates/Project/nxp/Proof Point Counter/Content"
+SharedFields:
+- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
+  Hint: __Display name
+  Value: "Content"

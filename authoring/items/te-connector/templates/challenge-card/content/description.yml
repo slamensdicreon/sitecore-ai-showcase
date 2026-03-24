@@ -1,0 +1,12 @@
+---
+ID: "{4B49C2B7-EC0D-4BE3-B85C-171B21F2FDD5}"
+Parent: "{C2B3DB55-D5EC-4F98-998E-76F9BD18E440}"
+Template: "{455A3E98-A627-4B40-8035-E683A0331AC7}"
+Path: "/sitecore/templates/Project/nxp/Challenge Card/Content/Description"
+SharedFields:
+- ID: "{AB162CC0-DC80-4ABF-8871-998EE5D7BA32}"
+  Hint: Type
+  Value: "Multi-Line Text"
+- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
+  Hint: __Display name
+  Value: "Description"

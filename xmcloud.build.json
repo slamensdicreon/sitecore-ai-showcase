@@ -1,0 +1,14 @@
+{
+  "$schema": "./.sitecore/schemas/xmcloud.build.schema.json",
+  "renderingHosts": {
+    "te-connector-demo": {
+      "path": "./examples/te-connector-demo/",
+      "nodeVersion": "22.22.0",
+      "jssDeploymentSecret": "te-connector-demo-jss-deployment-secret",
+      "enabled": true,
+      "type": "sxa",
+      "buildCommand": "build",
+      "runCommand": "next:start"
+    }
+  }
+}
