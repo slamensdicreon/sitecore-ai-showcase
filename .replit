@@ -51,3 +51,7 @@ SITECORE_SITE_NAME = "NXP"
 SITECORE_TENANT = "novatech"
 SITECORE_AUTH_URL = "https://auth.sitecorecloud.io/oauth/token"
 SITECORE_EDGE_URL = "https://edge.sitecorecloud.io/api/graphql/v1"
+
+[postMerge]
+path = "scripts/post-merge.sh"
+timeoutMs = 20000
