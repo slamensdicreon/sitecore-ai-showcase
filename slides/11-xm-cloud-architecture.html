@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>XM Cloud Component Architecture</title>
+<link rel="stylesheet" href="slide-styles.css">
+</head>
+<body>
+<div class="slide">
+  <div class="gradient-line"></div>
+  <div class="slide-header">
+    <div class="logo-area">
+      <div class="logo-mark"><img src="sitecore-logo.png" alt="Sitecore"></div>
+      <span class="logo-text">SITECORE + ORDERCLOUD</span>
+    </div>
+    <span class="slide-number">11 / 13</span>
+  </div>
+
+  <div class="slide-title-area">
+    <div class="slide-label">XM Cloud Deep-Dive</div>
+    <h1 class="slide-title">XM Cloud Component Architecture</h1>
+    <p class="slide-subtitle">Headless CMS with JSS SDK, component-driven rendering, and Next.js rendering host</p>
+  </div>
+
+  <div class="slide-body">
+    <div style="margin-bottom: 16px;">
+      <h3 style="font-size: 14px; font-weight: 500; margin-bottom: 10px; color: var(--text-muted);">XM Cloud Rendering Pipeline</h3>
+      <div class="flow-row">
+        <div class="flow-box"><div class="label">Author</div><div class="value">XM Cloud CMS</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box"><div class="label">API</div><div class="value">Layout Service / GraphQL</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box highlight"><div class="label">Render</div><div class="value">Next.js Host (JSS)</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box"><div class="label">Deliver</div><div class="value">Vercel / Edge CDN</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box"><div class="label">Personalize</div><div class="value">CDP Edge</div></div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom: 14px;">
+      <div class="card card-accent">
+        <div class="icon-box icon-purple">&#9881;</div>
+        <h3>Component Architecture</h3>
+        <ul>
+          <li>JSS (JavaScript Services) SDK for React/Next.js</li>
+          <li>Each component maps to a Sitecore rendering</li>
+          <li>Data sources define content schema per component</li>
+          <li>Placeholder-based layout composition</li>
+          <li>Shared component library across multi-site</li>
+          <li>Design tokens enforced via Tailwind / CSS vars</li>
+        </ul>
+      </div>
+      <div class="card card-accent">
+        <div class="icon-box icon-blue">&#128187;</div>
+        <h3>Next.js Rendering Host</h3>
+        <ul>
+          <li>SSG + ISR for marketing pages (fast TTFB)</li>
+          <li>SSR for personalized / authenticated pages</li>
+          <li>API routes as middleware for OC + integrations</li>
+          <li>Deployed on Vercel or any Node.js host</li>
+          <li>Preview mode for editors (live content preview)</li>
+          <li>Automatic revalidation on publish events</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="card">
+        <h3>Layout Service</h3>
+        <ul>
+          <li>REST or GraphQL endpoints</li>
+          <li>Returns page layout as JSON tree</li>
+          <li>Component hierarchy + field data</li>
+          <li>Language-aware responses</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Experience Edge</h3>
+        <ul>
+          <li>Global CDN for layout & content</li>
+          <li>Auto-publish from XM Cloud</li>
+          <li>GraphQL API at the edge</li>
+          <li>Sub-50ms content delivery worldwide</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Headless SXA</h3>
+        <ul>
+          <li>Pre-built headless components (Hero, Promo, Navigation)</li>
+          <li>Grid & column layout components</li>
+          <li>Theme and variant system</li>
+          <li>Extensible via custom renderings</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <img src="icreon-logo.png" alt="Icreon" class="footer-logo">
+    <span class="footer-center">TE Digital Ecosystem Simplification &mdash; Confidential</span>
+    <img src="sitecore-logo.png" alt="Sitecore" class="footer-logo">
+  </div>
+</div>
+</body>
+</html>

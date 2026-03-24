@@ -45,14 +45,14 @@
   }
   .slide-link .num {
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--primary-light);
     letter-spacing: 1px;
     margin-bottom: 6px;
   }
   .slide-link h2 {
     font-size: 17px;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--text);
     margin-bottom: 6px;
   }
@@ -67,6 +67,23 @@
     gap: 6px;
     flex-wrap: wrap;
   }
+  .index-footer {
+    margin-top: 48px;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+  }
+  .index-footer img {
+    height: 24px;
+    width: auto;
+    object-fit: contain;
+  }
+  .index-footer span {
+    font-size: 12px;
+    color: var(--text-dim);
+  }
 </style>
 </head>
 <body>
@@ -74,12 +91,12 @@
 <div class="index-page">
   <div class="index-header">
     <div class="logo-area" style="margin-bottom:24px;">
-      <div class="logo-mark">S</div>
+      <div class="logo-mark"><img src="sitecore-logo.png" alt="Sitecore"></div>
       <span class="logo-text">SITECORE + ORDERCLOUD</span>
     </div>
     <h1>TE Digital Ecosystem Simplification</h1>
     <p>Vendor Demonstration — Narration Slides<br>
-    10 slides covering platform architecture, integration, AI, globalization, and more.<br>
+    13 slides covering platform architecture, integration, AI, XM Cloud, globalization, and more.<br>
     Each slide is 1280 x 720 (16:9) and can be opened full-screen or exported to PDF.</p>
   </div>
 
@@ -144,10 +161,28 @@
       <p>Tax, shipping, fraud, payment tokenization, trade compliance, post-purchase.</p>
       <div class="tags"><span class="badge badge-purple">Commerce</span><span class="badge badge-green">Live Demo</span></div>
     </a>
+    <a href="11-xm-cloud-architecture.html" class="slide-link">
+      <div class="num">SLIDE 11</div>
+      <h2>XM Cloud Component Architecture</h2>
+      <p>Headless CMS with JSS SDK, component-driven rendering, Next.js rendering host, and Experience Edge.</p>
+      <div class="tags"><span class="badge badge-purple">XM Cloud</span><span class="badge badge-blue">Technical</span></div>
+    </a>
+    <a href="12-xm-cloud-pages-workflow.html" class="slide-link">
+      <div class="num">SLIDE 12</div>
+      <h2>Pages Visual Editing & Content Workflow</h2>
+      <p>WYSIWYG editor, drag-and-drop components, content authoring workflow, multi-site management.</p>
+      <div class="tags"><span class="badge badge-purple">XM Cloud</span><span class="badge badge-amber">Brand COE</span></div>
+    </a>
+    <a href="13-composable-dxp-edge.html" class="slide-link">
+      <div class="num">SLIDE 13</div>
+      <h2>Composable DXP & Edge Delivery</h2>
+      <p>MACH architecture, Experience Edge CDN, global content delivery, zero-ops SaaS platform.</p>
+      <div class="tags"><span class="badge badge-purple">Architecture</span><span class="badge badge-amber">Executive</span></div>
+    </a>
   </div>
 
   <div style="margin-top:48px; padding:24px; background:var(--bg-card); border-radius:14px; border:1px solid var(--border);">
-    <h3 style="font-size:15px; font-weight:600; margin-bottom:8px;">How to Use These Slides</h3>
+    <h3 style="font-size:15px; font-weight: 500; margin-bottom:8px;">How to Use These Slides</h3>
     <ul style="font-size:13px; color:var(--text-muted); line-height:1.8; list-style:none; padding:0;">
       <li style="padding-left:18px; position:relative;"><span style="position:absolute;left:0;">1.</span> Open any slide in a browser at full 1280x720 resolution</li>
       <li style="padding-left:18px; position:relative;"><span style="position:absolute;left:0;">2.</span> Use browser Print &#8594; Save as PDF for a portable deck</li>
@@ -155,6 +190,12 @@
       <li style="padding-left:18px; position:relative;"><span style="position:absolute;left:0;">4.</span> Purple/Blue badges indicate narration-only platform capabilities</li>
       <li style="padding-left:18px; position:relative;"><span style="position:absolute;left:0;">5.</span> Amber badges indicate content particularly relevant to executive stakeholders</li>
     </ul>
+  </div>
+
+  <div class="index-footer">
+    <img src="icreon-logo.png" alt="Icreon">
+    <span>TE Digital Ecosystem Simplification &mdash; Confidential</span>
+    <img src="sitecore-logo.png" alt="Sitecore">
   </div>
 </div>
 </body>
