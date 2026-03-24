@@ -70,14 +70,7 @@ git status --short
 if git diff --cached --quiet; then
   echo "No changes to commit."
 else
-  git commit -m "feat: add TE Connector Demo rendering host and serialization
-
-- Add Next.js 15 rendering host at examples/te-connector-demo/
-- Add Sitecore CLI serialization for 16 templates and 10 renderings
-- Register te-connector-demo in xmcloud.build.json
-- 19 component implementations (16 templates + 3 SXA built-ins)
-- OrderCloud API integration in ProductDiscovery component
-- TE Connectivity palette: slate #2e4957, orange #f28d00, teal #167a87"
+  git commit -m "feat: add te-connector-demo rendering host and item serialization"
 
   git push origin "$BRANCH"
   echo ""
