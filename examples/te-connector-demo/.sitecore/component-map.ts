@@ -18,7 +18,9 @@ import Container from 'src/components/sxa/Container';
 import ColumnSplitter from 'src/components/sxa/ColumnSplitter';
 import ContentBlock from 'src/components/sxa/ContentBlock';
 
-type SitecoreComponent = React.ComponentType<Record<string, unknown>>;
+import type { ComponentType } from 'react';
+
+type SitecoreComponent = ComponentType<Record<string, unknown>>;
 
 export const componentMap: Record<string, SitecoreComponent> = {
   HeroBanner,

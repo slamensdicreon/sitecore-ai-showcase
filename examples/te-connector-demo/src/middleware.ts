@@ -5,8 +5,8 @@ import {
   RedirectsMiddleware,
   LocaleMiddleware,
 } from '@sitecore-content-sdk/nextjs/middleware';
-import sites from '.sitecore/sites.json';
-import scConfig from 'sitecore.config';
+import sites from '../.sitecore/sites.json';
+import scConfig from '../sitecore.config';
 
 const locale = new LocaleMiddleware({
   sites,
