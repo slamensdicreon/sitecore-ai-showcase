@@ -1,9 +1,0 @@
----
-ID: "{7FBEC422-374E-4863-A4E0-894A51E23B0F}"
-Parent: "{908EBDFA-A485-452C-BE0A-E6B9AEA29B56}"
-Template: "{E269FBB5-3750-427A-9149-7AA950B49301}"
-Path: "/sitecore/templates/Project/nxp/Hero Banner/Media"
-SharedFields:
-- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
-  Hint: __Display name
-  Value: "Media"

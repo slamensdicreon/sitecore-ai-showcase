@@ -1,9 +1,0 @@
----
-ID: "{D2BAB055-35C9-4C60-BE5A-642302A7E12B}"
-Parent: "{F89DF1B6-E718-4E5B-849A-0F7ABEAD75B1}"
-Template: "{E269FBB5-3750-427A-9149-7AA950B49301}"
-Path: "/sitecore/templates/Project/nxp/Cross Nav Link/Content"
-SharedFields:
-- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
-  Hint: __Display name
-  Value: "Content"

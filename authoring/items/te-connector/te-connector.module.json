@@ -1,18 +1,17 @@
 {
-  "namespace": "TEConnector",
-  "references": ["CommonConfigurations"],
+  "$schema": "../../.sitecore/schemas/ModuleFile.schema.json",
+  "namespace": "Project.te-connector",
   "items": {
+    "path": ".",
     "includes": [
       {
-        "name": "templates",
+        "name": "te-connector.templates",
         "path": "/sitecore/templates/Project/nxp",
-        "scope": "ItemAndDescendants",
         "allowedPushOperations": "CreateUpdateAndDelete"
       },
       {
-        "name": "renderings",
+        "name": "te-connector.renderings",
         "path": "/sitecore/layout/Renderings/Project/build/NovaTech",
-        "scope": "ItemAndDescendants",
         "allowedPushOperations": "CreateUpdateAndDelete"
       }
     ]

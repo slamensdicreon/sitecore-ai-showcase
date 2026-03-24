@@ -1,9 +1,0 @@
----
-ID: "{E850DE4B-51FD-4A99-8E47-50287B522CFA}"
-Parent: "{B5E62990-7970-439A-A05D-BEF41BA32160}"
-Template: "{E269FBB5-3750-427A-9149-7AA950B49301}"
-Path: "/sitecore/templates/Project/nxp/Solution Pathway Card/Content"
-SharedFields:
-- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
-  Hint: __Display name
-  Value: "Content"

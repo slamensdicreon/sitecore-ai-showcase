@@ -1,9 +1,0 @@
----
-ID: "{E1C6A10E-19EA-4A75-9AF0-51142B620ED9}"
-Parent: "{B6FF528B-E33C-44FD-B78D-546E120AF1D9}"
-Template: "{E269FBB5-3750-427A-9149-7AA950B49301}"
-Path: "/sitecore/templates/Project/nxp/Mega Trend Card/Display"
-SharedFields:
-- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
-  Hint: __Display name
-  Value: "Display"

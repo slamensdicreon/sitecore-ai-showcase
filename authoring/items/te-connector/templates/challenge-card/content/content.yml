@@ -1,9 +1,0 @@
----
-ID: "{C2B3DB55-D5EC-4F98-998E-76F9BD18E440}"
-Parent: "{D09AFADF-2539-40AF-928A-AD34C0CFCA21}"
-Template: "{E269FBB5-3750-427A-9149-7AA950B49301}"
-Path: "/sitecore/templates/Project/nxp/Challenge Card/Content"
-SharedFields:
-- ID: "{B5E02AD9-D56F-4C41-A065-A133DB87BDEB}"
-  Hint: __Display name
-  Value: "Content"
