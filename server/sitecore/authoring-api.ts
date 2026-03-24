@@ -1,7 +1,8 @@
 import { getAuthoringToken } from "./auth";
 
-const GRAPHQL_ENDPOINT = "https://xmcloudcm.sitecorecloud.io/sitecore/api/authoring/graphql/v1";
-const REST_ENDPOINT = "https://xmcloudcm.sitecorecloud.io/sitecore/api/management/v1";
+const CM_BASE = process.env.SITECORE_CM_URL || "https://xmcloudcm.sitecorecloud.io";
+const GRAPHQL_ENDPOINT = `${CM_BASE}/sitecore/api/authoring/graphql/v1`;
+const REST_ENDPOINT = `${CM_BASE}/sitecore/api/management/v1`;
 
 export interface SitecoreItem {
   id: string;

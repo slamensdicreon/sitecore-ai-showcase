@@ -1192,5 +1192,53 @@ export async function registerRoutes(
     }
   });
 
+  app.get("/api/editing/render", (req, res) => {
+    const route = (req.query.route as string) || "/";
+    const pageDef = pageDefinitions.find(p => p.route === route);
+    if (!pageDef) return res.status(404).json({ message: "Page not found" });
+
+    const components = pageDef.components.map((comp, idx) => ({
+      uid: `${pageDef.name.toLowerCase()}-${comp.renderingName.replace(/\s+/g, "").toLowerCase()}-${idx}`,
+      componentName: comp.renderingName.replace(/\s+/g, ""),
+      dataSource: `${DATA_ROOT}/${comp.datasourceName}`,
+      fields: Object.entries(comp.fields).reduce((acc, [key, val]) => {
+        acc[key] = parseFieldValue(key, val);
+        return acc;
+      }, {} as Record<string, any>),
+      params: comp.variant ? { FieldNames: comp.variant.toLowerCase().replace(/\s+/g, "-") } : {},
+    }));
+
+    res.json({
+      sitecore: {
+        context: { pageEditing: true, site: { name: "NXP" }, language: "en" },
+        route: {
+          name: pageDef.name,
+          displayName: pageDef.name,
+          fields: { Title: { value: pageDef.name } },
+          placeholders: { "headless-main": components },
+          itemId: `{${crypto.randomUUID()}}`,
+          templateId: "",
+          templateName: "Page",
+          itemLanguage: "en",
+        },
+      },
+    });
+  });
+
+  app.get("/api/editing/config", (_req, res) => {
+    const cmUrl = process.env.SITECORE_CM_URL || "";
+    const editingHostUrl = `https://${process.env.REPLIT_DOMAINS?.split(",")[0] || "localhost:5000"}`;
+    res.json({
+      cmUrl,
+      cmConfigured: !!cmUrl,
+      editingHostUrl,
+      siteName: process.env.SITECORE_SITE_NAME || "NXP",
+      tenant: process.env.SITECORE_TENANT || "novatech",
+      pages: pageDefinitions.map(p => ({ name: p.name, route: p.route })),
+      components: renderingDefinitions.map(r => r.name),
+      simulatorAvailable: true,
+    });
+  });
+
   return httpServer;
 }
