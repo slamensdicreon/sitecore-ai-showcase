@@ -28,4 +28,9 @@ export function getChildFieldValue(item: ChildItem, fieldName: string, fallback 
   return field?.value ?? fallback;
 }
 
+export function getChildLinkHref(item: ChildItem, fieldName: string): string {
+  const field = item.fields?.[fieldName] as LinkField | undefined;
+  return field?.value?.href || '#';
+}
+
 export type IconMap = Record<string, LucideIcon>;

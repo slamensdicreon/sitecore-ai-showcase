@@ -10,7 +10,7 @@ import {
   Lightbulb, Box, TrendingUp, ChevronRight,
   DollarSign, MapPin, Wrench, Users,
 } from 'lucide-react';
-import { getChildItems, getChildFieldValue, type IconMap, type ChildItem } from 'src/lib/field-utils';
+import { getChildItems, getChildFieldValue, getChildLinkHref, type IconMap, type ChildItem } from 'src/lib/field-utils';
 
 const iconMap: IconMap = {
   BatteryCharging, Server, Factory, DollarSign, MapPin, Wrench, Users,
@@ -47,7 +47,7 @@ export default function CrossNavigation({ fields, rendering }: CrossNavigationPr
               const iconName = getChildFieldValue(link, 'Icon Name');
               const Icon = iconMap[iconName] || Zap;
               const color = getChildFieldValue(link, 'Accent Color', '#167a87');
-              const href = getChildFieldValue(link, 'Link') || '#';
+              const href = getChildLinkHref(link, 'Link');
 
               return (
                 <a key={link.id || i} href={href} className="block">

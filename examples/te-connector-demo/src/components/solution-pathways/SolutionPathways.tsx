@@ -6,7 +6,7 @@ import {
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
 import { ChevronRight } from 'lucide-react';
-import { getChildItems, getChildFieldValue, type ChildItem } from 'src/lib/field-utils';
+import { getChildItems, getChildFieldValue, getChildLinkHref, type ChildItem } from 'src/lib/field-utils';
 
 type SolutionPathwaysProps = {
   rendering: ComponentRendering;
@@ -43,7 +43,7 @@ export default function SolutionPathways({ fields, rendering, params }: Solution
         {children.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 max-w-4xl mx-auto">
             {children.map((card: ChildItem, i: number) => {
-              const href = getChildFieldValue(card, 'Link') || '#';
+              const href = getChildLinkHref(card, 'Link');
               return (
                 <a key={card.id || i} href={href} className="block">
                   <div className={`group cursor-pointer rounded-lg border p-6 transition-all duration-300 ${

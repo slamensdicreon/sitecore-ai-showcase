@@ -10,7 +10,7 @@ import {
   Lightbulb, Box, TrendingUp, ChevronRight,
   DollarSign, MapPin, Wrench, Users,
 } from 'lucide-react';
-import { getChildItems, getChildFieldValue, type IconMap, type ChildItem } from 'src/lib/field-utils';
+import { getChildItems, getChildFieldValue, getChildLinkHref, type IconMap, type ChildItem } from 'src/lib/field-utils';
 
 const iconMap: IconMap = {
   BatteryCharging, Server, Factory, DollarSign, MapPin, Wrench, Users,
@@ -53,7 +53,7 @@ export default function MegaTrends({ fields, rendering }: MegaTrendsProps) {
             {children.map((card: ChildItem, i: number) => {
               const Icon = getIcon(getChildFieldValue(card, 'Icon Name'));
               const color = getChildFieldValue(card, 'Accent Color', '#f28d00');
-              const href = getChildFieldValue(card, 'Link');
+              const href = getChildLinkHref(card, 'Link');
               return (
                 <a key={card.id || i} href={href || '#'} className="block">
                   <div className="hover-elevate cursor-pointer h-full rounded-lg border border-gray-200 bg-white relative overflow-hidden group" data-testid={`card-megatrend-${i}`}>
