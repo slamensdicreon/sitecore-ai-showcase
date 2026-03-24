@@ -1,11 +1,24 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import {
   Text,
   useSitecoreContext,
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
 import { ArrowRight } from 'lucide-react';
+
+type Product = {
+  id: number;
+  name: string;
+  sku: string;
+  description: string;
+  price: string;
+  imageUrl: string | null;
+  category: string | null;
+  industry: string | null;
+  application: string | null;
+};
 
 type ProductDiscoveryProps = {
   rendering: ComponentRendering;
@@ -19,6 +32,37 @@ export default function ProductDiscovery({ fields, params }: ProductDiscoveryPro
   const variant = params?.FieldNames || '';
   const isCarousel = variant === 'discovery--carousel';
   const isCompactList = variant === 'discovery--compact';
+
+  const industryFilter = (fields?.['Industry Filter'] as any)?.value || '';
+  const applicationFilter = (fields?.['Application Filter'] as any)?.value || '';
+  const maxProducts = parseInt((fields?.['Max Products'] as any)?.value || '6', 10);
+
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const apiBaseUrl = typeof window !== 'undefined'
+    ? (window as any).__ORDERCLOUD_API_URL__ || process.env.NEXT_PUBLIC_ORDERCLOUD_API_URL || ''
+    : process.env.NEXT_PUBLIC_ORDERCLOUD_API_URL || '';
+
+  useEffect(() => {
+    if (!apiBaseUrl || isEditing) {
+      setLoading(false);
+      return;
+    }
+
+    const queryParams = new URLSearchParams();
+    if (industryFilter) queryParams.set('industry', industryFilter);
+    if (applicationFilter) queryParams.set('application', applicationFilter);
+    queryParams.set('limit', String(maxProducts));
+
+    fetch(`${apiBaseUrl}/api/products?${queryParams.toString()}`)
+      .then(res => res.json())
+      .then(data => {
+        setProducts(data.products || []);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, [apiBaseUrl, industryFilter, applicationFilter, maxProducts, isEditing]);
 
   return (
     <section className="py-16 md:py-24 bg-gray-50" data-testid="section-product-discovery">
@@ -35,14 +79,64 @@ export default function ProductDiscovery({ fields, params }: ProductDiscoveryPro
           </div>
         </div>
 
-        <div className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center bg-white">
-          <p className="text-gray-500 mb-2">Product data is loaded from OrderCloud at runtime.</p>
-          <p className="text-gray-400 text-sm">
-            Filters: Industry = {(fields?.['Industry Filter'] as any)?.value || 'all'} |
-            Application = {(fields?.['Application Filter'] as any)?.value || 'all'} |
-            Max = {(fields?.['Max Products'] as any)?.value || '6'}
-          </p>
-        </div>
+        {loading ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="h-48 bg-gray-200 rounded-lg animate-pulse" />
+            ))}
+          </div>
+        ) : products.length > 0 ? (
+          <div className={
+            isCarousel
+              ? 'flex gap-4 overflow-x-auto pb-4'
+              : isCompactList
+              ? 'space-y-3'
+              : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'
+          }>
+            {products.map((product) => (
+              <div
+                key={product.id}
+                className={`hover-elevate cursor-pointer h-full rounded-lg border border-gray-200 bg-white ${isCarousel ? 'min-w-[300px]' : ''}`}
+                data-testid={`card-product-${product.sku}`}
+              >
+                <div className={isCompactList ? 'p-4 flex items-center gap-4' : 'p-5'}>
+                  {!isCompactList && product.imageUrl && (
+                    <div className="h-32 flex items-center justify-center mb-3 bg-gray-50 rounded-lg">
+                      <img src={product.imageUrl} alt={product.name} className="h-24 w-auto object-contain" />
+                    </div>
+                  )}
+                  <div>
+                    <h3 className="font-heading font-semibold text-sm mb-1">{product.name}</h3>
+                    <p className="text-xs text-gray-400 mb-2">{product.sku}</p>
+                    <p className="text-sm text-gray-500 line-clamp-2">{product.description}</p>
+                    <div className="mt-3 flex items-center justify-between">
+                      <span className="text-[#2e4957] font-heading font-bold">${product.price}</span>
+                      {product.category && (
+                        <span className="text-[10px] px-2 py-0.5 rounded bg-[#167a87]/10 text-[#167a87]">
+                          {product.category}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center bg-white">
+            <p className="text-gray-500 mb-2">
+              {isEditing
+                ? 'Product data will be loaded from OrderCloud at runtime.'
+                : 'No products found matching the current filters.'
+              }
+            </p>
+            <p className="text-gray-400 text-sm">
+              Filters: Industry = {industryFilter || 'all'} |
+              Application = {applicationFilter || 'all'} |
+              Max = {maxProducts}
+            </p>
+          </div>
+        )}
 
         {fields?.['CTA Text']?.value && (
           <div className="text-center mt-8">
