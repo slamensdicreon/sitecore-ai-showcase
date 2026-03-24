@@ -10,8 +10,9 @@ import {
   Lightbulb, Box, TrendingUp, ChevronRight,
   DollarSign, MapPin, Wrench, Users,
 } from 'lucide-react';
+import { getChildItems, getChildFieldValue, type IconMap, type ChildItem } from 'src/lib/field-utils';
 
-const iconMap: Record<string, React.ComponentType<any>> = {
+const iconMap: IconMap = {
   BatteryCharging, Server, Factory, DollarSign, MapPin, Wrench, Users,
   Zap, Shield, Globe, Cpu, Lightbulb, Box, TrendingUp,
 };
@@ -26,7 +27,7 @@ export default function CrossNavigation({ fields, rendering }: CrossNavigationPr
   const { sitecoreContext } = useSitecoreContext();
   const isEditing = sitecoreContext?.pageEditing === true;
 
-  const children = (rendering as any)?.fields?.items || [];
+  const children = getChildItems(rendering as Record<string, unknown>);
 
   return (
     <section className="py-16 md:py-20 bg-gray-50" data-testid="section-cross-navigation">
@@ -42,11 +43,11 @@ export default function CrossNavigation({ fields, rendering }: CrossNavigationPr
 
         {children.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {children.map((link: any, i: number) => {
-              const iconName = link.fields?.['Icon Name']?.value;
+            {children.map((link: ChildItem, i: number) => {
+              const iconName = getChildFieldValue(link, 'Icon Name');
               const Icon = iconMap[iconName] || Zap;
-              const color = link.fields?.['Accent Color']?.value || '#167a87';
-              const href = link.fields?.['Link']?.value?.href || '#';
+              const color = getChildFieldValue(link, 'Accent Color', '#167a87');
+              const href = getChildFieldValue(link, 'Link') || '#';
 
               return (
                 <a key={link.id || i} href={href} className="block">
@@ -57,10 +58,10 @@ export default function CrossNavigation({ fields, rendering }: CrossNavigationPr
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="font-heading font-semibold mb-1 group-hover:text-[#f28d00] transition-colors">
-                          {link.fields?.['Title']?.value}
+                          {getChildFieldValue(link, 'Title')}
                         </h3>
                         <p className="text-sm text-gray-500 leading-relaxed">
-                          {link.fields?.['Description']?.value}
+                          {getChildFieldValue(link, 'Description')}
                         </p>
                       </div>
                       <ChevronRight className="h-4 w-4 text-gray-300 group-hover:text-[#f28d00] group-hover:translate-x-1 transition-all shrink-0 mt-1" />

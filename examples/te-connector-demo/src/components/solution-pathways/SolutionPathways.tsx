@@ -6,6 +6,7 @@ import {
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
 import { ChevronRight } from 'lucide-react';
+import { getChildItems, getChildFieldValue, type ChildItem } from 'src/lib/field-utils';
 
 type SolutionPathwaysProps = {
   rendering: ComponentRendering;
@@ -19,7 +20,7 @@ export default function SolutionPathways({ fields, rendering, params }: Solution
   const variant = params?.FieldNames || '';
   const isLight = variant === 'pathways--light';
 
-  const children = (rendering as any)?.fields?.items || [];
+  const children = getChildItems(rendering as Record<string, unknown>);
 
   return (
     <section
@@ -41,8 +42,8 @@ export default function SolutionPathways({ fields, rendering, params }: Solution
 
         {children.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 max-w-4xl mx-auto">
-            {children.map((card: any, i: number) => {
-              const href = card.fields?.['Link']?.value?.href || '#';
+            {children.map((card: ChildItem, i: number) => {
+              const href = getChildFieldValue(card, 'Link') || '#';
               return (
                 <a key={card.id || i} href={href} className="block">
                   <div className={`group cursor-pointer rounded-lg border p-6 transition-all duration-300 ${
@@ -52,17 +53,17 @@ export default function SolutionPathways({ fields, rendering, params }: Solution
                   }`} data-testid={`card-pathway-${i}`}>
                     <div className="flex items-start justify-between mb-3">
                       <span className="inline-block px-2 py-0.5 rounded text-[10px] bg-[#f28d00]/20 text-[#f28d00] border border-[#f28d00]/30">
-                        {card.fields?.['Industry Label']?.value}
+                        {getChildFieldValue(card, 'Industry Label')}
                       </span>
                       <ChevronRight className={`h-4 w-4 group-hover:translate-x-1 transition-all ${
                         isLight ? 'text-gray-400 group-hover:text-[#f28d00]' : 'text-white/30 group-hover:text-[#f28d00]'
                       }`} />
                     </div>
                     <h3 className="text-lg font-heading font-semibold mb-2 group-hover:text-[#f28d00] transition-colors">
-                      &ldquo;{card.fields?.['Question']?.value}&rdquo;
+                      &ldquo;{getChildFieldValue(card, 'Question')}&rdquo;
                     </h3>
                     <p className={`text-sm leading-relaxed ${isLight ? 'text-gray-500' : 'text-white/70'}`}>
-                      {card.fields?.['Context']?.value}
+                      {getChildFieldValue(card, 'Context')}
                     </p>
                   </div>
                 </a>

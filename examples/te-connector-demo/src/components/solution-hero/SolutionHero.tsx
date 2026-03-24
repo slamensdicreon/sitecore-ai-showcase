@@ -5,6 +5,7 @@ import {
   useSitecoreContext,
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
+import { getFieldValue } from 'src/lib/field-utils';
 
 type SolutionHeroProps = {
   rendering: ComponentRendering;
@@ -15,7 +16,7 @@ type SolutionHeroProps = {
 export default function SolutionHero({ fields, params }: SolutionHeroProps) {
   const variant = params?.FieldNames || '';
   const isMinimal = variant === 'solution-hero--minimal';
-  const accentColor = (fields?.['Accent Color'] as any)?.value || '#f28d00';
+  const accentColor = getFieldValue(fields, 'Accent Color', '#f28d00');
 
   return (
     <section

@@ -7,8 +7,9 @@ import {
   Lightbulb, Box, TrendingUp,
   DollarSign, MapPin, Wrench, Users,
 } from 'lucide-react';
+import { getFieldValue, type IconMap } from 'src/lib/field-utils';
 
-const iconMap: Record<string, React.ComponentType<any>> = {
+const iconMap: IconMap = {
   BatteryCharging, Server, Factory, DollarSign, MapPin, Wrench, Users,
   Zap, Shield, Globe, Cpu, Lightbulb, Box, TrendingUp,
 };
@@ -20,7 +21,7 @@ type ChallengeCardProps = {
 };
 
 export default function ChallengeCard({ fields }: ChallengeCardProps) {
-  const iconName = (fields?.['Icon Name'] as any)?.value;
+  const iconName = getFieldValue(fields, 'Icon Name', '');
   const Icon = iconMap[iconName] || Zap;
 
   return (

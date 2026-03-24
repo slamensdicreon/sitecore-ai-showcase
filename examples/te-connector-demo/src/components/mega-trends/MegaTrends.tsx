@@ -10,14 +10,14 @@ import {
   Lightbulb, Box, TrendingUp, ChevronRight,
   DollarSign, MapPin, Wrench, Users,
 } from 'lucide-react';
+import { getChildItems, getChildFieldValue, type IconMap, type ChildItem } from 'src/lib/field-utils';
 
-const iconMap: Record<string, React.ComponentType<any>> = {
+const iconMap: IconMap = {
   BatteryCharging, Server, Factory, DollarSign, MapPin, Wrench, Users,
   Zap, Shield, Globe, Cpu, Lightbulb, Box, TrendingUp,
 };
 
-function getIcon(name?: string) {
-  if (!name) return Zap;
+function getIcon(name: string) {
   return iconMap[name] || Zap;
 }
 
@@ -31,7 +31,7 @@ export default function MegaTrends({ fields, rendering }: MegaTrendsProps) {
   const { sitecoreContext } = useSitecoreContext();
   const isEditing = sitecoreContext?.pageEditing === true;
 
-  const children = (rendering as any)?.fields?.items || [];
+  const children = getChildItems(rendering as Record<string, unknown>);
 
   return (
     <section className="relative bg-white py-20 md:py-28 overflow-hidden" data-testid="section-mega-trends">
@@ -50,25 +50,25 @@ export default function MegaTrends({ fields, rendering }: MegaTrendsProps) {
 
         {children.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {children.map((card: any, i: number) => {
-              const Icon = getIcon(card.fields?.['Icon Name']?.value);
-              const color = card.fields?.['Accent Color']?.value || '#f28d00';
-              const href = card.fields?.['Link']?.value?.href || '#';
+            {children.map((card: ChildItem, i: number) => {
+              const Icon = getIcon(getChildFieldValue(card, 'Icon Name'));
+              const color = getChildFieldValue(card, 'Accent Color', '#f28d00');
+              const href = getChildFieldValue(card, 'Link');
               return (
-                <a key={card.id || i} href={href} className="block">
+                <a key={card.id || i} href={href || '#'} className="block">
                   <div className="hover-elevate cursor-pointer h-full rounded-lg border border-gray-200 bg-white relative overflow-hidden group" data-testid={`card-megatrend-${i}`}>
                     <div className="absolute top-0 left-0 right-0 h-1" style={{ backgroundColor: color }} />
                     <div className="p-6 md:p-8">
                       <div className="w-14 h-14 rounded-lg flex items-center justify-center mb-5 transition-transform group-hover:scale-110" style={{ backgroundColor: `${color}15` }}>
                         <Icon className="h-7 w-7" style={{ color }} />
                       </div>
-                      <h3 className="text-xl font-heading font-bold mb-1">{card.fields?.['Title']?.value}</h3>
-                      <p className="text-sm text-gray-500 font-medium mb-3">{card.fields?.['Subtitle']?.value}</p>
-                      <p className="text-sm text-gray-500 leading-relaxed mb-6">{card.fields?.['Description']?.value}</p>
+                      <h3 className="text-xl font-heading font-bold mb-1">{getChildFieldValue(card, 'Title')}</h3>
+                      <p className="text-sm text-gray-500 font-medium mb-3">{getChildFieldValue(card, 'Subtitle')}</p>
+                      <p className="text-sm text-gray-500 leading-relaxed mb-6">{getChildFieldValue(card, 'Description')}</p>
                       <div className="pt-4 border-t border-gray-100">
                         <div className="flex items-baseline gap-2">
-                          <span className="text-2xl font-heading font-bold" style={{ color }}>{card.fields?.['Stat Value']?.value}</span>
-                          <span className="text-xs text-gray-400">{card.fields?.['Stat Label']?.value}</span>
+                          <span className="text-2xl font-heading font-bold" style={{ color }}>{getChildFieldValue(card, 'Stat Value')}</span>
+                          <span className="text-xs text-gray-400">{getChildFieldValue(card, 'Stat Label')}</span>
                         </div>
                       </div>
                       <div className="mt-4 flex items-center text-sm font-heading font-medium group-hover:gap-2 transition-all" style={{ color }}>

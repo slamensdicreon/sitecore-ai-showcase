@@ -7,8 +7,9 @@ import {
   Lightbulb, Box, TrendingUp,
   DollarSign, MapPin, Wrench, Users,
 } from 'lucide-react';
+import { getFieldValue, type IconMap } from 'src/lib/field-utils';
 
-const iconMap: Record<string, React.ComponentType<any>> = {
+const iconMap: IconMap = {
   BatteryCharging, Server, Factory, DollarSign, MapPin, Wrench, Users,
   Zap, Shield, Globe, Cpu, Lightbulb, Box, TrendingUp,
 };
@@ -20,11 +21,11 @@ type StatItemProps = {
 };
 
 export default function StatItem({ fields }: StatItemProps) {
-  const iconName = (fields?.['Icon Name'] as any)?.value;
+  const iconName = getFieldValue(fields, 'Icon Name', '');
   const Icon = iconMap[iconName] || Zap;
-  const val = (fields?.['Value'] as any)?.value || '0';
-  const prefix = (fields?.['Prefix'] as any)?.value || '';
-  const suffix = (fields?.['Suffix'] as any)?.value || '';
+  const val = getFieldValue(fields, 'Value', '0');
+  const prefix = getFieldValue(fields, 'Prefix', '');
+  const suffix = getFieldValue(fields, 'Suffix', '');
 
   return (
     <div className="text-center" data-testid="stat-item">

@@ -10,14 +10,14 @@ import {
   Lightbulb, Box, TrendingUp, ArrowRight,
   DollarSign, MapPin, Wrench, Users,
 } from 'lucide-react';
+import { getChildItems, getChildFieldValue, getLinkHref, type IconMap, type ChildItem } from 'src/lib/field-utils';
 
-const iconMap: Record<string, React.ComponentType<any>> = {
+const iconMap: IconMap = {
   BatteryCharging, Server, Factory, DollarSign, MapPin, Wrench, Users,
   Zap, Shield, Globe, Cpu, Lightbulb, Box, TrendingUp,
 };
 
-function getIcon(name?: string) {
-  if (!name) return Zap;
+function getIcon(name: string) {
   return iconMap[name] || Zap;
 }
 
@@ -33,7 +33,7 @@ export default function AuthorityStats({ fields, rendering, params }: AuthorityS
   const variant = params?.FieldNames || '';
   const isDark = variant === 'authority--dark';
 
-  const children = (rendering as any)?.fields?.items || [];
+  const children = getChildItems(rendering as Record<string, unknown>);
 
   return (
     <section
@@ -55,11 +55,11 @@ export default function AuthorityStats({ fields, rendering, params }: AuthorityS
 
         {children.length > 0 && (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-10 max-w-4xl mx-auto mb-16">
-            {children.map((stat: any, i: number) => {
-              const Icon = getIcon(stat.fields?.['Icon Name']?.value);
-              const val = stat.fields?.['Value']?.value || '0';
-              const prefix = stat.fields?.['Prefix']?.value || '';
-              const suffix = stat.fields?.['Suffix']?.value || '';
+            {children.map((stat: ChildItem, i: number) => {
+              const Icon = getIcon(getChildFieldValue(stat, 'Icon Name'));
+              const val = getChildFieldValue(stat, 'Value', '0');
+              const prefix = getChildFieldValue(stat, 'Prefix');
+              const suffix = getChildFieldValue(stat, 'Suffix');
               return (
                 <div key={stat.id || i} className="text-center">
                   <div className={`w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4 ${isDark ? 'bg-white/5' : 'bg-[#2e4957]/5'}`}>
@@ -69,7 +69,7 @@ export default function AuthorityStats({ fields, rendering, params }: AuthorityS
                     {prefix}{val}{suffix}
                   </div>
                   <p className={`text-sm font-medium ${isDark ? 'text-white/70' : 'text-gray-500'}`}>
-                    {stat.fields?.['Label']?.value}
+                    {getChildFieldValue(stat, 'Label')}
                   </p>
                 </div>
               );
@@ -89,7 +89,7 @@ export default function AuthorityStats({ fields, rendering, params }: AuthorityS
                   <Text field={fields?.['CTA Description']} />
                 </div>
               </div>
-              <a href={fields?.['CTA Link']?.value?.href || '#'}>
+              <a href={getLinkHref(fields, 'CTA Link')}>
                 <button className="inline-flex items-center justify-center px-6 h-11 bg-[#f28d00] hover:bg-[#e07d00] text-white font-heading rounded-md whitespace-nowrap transition-colors" data-testid="button-authority-cta">
                   <Text field={fields?.['CTA Link Text']} />
                   <ArrowRight className="ml-2 h-4 w-4" />

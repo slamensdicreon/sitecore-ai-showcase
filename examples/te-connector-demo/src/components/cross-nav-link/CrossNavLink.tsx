@@ -7,8 +7,9 @@ import {
   Lightbulb, Box, TrendingUp, ChevronRight,
   DollarSign, MapPin, Wrench, Users,
 } from 'lucide-react';
+import { getFieldValue, getLinkHref, type IconMap } from 'src/lib/field-utils';
 
-const iconMap: Record<string, React.ComponentType<any>> = {
+const iconMap: IconMap = {
   BatteryCharging, Server, Factory, DollarSign, MapPin, Wrench, Users,
   Zap, Shield, Globe, Cpu, Lightbulb, Box, TrendingUp,
 };
@@ -20,10 +21,10 @@ type CrossNavLinkProps = {
 };
 
 export default function CrossNavLink({ fields }: CrossNavLinkProps) {
-  const iconName = (fields?.['Icon Name'] as any)?.value;
+  const iconName = getFieldValue(fields, 'Icon Name', '');
   const Icon = iconMap[iconName] || Zap;
-  const color = (fields?.['Accent Color'] as any)?.value || '#167a87';
-  const href = fields?.['Link']?.value?.href || '#';
+  const color = getFieldValue(fields, 'Accent Color', '#167a87');
+  const href = getLinkHref(fields, 'Link');
 
   return (
     <a href={href} className="block">

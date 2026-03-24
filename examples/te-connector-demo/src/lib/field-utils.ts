@@ -1,0 +1,31 @@
+import type { Field, LinkField } from '@sitecore-content-sdk/nextjs';
+import type { LucideIcon } from 'lucide-react';
+
+export function getFieldValue<T = string>(fields: Record<string, unknown> | undefined, fieldName: string, fallback: T): T {
+  const field = fields?.[fieldName] as Field<T> | undefined;
+  return field?.value ?? fallback;
+}
+
+export function getLinkHref(fields: Record<string, unknown> | undefined, fieldName: string): string {
+  const field = fields?.[fieldName] as LinkField | undefined;
+  return field?.value?.href || '#';
+}
+
+export interface ChildItem {
+  id?: string;
+  fields?: Record<string, Field<string> | Field<number> | LinkField | undefined>;
+}
+
+export function getChildItems(rendering: Record<string, unknown>): ChildItem[] {
+  const fields = rendering?.fields as Record<string, unknown> | undefined;
+  const items = fields?.items;
+  if (Array.isArray(items)) return items as ChildItem[];
+  return [];
+}
+
+export function getChildFieldValue(item: ChildItem, fieldName: string, fallback = ''): string {
+  const field = item.fields?.[fieldName] as Field<string> | undefined;
+  return field?.value ?? fallback;
+}
+
+export type IconMap = Record<string, LucideIcon>;

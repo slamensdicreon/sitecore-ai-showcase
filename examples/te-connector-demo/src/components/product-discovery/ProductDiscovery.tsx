@@ -7,6 +7,7 @@ import {
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
 import { ArrowRight } from 'lucide-react';
+import { getFieldValue, getLinkHref } from 'src/lib/field-utils';
 
 type Product = {
   id: number;
@@ -33,15 +34,15 @@ export default function ProductDiscovery({ fields, params }: ProductDiscoveryPro
   const isCarousel = variant === 'discovery--carousel';
   const isCompactList = variant === 'discovery--compact';
 
-  const industryFilter = (fields?.['Industry Filter'] as any)?.value || '';
-  const applicationFilter = (fields?.['Application Filter'] as any)?.value || '';
-  const maxProducts = parseInt((fields?.['Max Products'] as any)?.value || '6', 10);
+  const industryFilter = getFieldValue(fields, 'Industry Filter', '');
+  const applicationFilter = getFieldValue(fields, 'Application Filter', '');
+  const maxProducts = parseInt(getFieldValue(fields, 'Max Products', '6'), 10);
 
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
   const apiBaseUrl = typeof window !== 'undefined'
-    ? (window as any).__ORDERCLOUD_API_URL__ || process.env.NEXT_PUBLIC_ORDERCLOUD_API_URL || ''
+    ? process.env.NEXT_PUBLIC_ORDERCLOUD_API_URL || ''
     : process.env.NEXT_PUBLIC_ORDERCLOUD_API_URL || '';
 
   useEffect(() => {
@@ -138,11 +139,11 @@ export default function ProductDiscovery({ fields, params }: ProductDiscoveryPro
           </div>
         )}
 
-        {fields?.['CTA Text']?.value && (
+        {getFieldValue(fields, 'CTA Text', '') && (
           <div className="text-center mt-8">
-            <a href={fields?.['CTA Link']?.value?.href || '#'}>
+            <a href={getLinkHref(fields, 'CTA Link')}>
               <button className="inline-flex items-center justify-center px-6 h-11 bg-[#f28d00] hover:bg-[#e07d00] text-white font-heading rounded-md transition-colors" data-testid="button-discovery-cta">
-                <Text field={fields['CTA Text']} />
+                <Text field={fields?.['CTA Text']} />
                 <ArrowRight className="ml-2 h-4 w-4" />
               </button>
             </a>
