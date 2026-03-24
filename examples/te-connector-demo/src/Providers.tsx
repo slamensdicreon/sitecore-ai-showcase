@@ -14,13 +14,13 @@ type ProvidersProps = {
 
 export default function Providers({ page, componentProps, children }: ProvidersProps) {
   return (
-    <ComponentPropsContext value={componentProps}>
+    <ComponentPropsContext.Provider value={componentProps}>
       <SitecoreContext
         componentFactory={(name: string) => componentMap[name] || null}
         layoutData={page.layout}
       >
         {children}
       </SitecoreContext>
-    </ComponentPropsContext>
+    </ComponentPropsContext.Provider>
   );
 }
