@@ -57,6 +57,16 @@ export const componentMap: Record<string, SitecoreComponent> = {
   'Container': Container,
   'ColumnSplitter': ColumnSplitter,
   'ContentBlock': ContentBlock,
+
+  'TE Header': HeroBanner,
+  'TE Footer': CrossNavigation,
+  'TE Breadcrumb': RichTextBlock,
+  'TE CTA Banner': HeroBanner,
+  'TE Doc Hero': SolutionHero,
+  'TE Doc Section': SolutionNarrative,
+  'TE Doc Category': ProductDiscovery,
+  'TE Jump Nav': CrossNavLink,
+  'TE Software Detail': RichTextBlock,
 };
 
 export default componentMap;
