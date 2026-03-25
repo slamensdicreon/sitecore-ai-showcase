@@ -9,21 +9,26 @@ function formatGuid(id: string): string {
   return `${id.slice(0,8)}-${id.slice(8,12)}-${id.slice(12,16)}-${id.slice(16,20)}-${id.slice(20)}`;
 }
 
-async function gql(query: string, variables?: any) {
+interface GqlResponse {
+  data?: Record<string, unknown>;
+  errors?: Array<{ message: string }>;
+}
+
+async function gql(query: string, variables?: Record<string, unknown>): Promise<Record<string, unknown>> {
   const token = await getAuthoringToken();
-  const body: any = { query };
+  const body: Record<string, unknown> = { query };
   if (variables) body.variables = variables;
   const res = await fetch(CM + '/sitecore/api/authoring/graphql/v1', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
     body: JSON.stringify(body),
   });
-  const d: any = await res.json();
+  const d = (await res.json()) as GqlResponse;
   if (d.errors?.length) {
     console.error('GQL_ERR:', JSON.stringify(d.errors).substring(0, 500));
-    throw new Error('GraphQL error: ' + d.errors[0]?.message);
+    throw new Error('GraphQL error: ' + d.errors[0].message);
   }
-  return d.data;
+  return d.data ?? {};
 }
 
 async function getItemId(path: string): Promise<string> {
@@ -32,9 +37,15 @@ async function getItemId(path: string): Promise<string> {
   return data.item.itemId;
 }
 
-async function createItem(name: string, templateId: string, parentId: string, fields?: { name: string; value: string }[]) {
+interface CreateItemResult {
+  itemId: string;
+  name: string;
+  path: string;
+}
+
+async function createItem(name: string, templateId: string, parentId: string, fields?: { name: string; value: string }[]): Promise<CreateItemResult> {
   const mutation = `mutation CreateItem($input: CreateItemInput!) { createItem(input: $input) { item { itemId name path } } }`;
-  const input: any = {
+  const input: Record<string, unknown> = {
     name,
     templateId: formatGuid(templateId),
     parent: parentId,
@@ -44,31 +55,34 @@ async function createItem(name: string, templateId: string, parentId: string, fi
     input.fields = fields.map(f => ({ name: f.name, value: f.value }));
   }
   const result = await gql(mutation, { input });
-  const item = result?.createItem?.item;
+  const createItemResult = result?.createItem as { item?: CreateItemResult } | undefined;
+  const item = createItemResult?.item;
   if (!item) throw new Error(`Failed to create item: ${name}`);
   return item;
 }
 
-async function updateItemByPath(path: string, fields: { name: string; value: string }[]) {
+async function updateItemByPath(itemPath: string, fields: { name: string; value: string }[]) {
   const mutation = `mutation UpdateItem($input: UpdateItemInput!) { updateItem(input: $input) { item { itemId name } } }`;
-  const input: any = {
-    path,
+  const input: Record<string, unknown> = {
+    path: itemPath,
     language: 'en',
     fields: fields.map(f => ({ name: f.name, value: f.value })),
   };
   const result = await gql(mutation, { input });
-  return result?.updateItem?.item;
+  const updateResult = result?.updateItem as { item?: { itemId: string; name: string } } | undefined;
+  return updateResult?.item;
 }
 
 async function updateItemById(itemId: string, fields: { name: string; value: string }[]) {
   const mutation = `mutation UpdateItem($input: UpdateItemInput!) { updateItem(input: $input) { item { itemId name } } }`;
-  const input: any = {
+  const input: Record<string, unknown> = {
     itemId: formatGuid(itemId),
     language: 'en',
     fields: fields.map(f => ({ name: f.name, value: f.value })),
   };
   const result = await gql(mutation, { input });
-  return result?.updateItem?.item;
+  const updateResult = result?.updateItem as { item?: { itemId: string; name: string } } | undefined;
+  return updateResult?.item;
 }
 
 async function publishItem(itemId: string) {
@@ -248,7 +262,7 @@ async function step1_CreateTemplates() {
 
   for (const tDef of TEMPLATES) {
     console.log(`\n  Creating template: ${tDef.name}`);
-    let tItem: any;
+    let tItem: CreateItemResult;
     try {
       const existing = await gql(`query { item(where: { path: "/sitecore/templates/Project/NovaTech/${tDef.name}" }) { itemId name path } }`);
       if (existing?.item) {
@@ -265,7 +279,7 @@ async function step1_CreateTemplates() {
     createdTemplateIds[tDef.name] = tItem.itemId;
     
     for (const section of tDef.sections) {
-      let sectionItem: any;
+      let sectionItem: CreateItemResult;
       try {
         const existing = await gql(`query { item(where: { path: "${tItem.path}/${section.name}" }) { itemId name path } }`);
         if (existing?.item) {
@@ -364,8 +378,9 @@ async function step3_CreatePagesAndDatasources() {
       for (const f of dsFields) {
         try {
           await updateItemByPath(dsItem.path, [f]);
-        } catch (e: any) {
-          if (e.message?.includes('Cannot find a field')) {
+        } catch (e: unknown) {
+          const msg = e instanceof Error ? e.message : String(e);
+          if (msg.includes('Cannot find a field')) {
             console.log(`    Skipping unmapped field: ${f.name}`);
           } else {
             throw e;
@@ -389,8 +404,9 @@ async function step3_CreatePagesAndDatasources() {
       for (const f of cFields) {
         try {
           await updateItemByPath(childItem.path, [f]);
-        } catch (e: any) {
-          if (e.message?.includes('Cannot find a field')) {
+        } catch (e: unknown) {
+          const msg = e instanceof Error ? e.message : String(e);
+          if (msg.includes('Cannot find a field')) {
             console.log(`      Skipping child field: ${f.name}`);
           } else { throw e; }
         }
@@ -407,8 +423,9 @@ async function step3_CreatePagesAndDatasources() {
           for (const f of gcFields) {
             try {
               await updateItemByPath(gcItem.path, [f]);
-            } catch (e: any) {
-              if (e.message?.includes('Cannot find a field')) {
+            } catch (e: unknown) {
+              const msg = e instanceof Error ? e.message : String(e);
+              if (msg.includes('Cannot find a field')) {
                 console.log(`        Skipping grandchild field: ${f.name}`);
               } else { throw e; }
             }

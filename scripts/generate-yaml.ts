@@ -2,6 +2,25 @@ import { getAuthoringToken } from '../server/sitecore/auth';
 import * as fs from 'fs';
 import * as path from 'path';
 
+interface SitecoreField {
+  name: string;
+  value: string;
+}
+
+interface SitecoreItem {
+  name: string;
+  itemId: string;
+  path: string;
+  template: { templateId: string; name: string };
+  fields?: { nodes: SitecoreField[] };
+  children?: { nodes: SitecoreItem[] };
+}
+
+interface GqlResponse {
+  data?: Record<string, unknown>;
+  errors?: Array<{ message: string }>;
+}
+
 const CM = 'https://xmc-icreonpartn828a-novatech15a9-novatechf6c7.sitecorecloud.io';
 let token = '';
 
@@ -10,34 +29,39 @@ function fmtGuid(raw: string): string {
   return `${s.slice(0,8)}-${s.slice(8,12)}-${s.slice(12,16)}-${s.slice(16,20)}-${s.slice(20)}`;
 }
 
-async function gql(q: string): Promise<any> {
+async function gql(q: string): Promise<Record<string, unknown> | null> {
   const r = await fetch(CM + '/sitecore/api/authoring/graphql/v1', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
     body: JSON.stringify({ query: q }),
   });
-  const d: any = await r.json();
-  if (d.errors?.length) console.error('GQL_ERR:', JSON.stringify(d.errors));
-  return d.data;
+  const d = (await r.json()) as GqlResponse;
+  if (d.errors?.length) {
+    console.error('GQL_ERR:', JSON.stringify(d.errors));
+    throw new Error('GraphQL error: ' + d.errors[0].message);
+  }
+  return d.data ?? null;
 }
 
-async function getItem(pathStr: string, includeAllFields = false) {
+async function getItem(pathStr: string, includeAllFields = false): Promise<SitecoreItem | null> {
   const fieldsQ = includeAllFields ? 'fields(ownFields: false) { nodes { name value } }' : 'fields(ownFields: true) { nodes { name value } }';
   const frag = `name itemId path template { templateId name } ${fieldsQ}`;
   const q = `query { item(where: { path: "${pathStr}" }) { ${frag} children { nodes { ${frag} } } } }`;
-  return (await gql(q))?.item;
+  const data = await gql(q);
+  return (data?.item as SitecoreItem) ?? null;
 }
 
-async function getItemDeep(pathStr: string, includeSharedFields = false) {
+async function getItemDeep(pathStr: string, includeSharedFields = false): Promise<SitecoreItem | null> {
   const fieldsQ = includeSharedFields ? 'fields(ownFields: false) { nodes { name value } }' : 'fields(ownFields: true) { nodes { name value } }';
   const frag = `name itemId path template { templateId name } ${fieldsQ}`;
   const q = `query { item(where: { path: "${pathStr}" }) { ${frag} children { nodes { ${frag} children { nodes { ${frag} children { nodes { ${frag} } } } } } } } }`;
-  return (await gql(q))?.item;
+  const data = await gql(q);
+  return (data?.item as SitecoreItem) ?? null;
 }
 
-function yamlForItem(item: any, parentId: string): string {
+function yamlForItem(item: SitecoreItem, parentId: string): string {
   const id = fmtGuid(item.itemId);
-  const templateId = fmtGuid(item.template?.templateId || item.templateId || '00000000000000000000000000000000');
+  const templateId = fmtGuid(item.template?.templateId || '00000000000000000000000000000000');
   const lines = [
     '---',
     `ID: "${id}"`,
@@ -84,7 +108,7 @@ function writeYaml(dir: string, fileName: string, content: string) {
   fs.writeFileSync(path.join(dir, fileName), content + '\n');
 }
 
-function writeItemAndChildren(item: any, parentId: string, baseDir: string) {
+function writeItemAndChildren(item: SitecoreItem, parentId: string, baseDir: string) {
   const yml = yamlForItem(item, parentId);
   writeYaml(baseDir, item.name + '.yml', yml);
 
@@ -146,7 +170,7 @@ async function main() {
     for (const rnd of rndFolder.children?.nodes || []) {
       // Get full field data for rendering (including inherited)
       const fullRnd = await getItem(rnd.path, true);
-      const fields = (fullRnd?.fields?.nodes || []).filter((f: any) => !f.name.startsWith('__') && f.value);
+      const fields = (fullRnd?.fields?.nodes || []).filter((f: SitecoreField) => !f.name.startsWith('__') && f.value);
       const rndYml = yamlForItem({ ...rnd, fields: { nodes: fields } }, rndFolder.itemId);
       writeYaml(rndDir, rnd.name + '.yml', rndYml);
     }
