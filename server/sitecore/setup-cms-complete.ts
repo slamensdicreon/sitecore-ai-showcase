@@ -76,9 +76,34 @@ const TEMPLATES_ROOT = "/sitecore/templates/Project/nxp";
 const RENDERINGS_ROOT = "/sitecore/layout/Renderings/Project/build/NovaTech";
 const BRANCHES_ROOT = "/sitecore/templates/Branches/Project/build";
 
-const DEVICE_ID = "{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}";
-const LAYOUT_ID = "{96E5F4BA-A2CF-4A4C-A4E7-64DA88226362}";
-const SHARED_LAYOUT = `<r xmlns:xsd="http://www.w3.org/2001/XMLSchema"><d id="${DEVICE_ID}" l="${LAYOUT_ID}" /></r>`;
+const WELL_KNOWN_DEVICE_PATH = "/sitecore/layout/Devices/Default";
+const WELL_KNOWN_LAYOUT_PATH = "/sitecore/layout/Layouts/Project/build/Headless Layout";
+
+let DEVICE_ID = "{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}";
+let LAYOUT_ID = "{96E5F4BA-A2CF-4A4C-A4E7-64DA88226362}";
+
+function formatGuid(raw: string): string {
+  const hex = raw.replace(/[{}-]/g, "").toUpperCase();
+  if (hex.length !== 32) return `{${raw.replace(/[{}]/g, "")}}`;
+  return `{${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}}`;
+}
+
+async function resolveWellKnownIds() {
+  const deviceId = await getItemId(WELL_KNOWN_DEVICE_PATH);
+  if (deviceId) {
+    DEVICE_ID = formatGuid(deviceId);
+    console.log(`  Resolved Device ID: ${DEVICE_ID}`);
+  } else {
+    console.log(`  ⚠ Could not resolve device at ${WELL_KNOWN_DEVICE_PATH}, using fallback ${DEVICE_ID}`);
+  }
+  const layoutId = await getItemId(WELL_KNOWN_LAYOUT_PATH);
+  if (layoutId) {
+    LAYOUT_ID = formatGuid(layoutId);
+    console.log(`  Resolved Layout ID: ${LAYOUT_ID}`);
+  } else {
+    console.log(`  ⚠ Could not resolve layout at ${WELL_KNOWN_LAYOUT_PATH}, using fallback ${LAYOUT_ID}`);
+  }
+}
 
 const BRANCH_TEMPLATE_ID = "{35E75C72-4985-4E09-88C3-0EAC6CD1E64F}";
 const PAGE_TEMPLATE_ID = "{76036F5E-CBCE-46D1-AF0A-4143F9B557AA}";
@@ -128,15 +153,21 @@ interface RenderingEntry {
   datasourceId: string;
 }
 
+function buildSharedLayout(): string {
+  return `<r xmlns:xsd="http://www.w3.org/2001/XMLSchema"><d id="${DEVICE_ID}" l="${LAYOUT_ID}" /></r>`;
+}
+
 function buildFinalRenderings(entries: RenderingEntry[]): string {
   const renderings = entries.map(e => {
-    const uid = guid();
+    const uid = `{${guid()}}`;
     const rid = RENDERING_IDS[e.renderingName];
     if (!rid) throw new Error(`Unknown rendering: ${e.renderingName}`);
-    return `<r uid="{${uid}}" p:before="*" s:id="{${rid}}" s:ph="headless-main" s:ds="{${e.datasourceId.replace(/[{}-]/g, "").toUpperCase()}}" />`;
+    return `<r uid="${uid}" p:before="*" s:id="${formatGuid(rid)}" s:ph="headless-main" s:ds="${formatGuid(e.datasourceId)}" />`;
   }).join("");
   return `<r xmlns:p="p" xmlns:s="s" p:p="1"><d id="${DEVICE_ID}">${renderings}</d></r>`;
 }
+
+const DESIRED_DS_LOCATION = "./Data";
 
 async function step1_fixDatasourceLocation() {
   console.log("\n═══ Step 1: Fix Datasource Location on all renderings ═══");
@@ -144,14 +175,14 @@ async function step1_fixDatasourceLocation() {
   for (const r of renderings?.item?.children?.nodes || []) {
     const fields = r.fields?.nodes || [];
     const dsLoc = fields.find((f: any) => f.name === "Datasource Location")?.value || "";
-    if (!dsLoc || dsLoc === "") {
+    if (dsLoc !== DESIRED_DS_LOCATION) {
       await gql(`mutation($id:ID!,$lang:String!,$fields:[FieldValueInput!]!){updateItem(input:{itemId:$id,language:$lang,fields:$fields}){item{itemId}}}`, {
         id: r.itemId, lang: "en",
-        fields: [{ name: "Datasource Location", value: "./Data" }],
+        fields: [{ name: "Datasource Location", value: DESIRED_DS_LOCATION }],
       });
-      console.log(`  ~ ${r.name}: set Datasource Location to ./Data`);
+      console.log(`  ~ ${r.name}: Datasource Location updated from "${dsLoc}" to "${DESIRED_DS_LOCATION}"`);
     } else {
-      console.log(`  ✓ ${r.name}: Datasource Location already set (${dsLoc})`);
+      console.log(`  ✓ ${r.name}: Datasource Location correct (${dsLoc})`);
     }
   }
 }
@@ -181,7 +212,7 @@ async function step2_fixHomepage() {
     { renderingName: "Authority Stats", datasourceId: statsId },
   ]);
 
-  await setLayout(home.id, finalRenderings, SHARED_LAYOUT);
+  await setLayout(home.id, finalRenderings, buildSharedLayout());
   console.log("  ✓ Homepage layout set with 4 renderings + shared layout");
 }
 
@@ -215,7 +246,7 @@ async function step3_fixSolutionPages() {
       { renderingName: "Cross Navigation", datasourceId: crossNavId },
     ]);
 
-    await setLayout(page.id, finalRenderings, SHARED_LAYOUT);
+    await setLayout(page.id, finalRenderings, buildSharedLayout());
     console.log(`  ✓ ${sol.name} layout set with 4 renderings`);
   }
 }
@@ -290,7 +321,7 @@ async function step4_createInnovationPage() {
     { renderingName: "Cross Navigation", datasourceId: crossNavId },
   ]);
 
-  await setLayout(innovId, finalRenderings, SHARED_LAYOUT);
+  await setLayout(innovId, finalRenderings, buildSharedLayout());
   console.log("  ✓ Innovation page created with 4 renderings and datasources");
 }
 
@@ -360,7 +391,7 @@ async function step5_createBranchTemplates() {
     }
 
     const finalRenderings = buildFinalRenderings(renderingEntries);
-    await setLayout(pageId, finalRenderings, SHARED_LAYOUT);
+    await setLayout(pageId, finalRenderings, buildSharedLayout());
     console.log(`  ✓ Branch "${branch.name}" created with ${branch.renderings.length} renderings`);
   }
 
@@ -385,8 +416,80 @@ async function step5_createBranchTemplates() {
   }
 }
 
-async function step6_publish() {
-  console.log("\n═══ Step 6: Full Publish to Experience Edge ═══");
+async function step6_validate() {
+  console.log("\n═══ Step 6: Post-change validation ═══");
+  let errors = 0;
+
+  const pages = [
+    { name: "Homepage", path: `${SITE_ROOT}/Home`, expectedCount: 4 },
+    { name: "Transportation", path: `${SITE_ROOT}/Home/Solutions/Transportation`, expectedCount: 4 },
+    { name: "Industrial", path: `${SITE_ROOT}/Home/Solutions/Industrial`, expectedCount: 4 },
+    { name: "Communications", path: `${SITE_ROOT}/Home/Solutions/Communications`, expectedCount: 4 },
+    { name: "Innovation", path: `${SITE_ROOT}/Home/Innovation`, expectedCount: 4 },
+  ];
+
+  for (const page of pages) {
+    const item = await getItemFields(page.path);
+    if (!item) {
+      console.log(`  ✗ ${page.name}: page not found`);
+      errors++;
+      continue;
+    }
+    const fr = item.fields["__Final Renderings"] || "";
+    const renderingCount = (fr.match(/s:id="/g) || []).length;
+    if (renderingCount === page.expectedCount) {
+      console.log(`  ✓ ${page.name}: ${renderingCount} renderings in __Final Renderings`);
+    } else {
+      console.log(`  ✗ ${page.name}: expected ${page.expectedCount} renderings, found ${renderingCount}`);
+      errors++;
+    }
+
+    const dsMatches = fr.match(/s:ds="([^"]+)"/g) || [];
+    const allHaveDs = dsMatches.length === page.expectedCount;
+    if (allHaveDs) {
+      console.log(`  ✓ ${page.name}: all renderings have datasource references`);
+    } else {
+      console.log(`  ✗ ${page.name}: only ${dsMatches.length}/${page.expectedCount} renderings have datasource references`);
+      errors++;
+    }
+  }
+
+  const renderings = await gql(`query($p:String!){item(where:{path:$p}){children{nodes{itemId name fields(ownFields:false){nodes{name value}}}}}}`, { p: RENDERINGS_ROOT });
+  let dsLocErrors = 0;
+  for (const r of renderings?.item?.children?.nodes || []) {
+    const fields = r.fields?.nodes || [];
+    const dsLoc = fields.find((f: any) => f.name === "Datasource Location")?.value || "";
+    if (dsLoc !== DESIRED_DS_LOCATION) {
+      console.log(`  ✗ Rendering "${r.name}": Datasource Location is "${dsLoc}", expected "${DESIRED_DS_LOCATION}"`);
+      dsLocErrors++;
+      errors++;
+    }
+  }
+  if (dsLocErrors === 0) {
+    console.log(`  ✓ All renderings have Datasource Location set to "${DESIRED_DS_LOCATION}"`);
+  }
+
+  const branchNames = ["Homepage", "Solutions Page", "Innovation Page"];
+  for (const bn of branchNames) {
+    const bid = await getItemId(`${BRANCHES_ROOT}/${bn}`);
+    if (bid) {
+      console.log(`  ✓ Branch "${bn}" exists (${bid})`);
+    } else {
+      console.log(`  ✗ Branch "${bn}" not found`);
+      errors++;
+    }
+  }
+
+  if (errors > 0) {
+    console.log(`\n  ⚠ ${errors} validation errors found`);
+  } else {
+    console.log(`\n  ✓ All validations passed`);
+  }
+  return errors;
+}
+
+async function step7_publish() {
+  console.log("\n═══ Step 7: Full Publish to Experience Edge ═══");
   const d = await gql(`mutation{publishSite(input:{publishSiteMode:FULL,languages:["en"],targetDatabases:["experienceedge"]}){operationId}}`);
   console.log(`  ✓ Published: ${d?.publishSite?.operationId || "unknown"}`);
 }
@@ -396,15 +499,23 @@ async function main() {
   console.log("║   Complete CMS Setup — TE Connectivity           ║");
   console.log("╚══════════════════════════════════════════════════╝");
 
+  console.log("\n═══ Step 0: Resolve well-known IDs ═══");
+  await resolveWellKnownIds();
+
   await step1_fixDatasourceLocation();
   await step2_fixHomepage();
   await step3_fixSolutionPages();
   await step4_createInnovationPage();
   await step5_createBranchTemplates();
-  await step6_publish();
+  const validationErrors = await step6_validate();
+  await step7_publish();
 
   console.log("\n═══ Complete ═══");
-  console.log("All CMS items configured. Wait 2-3 minutes for Edge propagation.");
+  if (validationErrors > 0) {
+    console.log(`⚠ Completed with ${validationErrors} validation warnings. Review above.`);
+  } else {
+    console.log("All CMS items configured and validated. Wait 2-3 minutes for Edge propagation.");
+  }
 }
 
 main().catch(e => {
