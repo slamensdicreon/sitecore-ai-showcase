@@ -325,6 +325,12 @@ async function step4_createInnovationPage() {
   console.log("  ✓ Innovation page created with 4 renderings and datasources");
 }
 
+// NOTE: Branch templates use actual item GUIDs in s:ds attributes. This is correct
+// Sitecore behavior. When a page is created from a branch template, the Sitecore
+// engine clones all items under $name and automatically remaps all internal GUID
+// references (including s:ds in __Final Renderings) to the newly generated IDs.
+// The "local:" syntax is only valid for the Datasource Location field on rendering
+// items, NOT for s:ds attributes in layout XML which always require GUIDs.
 async function step5_createBranchTemplates() {
   console.log("\n═══ Step 5: Create Branch Templates ═══");
 
@@ -472,10 +478,35 @@ async function step6_validate() {
   const branchNames = ["Homepage", "Solutions Page", "Innovation Page"];
   for (const bn of branchNames) {
     const bid = await getItemId(`${BRANCHES_ROOT}/${bn}`);
-    if (bid) {
-      console.log(`  ✓ Branch "${bn}" exists (${bid})`);
-    } else {
+    if (!bid) {
       console.log(`  ✗ Branch "${bn}" not found`);
+      errors++;
+      continue;
+    }
+    console.log(`  ✓ Branch "${bn}" exists (${formatGuid(bid)})`);
+
+    const namePage = await getItemFields(`${BRANCHES_ROOT}/${bn}/$name`);
+    if (!namePage) {
+      console.log(`  ✗ Branch "${bn}/$name" page not found`);
+      errors++;
+      continue;
+    }
+
+    const fr = namePage.fields["__Final Renderings"] || "";
+    const rCount = (fr.match(/s:id="/g) || []).length;
+    const dsCount = (fr.match(/s:ds="/g) || []).length;
+    if (rCount === 4 && dsCount === 4) {
+      console.log(`  ✓ Branch "${bn}/$name": ${rCount} renderings, ${dsCount} datasource refs`);
+    } else {
+      console.log(`  ✗ Branch "${bn}/$name": ${rCount} renderings, ${dsCount} datasource refs (expected 4 each)`);
+      errors++;
+    }
+
+    const dataFolder = await getItemId(`${BRANCHES_ROOT}/${bn}/$name/Data`);
+    if (dataFolder) {
+      console.log(`  ✓ Branch "${bn}/$name/Data" folder exists`);
+    } else {
+      console.log(`  ✗ Branch "${bn}/$name/Data" folder missing`);
       errors++;
     }
   }
