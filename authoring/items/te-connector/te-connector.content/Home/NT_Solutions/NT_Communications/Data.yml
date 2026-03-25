@@ -1,0 +1,17 @@
+---
+ID: "5145a294-e750-448a-9ed3-bf1736385b81"
+Parent: "354a69da-0f3c-4998-9a24-ab5282ac8b29"
+Template: "1c82e550-ebcd-4e5d-8abd-d50d0809541e"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/NT_Solutions/NT_Communications/Data"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

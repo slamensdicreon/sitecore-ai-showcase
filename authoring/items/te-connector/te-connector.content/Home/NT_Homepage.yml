@@ -1,0 +1,19 @@
+---
+ID: "649111a1-f85c-440b-bdf6-93f301335cf6"
+Parent: "6a9074ba-8036-460f-9d0a-808adafc9785"
+Template: "57d89b89-6f79-44e7-b5bd-435326761859"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/NT_Homepage"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Title
+      Value: "NT_Homepage"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

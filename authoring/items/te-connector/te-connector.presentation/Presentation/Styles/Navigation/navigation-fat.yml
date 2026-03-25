@@ -1,0 +1,23 @@
+---
+ID: "04fa76d3-dd36-4a56-b29e-1261a2669e7f"
+Parent: "b2877196-e0ba-46c9-966a-ea2585bc1e4d"
+Template: "6b8aabef-d650-46e0-97d0-c0b04f7f016b"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Presentation/Styles/Navigation/navigation-fat"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Allowed Renderings
+      Value: "{1DEB067F-0BB1-405E-94F5-2ABB537A6160}"
+    - Hint: IsVerifiedStyle
+      Value: "1"
+    - Hint: Value
+      Value: "navigation-fat"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

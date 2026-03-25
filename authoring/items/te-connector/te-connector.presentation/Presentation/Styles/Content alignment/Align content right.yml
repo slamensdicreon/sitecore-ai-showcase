@@ -1,0 +1,21 @@
+---
+ID: "9b8b3526-8333-4b07-bd67-e2e0e8ea9c03"
+Parent: "75d0bcc4-b491-4b80-b9b4-9e10a0965bf8"
+Template: "6b8aabef-d650-46e0-97d0-c0b04f7f016b"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Presentation/Styles/Content alignment/Align content right"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: IsVerifiedStyle
+      Value: "1"
+    - Hint: Value
+      Value: "position-right"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

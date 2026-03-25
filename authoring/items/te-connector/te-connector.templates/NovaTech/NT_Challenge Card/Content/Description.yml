@@ -1,0 +1,19 @@
+---
+ID: "f2067f30-7f33-4cde-9d03-3b0fe7db841c"
+Parent: "34d2d722-6216-4823-a726-c18a6bb4a3ed"
+Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
+Path: "/sitecore/templates/Project/NovaTech/NT_Challenge Card/Content/Description"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Type
+      Value: "Multi-Line Text"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

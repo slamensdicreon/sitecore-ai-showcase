@@ -1,0 +1,23 @@
+---
+ID: "6fc1c921-5fc8-4d75-9240-625773ae7c53"
+Parent: "b6f51e88-341f-4ff8-832c-c230ffd372c5"
+Template: "6b8aabef-d650-46e0-97d0-c0b04f7f016b"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Presentation/Styles/Background layout/parallax-background"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Allowed Renderings
+      Value: "{7A1D9A21-B8D7-42F9-9B0B-92ABF8D1974F}"
+    - Hint: IsVerifiedStyle
+      Value: "1"
+    - Hint: Value
+      Value: "parallax-background"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

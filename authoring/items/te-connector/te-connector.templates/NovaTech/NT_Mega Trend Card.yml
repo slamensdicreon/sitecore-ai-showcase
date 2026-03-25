@@ -1,0 +1,17 @@
+---
+ID: "be8e4802-271f-41ed-9223-f5a44f562121"
+Parent: "0801da4a-ffee-4af4-8600-9b02d7b71f40"
+Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
+Path: "/sitecore/templates/Project/NovaTech/NT_Mega Trend Card"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

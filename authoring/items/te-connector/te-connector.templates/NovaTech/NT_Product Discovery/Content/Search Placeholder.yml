@@ -1,0 +1,19 @@
+---
+ID: "c17f7c80-8fd9-4ab2-bc81-553c3efe25f6"
+Parent: "630746d0-8bc7-4385-845a-5694eea59ecb"
+Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
+Path: "/sitecore/templates/Project/NovaTech/NT_Product Discovery/Content/Search Placeholder"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Type
+      Value: "Single-Line Text"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

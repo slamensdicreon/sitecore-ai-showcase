@@ -1,0 +1,19 @@
+---
+ID: "d2de6484-48a4-42e4-b004-261a94c34d9b"
+Parent: "951330d9-09d9-4934-b0b7-f7b2cb2f41f0"
+Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
+Path: "/sitecore/templates/Project/NovaTech/NT_Solution Hero/Content/Industry Label"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Type
+      Value: "Single-Line Text"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

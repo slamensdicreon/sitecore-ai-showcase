@@ -1,0 +1,23 @@
+---
+ID: "ab6d3ab9-56f9-4b60-9737-36b327b1ae54"
+Parent: "94636f82-4bf8-41ac-8422-d233a990b01b"
+Template: "6b8aabef-d650-46e0-97d0-c0b04f7f016b"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Presentation/Styles/Image/Image default size"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Allowed Renderings
+      Value: "{AB2EDBA0-3960-4F12-B765-579DC231894A}|{2492BAC4-DA07-4C86-87F0-9873D40E2276}"
+    - Hint: IsVerifiedStyle
+      Value: "1"
+    - Hint: Value
+      Value: "image-default-size"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

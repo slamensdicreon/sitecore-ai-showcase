@@ -1,0 +1,21 @@
+---
+ID: "08a4f43e-59ca-4aeb-a71f-9c5281c908d2"
+Parent: "3a45dc06-a883-441a-85b2-be173cd3e467"
+Template: "adbf3020-34d9-4517-8fde-05d079b50f0d"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/NT_Solutions/Data/NT_Solutions CrossNav/Innovation"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Title
+      Value: "Innovation Hub"
+    - Hint: Description
+      Value: "Explore our latest engineering breakthroughs"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

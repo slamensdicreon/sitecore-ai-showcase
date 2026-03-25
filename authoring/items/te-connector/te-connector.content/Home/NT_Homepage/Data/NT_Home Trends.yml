@@ -1,0 +1,19 @@
+---
+ID: "2024cc39-b971-43a6-b769-15628bef4ac4"
+Parent: "bf03d3d8-a99d-4c0e-87eb-88f6e329ac64"
+Template: "29d0f2c0-522d-4086-bd42-0a98bc00e559"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/NT_Homepage/Data/NT_Home Trends"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Heading
+      Value: "Positioned at the Intersection of Three Mega-Trends"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

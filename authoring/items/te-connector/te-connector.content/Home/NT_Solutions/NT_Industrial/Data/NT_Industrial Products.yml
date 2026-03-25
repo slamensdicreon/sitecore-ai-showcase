@@ -1,0 +1,26 @@
+---
+ID: "5bc57ed3-e91c-47c3-958d-331ca5ccca83"
+Parent: "87f119af-98bb-4993-8c99-fae3da7c5ade"
+Template: "ba8521e3-dad9-4c0c-b6ca-34845d511f20"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/NT_Solutions/NT_Industrial/Data/NT_Industrial Products"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Heading
+      Value: "Industrial Automation Solutions"
+    - Hint: Description
+      Value: "Explore our industrial connectivity and sensor portfolio"
+    - Hint: CTA Text
+      Value: "View Full Catalog"
+    - Hint: CTA Link
+      Value: |
+        <link linktype="internal" url="/products?industry=Industrial+Automation" />
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

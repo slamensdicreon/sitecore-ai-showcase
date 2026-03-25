@@ -1,0 +1,23 @@
+---
+ID: "9c7ee3d3-e7ad-4db8-a5ac-3155a0cfac99"
+Parent: "1a3c9693-ab37-4a6d-ad84-1178d97a48d1"
+Template: "aed87116-ad68-4cd1-9e08-ed9716b8941b"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/NT_Innovation/Data/NT_Innovation Hero"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Industry Label
+      Value: "Innovation & R&D"
+    - Hint: Subtitle
+      Value: "TE Connectivity invests over $600M annually in R&D, pushing the boundaries of materials science, miniaturization, and high-speed connectivity to solve challenges that don't yet exist."
+    - Hint: Title
+      Value: "Engineering Tomorrow's Connections"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

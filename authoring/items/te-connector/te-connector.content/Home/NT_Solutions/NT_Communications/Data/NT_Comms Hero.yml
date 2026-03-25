@@ -1,0 +1,23 @@
+---
+ID: "e6ab9d15-56f6-4567-98aa-18bc1e74e571"
+Parent: "5145a294-e750-448a-9ed3-bf1736385b81"
+Template: "aed87116-ad68-4cd1-9e08-ed9716b8941b"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/NT_Solutions/NT_Communications/Data/NT_Comms Hero"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Industry Label
+      Value: "Communications Solutions"
+    - Hint: Subtitle
+      Value: "From hyperscale data centers to 5G base stations, TE provides the high-speed, high-density connectivity that modern communications infrastructure demands."
+    - Hint: Title
+      Value: "Enabling the Connected World"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

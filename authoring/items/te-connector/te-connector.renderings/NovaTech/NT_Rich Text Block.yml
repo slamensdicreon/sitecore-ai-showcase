@@ -1,0 +1,31 @@
+---
+ID: "1e9b57f2-4600-48ba-b3cd-118403de663e"
+Parent: "f1870a68-62af-4ebc-9030-0e40d27ae9bb"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: "/sitecore/layout/Renderings/Project/NovaTech/NT_Rich Text Block"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: componentName
+      Value: "RichTextBlock"
+    - Hint: AddFieldEditorButton
+      Value: "1"
+    - Hint: Datasource Location
+      Value: "query:$site/*[@@name='Data']/*[@@templatename='NT_Rich Text Block']|query:$sharedSites/*[@@name='Data']/*[@@templatename='NT_Rich Text Block']"
+    - Hint: Datasource Template
+      Value: "/sitecore/templates/Project/NovaTech/NT_Rich Text Block"
+    - Hint: Editable
+      Value: "1"
+    - Hint: Enable Datasource Query
+      Value: "1"
+    - Hint: CacheClearingBehavior
+      Value: "Clear on publish"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

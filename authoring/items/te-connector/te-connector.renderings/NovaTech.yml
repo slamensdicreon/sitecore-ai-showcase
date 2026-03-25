@@ -1,8 +1,8 @@
 ---
-ID: "46c98d93-2ef2-4baa-86d4-8f1615b58853"
-Parent: "405b9345-e318-41ba-b30c-c917e38f36a3"
+ID: "f1870a68-62af-4ebc-9030-0e40d27ae9bb"
+Parent: "1995806f-0a84-42b5-93b0-88f0e2ff872c"
 Template: "a87a00b1-e6db-45ab-8b54-636fec3b5523"
-Path: "/sitecore/layout/Renderings/Project/build/NovaTech"
+Path: "/sitecore/layout/Renderings/Project/NovaTech"
 Languages:
 - Language: en
   Versions:
@@ -10,18 +10,8 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20260324T000000Z
+      Value: 20260325T000000Z
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |
         sitecore\Admin
-    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
-      Hint: __Revision
-      Value: "973b40d4-e4ac-44cb-98d0-e82a402b1621"
-    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
-      Hint: __Updated by
-      Value: |
-        sitecore\Admin
-    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
-      Hint: __Updated
-      Value: 20260324T000000Z

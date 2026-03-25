@@ -6,23 +6,12 @@
     "includes": [
       {
         "name": "te-connector.templates",
-        "path": "/sitecore/templates/Project/nxp",
+        "path": "/sitecore/templates/Project/NovaTech",
         "allowedPushOperations": "CreateUpdateAndDelete"
       },
       {
         "name": "te-connector.renderings",
-        "path": "/sitecore/layout/Renderings/Project/build/NovaTech",
-        "allowedPushOperations": "CreateUpdateAndDelete"
-      },
-      {
-        "name": "te-connector.branches",
-        "path": "/sitecore/templates/Branches/Project/build",
-        "allowedPushOperations": "CreateUpdateAndDelete"
-      },
-      {
-        "name": "te-connector.placeholders",
-        "path": "/sitecore/layout/Placeholder Settings/Project/build",
-        "scope": "ItemAndDescendants",
+        "path": "/sitecore/layout/Renderings/Project/NovaTech",
         "allowedPushOperations": "CreateUpdateAndDelete"
       },
       {

@@ -1,0 +1,20 @@
+---
+ID: "a90173fb-6c4a-44bf-b3b9-c624c5783049"
+Parent: "6f1a1f1d-6fc3-4ada-885e-581dae6cbe30"
+Template: "c138b937-f97f-4eeb-a288-ef31b5a2e467"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/NT_Homepage/Data/NT_Home Pathways/EV Charging"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Link
+      Value: |
+        <link linktype="internal" url="/solutions/transportation" />
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

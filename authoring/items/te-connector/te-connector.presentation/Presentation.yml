@@ -1,7 +1,7 @@
 ---
-ID: "e1a2b3c4-d5e6-4f78-9a0b-1c2d3e4f5a6b"
+ID: "f7a02d0e-60ea-4cc6-bc78-85234f1ebbdf"
 Parent: "a1c18aa2-9e08-4d05-aa8c-6758d6048843"
-Template: "a87a00b1-e6db-45ab-8b54-636fec3b5523"
+Template: "0a70fa73-8923-4a6e-abf3-4134f25f3221"
 Path: "/sitecore/content/TE Connectivity/TE Connectivity/Presentation"
 Languages:
 - Language: en
@@ -15,13 +15,3 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
-    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
-      Hint: __Revision
-      Value: "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d"
-    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
-      Hint: __Updated by
-      Value: |
-        sitecore\Admin
-    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
-      Hint: __Updated
-      Value: 20260325T000000Z

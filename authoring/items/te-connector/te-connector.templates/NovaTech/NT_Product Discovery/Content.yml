@@ -1,0 +1,17 @@
+---
+ID: "630746d0-8bc7-4385-845a-5694eea59ecb"
+Parent: "ba8521e3-dad9-4c0c-b6ca-34845d511f20"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: "/sitecore/templates/Project/NovaTech/NT_Product Discovery/Content"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

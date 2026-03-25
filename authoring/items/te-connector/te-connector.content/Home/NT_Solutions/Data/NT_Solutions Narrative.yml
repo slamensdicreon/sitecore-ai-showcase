@@ -1,0 +1,21 @@
+---
+ID: "9810d82a-d3c5-4513-8bc6-6930c55c0076"
+Parent: "ebb77cd4-a715-4469-b3d7-23abba606f40"
+Template: "9c9c6fae-f68a-4c4b-a1ac-2991b800b2f9"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/NT_Solutions/Data/NT_Solutions Narrative"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Heading
+      Value: "Driving Innovation Across Industries"
+    - Hint: Body
+      Value: "We deliver reliable connectivity solutions that power the devices and systems shaping our future. From harsh-environment connectors to high-speed data solutions, our expertise spans every major industry vertical."
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

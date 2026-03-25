@@ -1,0 +1,25 @@
+---
+ID: "a804d5d0-8e9a-4790-940d-3c65e84e156c"
+Parent: "2024cc39-b971-43a6-b769-15628bef4ac4"
+Template: "be8e4802-271f-41ed-9223-f5a44f562121"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/NT_Homepage/Data/NT_Home Trends/Industrial Automation"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Title
+      Value: "Industrial Automation"
+    - Hint: Description
+      Value: "Robotics, smart manufacturing, and factory automation demand connectivity that survives heat, vibration, and continuous operation. That's where TE thrives."
+    - Hint: Stat Value
+      Value: "90K+"
+    - Hint: Stat Label
+      Value: "employees across 140 countries"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

@@ -1,0 +1,17 @@
+---
+ID: "8fb9a4cf-7220-4afd-8b29-b66ed7cd1027"
+Parent: "24fb8d58-19ba-48dd-9eea-a48a685b6943"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: "/sitecore/templates/Project/NovaTech/NT_Rich Text Block/Content"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

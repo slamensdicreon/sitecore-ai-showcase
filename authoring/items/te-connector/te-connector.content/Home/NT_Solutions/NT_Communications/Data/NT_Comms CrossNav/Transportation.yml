@@ -1,0 +1,24 @@
+---
+ID: "c4f45cca-1702-4c35-bccb-7d42c13dcecf"
+Parent: "31cffa21-fae1-4917-a744-74924f680990"
+Template: "adbf3020-34d9-4517-8fde-05d079b50f0d"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/NT_Solutions/NT_Communications/Data/NT_Comms CrossNav/Transportation"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Title
+      Value: "Transportation Solutions"
+    - Hint: Description
+      Value: "EV powertrains, autonomous systems, and vehicle connectivity"
+    - Hint: Link
+      Value: |
+        <link linktype="internal" url="/solutions/transportation" />
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

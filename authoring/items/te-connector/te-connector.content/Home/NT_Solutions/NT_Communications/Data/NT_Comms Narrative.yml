@@ -1,0 +1,22 @@
+---
+ID: "ea664d70-7c43-4abf-95f1-eb29ebc10094"
+Parent: "5145a294-e750-448a-9ed3-bf1736385b81"
+Template: "9c9c6fae-f68a-4c4b-a1ac-2991b800b2f9"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/NT_Solutions/NT_Communications/Data/NT_Comms Narrative"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Heading
+      Value: "Where Speed Meets Density"
+    - Hint: Body
+      Value: |
+        <p>Our high-speed I/O connectors support data rates up to 112 Gbps PAM4, while our power distribution solutions handle the thermal and electrical demands of GPU-dense AI infrastructure.</p><p>From structured cabling with Cat 6A performance to fiber optic connectivity for long-haul data transport, TE provides end-to-end solutions for modern networks.</p>
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

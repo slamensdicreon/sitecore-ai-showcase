@@ -1,0 +1,24 @@
+---
+ID: "239f221d-4a3a-40e3-bec3-1442c0724fda"
+Parent: "9d566b56-d22a-417e-ad87-2ca4abd7fdea"
+Template: "adbf3020-34d9-4517-8fde-05d079b50f0d"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/NT_Innovation/Data/NT_Innovation CrossNav/Transportation"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Title
+      Value: "Transportation Solutions"
+    - Hint: Description
+      Value: "EV connectors, sensor systems, and automotive harnesses"
+    - Hint: Link
+      Value: |
+        <link linktype="internal" url="/solutions/transportation" />
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

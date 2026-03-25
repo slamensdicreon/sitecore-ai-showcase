@@ -1,0 +1,26 @@
+---
+ID: "2bb60035-3442-4751-a06a-acec0ebc5927"
+Parent: "7ea8b64b-7906-46c5-bc5d-e335bacc5428"
+Template: "ba8521e3-dad9-4c0c-b6ca-34845d511f20"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/NT_Solutions/NT_Transportation/Data/NT_Transport Products"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Heading
+      Value: "Transportation Connectivity Solutions"
+    - Hint: Description
+      Value: "Explore our automotive and transportation product portfolio"
+    - Hint: CTA Text
+      Value: "View Full Catalog"
+    - Hint: CTA Link
+      Value: |
+        <link linktype="internal" url="/products?industry=Automotive" />
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

@@ -1,0 +1,19 @@
+---
+ID: "f822eb3c-2785-4ad1-a090-0fce202be304"
+Parent: "d729b665-3ce7-4e0a-aefe-0e6b101bdfa4"
+Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
+Path: "/sitecore/templates/Project/NovaTech/NT_Authority Stats/Content/Description"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Type
+      Value: "Multi-Line Text"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

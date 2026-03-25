@@ -1,0 +1,19 @@
+---
+ID: "27d2989f-7493-4873-ac75-286a5f11469f"
+Parent: "fdee2e54-cc0b-4ba7-ab46-bd27477bb5ad"
+Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
+Path: "/sitecore/templates/Project/NovaTech/NT_Cross Navigation/Content/Background Color"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Type
+      Value: "Single-Line Text"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

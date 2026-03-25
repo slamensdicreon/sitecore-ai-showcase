@@ -1,7 +1,7 @@
 ---
-ID: "a2b3c4d5-e6f7-4a89-0b1c-2d3e4f5a6b7c"
-Parent: "e1a2b3c4-d5e6-4f78-9a0b-1c2d3e4f5a6b"
-Template: "1de55d20-4e7e-477e-9275-aa6f2c8755fa"
+ID: "fa4da8ed-46b6-4cf1-b301-279f4103cc7e"
+Parent: "f7a02d0e-60ea-4cc6-bc78-85234f1ebbdf"
+Template: "2d131786-69e1-41fe-8f67-64464e4f0393"
 Path: "/sitecore/content/TE Connectivity/TE Connectivity/Presentation/Partial Designs"
 Languages:
 - Language: en
@@ -15,13 +15,3 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
-    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
-      Hint: __Revision
-      Value: "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e"
-    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
-      Hint: __Updated by
-      Value: |
-        sitecore\Admin
-    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
-      Hint: __Updated
-      Value: 20260325T000000Z

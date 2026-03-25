@@ -1,0 +1,17 @@
+---
+ID: "aee387cf-84b7-416d-a362-c78feea513c8"
+Parent: "2dd6211d-ea00-4bd0-8d1a-bdaf4e8e348f"
+Template: "d2a6884c-04d5-4089-a64e-d27ca9d68d4c"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Presentation/Placeholder Settings/Partial Design/Header"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

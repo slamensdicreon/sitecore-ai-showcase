@@ -1,12 +1,8 @@
 ---
-ID: "e6f7a8b9-c0d1-4e23-4f5a-6b7c8d9e0f1a"
-Parent: "b3c4d5e6-f7a8-4b90-1c2d-3e4f5a6b7c8d"
-Template: "d79fbc9c-4e56-44b3-b24a-ed1c6490487b"
+ID: "0431fecf-023d-45ae-a116-51302727a384"
+Parent: "2cf786c1-fa8f-4583-9289-62f5bfa991a9"
+Template: "1105b8f8-1e00-426b-bf1f-c840742d827b"
 Path: "/sitecore/content/TE Connectivity/TE Connectivity/Presentation/Page Designs/Default"
-SharedFields:
-- ID: "048c1cf9-1fb0-4489-9171-26ca9e0e5296"
-  Hint: PartialDesigns
-  Value: "{C4D5E6F7-A8B9-4C01-2D3E-4F5A6B7C8D9E}|{D5E6F7A8-B9C0-4D12-3E4F-5A6B7C8D9E0F}"
 Languages:
 - Language: en
   Versions:
@@ -19,13 +15,3 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
-    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
-      Hint: __Revision
-      Value: "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f900112"
-    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
-      Hint: __Updated by
-      Value: |
-        sitecore\Admin
-    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
-      Hint: __Updated
-      Value: 20260325T000000Z

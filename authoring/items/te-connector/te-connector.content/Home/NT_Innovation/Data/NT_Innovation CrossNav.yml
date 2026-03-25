@@ -1,0 +1,19 @@
+---
+ID: "9d566b56-d22a-417e-ad87-2ca4abd7fdea"
+Parent: "1a3c9693-ab37-4a6d-ad84-1178d97a48d1"
+Template: "3540f1c9-3272-4b30-bd75-6f0c08926729"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/NT_Innovation/Data/NT_Innovation CrossNav"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Heading
+      Value: "Explore Our Solutions"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

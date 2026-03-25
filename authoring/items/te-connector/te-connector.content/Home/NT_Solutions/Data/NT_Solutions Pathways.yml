@@ -1,0 +1,19 @@
+---
+ID: "5dd68af4-d50c-4d3f-9274-c7b7de28204e"
+Parent: "ebb77cd4-a715-4469-b3d7-23abba606f40"
+Template: "07b30f6f-d1ec-4770-bc7f-cdd644a04c63"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/NT_Solutions/Data/NT_Solutions Pathways"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Heading
+      Value: "Our Solutions"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

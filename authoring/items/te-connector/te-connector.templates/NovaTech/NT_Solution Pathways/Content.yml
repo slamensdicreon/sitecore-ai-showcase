@@ -1,0 +1,17 @@
+---
+ID: "dbda7bde-2d34-483f-be0c-17e137dd5f83"
+Parent: "07b30f6f-d1ec-4770-bc7f-cdd644a04c63"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: "/sitecore/templates/Project/NovaTech/NT_Solution Pathways/Content"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

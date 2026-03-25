@@ -1,0 +1,26 @@
+---
+ID: "af255d99-9724-48bb-b0a5-80b0a85fe90a"
+Parent: "1a3c9693-ab37-4a6d-ad84-1178d97a48d1"
+Template: "ba8521e3-dad9-4c0c-b6ca-34845d511f20"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/NT_Innovation/Data/NT_Innovation Products"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Heading
+      Value: "Next-Generation Solutions"
+    - Hint: Description
+      Value: "Explore our latest innovations in connectivity, sensing, and power management."
+    - Hint: CTA Text
+      Value: "View All Innovations"
+    - Hint: CTA Link
+      Value: |
+        <link linktype="internal" url="/products" />
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

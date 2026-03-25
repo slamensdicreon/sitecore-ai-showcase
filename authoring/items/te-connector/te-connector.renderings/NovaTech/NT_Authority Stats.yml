@@ -1,0 +1,31 @@
+---
+ID: "e9522c6c-e8d3-4f0b-aa06-4abfd8442d31"
+Parent: "f1870a68-62af-4ebc-9030-0e40d27ae9bb"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: "/sitecore/layout/Renderings/Project/NovaTech/NT_Authority Stats"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: componentName
+      Value: "AuthorityStats"
+    - Hint: AddFieldEditorButton
+      Value: "1"
+    - Hint: Datasource Location
+      Value: "query:$site/*[@@name='Data']/*[@@templatename='NT_Authority Stats']|query:$sharedSites/*[@@name='Data']/*[@@templatename='NT_Authority Stats']"
+    - Hint: Datasource Template
+      Value: "/sitecore/templates/Project/NovaTech/NT_Authority Stats"
+    - Hint: Editable
+      Value: "1"
+    - Hint: Enable Datasource Query
+      Value: "1"
+    - Hint: CacheClearingBehavior
+      Value: "Clear on publish"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
