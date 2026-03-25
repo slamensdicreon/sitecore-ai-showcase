@@ -8,6 +8,12 @@ Languages:
   Versions:
   - Version: 1
     Fields:
+    - Hint: Allowed Controls
+      Value: "{4DC060F38EBF497A8DDF8F7349E184AE}"
+    - Hint: Editable
+      Value: "1"
+    - Hint: Placeholder Key
+      Value: "headless-header"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

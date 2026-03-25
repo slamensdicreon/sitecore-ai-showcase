@@ -8,6 +8,14 @@ Languages:
   Versions:
   - Version: 1
     Fields:
+    - Hint: Signature
+      Value: "nt_header"
+    - Hint: __Final Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"><r uid="{A8C9CC8C-57C2-414F-8EF9-03DEE5DBC655}" s:id="{2916FC43-E82C-45B6-B028-3D5EB89FAFFB}" s:par="CSSStyles" s:ph="headless-header" /></d></r>
+    - Hint: __Renderings
+      Value: |
+        <r xmlns:xsd="http://www.w3.org/2001/XMLSchema"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}" l="{BCFC7537-EFF4-434C-96F5-BF4F55FD175B}" /></r>
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

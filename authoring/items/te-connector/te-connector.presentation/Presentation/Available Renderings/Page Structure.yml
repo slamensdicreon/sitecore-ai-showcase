@@ -8,6 +8,8 @@ Languages:
   Versions:
   - Version: 1
     Fields:
+    - Hint: Renderings
+      Value: "{7A1D9A21-B8D7-42F9-9B0B-92ABF8D1974F}|{15CABDFF-FFD9-48F4-826D-A4C3D7868D3A}|{5F6BF7C9-C80C-4BBD-AD78-8DA749B35206}"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

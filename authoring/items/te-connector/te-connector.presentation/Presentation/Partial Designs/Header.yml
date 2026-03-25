@@ -8,6 +8,14 @@ Languages:
   Versions:
   - Version: 1
     Fields:
+    - Hint: Signature
+      Value: "header"
+    - Hint: __Final Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"><r uid="{C9003D15-4D45-49CA-8F0B-606B59AF0077}" p:before="*" s:id="{4DC060F3-8EBF-497A-8DDF-8F7349E184AE}" s:par="CSSStyles" s:ph="headless-header" /></d></r>
+    - Hint: __Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"><r uid="{3E6C9A58-EB8A-4C97-B038-6F3F4C981170}" p:before="*" s:ds="local:/Data/Title" s:id="{9C6D53E3-FE57-4638-AF7B-6D68304C7A94}" s:par="?Styles=%7b6E3654DD-ACB5-4A6D-B4C5-3FA16F7CBA9B%7d&amp;FieldNames=%7b1B09BF26-5032-4CA4-BB36-9F611F429924%7d&amp;GridParameters=%7b7465D855-992E-4DC2-9855-A03250DFA74B%7d%7c%7b81225C08-5783-4BED-A86A-AB2B87198885%7d" s:ph="headless-header" /><r uid="{41DF2956-FCCC-4BD2-87F9-0F9ABA62DE37}" p:after="*[1=2]" s:id="{1DEB067F-0BB1-405E-94F5-2ABB537A6160}" s:par="?LevelFrom={1BB88840-5FB3-4353-AD8D-81136F6FF75A}&amp;LevelTo={1BB88840-5FB3-4353-AD8D-81136F6FF75A}&amp;FieldNames=%7b1BA8B0E8-33A6-46EA-B3D6-A2C126AB20D0%7d&amp;AddRoot=1&amp;Styles=%7b9B8B3526-8333-4B07-BD67-E2E0E8EA9C03%7d%7c%7bC727A410-6B41-420B-8F37-4F9843BB434F%7d&amp;GridParameters=%7b7465D855-992E-4DC2-9855-A03250DFA74B%7d&amp;NavigationRoot=%7b6A9074BA-8036-460F-9D0A-808ADAFC9785%7d" s:ph="headless-header" /></d></r>
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

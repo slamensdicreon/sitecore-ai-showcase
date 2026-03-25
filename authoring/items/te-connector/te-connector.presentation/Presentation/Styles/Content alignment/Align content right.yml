@@ -12,6 +12,8 @@ Languages:
       Value: "1"
     - Hint: Value
       Value: "position-right"
+    - Hint: Icon
+      Value: "text-align-right"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

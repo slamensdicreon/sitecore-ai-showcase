@@ -8,6 +8,8 @@ Languages:
   Versions:
   - Version: 1
     Fields:
+    - Hint: TemplateForCreation
+      Value: "{D2A6884C-04D5-4089-A64E-D27CA9D68D4C}"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

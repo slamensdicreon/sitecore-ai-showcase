@@ -8,6 +8,8 @@ Languages:
   Versions:
   - Version: 1
     Fields:
+    - Hint: TemplatesMapping
+      Value: "%7b57D89B89-6F79-44E7-B5BD-435326761859%7d%3d%257B0431FECF-023D-45AE-A116-51302727A384%257D"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

@@ -28,8 +28,9 @@ async function getItem(pathStr: string, includeAllFields = false) {
   return (await gql(q))?.item;
 }
 
-async function getItemDeep(pathStr: string) {
-  const frag = `name itemId path template { templateId name } fields(ownFields: true) { nodes { name value } }`;
+async function getItemDeep(pathStr: string, includeSharedFields = false) {
+  const fieldsQ = includeSharedFields ? 'fields(ownFields: false) { nodes { name value } }' : 'fields(ownFields: true) { nodes { name value } }';
+  const frag = `name itemId path template { templateId name } ${fieldsQ}`;
   const q = `query { item(where: { path: "${pathStr}" }) { ${frag} children { nodes { ${frag} children { nodes { ${frag} children { nodes { ${frag} } } } } } } } }`;
   return (await gql(q))?.item;
 }
@@ -50,9 +51,10 @@ function yamlForItem(item: any, parentId: string): string {
     '    Fields:',
   ];
 
+  const importantSharedFields = ['__Final Renderings', '__Renderings', '__Page Design', '__Partial Design'];
   const ownFields = item.fields?.nodes || [];
   for (const f of ownFields) {
-    if (f.name.startsWith('__')) continue;
+    if (f.name.startsWith('__') && !importantSharedFields.includes(f.name)) continue;
     if (!f.value) continue;
     if (f.value.includes('\n') || f.value.includes('<')) {
       lines.push(`    - Hint: ${f.name}`);
@@ -169,7 +171,7 @@ async function main() {
   ];
 
   for (const p of pages) {
-    const page = await getItemDeep(p);
+    const page = await getItemDeep(p, true);
     if (page) {
       writeItemAndChildren(page, homeId, contentDir);
       console.log('  Page:', page.name);
@@ -185,7 +187,7 @@ async function main() {
     '/sitecore/content/TE Connectivity/TE Connectivity/Home/NT_Solutions/NT_Transportation',
   ];
   for (const p of subPages) {
-    const page = await getItemDeep(p);
+    const page = await getItemDeep(p, true);
     if (page) {
       writeItemAndChildren(page, solId, path.join(contentDir, 'NT_Solutions'));
       console.log('  Sub-page:', page.name);
@@ -199,7 +201,7 @@ async function main() {
     fs.rmSync(presDir, { recursive: true });
   }
 
-  const presItem = await getItemDeep('/sitecore/content/TE Connectivity/TE Connectivity/Presentation');
+  const presItem = await getItemDeep('/sitecore/content/TE Connectivity/TE Connectivity/Presentation', true);
   if (presItem) {
     const siteRoot = await gql(`query { item(where: { path: "/sitecore/content/TE Connectivity/TE Connectivity" }) { itemId } }`);
     writeItemAndChildren(presItem, siteRoot?.item?.itemId, path.join(base, 'te-connector.presentation'));
