@@ -70,7 +70,7 @@ export default function HeroBanner({ fields, params }: HeroBannerProps) {
             )}
           </div>
 
-          {getFieldValue(fields, 'Show Connectivity Motif', '') === '1' && (
+          {getFieldValue<string>(fields, 'Show Connectivity Motif', '') === '1' && (
             <div className="mt-12 pt-8 border-t border-white/10">
               <svg className="w-48 h-6 text-white/20" viewBox="0 0 200 24">
                 <circle cx="4" cy="12" r="3" fill="currentColor" />
