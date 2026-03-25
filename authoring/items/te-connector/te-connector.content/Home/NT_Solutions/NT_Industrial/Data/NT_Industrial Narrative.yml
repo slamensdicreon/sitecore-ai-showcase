@@ -13,6 +13,10 @@ Languages:
     - Hint: Body
       Value: |
         <p>From M12 circular connectors with IP67 protection for factory-floor Ethernet to DIN rail terminal blocks rated for 800V, TE's industrial portfolio covers every layer of the automation stack.</p><p>Our sensor technologies — including piezoelectric vibration sensors for condition monitoring and RTD assemblies for process control — provide the data backbone for predictive maintenance strategies.</p>
+    - Hint: Section Label
+      Value: "Engineered for Extremes"
+    - Hint: Lead Text
+      Value: "Industrial environments punish weak links. TE products are engineered to survive vibration, chemicals, extreme temperatures, and decades of continuous operation."
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

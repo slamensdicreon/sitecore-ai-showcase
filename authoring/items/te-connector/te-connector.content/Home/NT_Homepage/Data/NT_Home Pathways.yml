@@ -10,6 +10,10 @@ Languages:
     Fields:
     - Hint: Heading
       Value: "What Problem Are You Solving?"
+    - Hint: Section Label
+      Value: "Start With Your Challenge"
+    - Hint: Description
+      Value: "We don't just sell components. We help you solve engineering challenges at the system level."
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

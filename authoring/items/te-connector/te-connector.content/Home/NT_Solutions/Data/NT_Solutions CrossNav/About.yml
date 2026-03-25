@@ -12,6 +12,10 @@ Languages:
       Value: "About TE"
     - Hint: Description
       Value: "Learn about our global presence and engineering excellence"
+    - Hint: Icon Name
+      Value: "Globe"
+    - Hint: Accent Color
+      Value: "#2e4957"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

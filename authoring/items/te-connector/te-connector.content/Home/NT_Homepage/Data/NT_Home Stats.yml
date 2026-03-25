@@ -12,6 +12,17 @@ Languages:
       Value: "TE Connectivity is a Tier 1 backbone player across multiple industries. Once our products are designed into a system, they stay for 10–20+ years. That's not a supplier relationship — that's partnership."
     - Hint: Heading
       Value: "The Nervous System of Modern Industry"
+    - Hint: Section Label
+      Value: "Global Scale, Engineering Precision"
+    - Hint: CTA Link
+      Value: |
+        <link linktype="internal" url="/products" />
+    - Hint: CTA Heading
+      Value: "Engineering-Led. Co-Design Model."
+    - Hint: CTA Description
+      Value: "With 8,000+ engineers and a local-for-local manufacturing model where ~70% of products are produced where they're sold, TE reduces supply chain risk while delivering deep OEM integration."
+    - Hint: CTA Link Text
+      Value: "Explore Products"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

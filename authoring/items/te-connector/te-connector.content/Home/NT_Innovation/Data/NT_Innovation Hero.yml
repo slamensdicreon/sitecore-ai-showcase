@@ -14,6 +14,8 @@ Languages:
       Value: "TE Connectivity invests over $600M annually in R&D, pushing the boundaries of materials science, miniaturization, and high-speed connectivity to solve challenges that don't yet exist."
     - Hint: Title
       Value: "Engineering Tomorrow's Connections"
+    - Hint: Accent Color
+      Value: "#167a87"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

@@ -12,6 +12,10 @@ Languages:
       Value: "Driving Innovation Across Industries"
     - Hint: Body
       Value: "We deliver reliable connectivity solutions that power the devices and systems shaping our future. From harsh-environment connectors to high-speed data solutions, our expertise spans every major industry vertical."
+    - Hint: Section Label
+      Value: "Our Approach"
+    - Hint: Lead Text
+      Value: "With over 500,000 products and a global engineering presence"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

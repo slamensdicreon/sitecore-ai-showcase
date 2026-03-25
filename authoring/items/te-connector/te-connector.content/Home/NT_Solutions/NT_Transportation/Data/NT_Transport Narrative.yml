@@ -13,6 +13,10 @@ Languages:
     - Hint: Body
       Value: |
         <p>TE Connectivity's automotive portfolio spans the full vehicle architecture — from high-voltage battery connectors rated for 800V platforms to miniaturized sensor assemblies that survive 150°C underhood environments.</p><p>Our engineering-first approach means we co-design with OEM teams from concept through production validation, ensuring our products are optimized for each platform's unique requirements.</p>
+    - Hint: Section Label
+      Value: "The TE Advantage"
+    - Hint: Lead Text
+      Value: "In automotive, second-best isn't an option. Every connector, every sensor, every harness must perform flawlessly across millions of miles."
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

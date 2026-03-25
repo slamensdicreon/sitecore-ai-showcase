@@ -14,6 +14,10 @@ Languages:
       Value: "Smart factories, predictive maintenance, and industrial IoT demand connectivity that performs in the harshest environments. TE delivers the sensors, connectors, and terminal blocks that make Industry 4.0 real."
     - Hint: Title
       Value: "The Backbone of Industry 4.0"
+    - Hint: Accent Color
+      Value: "#2e4957"
+    - Hint: Background Video URL
+      Value: "https://assets.mixkit.co/videos/preview/mixkit-robotic-arm-in-a-factory-close-up-38910-large.mp4"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

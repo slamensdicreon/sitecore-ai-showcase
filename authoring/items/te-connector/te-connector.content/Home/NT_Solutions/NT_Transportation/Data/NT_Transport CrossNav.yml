@@ -10,6 +10,8 @@ Languages:
     Fields:
     - Hint: Heading
       Value: "Explore Other Industries"
+    - Hint: Description
+      Value: "TE Connectivity serves multiple industries with the same engineering excellence."
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

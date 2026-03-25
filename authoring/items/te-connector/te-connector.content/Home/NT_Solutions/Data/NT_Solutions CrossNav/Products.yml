@@ -12,6 +12,10 @@ Languages:
       Value: "Products & Solutions"
     - Hint: Description
       Value: "Browse our full product catalog and find the right connector"
+    - Hint: Icon Name
+      Value: "Search"
+    - Hint: Accent Color
+      Value: "#167a87"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

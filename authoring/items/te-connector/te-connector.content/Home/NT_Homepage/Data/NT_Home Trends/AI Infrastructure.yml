@@ -16,6 +16,12 @@ Languages:
       Value: "3x"
     - Hint: Stat Label
       Value: "data center power demand by 2030"
+    - Hint: Icon Name
+      Value: "Server"
+    - Hint: Accent Color
+      Value: "#167a87"
+    - Hint: Subtitle
+      Value: "The backbone of intelligent systems"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

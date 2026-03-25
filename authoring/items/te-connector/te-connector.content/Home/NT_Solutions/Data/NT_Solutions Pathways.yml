@@ -10,6 +10,10 @@ Languages:
     Fields:
     - Hint: Heading
       Value: "Our Solutions"
+    - Hint: Section Label
+      Value: "EXPLORE"
+    - Hint: Description
+      Value: "From communications infrastructure to industrial automation, discover how TE Connectivity enables the technologies that matter."
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

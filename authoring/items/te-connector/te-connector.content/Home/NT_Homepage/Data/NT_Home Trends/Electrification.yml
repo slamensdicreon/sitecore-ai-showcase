@@ -16,6 +16,12 @@ Languages:
       Value: "40%"
     - Hint: Stat Label
       Value: "growth in EV connector demand"
+    - Hint: Icon Name
+      Value: "BatteryCharging"
+    - Hint: Accent Color
+      Value: "#f28d00"
+    - Hint: Subtitle
+      Value: "Powering the transition to electric everything"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

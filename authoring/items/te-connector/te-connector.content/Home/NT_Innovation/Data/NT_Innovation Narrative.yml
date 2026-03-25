@@ -13,6 +13,10 @@ Languages:
     - Hint: Body
       Value: |
         <p>With 8,000+ engineers across 30+ engineering centers worldwide, TE operates at the intersection of fundamental materials science and practical product engineering. Our co-design model means we embed with customer teams from concept through production validation.</p><p>Key focus areas include next-generation high-voltage connectors for 800V+ EV platforms, miniaturized sensor arrays for autonomous systems, and high-density power delivery solutions for AI data centers requiring 100kW+ per rack.</p>
+    - Hint: Section Label
+      Value: "Our Innovation Philosophy"
+    - Hint: Lead Text
+      Value: "Innovation at TE isn't theoretical. It's driven by real engineering challenges from our customers — the world's leading OEMs and system integrators."
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

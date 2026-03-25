@@ -12,6 +12,10 @@ Languages:
       Value: "Innovation Hub"
     - Hint: Description
       Value: "Explore our latest engineering breakthroughs"
+    - Hint: Icon Name
+      Value: "Lightbulb"
+    - Hint: Accent Color
+      Value: "#f28d00"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

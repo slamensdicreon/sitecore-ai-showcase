@@ -14,6 +14,10 @@ Languages:
       Value: "From hyperscale data centers to 5G base stations, TE provides the high-speed, high-density connectivity that modern communications infrastructure demands."
     - Hint: Title
       Value: "Enabling the Connected World"
+    - Hint: Accent Color
+      Value: "#167a87"
+    - Hint: Background Video URL
+      Value: "https://assets.mixkit.co/videos/preview/mixkit-servers-in-a-data-center-close-up-38894-large.mp4"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

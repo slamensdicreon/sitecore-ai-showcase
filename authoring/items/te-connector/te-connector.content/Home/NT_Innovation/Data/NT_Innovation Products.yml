@@ -17,6 +17,10 @@ Languages:
     - Hint: CTA Link
       Value: |
         <link linktype="internal" url="/products" />
+    - Hint: Section Label
+      Value: "Innovation Spotlight"
+    - Hint: Max Products
+      Value: "6"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z
