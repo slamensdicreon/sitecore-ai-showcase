@@ -15,3 +15,12 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "industry-label"
+      Hint: Industry Label
+      Value: "Solutions"
+    - ID: "title"
+      Hint: Title
+      Value: "Engineering Tomorrow's Connected World"
+    - ID: "subtitle"
+      Hint: Subtitle
+      Value: "Innovative connectivity solutions for automotive, industrial, medical, and aerospace applications"

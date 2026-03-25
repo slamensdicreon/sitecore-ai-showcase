@@ -15,3 +15,15 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "section-label"
+      Hint: Section Label
+      Value: "Our Approach"
+    - ID: "heading"
+      Hint: Heading
+      Value: "Driving Innovation Across Industries"
+    - ID: "lead-text"
+      Hint: Lead Text
+      Value: "With over 500,000 products and a global engineering presence"
+    - ID: "body"
+      Hint: Body
+      Value: "We deliver reliable connectivity solutions that power the devices and systems shaping our future. From harsh-environment connectors to high-speed data solutions, our expertise spans every major industry vertical."

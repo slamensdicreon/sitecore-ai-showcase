@@ -15,3 +15,9 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "heading"
+      Hint: Heading
+      Value: "Continue Exploring"
+    - ID: "description"
+      Hint: Description
+      Value: "Discover more about our products, innovation, and company"

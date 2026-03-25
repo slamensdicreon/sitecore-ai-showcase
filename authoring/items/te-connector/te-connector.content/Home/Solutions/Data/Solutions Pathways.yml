@@ -1,7 +1,7 @@
 ---
 ID: "af602ab0-de9e-4098-93c0-04dd349b29ee"
 Parent: "971cb6e3-daf7-48cf-abc0-e32379f74f67"
-Template: "4a8ad106-c2e2-45d9-b5c1-e0f7a1234567"
+Template: "4a8ad106-274b-4d86-b91c-7aa1e7e37602"
 Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Data/Solutions Pathways"
 Languages:
 - Language: en
@@ -15,3 +15,12 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "section-label"
+      Hint: Section Label
+      Value: "EXPLORE"
+    - ID: "heading"
+      Hint: Heading
+      Value: "Our Solutions"
+    - ID: "description"
+      Hint: Description
+      Value: "From communications infrastructure to industrial automation, discover how TE Connectivity enables the technologies that drive progress"
