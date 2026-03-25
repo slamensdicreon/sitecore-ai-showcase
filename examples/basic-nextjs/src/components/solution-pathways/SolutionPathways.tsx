@@ -3,7 +3,7 @@ import {
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
 import { ChevronRight } from 'lucide-react';
-import { getChildItems, getChildFieldValue, getChildLinkHref, type ChildItem } from 'lib/field-utils';
+import { tf, getChildItems, getChildFieldValue, getChildLinkHref, type ChildItem } from 'lib/field-utils';
 
 type SolutionPathwaysProps = {
   rendering: ComponentRendering;
@@ -25,13 +25,13 @@ export default function SolutionPathways({ fields, rendering, params }: Solution
       <div className="max-w-[1400px] mx-auto px-4 relative">
         <div className="text-center mb-14">
           <p className="text-[#f28d00] font-heading font-semibold text-sm tracking-wider uppercase mb-3" data-testid="text-pathways-label">
-            <Text field={fields?.['Section Label']} />
+            <Text field={tf(fields, 'Section Label')} />
           </p>
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4" data-testid="text-pathways-title">
-            <Text field={fields?.['Heading']} />
+            <Text field={tf(fields, 'Heading')} />
           </h2>
           <div className={isLight ? 'text-gray-500' : 'text-white/75'}>
-            <Text field={fields?.['Description']} />
+            <Text field={tf(fields, 'Description')} />
           </div>
         </div>
 

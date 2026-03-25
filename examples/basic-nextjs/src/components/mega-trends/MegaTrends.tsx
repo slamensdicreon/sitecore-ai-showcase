@@ -10,7 +10,7 @@ import {
   Lightbulb, Box, TrendingUp, ChevronRight,
   DollarSign, MapPin, Wrench, Users,
 } from 'lucide-react';
-import { getChildItems, getChildFieldValue, getChildLinkHref, type IconMap, type ChildItem } from 'lib/field-utils';
+import { tf, getChildItems, getChildFieldValue, getChildLinkHref, type IconMap, type ChildItem } from 'lib/field-utils';
 
 const iconMap: IconMap = {
   BatteryCharging, Server, Factory, DollarSign, MapPin, Wrench, Users,
@@ -38,13 +38,13 @@ export default function MegaTrends({ fields, rendering }: MegaTrendsProps) {
       <div className="max-w-[1400px] mx-auto px-4 relative">
         <div className="text-center mb-16">
           <p className="text-[#f28d00] font-heading font-semibold text-sm tracking-wider uppercase mb-3" data-testid="text-megatrends-label">
-            <Text field={fields?.['Section Label']} />
+            <Text field={tf(fields, 'Section Label')} />
           </p>
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4" data-testid="text-megatrends-title">
-            <Text field={fields?.['Heading']} />
+            <Text field={tf(fields, 'Heading')} />
           </h2>
           <div className="text-gray-500 max-w-2xl mx-auto text-base leading-relaxed">
-            <Text field={fields?.['Description']} />
+            <Text field={tf(fields, 'Description')} />
           </div>
         </div>
 

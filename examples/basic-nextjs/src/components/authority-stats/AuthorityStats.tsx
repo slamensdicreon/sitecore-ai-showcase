@@ -7,7 +7,7 @@ import {
   Lightbulb, Box, TrendingUp, ArrowRight,
   DollarSign, MapPin, Wrench, Users,
 } from 'lucide-react';
-import { getChildItems, getChildFieldValue, getLinkHref, type IconMap, type ChildItem } from 'lib/field-utils';
+import { tf, getChildItems, getChildFieldValue, getLinkHref, type IconMap, type ChildItem } from 'lib/field-utils';
 
 const iconMap: IconMap = {
   BatteryCharging, Server, Factory, DollarSign, MapPin, Wrench, Users,
@@ -38,13 +38,13 @@ export default function AuthorityStats({ fields, rendering, params }: AuthorityS
       <div className="max-w-[1400px] mx-auto px-4">
         <div className="text-center mb-16">
           <p className="text-[#f28d00] font-heading font-semibold text-sm tracking-wider uppercase mb-3" data-testid="text-authority-label">
-            <Text field={fields?.['Section Label']} />
+            <Text field={tf(fields, 'Section Label')} />
           </p>
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4" data-testid="text-authority-title">
-            <Text field={fields?.['Heading']} />
+            <Text field={tf(fields, 'Heading')} />
           </h2>
           <div className={`max-w-2xl mx-auto leading-relaxed ${isDark ? 'text-white/75' : 'text-gray-500'}`}>
-            <Text field={fields?.['Description']} />
+            <Text field={tf(fields, 'Description')} />
           </div>
         </div>
 
@@ -72,21 +72,21 @@ export default function AuthorityStats({ fields, rendering, params }: AuthorityS
           </div>
         )}
 
-        {fields?.['CTA Heading']?.value && (
+        {tf(fields, 'CTA Heading')?.value && (
           <div className="bg-[#2e4957] rounded-xl p-8 md:p-12 text-white relative overflow-hidden">
             <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-[#167a87]/20 to-transparent" />
             <div className="relative flex flex-col md:flex-row items-start md:items-center gap-6">
               <div className="flex-1">
                 <h3 className="text-xl md:text-2xl font-heading font-bold mb-2">
-                  <Text field={fields['CTA Heading']} />
+                  <Text field={tf(fields, 'CTA Heading')} />
                 </h3>
                 <div className="text-white/75 leading-relaxed">
-                  <Text field={fields?.['CTA Description']} />
+                  <Text field={tf(fields, 'CTA Description')} />
                 </div>
               </div>
               <a href={getLinkHref(fields, 'CTA Link')}>
                 <button className="inline-flex items-center justify-center px-6 h-11 bg-[#f28d00] hover:bg-[#e07d00] text-white font-heading rounded-md whitespace-nowrap transition-colors" data-testid="button-authority-cta">
-                  <Text field={fields?.['CTA Link Text']} />
+                  <Text field={tf(fields, 'CTA Link Text')} />
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </button>
               </a>

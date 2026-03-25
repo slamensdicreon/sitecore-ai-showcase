@@ -2,7 +2,7 @@ import {
   Text,
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
-import { getFieldValue } from 'lib/field-utils';
+import { tf, getFieldValue } from 'lib/field-utils';
 
 type SolutionHeroProps = {
   rendering: ComponentRendering;
@@ -30,13 +30,13 @@ export default function SolutionHero({ fields, params }: SolutionHeroProps) {
             style={{ color: accentColor }}
             data-testid="badge-solution-industry"
           >
-            <Text field={fields?.['Industry Label']} />
+            <Text field={tf(fields, 'Industry Label')} />
           </span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-[1.08] mb-6" data-testid="text-solution-title">
-            <Text field={fields?.['Title']} />
+            <Text field={tf(fields, 'Title')} />
           </h1>
           <div className="text-lg md:text-xl text-white/70 max-w-2xl leading-relaxed" data-testid="text-solution-subtitle">
-            <Text field={fields?.['Subtitle']} />
+            <Text field={tf(fields, 'Subtitle')} />
           </div>
           <div className="mt-8">
             <svg className="w-48 h-6 text-white/20" viewBox="0 0 200 24">

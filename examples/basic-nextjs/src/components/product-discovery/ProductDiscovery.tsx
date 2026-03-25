@@ -7,7 +7,7 @@ import {
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
 import { ArrowRight } from 'lucide-react';
-import { getFieldValue, getLinkHref } from 'lib/field-utils';
+import { tf, getFieldValue, getLinkHref } from 'lib/field-utils';
 
 type Product = {
   id: number;
@@ -70,13 +70,13 @@ export default function ProductDiscovery({ fields, params }: ProductDiscoveryPro
       <div className="max-w-[1400px] mx-auto px-4">
         <div className="text-center mb-12">
           <p className="text-[#f28d00] font-heading font-semibold text-sm tracking-wider uppercase mb-3" data-testid="text-discovery-label">
-            <Text field={fields?.['Section Label']} />
+            <Text field={tf(fields, 'Section Label')} />
           </p>
           <h2 className="text-2xl md:text-3xl font-heading font-bold mb-3" data-testid="text-discovery-heading">
-            <Text field={fields?.['Heading']} />
+            <Text field={tf(fields, 'Heading')} />
           </h2>
           <div className="text-gray-500 max-w-xl mx-auto">
-            <Text field={fields?.['Description']} />
+            <Text field={tf(fields, 'Description')} />
           </div>
         </div>
 
@@ -103,6 +103,7 @@ export default function ProductDiscovery({ fields, params }: ProductDiscoveryPro
                 <div className={isCompactList ? 'p-4 flex items-center gap-4' : 'p-5'}>
                   {!isCompactList && product.imageUrl && (
                     <div className="h-32 flex items-center justify-center mb-3 bg-gray-50 rounded-lg">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={product.imageUrl} alt={product.name} className="h-24 w-auto object-contain" />
                     </div>
                   )}
@@ -143,7 +144,7 @@ export default function ProductDiscovery({ fields, params }: ProductDiscoveryPro
           <div className="text-center mt-8">
             <a href={getLinkHref(fields, 'CTA Link')}>
               <button className="inline-flex items-center justify-center px-6 h-11 bg-[#f28d00] hover:bg-[#e07d00] text-white font-heading rounded-md transition-colors" data-testid="button-discovery-cta">
-                <Text field={fields?.['CTA Text']} />
+                <Text field={tf(fields, 'CTA Text')} />
                 <ArrowRight className="ml-2 h-4 w-4" />
               </button>
             </a>

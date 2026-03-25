@@ -1,5 +1,16 @@
-import type { Field, LinkField } from '@sitecore-content-sdk/nextjs';
+import type { Field, LinkField, ComponentFields } from '@sitecore-content-sdk/nextjs';
 import type { LucideIcon } from 'lucide-react';
+
+type TextField = Field<string | number | undefined>;
+type RichTextField = Field<string | undefined>;
+
+export function tf(fields: ComponentFields | undefined, name: string): TextField | undefined {
+  return fields?.[name] as TextField | undefined;
+}
+
+export function rtf(fields: ComponentFields | undefined, name: string): RichTextField | undefined {
+  return fields?.[name] as RichTextField | undefined;
+}
 
 export function getFieldValue<T = string>(fields: Record<string, unknown> | undefined, fieldName: string, fallback: T): T {
   const field = fields?.[fieldName] as Field<T> | undefined;

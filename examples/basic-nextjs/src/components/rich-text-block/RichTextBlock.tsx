@@ -2,6 +2,7 @@ import {
   RichText,
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
+import { rtf } from 'lib/field-utils';
 
 type RichTextBlockProps = {
   rendering: ComponentRendering;
@@ -18,7 +19,7 @@ export default function RichTextBlock({ fields, params }: RichTextBlockProps) {
     <section className="py-12 md:py-16 bg-white" data-testid="section-rich-text">
       <div className={`mx-auto px-4 ${isNarrow ? 'max-w-3xl' : isFull ? 'max-w-[1400px]' : 'max-w-4xl'}`}>
         <div className="prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-[#2e4957] prose-a:text-[#167a87]">
-          <RichText field={fields?.['Content']} />
+          <RichText field={rtf(fields, 'Content')} />
         </div>
       </div>
     </section>

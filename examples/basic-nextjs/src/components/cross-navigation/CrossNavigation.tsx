@@ -10,7 +10,7 @@ import {
   Lightbulb, Box, TrendingUp, ChevronRight,
   DollarSign, MapPin, Wrench, Users,
 } from 'lucide-react';
-import { getChildItems, getChildFieldValue, getChildLinkHref, type IconMap, type ChildItem } from 'lib/field-utils';
+import { tf, getChildItems, getChildFieldValue, getChildLinkHref, type IconMap, type ChildItem } from 'lib/field-utils';
 
 const iconMap: IconMap = {
   BatteryCharging, Server, Factory, DollarSign, MapPin, Wrench, Users,
@@ -34,10 +34,10 @@ export default function CrossNavigation({ fields, rendering }: CrossNavigationPr
       <div className="max-w-[1400px] mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-heading font-bold mb-3">
-            <Text field={fields?.['Heading']} />
+            <Text field={tf(fields, 'Heading')} />
           </h2>
           <div className="text-gray-500 max-w-xl mx-auto">
-            <Text field={fields?.['Description']} />
+            <Text field={tf(fields, 'Description')} />
           </div>
         </div>
 
