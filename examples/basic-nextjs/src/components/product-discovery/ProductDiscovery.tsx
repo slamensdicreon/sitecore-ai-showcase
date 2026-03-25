@@ -7,7 +7,7 @@ import {
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
 import { ArrowRight } from 'lucide-react';
-import { getFieldValue, getLinkHref } from 'src/lib/field-utils';
+import { getFieldValue, getLinkHref } from 'lib/field-utils';
 
 type Product = {
   id: number;

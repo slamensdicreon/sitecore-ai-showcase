@@ -1,5 +1,4 @@
-'use client';
-
+import { JSX } from 'react';
 import {
   RichText,
 } from '@sitecore-content-sdk/nextjs';

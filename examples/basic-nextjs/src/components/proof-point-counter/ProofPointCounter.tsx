@@ -5,7 +5,7 @@ import {
   useSitecore,
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
-import { getChildItems, getChildFieldValue, type ChildItem } from 'src/lib/field-utils';
+import { getChildItems, getChildFieldValue, type ChildItem } from 'lib/field-utils';
 
 type ProofPointCounterProps = {
   rendering: ComponentRendering;

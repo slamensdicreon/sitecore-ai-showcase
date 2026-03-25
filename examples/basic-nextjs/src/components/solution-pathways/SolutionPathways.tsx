@@ -6,7 +6,7 @@ import {
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
 import { ChevronRight } from 'lucide-react';
-import { getChildItems, getChildFieldValue, getChildLinkHref, type ChildItem } from 'src/lib/field-utils';
+import { getChildItems, getChildFieldValue, getChildLinkHref, type ChildItem } from 'lib/field-utils';
 
 type SolutionPathwaysProps = {
   rendering: ComponentRendering;

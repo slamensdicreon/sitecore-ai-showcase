@@ -10,7 +10,7 @@ import {
   Lightbulb, Box, TrendingUp, ChevronRight,
   DollarSign, MapPin, Wrench, Users,
 } from 'lucide-react';
-import { getChildItems, getChildFieldValue, getChildLinkHref, type IconMap, type ChildItem } from 'src/lib/field-utils';
+import { getChildItems, getChildFieldValue, getChildLinkHref, type IconMap, type ChildItem } from 'lib/field-utils';
 
 const iconMap: IconMap = {
   BatteryCharging, Server, Factory, DollarSign, MapPin, Wrench, Users,

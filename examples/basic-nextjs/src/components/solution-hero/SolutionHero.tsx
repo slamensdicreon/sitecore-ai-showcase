@@ -1,10 +1,9 @@
-'use client';
-
+import { JSX } from 'react';
 import {
   Text,
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
-import { getFieldValue } from 'src/lib/field-utils';
+import { getFieldValue } from 'lib/field-utils';
 
 type SolutionHeroProps = {
   rendering: ComponentRendering;
