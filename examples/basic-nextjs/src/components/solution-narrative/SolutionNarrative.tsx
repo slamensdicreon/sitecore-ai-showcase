@@ -11,7 +11,7 @@ type SolutionNarrativeProps = {
   params: Record<string, string>;
 };
 
-export default function SolutionNarrative({ fields, params }: SolutionNarrativeProps) {
+export const Default = ({ fields, params }: SolutionNarrativeProps) => {
   const variant = params?.FieldNames || '';
   const isTwoCol = variant === 'narrative--two-col';
   const isAccentLeft = variant === 'narrative--accent-left';
@@ -38,4 +38,4 @@ export default function SolutionNarrative({ fields, params }: SolutionNarrativeP
       </div>
     </section>
   );
-}
+};

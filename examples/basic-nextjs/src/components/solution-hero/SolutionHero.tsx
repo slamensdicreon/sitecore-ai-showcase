@@ -10,7 +10,7 @@ type SolutionHeroProps = {
   params: Record<string, string>;
 };
 
-export default function SolutionHero({ fields, params }: SolutionHeroProps) {
+export const Default = ({ fields, params }: SolutionHeroProps) => {
   const variant = params?.FieldNames || '';
   const isMinimal = variant === 'solution-hero--minimal';
   const accentColor = getFieldValue(fields, 'Accent Color', '#f28d00');
@@ -57,4 +57,4 @@ export default function SolutionHero({ fields, params }: SolutionHeroProps) {
       </div>
     </section>
   );
-}
+};

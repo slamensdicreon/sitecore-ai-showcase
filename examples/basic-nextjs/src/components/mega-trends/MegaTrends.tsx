@@ -27,7 +27,7 @@ type MegaTrendsProps = {
   params: Record<string, string>;
 };
 
-export default function MegaTrends({ fields, rendering }: MegaTrendsProps) {
+export const Default = ({ fields, rendering }: MegaTrendsProps) => {
   const { page: { mode } } = useSitecore();
   const isEditing = mode?.isEditing === true;
 
@@ -90,4 +90,4 @@ export default function MegaTrends({ fields, rendering }: MegaTrendsProps) {
       </div>
     </section>
   );
-}
+};

@@ -24,7 +24,7 @@ type AuthorityStatsProps = {
   params: Record<string, string>;
 };
 
-export default function AuthorityStats({ fields, rendering, params }: AuthorityStatsProps) {
+export const Default = ({ fields, rendering, params }: AuthorityStatsProps) => {
   const variant = params?.FieldNames || '';
   const isDark = variant === 'authority--dark';
 
@@ -96,4 +96,4 @@ export default function AuthorityStats({ fields, rendering, params }: AuthorityS
       </div>
     </section>
   );
-}
+};

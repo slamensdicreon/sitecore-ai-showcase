@@ -27,7 +27,7 @@ type ProductDiscoveryProps = {
   params: Record<string, string>;
 };
 
-export default function ProductDiscovery({ fields, params }: ProductDiscoveryProps) {
+export const Default = ({ fields, params }: ProductDiscoveryProps) => {
   const { page: { mode } } = useSitecore();
   const isEditing = mode?.isEditing === true;
   const variant = params?.FieldNames || '';
@@ -153,4 +153,4 @@ export default function ProductDiscovery({ fields, params }: ProductDiscoveryPro
       </div>
     </section>
   );
-}
+};

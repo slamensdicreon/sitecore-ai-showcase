@@ -11,7 +11,7 @@ type HeroBannerProps = {
   params: Record<string, string>;
 };
 
-export default function HeroBanner({ fields, params }: HeroBannerProps) {
+export const Default = ({ fields, params }: HeroBannerProps) => {
   const variant = params?.FieldNames || '';
   const isCompact = variant === 'hero--compact';
 
@@ -91,4 +91,4 @@ export default function HeroBanner({ fields, params }: HeroBannerProps) {
       </div>
     </section>
   );
-}
+};

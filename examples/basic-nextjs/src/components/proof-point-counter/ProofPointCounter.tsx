@@ -13,7 +13,7 @@ type ProofPointCounterProps = {
   params: Record<string, string>;
 };
 
-export default function ProofPointCounter({ fields, rendering }: ProofPointCounterProps) {
+export const Default = ({ fields, rendering }: ProofPointCounterProps) => {
   const { page: { mode } } = useSitecore();
   const isEditing = mode?.isEditing === true;
 
@@ -59,4 +59,4 @@ export default function ProofPointCounter({ fields, rendering }: ProofPointCount
       </div>
     </section>
   );
-}
+};

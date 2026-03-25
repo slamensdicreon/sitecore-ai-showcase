@@ -23,7 +23,7 @@ type CrossNavigationProps = {
   params: Record<string, string>;
 };
 
-export default function CrossNavigation({ fields, rendering }: CrossNavigationProps) {
+export const Default = ({ fields, rendering }: CrossNavigationProps) => {
   const { page: { mode } } = useSitecore();
   const isEditing = mode?.isEditing === true;
 
@@ -81,4 +81,4 @@ export default function CrossNavigation({ fields, rendering }: CrossNavigationPr
       </div>
     </section>
   );
-}
+};

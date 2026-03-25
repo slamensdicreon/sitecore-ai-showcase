@@ -10,7 +10,7 @@ type RichTextBlockProps = {
   params: Record<string, string>;
 };
 
-export default function RichTextBlock({ fields, params }: RichTextBlockProps) {
+export const Default = ({ fields, params }: RichTextBlockProps) => {
   const variant = params?.FieldNames || '';
   const isNarrow = variant === 'rte--narrow';
   const isFull = variant === 'rte--full';
@@ -24,4 +24,4 @@ export default function RichTextBlock({ fields, params }: RichTextBlockProps) {
       </div>
     </section>
   );
-}
+};

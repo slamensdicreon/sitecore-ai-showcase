@@ -11,7 +11,7 @@ type SolutionPathwaysProps = {
   params: Record<string, string>;
 };
 
-export default function SolutionPathways({ fields, rendering, params }: SolutionPathwaysProps) {
+export const Default = ({ fields, rendering, params }: SolutionPathwaysProps) => {
   const variant = params?.FieldNames || '';
   const isLight = variant === 'pathways--light';
 
@@ -69,4 +69,4 @@ export default function SolutionPathways({ fields, rendering, params }: Solution
       </div>
     </section>
   );
-}
+};
