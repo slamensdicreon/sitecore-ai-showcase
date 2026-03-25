@@ -27,3 +27,6 @@ Languages:
     - ID: "6779db86-1407-408e-b39d-7557d3bffc3c"
       Hint: Accent Color
       Value: "#2e4957"
+    - ID: "4750ed14-7b54-4049-a5bc-9057561571a7"
+      Hint: Link
+      Value: "<link linktype=\"internal\" url=\"/about\" />"
