@@ -1,0 +1,34 @@
+---
+ID: "69b27afa-d5d8-482a-a359-6d0e79e963c9"
+Parent: "e3ca886c-9e21-4b10-9952-131d7073042b"
+Template: "5c547d4e-7111-4995-95b0-6b561751bf2e"
+Path: "/sitecore/layout/Placeholder Settings/Project/build/headless-main"
+SharedFields:
+- ID: "7256bdab-1fd2-49dd-b205-cb4873d2917c"
+  Hint: Placeholder Key
+  Value: "headless-main"
+- ID: "e391b526-d0c5-439d-803e-17512eae6222"
+  Hint: Allowed Controls
+  Value: "{055C6661-4626-4E8F-8453-2D4805CE88A6}|{3C9096AE-2412-44C1-8D8E-2FD6968D13CC}|{1C31FEF4-1226-4C10-B47E-8787E1A0E3A0}|{82DF2D4D-D64D-44AE-B50C-23A4CFF187DD}|{C01A77B7-2FC9-459D-8952-613F009105D4}|{716F45F8-B1F0-49DB-9C1B-E008C65514D4}|{0E0F2E66-1B94-4CD2-A8AC-36590E41CF3A}|{ED6E623A-A365-4B6C-A84C-97904CED3922}|{42125EA2-75A6-4542-A370-BB5257790416}|{89FA3DB5-21D1-49D9-8601-5CDE77B62B19}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "a1b2c3d4-e5f6-a7b8-c9d0-e1f2a3b4c5d6"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\Admin
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20260325T000000Z

@@ -1,0 +1,27 @@
+---
+ID: "e3ca886c-9e21-4b10-9952-131d7073042b"
+Parent: "f5f0fbe3-61ad-4967-a5d8-8d760331d6a1"
+Template: "3d281bf8-5336-4686-9dd6-ab4ab5b3fd5d"
+Path: "/sitecore/layout/Placeholder Settings/Project/build"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "c0a1b2c3-d4e5-f6a7-b8c9-d0e1f2a3b4c5"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\Admin
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20260325T000000Z

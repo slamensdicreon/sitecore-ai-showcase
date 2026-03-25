@@ -20,6 +20,12 @@
         "allowedPushOperations": "CreateUpdateAndDelete"
       },
       {
+        "name": "te-connector.placeholders",
+        "path": "/sitecore/layout/Placeholder Settings/Project/build",
+        "scope": "ItemAndDescendants",
+        "allowedPushOperations": "CreateUpdateAndDelete"
+      },
+      {
         "name": "te-connector.site",
         "path": "/sitecore/content/TE Connectivity",
         "scope": "SingleItem",
@@ -28,6 +34,12 @@
       {
         "name": "te-connector.site-root",
         "path": "/sitecore/content/TE Connectivity/TE Connectivity",
+        "scope": "SingleItem",
+        "allowedPushOperations": "CreateAndUpdate"
+      },
+      {
+        "name": "te-connector.site-grouping",
+        "path": "/sitecore/content/TE Connectivity/TE Connectivity/Settings/Site Grouping/TE Connectivity",
         "scope": "SingleItem",
         "allowedPushOperations": "CreateAndUpdate"
       },
