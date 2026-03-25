@@ -266,12 +266,12 @@ export const placeholderSettings = [
   {
     name: "headless-header",
     displayName: "Header",
-    allowedComponents: [],
+    allowedComponents: ["SiteHeader"],
   },
   {
     name: "headless-footer",
     displayName: "Footer",
-    allowedComponents: [],
+    allowedComponents: ["SiteFooter"],
   },
 ];
 

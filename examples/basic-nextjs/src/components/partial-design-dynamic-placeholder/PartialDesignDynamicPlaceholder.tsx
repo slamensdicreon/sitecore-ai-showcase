@@ -3,7 +3,7 @@ import { ComponentProps } from 'lib/component-props';
 import componentMap from '.sitecore/component-map';
 import { AppPlaceholder } from "@sitecore-content-sdk/nextjs";
 
-const PartialDesignDynamicPlaceholder = (
+export const Default = (
   props: ComponentProps
 ): JSX.Element => (
   <AppPlaceholder
@@ -13,5 +13,3 @@ const PartialDesignDynamicPlaceholder = (
     componentMap={componentMap}
   />
 );
-
-export default PartialDesignDynamicPlaceholder;
