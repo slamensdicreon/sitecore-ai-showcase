@@ -24,7 +24,7 @@ Core features include:
   - Uses `SITECORE_AUTOMATION2_*` credentials for authoring API
   - Tenant: `TE Connectivity` (renamed from nxp); Site root: `/sitecore/content/TE Connectivity/TE Connectivity`
   - Templates: `/sitecore/templates/Project/nxp`; Renderings: `/sitecore/layout/Renderings/Project/build/NovaTech`
-  - Rendering host: `te-connector-demo` (set on site grouping item)
+  - Rendering host: `basic-nextjs` (built-in XM Cloud rendering host, same as EAA demo)
   - Datasource location: `./Data` (nested under each page, following EAA pattern)
   - Content tree: Home/Data, Home/Solutions/Transportation/Data, Home/Solutions/Communications/Data, Home/Solutions/Industrial/Data
   - Sync pipeline creates 16 templates, 10 renderings, 16+ datasource items

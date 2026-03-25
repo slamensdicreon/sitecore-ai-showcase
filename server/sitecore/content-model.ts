@@ -7,7 +7,7 @@ export const TEMPLATE_IDS = {
 export const SITE_ROOT = "/sitecore/content/TE Connectivity/TE Connectivity";
 export const TEMPLATES_ROOT = "/sitecore/templates/Project/nxp";
 export const RENDERINGS_ROOT = "/sitecore/layout/Renderings/Project/build/NovaTech";
-export const MEDIA_ROOT = "/sitecore/media library/Project/nxp";
+export const MEDIA_ROOT = "/sitecore/media library/Project/TE Connectivity";
 export const DATA_ROOT = `${SITE_ROOT}/Home/Data`;
 export const HOME_PATH = `${SITE_ROOT}/Home`;
 
