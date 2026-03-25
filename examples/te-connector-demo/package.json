@@ -15,8 +15,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@sitecore-content-sdk/core": "^22.2.0",
-    "@sitecore-content-sdk/nextjs": "^22.2.0",
+    "@sitecore-content-sdk/core": "^2.0.1",
+    "@sitecore-content-sdk/nextjs": "^2.0.1",
     "lucide-react": "^0.474.0",
     "next": "^15.3.2",
     "react": "^19.1.0",
