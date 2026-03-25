@@ -3,34 +3,34 @@ ID: "67918eb9-91e2-4f93-b10b-6e5402797aef"
 Parent: "2973d344-e649-4c05-a59e-d7926223a068"
 Template: "0430fee5-85b0-49a9-b8f9-d4c2dcdd11f8"
 Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Mega Trends/Electrification"
-SharedFields:
-- ID: "00000000-0000-0000-0000-000000000000"
-  Hint: Description
-  Value: "From EV battery systems to renewable energy grids, TE connectivity solutions enable the reliable flow of power across next-generation electrical architectures."
 Languages:
 - Language: en
   Versions:
   - Version: 1
     Fields:
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "84397ab8-bf77-4223-9634-fb9c0e9b3078"
       Hint: Title
       Value: "Electrification"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "f6809102-6f2d-408b-9dbc-ba3af4adaa3d"
       Hint: Subtitle
       Value: "Powering the transition to electric everything"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "15815c06-52d9-4e43-a294-5ec8498fb173"
+      Hint: Description
+      Value: |
+        From EV battery systems to renewable energy grids, TE connectivity solutions enable the reliable flow of power across next-generation electrical architectures.
+    - ID: "25b105b3-df3f-4162-af4a-d9d3ec1679ea"
       Hint: Stat Value
       Value: "40%"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "de4451ea-2110-4d7d-8ff6-7a888a337938"
       Hint: Stat Label
       Value: "growth in EV connector demand"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "3e8cc23f-58fc-4dd3-afd8-4b0745f06c73"
       Hint: Icon Name
       Value: "BatteryCharging"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "84c97461-088c-4650-b4f9-a3135b71c656"
       Hint: Accent Color
       Value: "#f28d00"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "12369703-1ee7-4b9d-b609-01651462ba4a"
       Hint: Link
       Value: |
         <link linktype="internal" url="/solutions/transportation" />

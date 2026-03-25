@@ -8,17 +8,17 @@ Languages:
   Versions:
   - Version: 1
     Fields:
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "da46457a-0fb0-4446-97ef-7958cbfdbaae"
       Hint: Section Label
       Value: "Our Innovation Philosophy"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "e4ad13fd-7817-46f5-af72-2bcc2f7835d2"
       Hint: Heading
       Value: "Co-Engineering the Future with Our Customers"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "2ed47bf7-e9fe-46f2-90f2-f7a769ad3d92"
       Hint: Lead Text
       Value: |
         Innovation at TE isn't theoretical. It's driven by real engineering challenges from our customers — the world's leading OEMs and system integrators.
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "38554cfa-4bb2-4368-85bd-f473f700829c"
       Hint: Body
       Value: |
         <p>With 8,000+ engineers across 30+ engineering centers worldwide, TE operates at the intersection of fundamental materials science and practical product engineering. Our co-design model means we embed with customer teams from concept through production validation.</p><p>Key focus areas include next-generation high-voltage connectors for 800V+ EV platforms, miniaturized sensor arrays for autonomous systems, and high-density power delivery solutions for AI data centers requiring 100kW+ per rack.</p>

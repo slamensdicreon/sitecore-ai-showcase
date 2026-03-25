@@ -8,9 +8,12 @@ Languages:
   Versions:
   - Version: 1
     Fields:
-    - Hint: Section Label
+    - ID: "521be0c2-4f61-4cb7-82ff-8e05798bb386"
+      Hint: Section Label
       Value: "Trends"
-    - Hint: Heading
+    - ID: "e9cdae3d-1d7c-4abf-ab94-e85b5a467575"
+      Hint: Heading
       Value: "Industry Mega-Trends"
-    - Hint: Description
+    - ID: "98b85f6f-94e1-44b7-8f24-b33df4415f4d"
+      Hint: Description
       Value: "Description of key trends"

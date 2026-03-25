@@ -8,9 +8,12 @@ Languages:
   Versions:
   - Version: 1
     Fields:
-    - Hint: Section Label
+    - ID: "bbdef0be-b5bb-47aa-ac0f-99880c743cc1"
+      Hint: Section Label
       Value: "Solutions"
-    - Hint: Heading
+    - ID: "24822c15-b3c2-482e-83c1-fb9f26dc524a"
+      Hint: Heading
       Value: "Explore Solutions"
-    - Hint: Description
+    - ID: "776205b5-0477-43db-982c-f2e4530139ef"
+      Hint: Description
       Value: "Find the right solution for your challenge"

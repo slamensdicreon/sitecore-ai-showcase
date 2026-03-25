@@ -3,18 +3,18 @@ ID: "3ae2aae3-28a9-4a99-8e90-b731628f8c30"
 Parent: "71b27a4d-0589-452f-92e0-2960a61356be"
 Template: "4a8ad106-274b-4d86-b91c-7aa1e7e37602"
 Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Solution Pathways"
-SharedFields:
-- ID: "00000000-0000-0000-0000-000000000000"
-  Hint: Description
-  Value: "We don't just sell components. We help you solve engineering challenges at the system level."
 Languages:
 - Language: en
   Versions:
   - Version: 1
     Fields:
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "bbdef0be-b5bb-47aa-ac0f-99880c743cc1"
       Hint: Section Label
       Value: "Start With Your Challenge"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "24822c15-b3c2-482e-83c1-fb9f26dc524a"
       Hint: Heading
       Value: "What Problem Are You Solving?"
+    - ID: "776205b5-0477-43db-982c-f2e4530139ef"
+      Hint: Description
+      Value: |
+        We don't just sell components. We help you solve engineering challenges at the system level.

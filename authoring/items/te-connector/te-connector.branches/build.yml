@@ -4,9 +4,9 @@ Parent: "a1f6469d-16e1-4a5f-9e49-1aad869a5d11"
 Template: "2f5f8343-2a18-46a4-92a1-0f7ab0452741"
 Path: "/sitecore/templates/Branches/Project/build"
 SharedFields:
-- Hint: __Masters
-  Value: |
-    {AC90A0F0-6618-485B-B03D-64D3E7500D01}|{85ADBF5B-E836-4932-A333-FE0F9FA1ED1E}|{F6B0E6F1-2451-4C72-94FD-22D7B93B592A}
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Value: "{AC90A0F0-6618-485B-B03D-64D3E7500D01}|{85ADBF5B-E836-4932-A333-FE0F9FA1ED1E}|{F6B0E6F1-2451-4C72-94FD-22D7B93B592A}"
 Languages:
 - Language: en
   Versions:

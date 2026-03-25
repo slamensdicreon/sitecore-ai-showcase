@@ -8,11 +8,15 @@ Languages:
   Versions:
   - Version: 1
     Fields:
-    - Hint: Badge Text
+    - ID: "8b7c6836-4ba7-462e-b4b7-24ce85f15b34"
+      Hint: Badge Text
       Value: "Welcome"
-    - Hint: Title
+    - ID: "b4808c21-aec3-4d5d-bd12-ad52f2554c94"
+      Hint: Title
       Value: "Page Title"
-    - Hint: Title Accent
+    - ID: "f1c82d80-ba9f-40de-b81e-ad22f973381c"
+      Hint: Title Accent
       Value: "Accent"
-    - Hint: Subtitle
+    - ID: "81ea03cb-1365-4b18-b57f-1f90a2fd4bc3"
+      Hint: Subtitle
       Value: "Page subtitle goes here"

@@ -4,16 +4,19 @@ Parent: "597e0ce5-1f96-4154-8cf9-992590db0a37"
 Template: "57d89b89-6f79-44e7-b5bd-435326761859"
 Path: "/sitecore/templates/Branches/Project/build/Homepage/$name"
 SharedFields:
-- Hint: __Final Renderings
+- ID: "04bf00db-f5fb-41f7-8ab7-22408372ddef"
+  Hint: __Final Renderings
   Value: |
     <r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"><r uid="{EB17D92C-FBD1-4298-8724-A2EBC5FE6589}" p:before="*" s:ds="{B48BC9E5-721F-44B2-9B48-C54C7EFB96A0}" s:id="{055C6661-4626-4E8F-8453-2D4805CE88A6}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{25F0D793-32F1-4560-A7A6-E007AA519A28}" p:after="r[@uid='{EB17D92C-FBD1-4298-8724-A2EBC5FE6589}']" s:ds="{49674E41-D849-43A6-9FB7-20F64E2BFC6A}" s:id="{82DF2D4D-D64D-44AE-B50C-23A4CFF187DD}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{06CABB29-5A5E-42B1-8BD0-297724B8F9F2}" p:after="r[@uid='{25F0D793-32F1-4560-A7A6-E007AA519A28}']" s:ds="{C9D347A3-B5E7-44A0-84B9-418B6EB5DF8E}" s:id="{1C31FEF4-1226-4C10-B47E-8787E1A0E3A0}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{F714935B-F417-4C89-B0CB-EB8C33F2E727}" p:after="*[1=2]" s:ds="{FC0544EB-3D5A-4DDC-8849-1D00818C44ED}" s:id="{3C9096AE-2412-44C1-8D8E-2FD6968D13CC}" s:par="CSSStyles" s:ph="headless-main" /></d></r>
-- Hint: __Renderings
+- ID: "1a7c85e5-dc0b-490d-9187-bb1dbcb4c72f"
+  Hint: __Renderings
   Value: |
     <r xmlns:xsd="http://www.w3.org/2001/XMLSchema"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}" l="{96E5F4BA-A2CF-4A4C-A4E7-64DA88226362}" /></r>
-- Hint: __Masters
-  Value: |
-    {57D89B89-6F79-44E7-B5BD-435326761859}|{597E0CE5-1F96-4154-8CF9-992590DB0A37}|{D8B6F753-9271-4E56-982A-C21410DFD379}|{7DCE7501-C7D6-43E4-A7F1-97005D356A25}
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Value: "{57D89B89-6F79-44E7-B5BD-435326761859}|{597E0CE5-1F96-4154-8CF9-992590DB0A37}|{D8B6F753-9271-4E56-982A-C21410DFD379}|{7DCE7501-C7D6-43E4-A7F1-97005D356A25}"
 Languages:
 - Language: en
   Versions:
   - Version: 1
+    Fields:

@@ -4,6 +4,10 @@ Parent: "a1c18aa2-9e08-4d05-aa8c-6758d6048843"
 Template: "57d89b89-6f79-44e7-b5bd-435326761859"
 Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home"
 SharedFields:
+- ID: "04bf00db-f5fb-41f7-8ab7-22408372ddef"
+  Hint: __Final Renderings
+  Value: |
+    <r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"><r uid="{0FD65376-E933-4695-9921-A793BCFB8A8C}" p:before="*" s:ds="{046BC767-1899-4ABC-88BF-58441D23AF18}" s:id="{055C6661-4626-4E8F-8453-2D4805CE88A6}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{848F912B-C87A-453C-A562-64B1911F6F1A}" p:after="r[@uid='{0FD65376-E933-4695-9921-A793BCFB8A8C}']" s:ds="{D3D77AF5-FECC-4771-94C8-EE128D85F135}" s:id="{82DF2D4D-D64D-44AE-B50C-23A4CFF187DD}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{B3E4E8F8-5854-40DE-AFA9-7D1D07290975}" p:after="r[@uid='{848F912B-C87A-453C-A562-64B1911F6F1A}']" s:ds="{3AE2AAE3-28A9-4A99-8E90-B731628F8C30}" s:id="{1C31FEF4-1226-4C10-B47E-8787E1A0E3A0}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{38A486D9-79AD-4506-86CE-80A037DEF31A}" p:after="*[1=2]" s:ds="{2973D344-E649-4C05-A59E-D7926223A068}" s:id="{3C9096AE-2412-44C1-8D8E-2FD6968D13CC}" s:par="CSSStyles" s:ph="headless-main" /></d></r>
 - ID: "1a7c85e5-dc0b-490d-9187-bb1dbcb4c72f"
   Hint: __Renderings
   Value: |
@@ -11,18 +15,14 @@ SharedFields:
 - ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
   Hint: __Masters
   Value: "{57d89b896f7944e7b5bd435326761859}"
-- ID: "04bf00db-f5fb-41f7-8ab7-22408372ddef"
-  Hint: __Final Renderings
-  Value: |
-    <r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"><r uid="{0FD65376-E933-4695-9921-A793BCFB8A8C}" p:before="*" s:ds="{046BC767-1899-4ABC-88BF-58441D23AF18}" s:id="{055C6661-4626-4E8F-8453-2D4805CE88A6}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{848F912B-C87A-453C-A562-64B1911F6F1A}" p:after="r[@uid='{0FD65376-E933-4695-9921-A793BCFB8A8C}']" s:ds="{D3D77AF5-FECC-4771-94C8-EE128D85F135}" s:id="{82DF2D4D-D64D-44AE-B50C-23A4CFF187DD}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{B3E4E8F8-5854-40DE-AFA9-7D1D07290975}" p:after="r[@uid='{848F912B-C87A-453C-A562-64B1911F6F1A}']" s:ds="{3AE2AAE3-28A9-4A99-8E90-B731628F8C30}" s:id="{1C31FEF4-1226-4C10-B47E-8787E1A0E3A0}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{38A486D9-79AD-4506-86CE-80A037DEF31A}" p:after="*[1=2]" s:ds="{2973D344-E649-4C05-A59E-D7926223A068}" s:id="{3C9096AE-2412-44C1-8D8E-2FD6968D13CC}" s:par="CSSStyles" s:ph="headless-main" /></d></r>
 Languages:
 - Language: en
   Versions:
   - Version: 1
     Fields:
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "69ca3efe-1dad-4015-b0f6-1bb1e2af42b6"
       Hint: Title
       Value: "Home"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "4e0720e9-9d50-4ddc-87cf-ecd65e8e94c8"
       Hint: NavigationTitle
       Value: "Home"

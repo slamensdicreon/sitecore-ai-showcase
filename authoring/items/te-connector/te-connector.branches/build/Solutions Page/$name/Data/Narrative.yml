@@ -8,12 +8,16 @@ Languages:
   Versions:
   - Version: 1
     Fields:
-    - Hint: Section Label
+    - ID: "da46457a-0fb0-4446-97ef-7958cbfdbaae"
+      Hint: Section Label
       Value: "The Advantage"
-    - Hint: Heading
+    - ID: "e4ad13fd-7817-46f5-af72-2bcc2f7835d2"
+      Hint: Heading
       Value: "Why Choose TE"
-    - Hint: Lead Text
+    - ID: "2ed47bf7-e9fe-46f2-90f2-f7a769ad3d92"
+      Hint: Lead Text
       Value: "Lead paragraph"
-    - Hint: Body
+    - ID: "38554cfa-4bb2-4368-85bd-f473f700829c"
+      Hint: Body
       Value: |
         <p>Body content</p>

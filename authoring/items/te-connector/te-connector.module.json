@@ -20,6 +20,18 @@
         "allowedPushOperations": "CreateUpdateAndDelete"
       },
       {
+        "name": "te-connector.site",
+        "path": "/sitecore/content/TE Connectivity",
+        "scope": "SingleItem",
+        "allowedPushOperations": "CreateAndUpdate"
+      },
+      {
+        "name": "te-connector.site-root",
+        "path": "/sitecore/content/TE Connectivity/TE Connectivity",
+        "scope": "SingleItem",
+        "allowedPushOperations": "CreateAndUpdate"
+      },
+      {
         "name": "te-connector.content",
         "path": "/sitecore/content/TE Connectivity/TE Connectivity/Home",
         "scope": "ItemAndDescendants",

@@ -3,25 +3,24 @@ ID: "acfb8120-2f96-4d9e-a8bb-c04877802eeb"
 Parent: "ab88a6ff-cd12-473b-82d9-ff1bdee57596"
 Template: "25e5d6f8-b178-416b-aab3-4c033ce84913"
 Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Communications Cross Nav/Transportation"
-SharedFields:
-- ID: "00000000-0000-0000-0000-000000000000"
-  Hint: Description
-  Value: "EV powertrains, autonomous systems, and vehicle connectivity"
 Languages:
 - Language: en
   Versions:
   - Version: 1
     Fields:
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "2f299d30-66ef-4db3-b97b-850be734c653"
       Hint: Title
       Value: "Transportation Solutions"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "36230626-6ddf-4d45-9268-8204ff7671c1"
+      Hint: Description
+      Value: "EV powertrains, autonomous systems, and vehicle connectivity"
+    - ID: "4750ed14-7b54-4049-a5bc-9057561571a7"
       Hint: Link
       Value: |
         <link linktype="internal" url="/solutions/transportation" />
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "e8486a65-e4e7-4997-8faa-3459f16b7242"
       Hint: Icon Name
       Value: "BatteryCharging"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "6779db86-1407-408e-b39d-7557d3bffc3c"
       Hint: Accent Color
       Value: "#f28d00"

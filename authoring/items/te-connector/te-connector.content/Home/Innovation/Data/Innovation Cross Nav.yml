@@ -3,15 +3,14 @@ ID: "9f719b66-33a0-49c2-87a4-035132b4b3d0"
 Parent: "10c74e42-76bf-4a6b-8380-f6c2189f36c7"
 Template: "4dd207ed-c4d0-411d-91b9-3c976922a2e7"
 Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Innovation/Data/Innovation Cross Nav"
-SharedFields:
-- ID: "00000000-0000-0000-0000-000000000000"
-  Hint: Description
-  Value: "See how TE innovation translates into industry-specific solutions."
 Languages:
 - Language: en
   Versions:
   - Version: 1
     Fields:
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "6152f915-d25a-4191-9170-741da3adcfa7"
       Hint: Heading
       Value: "Explore Our Solutions"
+    - ID: "a838abe5-a4ed-4ae6-9786-67b17618dd7e"
+      Hint: Description
+      Value: "See how TE innovation translates into industry-specific solutions."

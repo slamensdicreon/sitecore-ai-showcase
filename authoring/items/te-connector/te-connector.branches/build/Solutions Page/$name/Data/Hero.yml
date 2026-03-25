@@ -8,9 +8,12 @@ Languages:
   Versions:
   - Version: 1
     Fields:
-    - Hint: Industry Label
+    - ID: "eb7f1ae6-b18a-4a16-8cfb-3fbd35045857"
+      Hint: Industry Label
       Value: "Industry"
-    - Hint: Title
+    - ID: "ed9c20d9-4bb6-4951-8ded-eb79a6c254d8"
+      Hint: Title
       Value: "Solution Title"
-    - Hint: Subtitle
+    - ID: "f988e126-1ef8-4ec3-8029-39af343f4f2c"
+      Hint: Subtitle
       Value: "Solution description"

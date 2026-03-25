@@ -8,16 +8,16 @@ Languages:
   Versions:
   - Version: 1
     Fields:
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "eb7f1ae6-b18a-4a16-8cfb-3fbd35045857"
       Hint: Industry Label
       Value: "Innovation & R&D"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "ed9c20d9-4bb6-4951-8ded-eb79a6c254d8"
       Hint: Title
       Value: "Engineering Tomorrow's Connections"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "f988e126-1ef8-4ec3-8029-39af343f4f2c"
       Hint: Subtitle
       Value: |
         TE Connectivity invests over $600M annually in R&D, pushing the boundaries of materials science, miniaturization, and high-speed connectivity to solve challenges that don't yet exist.
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "1c3f0a0c-d788-4e55-b6c3-2a36d3fc3aa1"
       Hint: Accent Color
       Value: "#167a87"

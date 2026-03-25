@@ -8,7 +8,9 @@ Languages:
   Versions:
   - Version: 1
     Fields:
-    - Hint: Heading
+    - ID: "6152f915-d25a-4191-9170-741da3adcfa7"
+      Hint: Heading
       Value: "Explore Solutions"
-    - Hint: Description
+    - ID: "a838abe5-a4ed-4ae6-9786-67b17618dd7e"
+      Hint: Description
       Value: "See industry solutions"

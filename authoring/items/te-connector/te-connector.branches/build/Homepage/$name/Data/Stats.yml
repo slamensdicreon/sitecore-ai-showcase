@@ -8,9 +8,12 @@ Languages:
   Versions:
   - Version: 1
     Fields:
-    - Hint: Section Label
+    - ID: "546ca592-d743-426e-8503-7fc4c43205a6"
+      Hint: Section Label
       Value: "By The Numbers"
-    - Hint: Heading
+    - ID: "3ef554ab-ca74-4e25-8dc4-5e9047a07382"
+      Hint: Heading
       Value: "Our Impact"
-    - Hint: Description
+    - ID: "9733b738-ddf3-436d-bbe7-3c64db9c8411"
+      Hint: Description
       Value: "Key statistics"

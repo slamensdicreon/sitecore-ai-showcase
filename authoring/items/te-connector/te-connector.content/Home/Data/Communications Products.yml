@@ -3,31 +3,30 @@ ID: "664f9e50-fdb5-40e1-9679-83d1308343c3"
 Parent: "71b27a4d-0589-452f-92e0-2960a61356be"
 Template: "345cbcfc-b371-4157-9156-c4ce95e0563c"
 Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Communications Products"
-SharedFields:
-- ID: "00000000-0000-0000-0000-000000000000"
-  Hint: Description
-  Value: "Explore our data center and networking portfolio"
 Languages:
 - Language: en
   Versions:
   - Version: 1
     Fields:
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "29ce2875-60fc-4c13-b3a9-a57bb315ae90"
       Hint: Section Label
       Value: "Featured Products"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "91d7bbcc-70e2-4829-830c-0410cc36f73b"
       Hint: Heading
       Value: "Communications Infrastructure Solutions"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "8765bce5-da98-4953-b68e-a1e553a621a3"
+      Hint: Description
+      Value: "Explore our data center and networking portfolio"
+    - ID: "1c7c7b77-a66c-42b7-8ac0-669f67cd1727"
       Hint: Industry Filter
       Value: "Data Communications"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "6a9326dc-a9a5-4b32-b11f-601b033d4004"
       Hint: Max Products
       Value: "6"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "00c7fb50-9e34-43fd-bcc6-d0158c6d97aa"
       Hint: CTA Text
       Value: "View Full Catalog"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "2c82707e-cecd-4f0f-9ed5-472f4fcf99d1"
       Hint: CTA Link
       Value: |
         <link linktype="internal" url="/products?industry=Data+Communications" />

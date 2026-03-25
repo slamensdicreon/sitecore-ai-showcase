@@ -8,17 +8,17 @@ Languages:
   Versions:
   - Version: 1
     Fields:
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "da46457a-0fb0-4446-97ef-7958cbfdbaae"
       Hint: Section Label
       Value: "The TE Advantage"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "e4ad13fd-7817-46f5-af72-2bcc2f7835d2"
       Hint: Heading
       Value: "Why the World's Leading OEMs Choose TE"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "2ed47bf7-e9fe-46f2-90f2-f7a769ad3d92"
       Hint: Lead Text
       Value: |
         In automotive, second-best isn't an option. Every connector, every sensor, every harness must perform flawlessly across millions of miles.
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "38554cfa-4bb2-4368-85bd-f473f700829c"
       Hint: Body
       Value: |
         <p>TE Connectivity's automotive portfolio spans the full vehicle architecture — from high-voltage battery connectors rated for 800V platforms to miniaturized sensor assemblies that survive 150°C underhood environments.</p><p>Our engineering-first approach means we co-design with OEM teams from concept through production validation, ensuring our products are optimized for each platform's unique requirements.</p>

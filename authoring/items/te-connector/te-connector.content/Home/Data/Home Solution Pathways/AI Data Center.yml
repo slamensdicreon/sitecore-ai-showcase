@@ -8,17 +8,17 @@ Languages:
   Versions:
   - Version: 1
     Fields:
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "2e6df8d1-5f5c-425c-8651-3e7644a248b2"
       Hint: Question
       Value: "How do I scale AI data center infrastructure?"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "647fa9b5-5ee2-4350-be5d-a7b3910a42bf"
       Hint: Context
       Value: |
         High-speed, high-density connectivity solutions that handle the power and signal demands of next-gen AI compute.
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "c59ac0b5-c408-408c-8f31-7cf34dfbf281"
       Hint: Industry Label
       Value: "Communications"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "6c013343-2eee-424a-a004-ea6d5bee1fe6"
       Hint: Link
       Value: |
         <link linktype="internal" url="/solutions/communications" />

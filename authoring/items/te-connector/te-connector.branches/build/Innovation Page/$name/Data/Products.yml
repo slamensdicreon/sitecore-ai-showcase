@@ -8,9 +8,12 @@ Languages:
   Versions:
   - Version: 1
     Fields:
-    - Hint: Section Label
+    - ID: "29ce2875-60fc-4c13-b3a9-a57bb315ae90"
+      Hint: Section Label
       Value: "Spotlight"
-    - Hint: Heading
+    - ID: "91d7bbcc-70e2-4829-830c-0410cc36f73b"
+      Hint: Heading
       Value: "Latest Innovations"
-    - Hint: Description
+    - ID: "8765bce5-da98-4953-b68e-a1e553a621a3"
+      Hint: Description
       Value: "Explore new innovations"

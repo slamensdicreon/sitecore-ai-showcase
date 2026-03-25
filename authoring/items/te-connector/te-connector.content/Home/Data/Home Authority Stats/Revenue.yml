@@ -8,18 +8,18 @@ Languages:
   Versions:
   - Version: 1
     Fields:
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "5164b62e-9292-499a-912a-38987c9a2a1a"
       Hint: Value
       Value: "18"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "30619b8b-fd98-4adb-842f-34698f84176c"
       Hint: Prefix
       Value: "$"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "3b49313b-b8a9-4343-89d3-36d754d49c8c"
       Hint: Suffix
       Value: "B+"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "cb34e466-222f-4a2d-b23a-8fd5b51788e9"
       Hint: Label
       Value: "Annual Revenue"
-    - ID: "00000000-0000-0000-0000-000000000000"
+    - ID: "3a95593a-ad83-490a-bfe1-40fb8ef0addf"
       Hint: Icon Name
       Value: "DollarSign"
