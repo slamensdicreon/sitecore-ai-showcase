@@ -1,0 +1,17 @@
+---
+ID: "2e6c3c06-93d3-466a-b427-3b947919c315"
+Parent: "971cb6e3-daf7-48cf-abc0-e32379f74f67"
+Template: "4dd207ed-c4d0-411d-91b9-3c976922a2e7"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Data/Solutions Cross Navigation"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
