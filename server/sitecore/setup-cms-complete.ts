@@ -402,9 +402,9 @@ async function step5_createBranchTemplates() {
     const branchIds = [];
     for (const branch of branches) {
       const id = await getItemId(`${BRANCHES_ROOT}/${branch.name}`);
-      if (id) branchIds.push(`{${id.replace(/[{}-]/g, "").toUpperCase()}}`);
+      if (id) branchIds.push(formatGuid(id));
     }
-    const pageTemplateFormatted = `{${PAGE_TEMPLATE_ID.replace(/[{}-]/g, "").toUpperCase()}}`;
+    const pageTemplateFormatted = formatGuid(PAGE_TEMPLATE_ID);
     const insertOptions = [pageTemplateFormatted, ...branchIds].join("|");
     await gql(`mutation($id:ID!,$lang:String!,$fields:[FieldValueInput!]!){updateItem(input:{itemId:$id,language:$lang,fields:$fields}){item{itemId}}}`, {
       id: stdValues, lang: "en",
