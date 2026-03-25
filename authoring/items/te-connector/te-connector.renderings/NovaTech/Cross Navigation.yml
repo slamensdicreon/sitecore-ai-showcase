@@ -12,7 +12,7 @@ SharedFields:
   Value: "/sitecore/templates/Project/nxp/Cross Navigation"
 - ID: "b5b27af1-25ef-405c-87ce-369b3a004016"
   Hint: Datasource Location
-  Value: "./Data"
+  Value: "query:$site/*[@@name='Data']/*[@@templatename='Cross Navigation']|query:$sharedSites/*[@@name='Data']/*[@@templatename='Cross Navigation']"
 Languages:
 - Language: en
   Versions:

@@ -7,7 +7,7 @@ SharedFields:
 - ID: "04bf00db-f5fb-41f7-8ab7-22408372ddef"
   Hint: __Final Renderings
   Value: |
-    <r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"><r uid="{06B7EF5B-95B3-4B8A-BF47-79387AE39001}" s:id="{055C6661-4626-4E8F-8453-2D4805CE88A6}" s:par="CSSStyles" s:ph="headless-main" /></d></r>
+    <r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"><r uid="{06B7EF5B-95B3-4B8A-BF47-79387AE39001}" p:before="*" s:ds="{160D1747-7B71-467D-BC37-22F0FB7FD59C}" s:id="{055C6661-4626-4E8F-8453-2D4805CE88A6}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}" p:after="r[@uid='{06B7EF5B-95B3-4B8A-BF47-79387AE39001}']" s:ds="{AF602AB0-DE9E-4098-93C0-04DD349B29EE}" s:id="{1C31FEF4-1226-4C10-B47E-8787E1A0E3A0}" s:par="CSSStyles" s:ph="headless-main" /></d></r>
 - ID: "1a7c85e5-dc0b-490d-9187-bb1dbcb4c72f"
   Hint: __Renderings
   Value: |
