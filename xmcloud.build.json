@@ -12,9 +12,6 @@
     }
   },
   "buildTargets": [
-    {
-      "name": "Platform",
-      "path": "./authoring/platform/Platform.csproj"
-    }
+    "./authoring/platform/Platform.csproj"
   ]
 }
