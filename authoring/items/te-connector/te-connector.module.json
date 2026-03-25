@@ -44,6 +44,12 @@
         "allowedPushOperations": "CreateAndUpdate"
       },
       {
+        "name": "te-connector.presentation",
+        "path": "/sitecore/content/TE Connectivity/TE Connectivity/Presentation",
+        "scope": "ItemAndDescendants",
+        "allowedPushOperations": "CreateUpdateAndDelete"
+      },
+      {
         "name": "te-connector.content",
         "path": "/sitecore/content/TE Connectivity/TE Connectivity/Home",
         "scope": "ItemAndDescendants",

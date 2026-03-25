@@ -1,0 +1,32 @@
+---
+ID: "d5e6f7a8-b9c0-4d12-3e4f-5a6b7c8d9e0f"
+Parent: "a2b3c4d5-e6f7-4a89-0b1c-2d3e4f5a6b7c"
+Template: "2d131786-69e1-41fe-8f67-64464e4f0393"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Presentation/Partial Designs/Footer"
+SharedFields:
+- ID: "04bf00db-f5fb-41f7-8ab7-22408372ddef"
+  Hint: __Final Renderings
+  Value: |
+    <r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"><r uid="{BB2C3D4E-5F6A-7B8C-9D0E-1F2A3B4C5D6E}" p:before="*" s:id="{8DDF28CF-706A-45EF-A2E6-F9CD016E2FF3}" s:ph="headless-footer" /></d></r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f90"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\Admin
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20260325T000000Z

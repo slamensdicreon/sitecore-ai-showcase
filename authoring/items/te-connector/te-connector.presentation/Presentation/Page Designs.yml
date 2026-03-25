@@ -1,12 +1,8 @@
 ---
-ID: "2f722d14-4a0d-4924-8458-eb0fe903cb4f"
-Parent: "57d89b89-6f79-44e7-b5bd-435326761859"
-Template: "57d89b89-6f79-44e7-b5bd-435326761859"
-Path: "/sitecore/templates/Project/nxp/Page/__Standard Values"
-SharedFields:
-- ID: "1be6456d-b498-4bde-9ec8-401f3daade7d"
-  Hint: Designing
-  Value: "{E6F7A8B9-C0D1-4E23-4F5A-6B7C8D9E0F1A}"
+ID: "b3c4d5e6-f7a8-4b90-1c2d-3e4f5a6b7c8d"
+Parent: "e1a2b3c4-d5e6-4f78-9a0b-1c2d3e4f5a6b"
+Template: "ba417bb7-a5ac-41fd-af11-f2692026e0f2"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Presentation/Page Designs"
 Languages:
 - Language: en
   Versions:
@@ -14,18 +10,18 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20260324T000000Z
+      Value: 20260325T000000Z
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |
         sitecore\Admin
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "2f7fbec8-1afa-453f-b5b3-91e420b900c5"
+      Value: "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9001"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
         sitecore\Admin
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
-      Value: 20260324T000000Z
+      Value: 20260325T000000Z

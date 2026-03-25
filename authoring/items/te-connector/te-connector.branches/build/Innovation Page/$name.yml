@@ -4,6 +4,9 @@ Parent: "7dce7501-c7d6-43e4-a7f1-97005d356a25"
 Template: "57d89b89-6f79-44e7-b5bd-435326761859"
 Path: "/sitecore/templates/Branches/Project/build/Innovation Page/$name"
 SharedFields:
+- ID: "1be6456d-b498-4bde-9ec8-401f3daade7d"
+  Hint: Designing
+  Value: "{B9C0D1E2-F3A4-4B56-7C8D-9E0F1A2B3C4D}"
 - ID: "04bf00db-f5fb-41f7-8ab7-22408372ddef"
   Hint: __Final Renderings
   Value: |
