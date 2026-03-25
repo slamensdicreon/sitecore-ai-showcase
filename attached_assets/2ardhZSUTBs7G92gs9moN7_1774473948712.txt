@@ -1,0 +1,357 @@
+
+OrganizationId: org_nqH2YUQNEoUWPkGW
+EnvironmentId: 4HaujXspGsWRIxtymDZLv1
+DeploymentId: 2ardhZSUTBs7G92gs9moN7
+PlatformTenantName: icreonpartn828a-novatech15a9-novatechf6c7
+Region: eus
+Provisioning - Completed
+03/25/2026 21:23:10 +00:00|INFO|Starting environment 'novatech' creation.
+03/25/2026 21:23:11 +00:00|INFO|All required resources have been provisioned.
+
+
+Build - Completed
+03/25/2026 21:23:10 +00:00|INFO|Downloading source code from git ref/commit: main
+03/25/2026 21:23:14 +00:00|INFO|Starting build because source code was provided.
+03/25/2026 21:23:18 +00:00|INFO|Building Solution
+03/25/2026 21:23:20 +00:00|INFO|Starting downloading artifacts
+03/25/2026 21:23:20 +00:00|INFO|Downloaded artifacts 0.4156453 seconds
+03/25/2026 21:23:20 +00:00|INFO|Extracted source artifacts.
+03/25/2026 21:23:20 +00:00|INFO|Package source with Name: __SitecoreCLI added successfully.
+03/25/2026 21:23:21 +00:00|INFO|You can invoke the tool using the following command: sitecore
+03/25/2026 21:23:21 +00:00|INFO|Tool 'sitecore.cli' (version '5.2.113') was successfully installed.
+03/25/2026 21:23:24 +00:00|INFO|Telemetry
+03/25/2026 21:23:24 +00:00|INFO|---------
+03/25/2026 21:23:24 +00:00|INFO|Sitecore CLI collects usage data in order to help us improve your experience. The data is collected by Sitecore and not shared with the community.
+03/25/2026 21:23:24 +00:00|INFO|You can opt-out of telemetry by setting telemetryEnabled property to false in sitecore.json file.
+03/25/2026 21:23:24 +00:00|INFO|Read more about Sitecore CLI telemetry: https://doc.sitecore.com/xp/en/developers/103/developer-tools/sitecore-command-line-interface.html
+03/25/2026 21:23:27 +00:00|INFO|Successfully installed version 5.2.113 of plugin Sitecore.DevEx.Extensibility.ResourcePackage.
+03/25/2026 21:23:27 +00:00|INFO|Package source with Name: __SitecoreCLI removed successfully.
+03/25/2026 21:23:27 +00:00|INFO|Restoring packages for solution ./authoring/platform/Platform.csproj
+03/25/2026 21:23:28 +00:00|INFO|MSBuild version 17.14.23+b0019275e for .NET Framework
+03/25/2026 21:23:29 +00:00|INFO|Build started 3/25/2026 9:23:29 PM.
+03/25/2026 21:23:30 +00:00|INFO|1>Project "C:\b\986857055\authoring\platform\Platform.csproj" on node 1 (Restore target(s)).
+03/25/2026 21:23:30 +00:00|INFO|1>_GetAllRestoreProjectPathItems:
+03/25/2026 21:23:30 +00:00|INFO|Determining projects to restore...
+03/25/2026 21:23:31 +00:00|INFO|Restore:
+03/25/2026 21:23:31 +00:00|INFO|X.509 certificate chain validation will use the default trust store selected by .NET for code signing.
+03/25/2026 21:23:31 +00:00|INFO|X.509 certificate chain validation will use the default trust store selected by .NET for timestamping.
+03/25/2026 21:23:31 +00:00|INFO|Restoring packages for C:\b\986857055\authoring\platform\Platform.csproj...
+03/25/2026 21:23:31 +00:00|INFO|Generating MSBuild file C:\b\986857055\authoring\platform\obj\Platform.csproj.nuget.g.props.
+03/25/2026 21:23:31 +00:00|INFO|Generating MSBuild file C:\b\986857055\authoring\platform\obj\Platform.csproj.nuget.g.targets.
+03/25/2026 21:23:31 +00:00|INFO|Writing assets file to disk. Path: C:\b\986857055\authoring\platform\obj\project.assets.json
+03/25/2026 21:23:31 +00:00|INFO|Restored C:\b\986857055\authoring\platform\Platform.csproj (in 282 ms).
+03/25/2026 21:23:31 +00:00|INFO|NuGet Config files used:
+03/25/2026 21:23:31 +00:00|INFO|C:\Users\ContainerAdministrator\AppData\Roaming\NuGet\NuGet.Config
+03/25/2026 21:23:31 +00:00|INFO|Feeds used:
+03/25/2026 21:23:31 +00:00|INFO|https://api.nuget.org/v3/index.json
+03/25/2026 21:23:31 +00:00|INFO|https://nuget.sitecore.com/internal_prod/v3/index.json
+03/25/2026 21:23:31 +00:00|INFO|1>Done Building Project "C:\b\986857055\authoring\platform\Platform.csproj" (Restore target(s)).
+03/25/2026 21:23:31 +00:00|INFO|Build succeeded.
+03/25/2026 21:23:31 +00:00|INFO|0 Warning(s)
+03/25/2026 21:23:31 +00:00|INFO|0 Error(s)
+03/25/2026 21:23:31 +00:00|INFO|Time Elapsed 00:00:02.73
+03/25/2026 21:23:31 +00:00|INFO|Installing required plugin
+03/25/2026 21:23:31 +00:00|INFO|Building solution.
+03/25/2026 21:23:31 +00:00|INFO|MSBuild version 17.14.23+b0019275e for .NET Framework
+03/25/2026 21:23:32 +00:00|INFO|Build started 3/25/2026 9:23:32 PM.
+03/25/2026 21:23:33 +00:00|INFO|Project "C:\b\986857055\authoring\platform\Platform.csproj" on node 1 (default targets).
+03/25/2026 21:23:33 +00:00|INFO|PrepareForBuild:
+03/25/2026 21:23:33 +00:00|INFO|Creating directory "bin\Release\net8.0\".
+03/25/2026 21:23:33 +00:00|INFO|Creating directory "obj\Release\net8.0\".
+03/25/2026 21:23:33 +00:00|INFO|Creating directory "C:\b\986857055\authoring\platform\obj\Release\net8.0\refint\".
+03/25/2026 21:23:33 +00:00|INFO|Creating directory "obj\Release\net8.0\ref".
+03/25/2026 21:23:34 +00:00|INFO|_GenerateSourceLinkFile:
+03/25/2026 21:23:34 +00:00|INFO|Source Link is empty, file 'obj\Release\net8.0\Platform.sourcelink.json' does not exist.
+03/25/2026 21:23:34 +00:00|INFO|CoreCompile:
+03/25/2026 21:23:34 +00:00|INFO|C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin\Roslyn\csc.exe /noconfig /unsafe- /checked- /nowarn:1701,1702,1701,1702 /fullpaths /nostdlib+ /errorreport:prompt /warn:8 /define:TRACE;RELEASE;NET;NET8_0;NETCOREAPP;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP1_0_OR_GREATER;NETCOREAPP1_1_OR_GREATER;NETCOREAPP2_0_OR_GREATER;NETCOREAPP2_1_OR_GREATER;NETCOREAPP2_2_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER /highentropyva+ /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\Microsoft.CSharp.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\Microsoft.VisualBasic.Core.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\Microsoft.VisualBasic.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\Microsoft.Win32.Primitives.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\Microsoft.Win32.Registry.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\mscorlib.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\netstandard.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.AppContext.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Buffers.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Collections.Concurrent.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Collections.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Collections.Immutable.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Collections.NonGeneric.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Collections.Specialized.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.ComponentModel.Annotations.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.ComponentModel.DataAnnotations.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.ComponentModel.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.ComponentModel.EventBasedAsync.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.ComponentModel.Primitives.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.ComponentModel.TypeConverter.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Configuration.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Console.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Core.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Data.Common.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Data.DataSetExtensions.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Data.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Diagnostics.Contracts.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Diagnostics.Debug.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Diagnostics.DiagnosticSource.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Diagnostics.FileVersionInfo.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Diagnostics.Process.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Diagnostics.StackTrace.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Diagnostics.TextWriterTraceListener.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Diagnostics.Tools.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Diagnostics.TraceSource.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Diagnostics.Tracing.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Drawing.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Drawing.Primitives.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Dynamic.Runtime.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Formats.Asn1.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Formats.Tar.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Globalization.Calendars.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Globalization.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Globalization.Extensions.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.IO.Compression.Brotli.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.IO.Compression.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.IO.Compression.FileSystem.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.IO.Compression.ZipFile.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.IO.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.IO.FileSystem.AccessControl.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.IO.FileSystem.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.IO.FileSystem.DriveInfo.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.IO.FileSystem.Primitives.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.IO.FileSystem.Watcher.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.IO.IsolatedStorage.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.IO.MemoryMappedFiles.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.IO.Pipes.AccessControl.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.IO.Pipes.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.IO.UnmanagedMemoryStream.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Linq.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Linq.Expressions.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Linq.Parallel.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Linq.Queryable.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Memory.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Net.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Net.Http.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Net.Http.Json.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Net.HttpListener.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Net.Mail.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Net.NameResolution.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Net.NetworkInformation.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Net.Ping.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Net.Primitives.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Net.Quic.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Net.Requests.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Net.Security.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Net.ServicePoint.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Net.Sockets.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Net.WebClient.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Net.WebHeaderCollection.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Net.WebProxy.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Net.WebSockets.Client.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Net.WebSockets.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Numerics.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Numerics.Vectors.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.ObjectModel.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Reflection.DispatchProxy.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Reflection.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Reflection.Emit.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Reflection.Emit.ILGeneration.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Reflection.Emit.Lightweight.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Reflection.Extensions.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Reflection.Metadata.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Reflection.Primitives.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Reflection.TypeExtensions.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Resources.Reader.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Resources.ResourceManager.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Resources.Writer.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Runtime.CompilerServices.Unsafe.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Runtime.CompilerServices.VisualC.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Runtime.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Runtime.Extensions.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Runtime.Handles.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Runtime.InteropServices.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Runtime.InteropServices.JavaScript.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Runtime.InteropServices.RuntimeInformation.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Runtime.Intrinsics.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Runtime.Loader.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Runtime.Numerics.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Runtime.Serialization.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Runtime.Serialization.Formatters.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Runtime.Serialization.Json.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Runtime.Serialization.Primitives.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Runtime.Serialization.Xml.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Security.AccessControl.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Security.Claims.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Security.Cryptography.Algorithms.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Security.Cryptography.Cng.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Security.Cryptography.Csp.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Security.Cryptography.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Security.Cryptography.Encoding.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Security.Cryptography.OpenSsl.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Security.Cryptography.Primitives.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Security.Cryptography.X509Certificates.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Security.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Security.Principal.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Security.Principal.Windows.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Security.SecureString.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.ServiceModel.Web.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.ServiceProcess.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Text.Encoding.CodePages.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Text.Encoding.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Text.Encoding.Extensions.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Text.Encodings.Web.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Text.Json.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Text.RegularExpressions.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Threading.Channels.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Threading.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Threading.Overlapped.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Threading.Tasks.Dataflow.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Threading.Tasks.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Threading.Tasks.Extensions.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Threading.Tasks.Parallel.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Threading.Thread.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Threading.ThreadPool.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Threading.Timer.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Transactions.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Transactions.Local.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.ValueTuple.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Web.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Web.HttpUtility.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Windows.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Xml.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Xml.Linq.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Xml.ReaderWriter.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Xml.Serialization.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Xml.XDocument.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Xml.XmlDocument.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Xml.XmlSerializer.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Xml.XPath.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\System.Xml.XPath.XDocument.dll" /reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\ref\net8.0\WindowsBase.dll" /debug- /debug:portable /filealign:512 /optimize+ /out:obj\Release\net8.0\Platform.dll /refout:obj\Release\net8.0\refint\Platform.dll /target:library /warnaserror- /utf8output /deterministic+ /langversion:12.0 /analyzerconfig:obj\Release\net8.0\Platform.GeneratedMSBuildEditorConfig.editorconfig /analyzerconfig:"C:\Program Files\dotnet\sdk\8.0.417\Sdks\Microsoft.NET.Sdk\analyzers\build\config\analysislevel_8_default.globalconfig" /analyzer:"C:\Program Files\dotnet\sdk\8.0.417\Sdks\Microsoft.NET.Sdk\targets\..\analyzers\Microsoft.CodeAnalysis.CSharp.NetAnalyzers.dll" /analyzer:"C:\Program Files\dotnet\sdk\8.0.417\Sdks\Microsoft.NET.Sdk\targets\..\analyzers\Microsoft.CodeAnalysis.NetAnalyzers.dll" /analyzer:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\analyzers/dotnet/cs/Microsoft.Interop.ComInterfaceGenerator.dll" /analyzer:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\analyzers/dotnet/cs/Microsoft.Interop.JavaScript.JSImportGenerator.dll" /analyzer:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\analyzers/dotnet/cs/Microsoft.Interop.LibraryImportGenerator.dll" /analyzer:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\analyzers/dotnet/cs/Microsoft.Interop.SourceGeneration.dll" /analyzer:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\analyzers/dotnet/cs/System.Text.Json.SourceGeneration.dll" /analyzer:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.23\analyzers/dotnet/cs/System.Text.RegularExpressions.Generator.dll" obj\Release\net8.0\Platform.AssemblyInfo.cs /warnaserror+:NU1605,SYSLIB0011
+03/25/2026 21:23:36 +00:00|INFO|CompilerServer: server - server processed compilation - Platform (net8.0)
+03/25/2026 21:23:36 +00:00|INFO|CopyFilesToOutputDirectory:
+03/25/2026 21:23:36 +00:00|INFO|Copying file from "C:\b\986857055\authoring\platform\obj\Release\net8.0\Platform.dll" to "C:\b\986857055\authoring\platform\bin\Release\net8.0\Platform.dll".
+03/25/2026 21:23:36 +00:00|INFO|Copying reference assembly from "obj\Release\net8.0\refint\Platform.dll" to "C:\b\986857055\authoring\platform\obj\Release\net8.0\ref\Platform.dll".
+03/25/2026 21:23:36 +00:00|INFO|Platform -> C:\b\986857055\authoring\platform\bin\Release\net8.0\Platform.dll
+03/25/2026 21:23:36 +00:00|INFO|Copying file from "C:\b\986857055\authoring\platform\obj\Release\net8.0\Platform.pdb" to "C:\b\986857055\authoring\platform\bin\Release\net8.0\Platform.pdb".
+03/25/2026 21:23:36 +00:00|INFO|Done Building Project "C:\b\986857055\authoring\platform\Platform.csproj" (default targets).
+03/25/2026 21:23:36 +00:00|INFO|Build succeeded.
+03/25/2026 21:23:36 +00:00|INFO|0 Warning(s)
+03/25/2026 21:23:36 +00:00|INFO|0 Error(s)
+03/25/2026 21:23:36 +00:00|INFO|Time Elapsed 00:00:04.49
+03/25/2026 21:23:36 +00:00|INFO|Creating items as resources
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp (a1d30080-27f6-4988-b3a8-6752e078cf0d)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Authority Stats (e90b7fd6-538a-47d1-a26e-3e25d46e7689)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Cross Nav Link (25e5d6f8-b178-416b-aab3-4c033ce84913)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Cross Navigation (4dd207ed-c4d0-411d-91b9-3c976922a2e7)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Hero Banner (5cf185ad-d3a5-4f19-8fb8-488ed5a54e03)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Headless Tenant (0cd2ebf5-3ee2-4bc9-a567-40cb7f8fa731)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Mega Trend Card (0430fee5-85b0-49a9-b8f9-d4c2dcdd11f8)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Mega Trends (18a95f74-2dcf-4798-9147-47694b9836e2)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Page Design Folder (ba417bb7-a5ac-41fd-af11-f2692026e0f2)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Page Designs (d79fbc9c-4e56-44b3-b24a-ed1c6490487b)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Partial Design Folder (1de55d20-4e7e-477e-9275-aa6f2c8755fa)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Partial Designs (2d131786-69e1-41fe-8f67-64464e4f0393)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Proof Point Counter (c70ba91e-c359-415f-a45d-73bb6366b49a)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Hero (7325aeca-17f8-40eb-a3c7-4b7e1ebc0773)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Rich Text Block (f2169422-7ea0-41d6-8129-8a3f9c1c819a)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Pathways (4a8ad106-274b-4d86-b91c-7aa1e7e37602)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Narrative (af57195c-3edf-4003-9ae8-7bc936d89aa3)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Pathway Card (41d38ce8-d565-4c25-aab7-5a8aa6887ce6)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Challenge Card (d1b37d04-f662-4ee2-ab88-3da7ebf268ae)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Headless Site (565698f5-214b-4de8-8556-8f744e2738b6)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/JSS Settings (d4914cb3-3e7e-4464-8133-b7969f9cda16)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Page (57d89b89-6f79-44e7-b5bd-435326761859)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Product Discovery (345cbcfc-b371-4157-9156-c4ce95e0563c)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Proof Point Item (aa2b393c-fbff-4f41-b854-24420d279803)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Stat Item (19929c41-cc3a-4496-8ea3-d35bbaefbdb0)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Authority Stats/Content (709b6181-a3ab-49a5-825b-2729a2c43e72)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Authority Stats/CTA (c8a6f956-46c5-402d-be57-83e5c5d53793)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Cross Nav Link/Content (38b66883-3f4f-454e-b66d-3395ac6a776f)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Cross Nav Link/CTA (0dd0969a-7012-4c72-b4ae-a4cf145451c9)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Cross Nav Link/Display (b9a26bc3-e9e5-4dbb-bd96-d7db92445afd)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Cross Navigation/Content (09f215f1-d831-4acd-b468-7d33f0a2b7e3)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Hero Banner/CTA (058a9c64-28de-41e8-ad58-7979f713cd5c)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Hero Banner/Display (944dc1a2-97a7-4db4-b19f-c1f482487ffd)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Hero Banner/Media (bd16d285-2dd7-49e8-b7f0-fa8ced6ca93b)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Hero Banner/Content (ee8a36d3-3114-4298-a147-ca177f1bcee2)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Mega Trend Card/Content (717642e6-175f-4d12-b1d6-eeee952a5463)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Mega Trend Card/CTA (4c96a868-54dd-452f-953f-1c70abcc7562)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Mega Trend Card/Display (be3d5483-c55b-418e-bcc4-c2095c0d090f)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Mega Trends/Content (1c0692a0-c0c6-4b1f-a9f4-52671debf533)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Proof Point Counter/Content (40d4e4cf-ebc6-46c2-ad59-8710fbb14f95)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Hero/Media (329bd7db-2939-4cb4-a3a6-17045a91efc4)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Hero/Content (47125cc6-624a-4841-b7b8-8dd327f74cb6)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Hero/Display (097c17b6-3a2a-4298-a8a5-fcfa072fd9c3)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Rich Text Block/Content (4a710c4c-c6d6-497c-817c-f9516e0ad00d)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Pathways/Content (5cc1601d-89d5-4c80-86b6-91e5e19dd54c)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Narrative/Content (c453b33e-cf08-446e-80af-f38e4c88487f)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Pathway Card/Content (cced1eee-7ab3-4219-854b-3c72ffb03128)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Pathway Card/CTA (d3f28686-c35a-47d7-82a4-f86165b45a7c)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Challenge Card/Content (393a5b3b-0c25-4d5d-81cb-35eecc530e7e)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Challenge Card/Display (3e759424-9b89-47f1-a2a9-f60a00951fbe)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Page/Content (7720d931-fb6f-4f93-b497-867690b4e6c6)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Product Discovery/Content (a922fa45-9d96-43c4-98e9-ed90ae6beaa9)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Product Discovery/CTA (fddd3b64-7276-47bc-9789-dc85ad8a58a0)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Proof Point Item/Content (7d74e995-1562-4981-a906-9093052b7837)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Stat Item/Content (04146299-9376-496c-8f1c-410c3d033a2e)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Stat Item/Display (9f3b46cb-0b72-4bb3-a4a4-0a365ca41a81)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Authority Stats/Content/Description (9733b738-ddf3-436d-bbe7-3c64db9c8411)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Authority Stats/Content/Heading (3ef554ab-ca74-4e25-8dc4-5e9047a07382)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Authority Stats/Content/Section Label (546ca592-d743-426e-8503-7fc4c43205a6)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Authority Stats/CTA/CTA Link Text (e3651e41-7720-4b54-bc61-325013274ea1)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Authority Stats/CTA/CTA Link (1f0b67ed-3778-4beb-9038-0c318c0b66ea)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Authority Stats/CTA/CTA Description (9b70bc4d-0622-425a-9587-5a2d75996eda)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Authority Stats/CTA/CTA Heading (8cf92d55-9289-479c-9b54-4728c2f9e138)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Cross Nav Link/Content/Description (36230626-6ddf-4d45-9268-8204ff7671c1)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Cross Nav Link/Content/Title (2f299d30-66ef-4db3-b97b-850be734c653)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Cross Nav Link/CTA/Link (4750ed14-7b54-4049-a5bc-9057561571a7)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Cross Nav Link/Display/Accent Color (6779db86-1407-408e-b39d-7557d3bffc3c)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Cross Nav Link/Display/Icon Name (e8486a65-e4e7-4997-8faa-3459f16b7242)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Cross Navigation/Content/Description (a838abe5-a4ed-4ae6-9786-67b17618dd7e)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Cross Navigation/Content/Heading (6152f915-d25a-4191-9170-741da3adcfa7)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Hero Banner/CTA/Primary CTA Link (be2480ff-80de-459f-980f-5526a49e3e3e)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Hero Banner/CTA/Primary CTA Text (bfb5dfb9-b276-4a35-8eae-32c286f3e849)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Hero Banner/CTA/Secondary CTA Link (36af0894-0e0f-4c25-8b0d-f8200bc90ab9)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Hero Banner/CTA/Secondary CTA Text (4444ad47-8d2a-466b-b6b5-a962be8fce91)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Hero Banner/Display/Show Connectivity Motif (63208871-31d0-4876-b549-99c4e32edea8)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Hero Banner/Media/Background Image (32d861d5-4f53-45fd-92a1-9b7b38a7e19b)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Hero Banner/Media/Background Video URL (bda1311b-e14f-41b7-8e07-41667eb6788f)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Hero Banner/Content/Badge Text (8b7c6836-4ba7-462e-b4b7-24ce85f15b34)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Hero Banner/Content/Subtitle (81ea03cb-1365-4b18-b57f-1f90a2fd4bc3)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Hero Banner/Content/Title Accent (f1c82d80-ba9f-40de-b81e-ad22f973381c)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Hero Banner/Content/Title (b4808c21-aec3-4d5d-bd12-ad52f2554c94)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Mega Trend Card/Content/Description (15815c06-52d9-4e43-a294-5ec8498fb173)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Mega Trend Card/Content/Subtitle (f6809102-6f2d-408b-9dbc-ba3af4adaa3d)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Mega Trend Card/Content/Title (84397ab8-bf77-4223-9634-fb9c0e9b3078)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Mega Trend Card/Content/Stat Label (de4451ea-2110-4d7d-8ff6-7a888a337938)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Mega Trend Card/Content/Stat Value (25b105b3-df3f-4162-af4a-d9d3ec1679ea)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Mega Trend Card/CTA/Link (12369703-1ee7-4b9d-b609-01651462ba4a)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Mega Trend Card/Display/Accent Color (84c97461-088c-4650-b4f9-a3135b71c656)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Mega Trend Card/Display/Icon Name (3e8cc23f-58fc-4dd3-afd8-4b0745f06c73)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Mega Trends/Content/Description (98b85f6f-94e1-44b7-8f24-b33df4415f4d)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Mega Trends/Content/Heading (e9cdae3d-1d7c-4abf-ab94-e85b5a467575)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Mega Trends/Content/Section Label (521be0c2-4f61-4cb7-82ff-8e05798bb386)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Proof Point Counter/Content/Heading (8c2e9695-806a-4fd8-9183-5d4db63f3f75)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Proof Point Counter/Content/Section Label (8b54c0da-6700-4578-8040-b63d424c21b2)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Hero/Media/Background Image (7d11e7a3-26f5-4f15-9154-4075bff98c22)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Hero/Media/Background Video URL (538734f8-4a44-4e6e-a2f9-a40d28c76076)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Hero/Content/Industry Label (eb7f1ae6-b18a-4a16-8cfb-3fbd35045857)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Hero/Content/Subtitle (f988e126-1ef8-4ec3-8029-39af343f4f2c)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Hero/Content/Title (ed9c20d9-4bb6-4951-8ded-eb79a6c254d8)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Hero/Display/Accent Color (1c3f0a0c-d788-4e55-b6c3-2a36d3fc3aa1)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Rich Text Block/Content/Content (b4e6f4f3-0316-4f34-b51b-84d7ada3ef05)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Pathways/Content/Description (776205b5-0477-43db-982c-f2e4530139ef)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Pathways/Content/Heading (24822c15-b3c2-482e-83c1-fb9f26dc524a)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Narrative/Content/Body (38554cfa-4bb2-4368-85bd-f473f700829c)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Narrative/Content/Heading (e4ad13fd-7817-46f5-af72-2bcc2f7835d2)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Narrative/Content/Lead Text (2ed47bf7-e9fe-46f2-90f2-f7a769ad3d92)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Narrative/Content/Section Label (da46457a-0fb0-4446-97ef-7958cbfdbaae)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Pathway Card/Content/Question (2e6df8d1-5f5c-425c-8651-3e7644a248b2)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Pathway Card/Content/Context (647fa9b5-5ee2-4350-be5d-a7b3910a42bf)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Pathway Card/Content/Industry Label (c59ac0b5-c408-408c-8f31-7cf34dfbf281)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Solution Pathway Card/CTA/Link (6c013343-2eee-424a-a004-ea6d5bee1fe6)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Challenge Card/Content/Description (29fd6a65-ca66-4bcd-8aa4-ddaf78edb137)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Challenge Card/Content/Title (1a8d8183-f58d-4327-9cde-a6ab6182ee57)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Challenge Card/Display/Icon Name (dcfd7109-4811-4e71-8965-6369c34d0090)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Page/Content/Content (8dfb0312-c283-4deb-b0b1-1fb928ce4502)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Page/Content/Title (69ca3efe-1dad-4015-b0f6-1bb1e2af42b6)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Product Discovery/Data/Application Filter (0771a85b-07d2-4c00-a025-4f4ab60bfbb1)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Product Discovery/Data/Industry Filter (1c7c7b77-a66c-42b7-8ac0-669f67cd1727)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Product Discovery/Data/Max Products (6a9326dc-a9a5-4b32-b11f-601b033d4004)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Product Discovery/Content/Description (8765bce5-da98-4953-b68e-a1e553a621a3)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Product Discovery/Content/Heading (91d7bbcc-70e2-4829-830c-0410cc36f73b)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Product Discovery/Content/Section Label (29ce2875-60fc-4c13-b3a9-a57bb315ae90)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Product Discovery/CTA/CTA Link (2c82707e-cecd-4f0f-9ed5-472f4fcf99d1)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Product Discovery/CTA/CTA Text (00c7fb50-9e34-43fd-bcc6-d0158c6d97aa)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Proof Point Item/Content/Description (5eea10f2-bc42-4379-888c-52dc972fe33a)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Proof Point Item/Content/Label (c45121a8-6545-4aa2-9cb4-142656e63a0e)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Proof Point Item/Content/Value (fe8eb929-6c81-4eed-a974-066fde392060)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Stat Item/Content/Label (cb34e466-222f-4a2d-b23a-8fd5b51788e9)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Stat Item/Content/Prefix (30619b8b-fd98-4adb-842f-34698f84176c)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Stat Item/Content/Suffix (3b49313b-b8a9-4343-89d3-36d754d49c8c)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Stat Item/Content/Value (5164b62e-9292-499a-912a-38987c9a2a1a)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Stat Item/Display/Icon Name (3a95593a-ad83-490a-bfe1-40fb8ef0addf)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Headless Tenant/__Standard Values (5dbbdde9-59d6-40a2-ab63-b146c713822d)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Page Design Folder/__Standard Values (580ea79d-3daf-4ed7-8722-b3e952cfe653)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Page Designs/__Standard Values (c2c6f42c-59fd-461e-a597-49b3966e0a87)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Partial Design Folder/__Standard Values (7498fa79-5456-4c2c-88f4-3dadf0170fc4)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Partial Designs/__Standard Values (b8ffb5bc-e4b0-4d81-b84e-88b7c24d07a2)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Headless Site/__Standard Values (642873ed-fd61-4ac1-8157-b5f4dd7d79d9)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/JSS Settings/__Standard Values (fa458181-5177-470a-af26-f6242bc5a616)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Project/nxp/Page/__Standard Values (2f722d14-4a0d-4924-8458-eb0fe903cb4f)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/layout/Renderings/Project/build/NovaTech (46c98d93-2ef2-4baa-86d4-8f1615b58853)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/layout/Renderings/Project/build/NovaTech/Authority Stats (82df2d4d-d64d-44ae-b50c-23a4cff187dd)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/layout/Renderings/Project/build/NovaTech/Cross Navigation (42125ea2-75a6-4542-a370-bb5257790416)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/layout/Renderings/Project/build/NovaTech/Hero Banner (055c6661-4626-4e8f-8453-2d4805ce88a6)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/layout/Renderings/Project/build/NovaTech/Mega Trends (3c9096ae-2412-44c1-8d8e-2fd6968d13cc)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/layout/Renderings/Project/build/NovaTech/Product Discovery (0e0f2e66-1b94-4cd2-a8ac-36590e41cf3a)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/layout/Renderings/Project/build/NovaTech/Proof Point Counter (ed6e623a-a365-4b6c-a84c-97904ced3922)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/layout/Renderings/Project/build/NovaTech/Rich Text Block (89fa3db5-21d1-49d9-8601-5cde77b62b19)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/layout/Renderings/Project/build/NovaTech/SiteFooter (8ddf28cf-706a-45ef-a2e6-f9cd016e2ff3)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/layout/Renderings/Project/build/NovaTech/SiteHeader (4dc060f3-8ebf-497a-8ddf-8f7349e184ae)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/layout/Renderings/Project/build/NovaTech/Solution Hero (c01a77b7-2fc9-459d-8952-613f009105d4)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/layout/Renderings/Project/build/NovaTech/Solution Pathways (1c31fef4-1226-4c10-b47e-8787e1a0e3a0)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Branches/Project/build (12d3114f-e665-4b15-a645-e18b19389ede)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Branches/Project/build/Homepage (597e0ce5-1f96-4154-8cf9-992590db0a37)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Branches/Project/build/Innovation Page (7dce7501-c7d6-43e4-a7f1-97005d356a25)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Branches/Project/build/Solutions Page (d8b6f753-9271-4e56-982a-c21410dfd379)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Branches/Project/build/Homepage/$name (c0e48316-d963-486e-aef8-59845c809429)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Branches/Project/build/Innovation Page/$name (fa28cbab-6a1a-44bb-80c7-029fd6a97d2f)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Branches/Project/build/Solutions Page/$name (dd516ce6-55d3-43fe-aa23-db357b35764d)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Branches/Project/build/Homepage/$name/Data (1a2fa09d-890c-45e9-b88b-1a6a6eb2e251)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Branches/Project/build/Innovation Page/$name/Data (82483303-0103-4a04-b874-a2779f5bf306)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Branches/Project/build/Solutions Page/$name/Data (e8cccc03-1829-4b72-9648-77908003049b)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Branches/Project/build/Homepage/$name/Data/Stats (49674e41-d849-43a6-9fb7-20f64e2bfc6a)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Branches/Project/build/Homepage/$name/Data/Hero (b48bc9e5-721f-44b2-9b48-c54c7efb96a0)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Branches/Project/build/Homepage/$name/Data/Pathways (c9d347a3-b5e7-44a0-84b9-418b6eb5df8e)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Branches/Project/build/Homepage/$name/Data/Trends (fc0544eb-3d5a-4ddc-8849-1d00818c44ed)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Branches/Project/build/Innovation Page/$name/Data/Hero (1d24d3a3-26c1-4f3d-8df9-e54aaa938972)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Branches/Project/build/Innovation Page/$name/Data/Narrative (71ce2b9e-dfd3-487b-b3d9-67c6093a97f4)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Branches/Project/build/Innovation Page/$name/Data/Cross Nav (a64f3802-d5ed-4b1d-96d2-d2979bfba452)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Branches/Project/build/Innovation Page/$name/Data/Products (f7c1f14c-ce05-47b8-a66b-0be68720a02e)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Branches/Project/build/Solutions Page/$name/Data/Hero (13141607-9a86-411c-be67-ed52de24245e)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Branches/Project/build/Solutions Page/$name/Data/Narrative (a0681a9a-d24e-446f-aa55-c736814c0874)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Branches/Project/build/Solutions Page/$name/Data/Cross Nav (b82e9552-5e05-4bdb-ae06-7232b834b95b)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/templates/Branches/Project/build/Solutions Page/$name/Data/Products (d30847eb-60a7-4d7c-b141-7daff68ec9d8)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/layout/Placeholder Settings/Project/build (e3ca886c-9e21-4b10-9952-131d7073042b)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/layout/Placeholder Settings/Project/build/headless-footer (19c3d9fd-60de-4fa7-b736-0ebb885abf1f)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/layout/Placeholder Settings/Project/build/headless-header (fe4d0ef8-6207-41d9-a6da-804474fa1e57)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/layout/Placeholder Settings/Project/build/headless-main (69b27afa-d5d8-482a-a359-6d0e79e963c9)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity (bfbefa67-93bd-4674-a9b1-073d97c7bed2)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity (a1c18aa2-9e08-4d05-aa8c-6758d6048843)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Settings/Site Grouping/TE Connectivity (c890c582-819b-4019-a44f-2276cf41b507)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home (6a9074ba-8036-460f-9d0a-808adafc9785)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data (71b27a4d-0589-452f-92e0-2960a61356be)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Innovation (97cb558f-fd4b-4248-bf8b-3f10046f67ec)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions (513db59b-1e9d-4033-9209-e5d066dcbbc0)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Communications Cross Nav (ab88a6ff-cd12-473b-82d9-ff1bdee57596)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Communications Narrative (5dba5ca0-2ee3-4adb-aabf-66c56cee907e)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Mega Trends (2973d344-e649-4c05-a59e-d7926223a068)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Industrial Narrative (ad14b6df-fd70-4416-acef-89e9925d59ae)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Transportation Hero (e59f912a-eac9-4a4c-9840-d992eacec752)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Authority Stats (d3d77af5-fecc-4771-94c8-ee128d85f135)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Solution Pathways (3ae2aae3-28a9-4a99-8e90-b731628f8c30)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Industrial Hero (afcaf469-9ef6-431c-ad6c-0a3696931fb3)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Industrial Products (e83e837b-c0f0-48a9-8082-ee32fae300b2)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Transportation Narrative (585928a8-1cb8-43a7-93d6-270b0d381896)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Communications Hero (215b69e0-9543-4aa9-b476-66a3849b9cb7)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Communications Products (664f9e50-fdb5-40e1-9679-83d1308343c3)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Hero (046bc767-1899-4abc-88bf-58441d23af18)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Industrial Cross Nav (c5426aff-489d-46ec-89a7-cb0d4ce1ac0b)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Transportation Cross Nav (d1495769-e650-4fdd-b645-88251b4cc9b8)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Transportation Products (b8b4cc16-e645-4009-82b8-7e429a6dae6b)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Communications (7c3a2c71-6ef5-460f-b469-925c57d23a8d)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Transportation (c2e7071d-3d68-47fa-a368-537eedacc52f)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Industrial (8cf88574-50f6-4aa1-801a-90b6a02631cc)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Communications Cross Nav/Industrial (eb82ee54-93f4-4032-9e28-450bb76c9a90)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Communications Cross Nav/Transportation (acfb8120-2f96-4d9e-a8bb-c04877802eeb)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Mega Trends/Industrial Automation (18a16260-9c32-43ab-b90b-fda818e267f1)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Mega Trends/Electrification (67918eb9-91e2-4f93-b10b-6e5402797aef)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Mega Trends/AI Infrastructure (f87512e2-dd14-4814-a0b5-333abf15f2e0)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Authority Stats/Employees (f19c990a-c481-4bf7-8919-15002439912d)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Authority Stats/Engineers (ab6b84b7-18f6-4932-b59a-17e1c7e56fab)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Authority Stats/Countries (00b1bd0b-856a-4ed4-8bdd-941954434a59)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Authority Stats/Revenue (e496bf94-c8e3-4c74-b190-cd073694fd68)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Solution Pathways/AI Data Center (81cfab39-1dd0-439f-b620-2a46d2b6b4a7)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Solution Pathways/Signal Integrity (283d4b76-f824-4370-be6a-4372bc4755db)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Solution Pathways/Energy Grid (3ded32ec-5a2b-45a5-84db-81d3241e8070)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Solution Pathways/EV Charging (1adbdfcc-d020-4072-9d1e-7d173b6d7afc)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Industrial Cross Nav/Transportation (74162fa4-1f01-4fca-a832-561cd967f13c)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Industrial Cross Nav/Communications (23019046-3ba8-4187-b3a0-1811f4e4cb0b)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Transportation Cross Nav/Communications (ff823210-4c4a-4f4f-8315-fb97206ad03a)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Transportation Cross Nav/Industrial (2b9115f9-464d-44c0-8d0e-b2d63828d896)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Innovation/Data/Innovation Products (ffd567d6-21f3-40a8-83d7-25ea546fe144)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Innovation/Data/Innovation Hero (bccdb6f8-10d3-485f-84b7-f083baeef408)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Innovation/Data/Innovation Narrative (f3b463ee-617b-4972-b4b9-4573cc14efb6)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Innovation/Data/Innovation Cross Nav (9f719b66-33a0-49c2-87a4-035132b4b3d0)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Communications/Data (b663d45c-9419-47a9-bc87-281a587ec6bc)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Transportation/Data (a40e4809-0698-4cb9-ba1e-aa5cf16552ed)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Industrial/Data (02fcf351-9b05-4340-8e1a-a061ca6d7b42)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Innovation/Data/Innovation Cross Nav/Transportation (70b8f167-8043-4ec8-b1b2-a6b5c912591f)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Innovation/Data/Innovation Cross Nav/Communications (dc95ce51-2dcd-493c-97e2-6aa1f6fcca76)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Innovation/Data/Innovation Cross Nav/Industrial (090a6aaa-b4ba-440d-a03a-d6924403b39f)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Communications/Data/Communications Cross Nav (34e88f09-9aa9-4e06-b5ee-9f5bcdb79740)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Communications/Data/Communications Products (cb64a9cc-e56d-4b11-9cd2-43ec9bf2dccc)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Communications/Data/Communications Hero (447ec51d-ef3a-4794-a98e-e120675db256)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Communications/Data/Communications Narrative (4b9c2106-c4ef-42f6-95ec-feb756e0a256)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Transportation/Data/Transportation Products (335a491b-0f73-4bd4-8173-e38d5fb9211d)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Transportation/Data/Transportation Hero (0554d424-d650-4b66-ad0f-d24a0730b2c7)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Transportation/Data/Transportation Narrative (a9c835d6-336e-4dd6-9ab2-279dc40bed0c)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Transportation/Data/Transportation Cross Nav (f61b1d8d-7d29-4398-9254-f946bfc6a704)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Industrial/Data/Industrial Hero (f4e8f478-00ed-499e-b397-132615d9a4e2)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Industrial/Data/Industrial Narrative (fee10be4-f31a-420a-865e-a6720faf7bb5)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Industrial/Data/Industrial Cross Nav (d47197ac-a48e-4da6-874b-3cf59f46410b)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Industrial/Data/Industrial Products (4902aced-2dd1-45d2-bf0b-260fdebd44ea)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Communications/Data/Communications Cross Nav/Industrial (36b01bf3-aefa-41f1-bf63-bb7eeeeb192e)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Communications/Data/Communications Cross Nav/Transportation (6e5a5761-58e3-4369-8338-3f6e51f7a22b)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Transportation/Data/Transportation Cross Nav/Communications (9dc898d2-be4a-4a77-a251-7cc003f3cc29)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Transportation/Data/Transportation Cross Nav/Industrial (09e88bf5-a427-42b0-a7e7-3c83a2d4bdb2)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Industrial/Data/Industrial Cross Nav/Communications (e8e827ae-b592-45bb-89f3-c413e624e746)
+03/25/2026 21:23:39 +00:00|INFO|[master] [A] /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Industrial/Data/Industrial Cross Nav/Transportation (3d592cb5-9501-4d50-822e-2764c998ffce)
+03/25/2026 21:23:39 +00:00|INFO|[master] Discovered 253 changes after evaluating 253 total items.
+03/25/2026 21:23:39 +00:00|INFO|[master] Applying changes...
+03/25/2026 21:23:39 +00:00|INFO|[master] [Batch 7] Item /sitecore/templates/Branches/Project/build/Homepage {597e0ce5-1f96-4154-8cf9-992590db0a37} with language: (en) in version: (1) doesn't have any fields. This version will be ignored.
+03/25/2026 21:23:39 +00:00|INFO|[master] [Batch 7] Item /sitecore/templates/Branches/Project/build/Innovation Page {7dce7501-c7d6-43e4-a7f1-97005d356a25} with language: (en) in version: (1) doesn't have any fields. This version will be ignored.
+03/25/2026 21:23:39 +00:00|INFO|[master] [Batch 7] Item /sitecore/templates/Branches/Project/build/Solutions Page {d8b6f753-9271-4e56-982a-c21410dfd379} with language: (en) in version: (1) doesn't have any fields. This version will be ignored.
+03/25/2026 21:23:39 +00:00|INFO|[master] [Batch 7] Item /sitecore/templates/Branches/Project/build/Homepage/$name {c0e48316-d963-486e-aef8-59845c809429} with language: (en) in version: (1) doesn't have any fields. This version will be ignored.
+03/25/2026 21:23:39 +00:00|INFO|[master] [Batch 7] Item /sitecore/templates/Branches/Project/build/Innovation Page/$name {fa28cbab-6a1a-44bb-80c7-029fd6a97d2f} with language: (en) in version: (1) doesn't have any fields. This version will be ignored.
+03/25/2026 21:23:39 +00:00|INFO|[master] [Batch 7] Item /sitecore/templates/Branches/Project/build/Solutions Page/$name {dd516ce6-55d3-43fe-aa23-db357b35764d} with language: (en) in version: (1) doesn't have any fields. This version will be ignored.
+03/25/2026 21:23:39 +00:00|INFO|[master] [Batch 7] Item /sitecore/templates/Branches/Project/build/Homepage/$name/Data {1a2fa09d-890c-45e9-b88b-1a6a6eb2e251} with language: (en) in version: (1) doesn't have any fields. This version will be ignored.
+03/25/2026 21:23:39 +00:00|INFO|[master] [Batch 7] Item /sitecore/templates/Branches/Project/build/Innovation Page/$name/Data {82483303-0103-4a04-b874-a2779f5bf306} with language: (en) in version: (1) doesn't have any fields. This version will be ignored.
+03/25/2026 21:23:39 +00:00|INFO|[master] [Batch 7] Item /sitecore/templates/Branches/Project/build/Solutions Page/$name/Data {e8cccc03-1829-4b72-9648-77908003049b} with language: (en) in version: (1) doesn't have any fields. This version will be ignored.
+03/25/2026 21:23:39 +00:00|INFO|[master] [Batch 7] Item /sitecore/content/TE Connectivity {bfbefa67-93bd-4674-a9b1-073d97c7bed2} with language: (en) in version: (1) doesn't have any fields. This version will be ignored.
+03/25/2026 21:23:39 +00:00|INFO|[master] [Batch 8] Item /sitecore/content/TE Connectivity/TE Connectivity {a1c18aa2-9e08-4d05-aa8c-6758d6048843} with language: (en) in version: (1) doesn't have any fields. This version will be ignored.
+03/25/2026 21:23:39 +00:00|INFO|[master] [Batch 8] Item /sitecore/content/TE Connectivity/TE Connectivity/Home/Data {71b27a4d-0589-452f-92e0-2960a61356be} with language: (en) in version: (1) doesn't have any fields. This version will be ignored.
+03/25/2026 21:23:39 +00:00|INFO|[master] [Batch 8] Item /sitecore/content/TE Connectivity/TE Connectivity/Home/Innovation/Data {10c74e42-76bf-4a6b-8380-f6c2189f36c7} with language: (en) in version: (1) doesn't have any fields. This version will be ignored.
+03/25/2026 21:23:39 +00:00|INFO|[master] [Batch 9] Item /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Communications/Data {b663d45c-9419-47a9-bc87-281a587ec6bc} with language: (en) in version: (1) doesn't have any fields. This version will be ignored.
+03/25/2026 21:23:39 +00:00|INFO|[master] [Batch 9] Item /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Transportation/Data {a40e4809-0698-4cb9-ba1e-aa5cf16552ed} with language: (en) in version: (1) doesn't have any fields. This version will be ignored.
+03/25/2026 21:23:39 +00:00|INFO|[master] [Batch 9] Item /sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Industrial/Data {02fcf351-9b05-4340-8e1a-a061ca6d7b42} with language: (en) in version: (1) doesn't have any fields. This version will be ignored.
+03/25/2026 21:23:39 +00:00|INFO|[master] Changes have been applied to item package 'items.master.xmcloudinit.dat'.
+03/25/2026 21:23:39 +00:00|INFO|________________________________________________Resource Packages Report________________________________________________
+03/25/2026 21:23:39 +00:00|INFO|Created resource package items.master.xmcloudinit.dat of MASTER database in C:\artifacts\items directory
+03/25/2026 21:23:39 +00:00|INFO|Uploading artifacts
+03/25/2026 21:23:45 +00:00|INFO|Uploaded artifacts
+03/25/2026 21:23:45 +00:00|INFO|Build has completed successfully.
+
+
+Deployment - In Progress
+03/25/2026 21:23:45 +00:00|INFO|Starting deployment of environment 'novatech'
+
+
