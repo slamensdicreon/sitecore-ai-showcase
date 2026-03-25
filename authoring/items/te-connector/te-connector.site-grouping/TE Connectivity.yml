@@ -42,9 +42,6 @@ Languages:
   Versions:
   - Version: 1
     Fields:
-    - ID: "82e64b52-0b8a-4a38-8c78-530c5493814e"
-      Hint: Name
-      Value: "NXP"
     - ID: "85a7501a-86d9-4243-9075-0b727c3a6db4"
       Hint: Name
       Value: "TE Connectivity"
