@@ -89,23 +89,6 @@ export default function DrawerNav({ links }: DrawerNavProps) {
     setActiveSubmenu(null);
   }, []);
 
-  const _toggleSubmenu = useCallback((itemId: string, hasChildren: boolean) => {
-    if (hasChildren) {
-      setActiveSubmenu((prev) => {
-        if (prev === itemId) return null;
-        requestAnimationFrame(() => {
-          if (submenuRef.current) {
-            const firstLink = submenuRef.current.querySelector<HTMLElement>('a, button');
-            firstLink?.focus();
-          }
-        });
-        return itemId;
-      });
-    } else {
-      setActiveSubmenu(null);
-    }
-  }, []);
-
   const handleItemHover = useCallback((itemId: string, hasChildren: boolean) => {
     if (submenuTimeout.current) clearTimeout(submenuTimeout.current);
     if (hasChildren) {
