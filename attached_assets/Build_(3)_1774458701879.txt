@@ -1,0 +1,6 @@
+
+OrganizationId: 
+EnvironmentId: 
+DeploymentId: 61l14zVY3OnJEbfQPCXu9w
+PlatformTenantName: icreonpartn26cc-novatech39b8-basicnextjsf64e
+Region: eus
