@@ -359,7 +359,18 @@ async function step5_createBranchTemplates() {
     await ensureItem("/sitecore/templates/Branches/Project", "build", FOLDER_TEMPLATE_ID);
   }
 
-  const branches = [
+  interface BranchDatasource {
+    name: string;
+    template: string;
+    fields: Record<string, string>;
+  }
+  interface BranchDef {
+    name: string;
+    renderings: string[];
+    datasources: BranchDatasource[];
+  }
+
+  const branches: BranchDef[] = [
     {
       name: "Homepage",
       renderings: ["Hero Banner", "Mega Trends", "Solution Pathways", "Authority Stats"],
