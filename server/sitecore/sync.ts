@@ -1,7 +1,8 @@
 import { createItem, deleteItem, getItem, getChildren, publishSite, updateItem } from "./authoring-api";
 import {
   componentTemplates, pageDefinitions, renderingDefinitions,
-  SITE_ROOT, TEMPLATES_ROOT, RENDERINGS_ROOT, DATA_ROOT, HOME_PATH,
+  SITE_ROOT, SITE_GROUPING_PATH, RENDERING_HOST_NAME,
+  TEMPLATES_ROOT, RENDERINGS_ROOT, DATA_ROOT, HOME_PATH,
   type ComponentTemplate
 } from "./content-model";
 
@@ -299,33 +300,84 @@ export async function publishToEdge(): Promise<SyncResult> {
   return result;
 }
 
+export async function fixSiteGroupingRenderingHost(): Promise<SyncResult> {
+  const result: SyncResult = { success: true, steps: [], errors: [] };
+  console.log(`[sitecore-sync] Setting site grouping rendering host to '${RENDERING_HOST_NAME}'...`);
+
+  const siteGroupingItem = await getItem(SITE_GROUPING_PATH);
+  if (!siteGroupingItem) {
+    const msg = `Site grouping item not found at ${SITE_GROUPING_PATH}`;
+    result.errors.push(msg);
+    result.steps.push({ action: "update", target: SITE_GROUPING_PATH, status: "error", message: msg });
+    result.success = false;
+    return result;
+  }
+
+  const currentHost = siteGroupingItem.fields?.["RenderingHost"] || "";
+  if (currentHost === RENDERING_HOST_NAME) {
+    result.steps.push({
+      action: "update",
+      target: SITE_GROUPING_PATH,
+      status: "skipped",
+      message: `Rendering host already set to '${RENDERING_HOST_NAME}'`,
+    });
+    return result;
+  }
+
+  const updated = await updateItem({
+    itemId: siteGroupingItem.id,
+    fields: { RenderingHost: RENDERING_HOST_NAME },
+  });
+
+  result.steps.push({
+    action: "update",
+    target: SITE_GROUPING_PATH,
+    status: updated ? "success" : "error",
+    message: updated
+      ? `Changed rendering host from '${currentHost}' to '${RENDERING_HOST_NAME}'`
+      : `Failed to update rendering host`,
+  });
+
+  if (!updated) {
+    result.errors.push("Failed to update site grouping rendering host");
+    result.success = false;
+  }
+
+  return result;
+}
+
 export async function fullSync(): Promise<SyncResult> {
   const allSteps: SyncStep[] = [];
   const allErrors: string[] = [];
 
   console.log("[sitecore-sync] === Starting full NXP site sync ===");
 
-  console.log("[sitecore-sync] Step 1/5: Cleaning existing TE content...");
+  console.log("[sitecore-sync] Step 1/6: Fixing site grouping rendering host...");
+  const siteGroupingResult = await fixSiteGroupingRenderingHost();
+  allSteps.push(...siteGroupingResult.steps);
+  allErrors.push(...siteGroupingResult.errors);
+
+  console.log("[sitecore-sync] Step 2/6: Cleaning existing TE content...");
   const cleanResult = await cleanNxpSite();
   allSteps.push(...cleanResult.steps);
   allErrors.push(...cleanResult.errors);
 
-  console.log("[sitecore-sync] Step 2/5: Creating templates...");
+  console.log("[sitecore-sync] Step 3/6: Creating templates...");
   const templateResult = await createTemplates();
   allSteps.push(...templateResult.steps);
   allErrors.push(...templateResult.errors);
 
-  console.log("[sitecore-sync] Step 3/5: Creating renderings...");
+  console.log("[sitecore-sync] Step 4/6: Creating renderings...");
   const renderingResult = await createRenderings();
   allSteps.push(...renderingResult.steps);
   allErrors.push(...renderingResult.errors);
 
-  console.log("[sitecore-sync] Step 4/5: Creating pages and datasources...");
+  console.log("[sitecore-sync] Step 5/6: Creating pages and datasources...");
   const pageResult = await createPages();
   allSteps.push(...pageResult.steps);
   allErrors.push(...pageResult.errors);
 
-  console.log("[sitecore-sync] Step 5/5: Publishing to Edge...");
+  console.log("[sitecore-sync] Step 6/6: Publishing to Edge...");
   const publishResult = await publishToEdge();
   allSteps.push(...publishResult.steps);
   allErrors.push(...publishResult.errors);

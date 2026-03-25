@@ -33,7 +33,7 @@ Core features include:
   - `authoring/items/te-connector/` — 225 YAML files pulled from XM Cloud with real GUIDs
   - `authoring/items/te-connector/te-connector.module.json` — Sitecore CLI module config
   - `sitecore.json` — Root serialization config pointing to module glob
-  - `xmcloud.build.json` — XM Cloud build config registering `te-connector-demo` rendering host
+  - `xmcloud.build.json` — XM Cloud build config (site grouping uses built-in `basic-nextjs` rendering host)
   - `scripts/push-to-github.sh` — Push script for `slamensdicreon/sitecore-ai-showcase` repo
 
 ## External Dependencies

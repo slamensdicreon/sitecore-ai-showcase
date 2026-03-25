@@ -9,7 +9,7 @@ import { z } from "zod";
 import crypto from "crypto";
 import { ordercloud } from "./ordercloud";
 import { syncToOrderCloud, pullFromOrderCloud, ensureBuyerOrganization, syncBuyerToOrderCloud, syncOrderToOrderCloud, syncAllBuyersToOrderCloud, syncAllOrdersToOrderCloud } from "./ordercloud-sync";
-import { fullSync, cleanNxpSite, createTemplates, createRenderings, createPages, publishToEdge } from "./sitecore/sync";
+import { fullSync, cleanNxpSite, createTemplates, createRenderings, createPages, publishToEdge, fixSiteGroupingRenderingHost } from "./sitecore/sync";
 import { getLayoutData, getItemFromEdge } from "./sitecore/edge-api";
 import { getItem, getChildren } from "./sitecore/authoring-api";
 import { clearTokenCache } from "./sitecore/auth";
@@ -1173,6 +1173,15 @@ export async function registerRoutes(
   app.post("/api/admin/sitecore/publish", async (_req, res) => {
     try {
       const result = await publishToEdge();
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ success: false, message: err.message });
+    }
+  });
+
+  app.post("/api/admin/sitecore/fix-rendering-host", async (_req, res) => {
+    try {
+      const result = await fixSiteGroupingRenderingHost();
       res.json(result);
     } catch (err: any) {
       res.status(500).json({ success: false, message: err.message });

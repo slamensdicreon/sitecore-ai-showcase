@@ -5,6 +5,8 @@ export const TEMPLATE_IDS = {
 };
 
 export const SITE_ROOT = "/sitecore/content/TE Connectivity/TE Connectivity";
+export const SITE_GROUPING_PATH = `${SITE_ROOT}/Settings/Site Grouping/nxp`;
+export const RENDERING_HOST_NAME = "basic-nextjs";
 export const TEMPLATES_ROOT = "/sitecore/templates/Project/nxp";
 export const RENDERINGS_ROOT = "/sitecore/layout/Renderings/Project/build/NovaTech";
 export const MEDIA_ROOT = "/sitecore/media library/Project/TE Connectivity";
