@@ -1,0 +1,2967 @@
+> content-sdk-nextjs-app-router@1.0.0 next:start
+> next start
+   ▲ Next.js 15.5.11
+   - Local:        http://localhost:3000
+   - Network:      http://10.3.72.49:3000
+ ✓ Starting...
+ ⚠ Mismatching @next/swc version, detected: 15.5.7 while Next.js is on 15.5.11. Please ensure these match
+ ✓ Ready in 548ms
+Placeholder headless-main contains unknown component ProductHero. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'ProductHero' component {
+  fields: {
+    Heading: { metadata: [Object], value: 'Yes this looks better' },
+    Tagline: { metadata: [Object], value: 'I like this.' },
+    PrimaryButtonLink: { metadata: [Object], value: [Object] },
+    SecondaryButtonText: { metadata: [Object], value: '' },
+    SecondaryButtonLink: { metadata: [Object], value: [Object] },
+    PrimaryButtonText: { metadata: [Object], value: 'Buy This' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'd3f8d254-1e6e-4e75-bad6-87bfcc2a9b7f',
+    componentName: 'ProductHero',
+    dataSource: '/sitecore/content/build/novatech/Home/Landing/Data/Different Hero',
+    fields: {
+      Heading: [Object],
+      Tagline: [Object],
+      PrimaryButtonLink: [Object],
+      SecondaryButtonText: [Object],
+      SecondaryButtonLink: [Object],
+      PrimaryButtonText: [Object]
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {},
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '863aadc2-db5e-4ab5-ca2a-35eb0b379ba0',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: { Image: { value: [Object], metadata: [Object] } },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '863aadc2-db5e-4ab5-ca2a-35eb0b379ba0',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {
+    Image: { value: [Object], metadata: [Object] },
+    TargetUrl: { value: [Object], metadata: [Object] },
+    ImageCaption: { value: 'This is a short text field', metadata: [Object] }
+  },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '863aadc2-db5e-4ab5-ca2a-35eb0b379ba0',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object], TargetUrl: [Object], ImageCaption: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {
+    Image: { value: [Object], metadata: [Object] },
+    TargetUrl: { value: [Object], metadata: [Object] },
+    ImageCaption: { value: 'This is a short text field', metadata: [Object] }
+  },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '863aadc2-db5e-4ab5-ca2a-35eb0b379ba0',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object], TargetUrl: [Object], ImageCaption: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {
+    Image: { value: [Object], metadata: [Object] },
+    TargetUrl: { value: [Object], metadata: [Object] },
+    ImageCaption: { value: 'This is a short text field', metadata: [Object] }
+  },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '863aadc2-db5e-4ab5-ca2a-35eb0b379ba0',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object], TargetUrl: [Object], ImageCaption: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {
+    Image: { value: [Object], metadata: [Object] },
+    TargetUrl: { value: [Object], metadata: [Object] },
+    ImageCaption: { value: 'This is a short text field', metadata: [Object] }
+  },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '863aadc2-db5e-4ab5-ca2a-35eb0b379ba0',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object], TargetUrl: [Object], ImageCaption: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {
+    Image: { value: [Object], metadata: [Object] },
+    TargetUrl: { value: [Object], metadata: [Object] },
+    ImageCaption: { value: 'This is a short text field', metadata: [Object] }
+  },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '863aadc2-db5e-4ab5-ca2a-35eb0b379ba0',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object], TargetUrl: [Object], ImageCaption: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {},
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '18785697-1d92-465b-d08d-04d3fb118441',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: { Image: { value: [Object], metadata: [Object] } },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '18785697-1d92-465b-d08d-04d3fb118441',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {
+    Image: { value: [Object], metadata: [Object] },
+    TargetUrl: { value: [Object], metadata: [Object] },
+    ImageCaption: { value: 'This is a short text field', metadata: [Object] }
+  },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '18785697-1d92-465b-d08d-04d3fb118441',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object], TargetUrl: [Object], ImageCaption: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {
+    Image: { value: [Object], metadata: [Object] },
+    TargetUrl: { value: [Object], metadata: [Object] },
+    ImageCaption: { value: 'This is a short text field', metadata: [Object] }
+  },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '18785697-1d92-465b-d08d-04d3fb118441',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object], TargetUrl: [Object], ImageCaption: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Redirect middleware failed:
+Error: The siteName cannot be empty
+    at bE.fetchRedirects (.next-container/server/src/middleware.js:31:186)
+    at bL.<anonymous> (.next-container/server/src/middleware.js:31:5069)
+    at Generator.next (<anonymous>)
+    at <unknown> (.next-container/server/src/middleware.js:31:1283)
+    at new Promise (<anonymous>)
+    at bI (.next-container/server/src/middleware.js:31:1032)
+    at bL.getExistsRedirect (.next-container/server/src/middleware.js:31:4840)
+    at bL.<anonymous> (.next-container/server/src/middleware.js:31:2203)
+    at Generator.next (<anonymous>)
+    at <unknown> (.next-container/server/src/middleware.js:31:1283) {
+}
+Personalize middleware failed:
+Error: In the 'layout' field, the 'site' argument cannot be empty.: {"response":{"data":{"layout":null},"errors":[{"message":"In the 'layout' field, the 'site' argument cannot be empty."}],"status":200,"headers":{}},"request":{"query":"\n      query ($siteName: String!, $language: String!, $itemPath: String!) {\n        layout(site: $siteName, routePath: $itemPath, language: $language) {\n          item {\n            id\n            version\n            personalization {\n              variantIds\n            }\n          }\n        }\n      }\n    ","variables":{"siteName":"","itemPath":"/","language":"en"}}}
+    at bi (.next-container/server/src/middleware.js:13:32846)
+    at async bO.getPersonalizeInfo (.next-container/server/src/middleware.js:43:181) {
+  response: {
+  data: { layout: null },
+  errors: [
+  {
+  message: 'In the \'layout\' field, the \'site\' argument cannot be empty.'
+}
+],
+  status: 200,
+  headers: Headers {  }
+},
+  request: {
+  query: '\n      query ($siteName: String!, $language: String!, $itemPath: String!) {\n        layout(site: $siteName, routePath: $itemPath, language: $language) {\n          item {\n            id\n            version\n            personalization {\n              variantIds\n            }\n          }\n        }\n      }\n    ',
+  variables: { siteName: '', itemPath: '/', language: 'en' }
+}
+}
+Redirect middleware failed:
+Error: The siteName cannot be empty
+    at bE.fetchRedirects (.next-container/server/src/middleware.js:31:186)
+    at bL.<anonymous> (.next-container/server/src/middleware.js:31:5069)
+    at Generator.next (<anonymous>)
+    at <unknown> (.next-container/server/src/middleware.js:31:1283)
+    at new Promise (<anonymous>)
+    at bI (.next-container/server/src/middleware.js:31:1032)
+    at bL.getExistsRedirect (.next-container/server/src/middleware.js:31:4840)
+    at bL.<anonymous> (.next-container/server/src/middleware.js:31:2203)
+    at Generator.next (<anonymous>)
+    at <unknown> (.next-container/server/src/middleware.js:31:1283) {
+}
+Personalize middleware failed:
+Error: In the 'layout' field, the 'site' argument cannot be empty.: {"response":{"data":{"layout":null},"errors":[{"message":"In the 'layout' field, the 'site' argument cannot be empty."}],"status":200,"headers":{}},"request":{"query":"\n      query ($siteName: String!, $language: String!, $itemPath: String!) {\n        layout(site: $siteName, routePath: $itemPath, language: $language) {\n          item {\n            id\n            version\n            personalization {\n              variantIds\n            }\n          }\n        }\n      }\n    ","variables":{"siteName":"","itemPath":"/","language":"en"}}}
+    at bi (.next-container/server/src/middleware.js:13:32846)
+    at async bO.getPersonalizeInfo (.next-container/server/src/middleware.js:43:181) {
+  response: {
+  data: { layout: null },
+  errors: [
+  {
+  message: 'In the \'layout\' field, the \'site\' argument cannot be empty.'
+}
+],
+  status: 200,
+  headers: Headers {  }
+},
+  request: {
+  query: '\n      query ($siteName: String!, $language: String!, $itemPath: String!) {\n        layout(site: $siteName, routePath: $itemPath, language: $language) {\n          item {\n            id\n            version\n            personalization {\n              variantIds\n            }\n          }\n        }\n      }\n    ',
+  variables: { siteName: '', itemPath: '/', language: 'en' }
+}
+}
+Redirect middleware failed:
+Error: The siteName cannot be empty
+    at bE.fetchRedirects (.next-container/server/src/middleware.js:31:186)
+    at bL.<anonymous> (.next-container/server/src/middleware.js:31:5069)
+    at Generator.next (<anonymous>)
+    at <unknown> (.next-container/server/src/middleware.js:31:1283)
+    at new Promise (<anonymous>)
+    at bI (.next-container/server/src/middleware.js:31:1032)
+    at bL.getExistsRedirect (.next-container/server/src/middleware.js:31:4840)
+    at bL.<anonymous> (.next-container/server/src/middleware.js:31:2203)
+    at Generator.next (<anonymous>)
+    at <unknown> (.next-container/server/src/middleware.js:31:1283) {
+}
+Personalize middleware failed:
+Error: In the 'layout' field, the 'site' argument cannot be empty.: {"response":{"data":{"layout":null},"errors":[{"message":"In the 'layout' field, the 'site' argument cannot be empty."}],"status":200,"headers":{}},"request":{"query":"\n      query ($siteName: String!, $language: String!, $itemPath: String!) {\n        layout(site: $siteName, routePath: $itemPath, language: $language) {\n          item {\n            id\n            version\n            personalization {\n              variantIds\n            }\n          }\n        }\n      }\n    ","variables":{"siteName":"","itemPath":"/","language":"en"}}}
+    at bi (.next-container/server/src/middleware.js:13:32846)
+    at async bO.getPersonalizeInfo (.next-container/server/src/middleware.js:43:181) {
+  response: {
+  data: { layout: null },
+  errors: [
+  {
+  message: 'In the \'layout\' field, the \'site\' argument cannot be empty.'
+}
+],
+  status: 200,
+  headers: Headers {  }
+},
+  request: {
+  query: '\n      query ($siteName: String!, $language: String!, $itemPath: String!) {\n        layout(site: $siteName, routePath: $itemPath, language: $language) {\n          item {\n            id\n            version\n            personalization {\n              variantIds\n            }\n          }\n        }\n      }\n    ',
+  variables: { siteName: '', itemPath: '/', language: 'en' }
+}
+}
+Redirect middleware failed:
+Error: The siteName cannot be empty
+    at bE.fetchRedirects (.next-container/server/src/middleware.js:31:186)
+    at bL.<anonymous> (.next-container/server/src/middleware.js:31:5069)
+    at Generator.next (<anonymous>)
+    at <unknown> (.next-container/server/src/middleware.js:31:1283)
+    at new Promise (<anonymous>)
+    at bI (.next-container/server/src/middleware.js:31:1032)
+    at bL.getExistsRedirect (.next-container/server/src/middleware.js:31:4840)
+    at bL.<anonymous> (.next-container/server/src/middleware.js:31:2203)
+    at Generator.next (<anonymous>)
+    at <unknown> (.next-container/server/src/middleware.js:31:1283) {
+}
+Personalize middleware failed:
+Error: In the 'layout' field, the 'site' argument cannot be empty.: {"response":{"data":{"layout":null},"errors":[{"message":"In the 'layout' field, the 'site' argument cannot be empty."}],"status":200,"headers":{}},"request":{"query":"\n      query ($siteName: String!, $language: String!, $itemPath: String!) {\n        layout(site: $siteName, routePath: $itemPath, language: $language) {\n          item {\n            id\n            version\n            personalization {\n              variantIds\n            }\n          }\n        }\n      }\n    ","variables":{"siteName":"","itemPath":"/","language":"en"}}}
+    at bi (.next-container/server/src/middleware.js:13:32846)
+    at async bO.getPersonalizeInfo (.next-container/server/src/middleware.js:43:181) {
+  response: {
+  data: { layout: null },
+  errors: [
+  {
+  message: 'In the \'layout\' field, the \'site\' argument cannot be empty.'
+}
+],
+  status: 200,
+  headers: Headers {  }
+},
+  request: {
+  query: '\n      query ($siteName: String!, $language: String!, $itemPath: String!) {\n        layout(site: $siteName, routePath: $itemPath, language: $language) {\n          item {\n            id\n            version\n            personalization {\n              variantIds\n            }\n          }\n        }\n      }\n    ',
+  variables: { siteName: '', itemPath: '/', language: 'en' }
+}
+}
+Redirect middleware failed:
+Error: The siteName cannot be empty
+    at bE.fetchRedirects (.next-container/server/src/middleware.js:31:186)
+    at bL.<anonymous> (.next-container/server/src/middleware.js:31:5069)
+    at Generator.next (<anonymous>)
+    at <unknown> (.next-container/server/src/middleware.js:31:1283)
+    at new Promise (<anonymous>)
+    at bI (.next-container/server/src/middleware.js:31:1032)
+    at bL.getExistsRedirect (.next-container/server/src/middleware.js:31:4840)
+    at bL.<anonymous> (.next-container/server/src/middleware.js:31:2203)
+    at Generator.next (<anonymous>)
+    at <unknown> (.next-container/server/src/middleware.js:31:1283) {
+}
+Personalize middleware failed:
+Error: In the 'layout' field, the 'site' argument cannot be empty.: {"response":{"data":{"layout":null},"errors":[{"message":"In the 'layout' field, the 'site' argument cannot be empty."}],"status":200,"headers":{}},"request":{"query":"\n      query ($siteName: String!, $language: String!, $itemPath: String!) {\n        layout(site: $siteName, routePath: $itemPath, language: $language) {\n          item {\n            id\n            version\n            personalization {\n              variantIds\n            }\n          }\n        }\n      }\n    ","variables":{"siteName":"","itemPath":"/","language":"en"}}}
+    at bi (.next-container/server/src/middleware.js:13:32846)
+    at async bO.getPersonalizeInfo (.next-container/server/src/middleware.js:43:181) {
+  response: {
+  data: { layout: null },
+  errors: [
+  {
+  message: 'In the \'layout\' field, the \'site\' argument cannot be empty.'
+}
+],
+  status: 200,
+  headers: Headers {  }
+},
+  request: {
+  query: '\n      query ($siteName: String!, $language: String!, $itemPath: String!) {\n        layout(site: $siteName, routePath: $itemPath, language: $language) {\n          item {\n            id\n            version\n            personalization {\n              variantIds\n            }\n          }\n        }\n      }\n    ',
+  variables: { siteName: '', itemPath: '/', language: 'en' }
+}
+}
+Redirect middleware failed:
+Error: The siteName cannot be empty
+    at bE.fetchRedirects (.next-container/server/src/middleware.js:31:186)
+    at bL.<anonymous> (.next-container/server/src/middleware.js:31:5069)
+    at Generator.next (<anonymous>)
+    at <unknown> (.next-container/server/src/middleware.js:31:1283)
+    at new Promise (<anonymous>)
+    at bI (.next-container/server/src/middleware.js:31:1032)
+    at bL.getExistsRedirect (.next-container/server/src/middleware.js:31:4840)
+    at bL.<anonymous> (.next-container/server/src/middleware.js:31:2203)
+    at Generator.next (<anonymous>)
+    at <unknown> (.next-container/server/src/middleware.js:31:1283) {
+}
+Personalize middleware failed:
+Error: In the 'layout' field, the 'site' argument cannot be empty.: {"response":{"data":{"layout":null},"errors":[{"message":"In the 'layout' field, the 'site' argument cannot be empty."}],"status":200,"headers":{}},"request":{"query":"\n      query ($siteName: String!, $language: String!, $itemPath: String!) {\n        layout(site: $siteName, routePath: $itemPath, language: $language) {\n          item {\n            id\n            version\n            personalization {\n              variantIds\n            }\n          }\n        }\n      }\n    ","variables":{"siteName":"","itemPath":"/","language":"en"}}}
+    at bi (.next-container/server/src/middleware.js:13:32846)
+    at async bO.getPersonalizeInfo (.next-container/server/src/middleware.js:43:181) {
+  response: {
+  data: { layout: null },
+  errors: [
+  {
+  message: 'In the \'layout\' field, the \'site\' argument cannot be empty.'
+}
+],
+  status: 200,
+  headers: Headers {  }
+},
+  request: {
+  query: '\n      query ($siteName: String!, $language: String!, $itemPath: String!) {\n        layout(site: $siteName, routePath: $itemPath, language: $language) {\n          item {\n            id\n            version\n            personalization {\n              variantIds\n            }\n          }\n        }\n      }\n    ',
+  variables: { siteName: '', itemPath: '/', language: 'en' }
+}
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {},
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '44cf0cb2-cb2c-41a7-4572-053c5b05a6e1',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {
+    Image: { value: [Object], metadata: [Object] },
+    TargetUrl: { value: [Object], metadata: [Object] },
+    ImageCaption: { value: 'This is a short text field', metadata: [Object] }
+  },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '44cf0cb2-cb2c-41a7-4572-053c5b05a6e1',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object], TargetUrl: [Object], ImageCaption: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {},
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '2fce46f3-4926-485c-b3ee-db2878081a2a',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Placeholder editing-componentmode-placeholder contains unknown component Image. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'Image' component {
+  fields: {
+    Image: { value: [Object], metadata: [Object] },
+    TargetUrl: { value: [Object], metadata: [Object] },
+    ImageCaption: { value: 'This is a short text field', metadata: [Object] }
+  },
+  params: {
+    GridParameters: 'col-12',
+    FieldNames: 'Default',
+    Styles: '',
+    RenderingIdentifier: '',
+    DynamicPlaceholderId: '1',
+    styles: 'col-12 '
+  },
+  rendering: {
+    uid: '2fce46f3-4926-485c-b3ee-db2878081a2a',
+    componentName: 'Image',
+    dataSource: '',
+    params: {
+      GridParameters: 'col-12',
+      FieldNames: 'Default',
+      Styles: '',
+      RenderingIdentifier: '',
+      DynamicPlaceholderId: '1'
+    },
+    fields: { Image: [Object], TargetUrl: [Object], ImageCaption: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'library-metadata',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: true,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Redirect middleware failed:
+Error: The siteName cannot be empty
+    at bE.fetchRedirects (.next-container/server/src/middleware.js:31:186)
+    at bL.<anonymous> (.next-container/server/src/middleware.js:31:5069)
+    at Generator.next (<anonymous>)
+    at <unknown> (.next-container/server/src/middleware.js:31:1283)
+    at new Promise (<anonymous>)
+    at bI (.next-container/server/src/middleware.js:31:1032)
+    at bL.getExistsRedirect (.next-container/server/src/middleware.js:31:4840)
+    at bL.<anonymous> (.next-container/server/src/middleware.js:31:2203)
+    at Generator.next (<anonymous>)
+    at <unknown> (.next-container/server/src/middleware.js:31:1283) {
+}
+Personalize middleware failed:
+Error: In the 'layout' field, the 'site' argument cannot be empty.: {"response":{"data":{"layout":null},"errors":[{"message":"In the 'layout' field, the 'site' argument cannot be empty."}],"status":200,"headers":{}},"request":{"query":"\n      query ($siteName: String!, $language: String!, $itemPath: String!) {\n        layout(site: $siteName, routePath: $itemPath, language: $language) {\n          item {\n            id\n            version\n            personalization {\n              variantIds\n            }\n          }\n        }\n      }\n    ","variables":{"siteName":"","itemPath":"/","language":"en"}}}
+    at bi (.next-container/server/src/middleware.js:13:32846)
+    at async bO.getPersonalizeInfo (.next-container/server/src/middleware.js:43:181) {
+  response: {
+  data: { layout: null },
+  errors: [
+  {
+  message: 'In the \'layout\' field, the \'site\' argument cannot be empty.'
+}
+],
+  status: 200,
+  headers: Headers {  }
+},
+  request: {
+  query: '\n      query ($siteName: String!, $language: String!, $itemPath: String!) {\n        layout(site: $siteName, routePath: $itemPath, language: $language) {\n          item {\n            id\n            version\n            personalization {\n              variantIds\n            }\n          }\n        }\n      }\n    ',
+  variables: { siteName: '', itemPath: '/', language: 'en' }
+}
+}
+Placeholder headless-header contains unknown component NewHeader. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'NewHeader' component {
+  fields: {},
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e501',
+    componentName: 'NewHeader',
+    dataSource: ''
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Placeholder headless-main contains unknown component NewHero. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component ProgramFinder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component QuoteBlock. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component ExploreCards. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component AirVentureBanner. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component CommunitySection. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component NextStepCTA. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'NewHero' component {
+  fields: {
+    Heading: { value: 'KEEP CLIMBING' },
+    Subheading: { value: 'Resources for every stage of flying' },
+    BackgroundImage: { value: {} },
+    SearchPlaceholder: { value: 'Search programs, events, and stories' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e502',
+    componentName: 'NewHero',
+    dataSource: '{675DB0E8-CBA5-4758-86A6-F14721F0CEDC}',
+    fields: {
+      Heading: [Object],
+      Subheading: [Object],
+      BackgroundImage: [Object],
+      SearchPlaceholder: [Object]
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Component props for unimplemented 'ProgramFinder' component {
+  fields: {
+    Heading: { value: 'Your Next Move in Aviation' },
+    Description: {
+      value: 'Discover pathways, programs, and experiences designed to move you forward. From first curiosity to advanced participation. Every step mapped. Every opportunity connected.'
+    }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e503',
+    componentName: 'ProgramFinder',
+    dataSource: '{3147E98F-3EF5-4445-A8A8-CB64EADA4BC7}',
+    fields: { Heading: [Object], Description: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Component props for unimplemented 'QuoteBlock' component {
+  fields: {
+    Quote: {
+      value: 'Aviation is proof that given the will, we can achieve the impossible.'
+    },
+    Author: { value: 'Capt. Eddie Rickenbacker' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e504',
+    componentName: 'QuoteBlock',
+    dataSource: '{B3B93E7A-C4FF-4626-ADEF-706BDB1E4852}',
+    fields: { Quote: [Object], Author: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Component props for unimplemented 'ExploreCards' component {
+  fields: {},
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e505',
+    componentName: 'ExploreCards',
+    dataSource: ''
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Component props for unimplemented 'AirVentureBanner' component {
+  fields: {
+    Heading: { value: 'AIRVENTURE 2026' },
+    Subheading: { value: 'The Future of Flight Starts Here' },
+    Description: {
+      value: '<p>For one week each year, aviation becomes a living classroom. Families, builders, pilots, and dreamers gather to explore aircraft, ideas, and possibilities.</p>'
+    },
+    BackgroundImage: { value: {} }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e506',
+    componentName: 'AirVentureBanner',
+    dataSource: '{8F214483-366F-4112-BBC2-C67813F7AFB4}',
+    fields: {
+      Heading: [Object],
+      Subheading: [Object],
+      Description: [Object],
+      BackgroundImage: [Object]
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Component props for unimplemented 'CommunitySection' component {
+  fields: {
+    Heading: { value: 'EAA Community' },
+    Description: {
+      value: '<p>Becoming part of EAA can be a defining and life-changing experience. With a legacy rooted in innovation, craftsmanship, and shared passion, EAA offers pathways for every kind of aviation enthusiast.</p>'
+    }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e507',
+    componentName: 'CommunitySection',
+    dataSource: '{B2401B29-24F1-4740-8CDA-AECA3484CF92}',
+    fields: { Heading: [Object], Description: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Component props for unimplemented 'NextStepCTA' component {
+  fields: {
+    Heading: { value: 'Take the Next Step in Your Aviation Journey' },
+    Description: {
+      value: '<p>Join a community that helps you learn, build, fly, and grow. Every stage supported. Every ambition welcome.</p>'
+    },
+    CTAText: { value: 'Explore Membership' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e508',
+    componentName: 'NextStepCTA',
+    dataSource: '{F76ED3FD-2973-4E18-89D8-E6CD831783C6}',
+    fields: { Heading: [Object], Description: [Object], CTAText: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Placeholder headless-footer contains unknown component NewFooter. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'NewFooter' component {
+  fields: {
+    Tagline: {
+      value: 'EAA connects people to aviation through learning, building, and shared experience.'
+    }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e509',
+    componentName: 'NewFooter',
+    dataSource: '{2AEB5F88-AFDA-49D5-BD77-F7D4DBE60B53}',
+    fields: { Tagline: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Placeholder headless-header contains unknown component NewHeader. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'NewHeader' component {
+  fields: { Logo: { value: {} }, JoinText: { value: 'Join EAA' } },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e501',
+    componentName: 'NewHeader',
+    dataSource: '{EED24E0B-06E1-402F-9C42-DA34553E7546}',
+    fields: { Logo: [Object], JoinText: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Placeholder headless-main contains unknown component NewHero. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component ProgramFinder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component QuoteBlock. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component ExploreCards. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component AirVentureBanner. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component CommunitySection. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component NextStepCTA. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'NewHero' component {
+  fields: {
+    Heading: { value: 'KEEP CLIMBING' },
+    Subheading: { value: 'Resources for every stage of flying' },
+    BackgroundImage: { value: {} },
+    SearchPlaceholder: { value: 'Search programs, events, and stories' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e502',
+    componentName: 'NewHero',
+    dataSource: '{675DB0E8-CBA5-4758-86A6-F14721F0CEDC}',
+    fields: {
+      Heading: [Object],
+      Subheading: [Object],
+      BackgroundImage: [Object],
+      SearchPlaceholder: [Object]
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Component props for unimplemented 'ProgramFinder' component {
+  fields: {
+    Heading: { value: 'Your Next Move in Aviation' },
+    Description: {
+      value: 'Discover pathways, programs, and experiences designed to move you forward. From first curiosity to advanced participation. Every step mapped. Every opportunity connected.'
+    }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e503',
+    componentName: 'ProgramFinder',
+    dataSource: '{3147E98F-3EF5-4445-A8A8-CB64EADA4BC7}',
+    fields: { Heading: [Object], Description: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Component props for unimplemented 'QuoteBlock' component {
+  fields: {
+    Quote: {
+      value: 'Aviation is proof that given the will, we can achieve the impossible.'
+    },
+    Author: { value: 'Capt. Eddie Rickenbacker' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e504',
+    componentName: 'QuoteBlock',
+    dataSource: '{B3B93E7A-C4FF-4626-ADEF-706BDB1E4852}',
+    fields: { Quote: [Object], Author: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Component props for unimplemented 'ExploreCards' component {
+  fields: {},
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e505',
+    componentName: 'ExploreCards',
+    dataSource: ''
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Component props for unimplemented 'AirVentureBanner' component {
+  fields: {
+    Heading: { value: 'AIRVENTURE 2026' },
+    Subheading: { value: 'The Future of Flight Starts Here' },
+    Description: {
+      value: '<p>For one week each year, aviation becomes a living classroom. Families, builders, pilots, and dreamers gather to explore aircraft, ideas, and possibilities.</p>'
+    },
+    BackgroundImage: { value: {} }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e506',
+    componentName: 'AirVentureBanner',
+    dataSource: '{8F214483-366F-4112-BBC2-C67813F7AFB4}',
+    fields: {
+      Heading: [Object],
+      Subheading: [Object],
+      Description: [Object],
+      BackgroundImage: [Object]
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Component props for unimplemented 'CommunitySection' component {
+  fields: {
+    Heading: { value: 'EAA Community' },
+    Description: {
+      value: '<p>Becoming part of EAA can be a defining and life-changing experience. With a legacy rooted in innovation, craftsmanship, and shared passion, EAA offers pathways for every kind of aviation enthusiast.</p>'
+    }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e507',
+    componentName: 'CommunitySection',
+    dataSource: '{B2401B29-24F1-4740-8CDA-AECA3484CF92}',
+    fields: { Heading: [Object], Description: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Component props for unimplemented 'NextStepCTA' component {
+  fields: {
+    Heading: { value: 'Take the Next Step in Your Aviation Journey' },
+    Description: {
+      value: '<p>Join a community that helps you learn, build, fly, and grow. Every stage supported. Every ambition welcome.</p>'
+    },
+    CTAText: { value: 'Explore Membership' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e508',
+    componentName: 'NextStepCTA',
+    dataSource: '{F76ED3FD-2973-4E18-89D8-E6CD831783C6}',
+    fields: { Heading: [Object], Description: [Object], CTAText: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Placeholder headless-footer contains unknown component NewFooter. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'NewFooter' component {
+  fields: {
+    Tagline: {
+      value: 'EAA connects people to aviation through learning, building, and shared experience.'
+    },
+    CTAText: { value: 'Start Your Journey' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e509',
+    componentName: 'NewFooter',
+    dataSource: '{2AEB5F88-AFDA-49D5-BD77-F7D4DBE60B53}',
+    fields: { Tagline: [Object], CTAText: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'preview',
+      isNormal: false,
+      isPreview: true,
+      isEditing: false,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Placeholder headless-header contains unknown component NewHeader. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'NewHeader' component {
+  fields: {
+    Logo: { metadata: [Object], value: {} },
+    JoinText: { metadata: [Object], value: 'Join EAA' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e501',
+    componentName: 'NewHeader',
+    dataSource: '{EED24E0B-06E1-402F-9C42-DA34553E7546}',
+    fields: { Logo: [Object], JoinText: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Placeholder headless-main contains unknown component NewHero. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component ProgramFinder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component QuoteBlock. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component ExploreCards. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component AirVentureBanner. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component CommunitySection. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Placeholder headless-main contains unknown component NextStepCTA. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'NewHero' component {
+  fields: {
+    Heading: { metadata: [Object], value: 'KEEP CLIMBING' },
+    Subheading: {
+      metadata: [Object],
+      value: 'Resources for every stage of flying'
+    },
+    BackgroundImage: { metadata: [Object], value: {} },
+    SearchPlaceholder: {
+      metadata: [Object],
+      value: 'Search programs, events, and stories'
+    }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e502',
+    componentName: 'NewHero',
+    dataSource: '{675DB0E8-CBA5-4758-86A6-F14721F0CEDC}',
+    fields: {
+      Heading: [Object],
+      Subheading: [Object],
+      BackgroundImage: [Object],
+      SearchPlaceholder: [Object]
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Component props for unimplemented 'ProgramFinder' component {
+  fields: {
+    Heading: { metadata: [Object], value: 'Your Next Move in Aviation' },
+    Description: {
+      metadata: [Object],
+      value: 'Discover pathways, programs, and experiences designed to move you forward. From first curiosity to advanced participation. Every step mapped. Every opportunity connected.'
+    }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e503',
+    componentName: 'ProgramFinder',
+    dataSource: '{3147E98F-3EF5-4445-A8A8-CB64EADA4BC7}',
+    fields: { Heading: [Object], Description: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Component props for unimplemented 'QuoteBlock' component {
+  fields: {
+    Quote: {
+      metadata: [Object],
+      value: 'Aviation is proof that given the will, we can achieve the impossible.'
+    },
+    Author: { metadata: [Object], value: 'Capt. Eddie Rickenbacker' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e504',
+    componentName: 'QuoteBlock',
+    dataSource: '{B3B93E7A-C4FF-4626-ADEF-706BDB1E4852}',
+    fields: { Quote: [Object], Author: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Component props for unimplemented 'ExploreCards' component {
+  fields: {},
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e505',
+    componentName: 'ExploreCards',
+    dataSource: ''
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Component props for unimplemented 'AirVentureBanner' component {
+  fields: {
+    Heading: { metadata: [Object], value: 'AIRVENTURE 2026' },
+    Subheading: { metadata: [Object], value: 'The Future of Flight Starts Here' },
+    Description: {
+      metadata: [Object],
+      value: '<p>For one week each year, aviation becomes a living classroom. Families, builders, pilots, and dreamers gather to explore aircraft, ideas, and possibilities.</p>'
+    },
+    BackgroundImage: { metadata: [Object], value: {} }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e506',
+    componentName: 'AirVentureBanner',
+    dataSource: '{8F214483-366F-4112-BBC2-C67813F7AFB4}',
+    fields: {
+      Heading: [Object],
+      Subheading: [Object],
+      Description: [Object],
+      BackgroundImage: [Object]
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Component props for unimplemented 'CommunitySection' component {
+  fields: {
+    Heading: { metadata: [Object], value: 'EAA Community' },
+    Description: {
+      metadata: [Object],
+      value: '<p>Becoming part of EAA can be a defining and life-changing experience. With a legacy rooted in innovation, craftsmanship, and shared passion, EAA offers pathways for every kind of aviation enthusiast.</p>'
+    }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e507',
+    componentName: 'CommunitySection',
+    dataSource: '{B2401B29-24F1-4740-8CDA-AECA3484CF92}',
+    fields: { Heading: [Object], Description: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Component props for unimplemented 'NextStepCTA' component {
+  fields: {
+    Heading: {
+      metadata: [Object],
+      value: 'Take the Next Step in Your Aviation Journey'
+    },
+    Description: {
+      metadata: [Object],
+      value: '<p>Join a community that helps you learn, build, fly, and grow. Every stage supported. Every ambition welcome.</p>'
+    },
+    CTAText: { metadata: [Object], value: 'Explore Membership' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e508',
+    componentName: 'NextStepCTA',
+    dataSource: '{F76ED3FD-2973-4E18-89D8-E6CD831783C6}',
+    fields: { Heading: [Object], Description: [Object], CTAText: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
+Placeholder headless-footer contains unknown component NewFooter. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'NewFooter' component {
+  fields: {
+    Tagline: {
+      metadata: [Object],
+      value: 'EAA connects people to aviation through learning, building, and shared experience.'
+    },
+    CTAText: { metadata: [Object], value: 'Start Your Journey' }
+  },
+  params: { styles: '' },
+  rendering: {
+    uid: 'a1a2a3a4-b5b6-c7c8-d9d0-e1e2e3e4e509',
+    componentName: 'NewFooter',
+    dataSource: '{2AEB5F88-AFDA-49D5-BD77-F7D4DBE60B53}',
+    fields: { Tagline: [Object], CTAText: [Object] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'novatech',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'ValueProposition' => { Default: [Function: C] },
+    'Testimonial' => { Default: [Function: E] },
+    'Container' => { Default: [Function: H] },
+    'ColumnSplitter' => { Default: [Function: I] },
+    'SolutionCard' => { Default: [Function: K] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: X] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: Y] },
+    'ProductFeature' => { Default: [Function: Z] },
+    'PricingTable' => { Default: [Function: _] },
+    'PartialDesignDynamicPlaceholder' => { default: [Function: aa] },
+    'Hero' => {
+      Default: [Function: af],
+      Impact: [Function: ac],
+      Minimal: [Function: ad],
+      Product: [Function: ae]
+    },
+    'FeatureCard' => { Default: [Function: ag] },
+    'CTABanner' => { Default: [Function: ah] },
+    'ContentBlock' => { Default: [Function: ai] },
+    'ContainerFullWidth' => { Default: [Function: aj] },
+    'ContainerFullBleed' => { Default: [Function: al] },
+    'Container70' => { Default: [Function: am] },
+    'CaseStudy' => { Default: [Function: an] }
+  }
+}
