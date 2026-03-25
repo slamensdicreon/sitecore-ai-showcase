@@ -22,12 +22,15 @@ Core features include:
 - **Sitecore XM Cloud Integration**: Content authoring, Edge delivery, and in-context editing for specific pages (Homepage, Solutions). This involves a custom Content SDK replacement and an editing host for Sitecore Pages communication.
   - CM URL: `xmc-icreonpartn828a-novatech15a9-novatechf6c7.sitecorecloud.io`
   - Uses `SITECORE_AUTOMATION2_*` credentials for authoring API
-  - Site root: `/sitecore/content/nxp/nxp`; Templates: `/sitecore/templates/Project/nxp`
-  - Renderings: `/sitecore/layout/Renderings/Project/build/NovaTech`
+  - Tenant: `TE Connectivity` (renamed from nxp); Site root: `/sitecore/content/TE Connectivity/TE Connectivity`
+  - Templates: `/sitecore/templates/Project/nxp`; Renderings: `/sitecore/layout/Renderings/Project/build/NovaTech`
+  - Rendering host: `te-connector-demo` (set on site grouping item)
+  - Datasource location: `./Data` (nested under each page, following EAA pattern)
+  - Content tree: Home/Data, Home/Solutions/Transportation/Data, Home/Solutions/Communications/Data, Home/Solutions/Industrial/Data
   - Sync pipeline creates 16 templates, 10 renderings, 16+ datasource items
   - Key XM Cloud GraphQL differences: `parent` field is `ID!` (GUID, not path); `itemId` returns bare lowercase GUIDs; Template Section ID `{E269FBB5-3750-427A-9149-7AA950B49301}`; Template Field ID `{455A3E98-A627-4B40-8035-E683A0331AC7}`; publish uses `experienceedge` target database
 - **Sitecore CLI Serialization**: Item serialization for XM Cloud deployment pipeline
-  - `authoring/items/te-connector/` — 131 YAML files (16 templates, 10 renderings with sections/fields)
+  - `authoring/items/te-connector/` — 225 YAML files pulled from XM Cloud with real GUIDs
   - `authoring/items/te-connector/te-connector.module.json` — Sitecore CLI module config
   - `sitecore.json` — Root serialization config pointing to module glob
   - `xmcloud.build.json` — XM Cloud build config registering `te-connector-demo` rendering host

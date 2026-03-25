@@ -4,7 +4,7 @@ export const TEMPLATE_IDS = {
   DATASOURCE_FOLDER: "{56776E93-EC70-4244-B93B-CAE1F743E4FA}",
 };
 
-export const SITE_ROOT = "/sitecore/content/nxp/nxp";
+export const SITE_ROOT = "/sitecore/content/TE Connectivity/TE Connectivity";
 export const TEMPLATES_ROOT = "/sitecore/templates/Project/nxp";
 export const RENDERINGS_ROOT = "/sitecore/layout/Renderings/Project/build/NovaTech";
 export const MEDIA_ROOT = "/sitecore/media library/Project/nxp";
