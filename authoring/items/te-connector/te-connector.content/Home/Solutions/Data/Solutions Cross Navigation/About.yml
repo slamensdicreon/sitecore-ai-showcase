@@ -1,0 +1,29 @@
+---
+ID: "34cf2d90-7eea-4731-a259-5c4bfc98e5f9"
+Parent: "2e6c3c06-93d3-466a-b427-3b947919c315"
+Template: "25e5d6f8-b178-416b-aab3-4c033ce84913"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Data/Solutions Cross Navigation/About"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "2f299d30-66ef-4db3-b97b-850be734c653"
+      Hint: Title
+      Value: "About TE"
+    - ID: "36230626-6ddf-4d45-9268-8204ff7671c1"
+      Hint: Description
+      Value: "Learn about our global presence and engineering excellence"
+    - ID: "e8486a65-e4e7-4997-8faa-3459f16b7242"
+      Hint: Icon Name
+      Value: "Globe"
+    - ID: "6779db86-1407-408e-b39d-7557d3bffc3c"
+      Hint: Accent Color
+      Value: "#2e4957"

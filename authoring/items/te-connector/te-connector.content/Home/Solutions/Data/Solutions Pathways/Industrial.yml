@@ -24,3 +24,6 @@ Languages:
     - ID: "647fa9b5-5ee2-4350-be5d-a7b3910a42bf"
       Hint: Context
       Value: "Factory automation, robotics, and energy management"
+    - ID: "6c013343-2eee-424a-a004-ea6d5bee1fe6"
+      Hint: Link
+      Value: "<link linktype=\"internal\" url=\"/solutions/industrial\" />"
