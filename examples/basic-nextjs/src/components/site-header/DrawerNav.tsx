@@ -89,7 +89,7 @@ export default function DrawerNav({ links }: DrawerNavProps) {
     setActiveSubmenu(null);
   }, []);
 
-  const toggleSubmenu = useCallback((itemId: string, hasChildren: boolean) => {
+  const _toggleSubmenu = useCallback((itemId: string, hasChildren: boolean) => {
     if (hasChildren) {
       setActiveSubmenu((prev) => {
         if (prev === itemId) return null;

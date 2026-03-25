@@ -1,4 +1,3 @@
-import { JSX } from 'react';
 import {
   Text,
 } from '@sitecore-content-sdk/nextjs';

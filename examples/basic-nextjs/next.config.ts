@@ -5,9 +5,6 @@ const nextConfig: NextConfig = {
   distDir: process.env.NEXTJS_DIST_DIR || '.next',
   reactStrictMode: true,
   poweredByHeader: false,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   images: {
     remotePatterns: [
       {
