@@ -2,7 +2,7 @@
 
 import {
   Text,
-  useSitecoreContext,
+  useSitecore,
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
 import {
@@ -28,8 +28,8 @@ type MegaTrendsProps = {
 };
 
 export default function MegaTrends({ fields, rendering }: MegaTrendsProps) {
-  const { sitecoreContext } = useSitecoreContext();
-  const isEditing = sitecoreContext?.pageEditing === true;
+  const { page: { mode } } = useSitecore();
+  const isEditing = mode?.isEditing === true;
 
   const children = getChildItems(rendering as Record<string, unknown>);
 

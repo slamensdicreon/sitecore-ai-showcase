@@ -2,7 +2,6 @@
 
 import {
   Text,
-  useSitecoreContext,
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
 import { getFieldValue } from 'src/lib/field-utils';

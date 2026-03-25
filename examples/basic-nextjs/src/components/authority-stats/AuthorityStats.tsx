@@ -2,7 +2,7 @@
 
 import {
   Text,
-  useSitecoreContext,
+  useSitecore,
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
 import {
@@ -28,8 +28,8 @@ type AuthorityStatsProps = {
 };
 
 export default function AuthorityStats({ fields, rendering, params }: AuthorityStatsProps) {
-  const { sitecoreContext } = useSitecoreContext();
-  const isEditing = sitecoreContext?.pageEditing === true;
+  const { page: { mode } } = useSitecore();
+  const isEditing = mode?.isEditing === true;
   const variant = params?.FieldNames || '';
   const isDark = variant === 'authority--dark';
 

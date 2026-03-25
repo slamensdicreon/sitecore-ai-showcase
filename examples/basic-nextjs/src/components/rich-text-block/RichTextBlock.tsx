@@ -2,7 +2,6 @@
 
 import {
   RichText,
-  useSitecoreContext,
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
 

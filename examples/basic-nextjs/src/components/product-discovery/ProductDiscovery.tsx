@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import {
   Text,
-  useSitecoreContext,
+  useSitecore,
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
 import { ArrowRight } from 'lucide-react';
@@ -28,8 +28,8 @@ type ProductDiscoveryProps = {
 };
 
 export default function ProductDiscovery({ fields, params }: ProductDiscoveryProps) {
-  const { sitecoreContext } = useSitecoreContext();
-  const isEditing = sitecoreContext?.pageEditing === true;
+  const { page: { mode } } = useSitecore();
+  const isEditing = mode?.isEditing === true;
   const variant = params?.FieldNames || '';
   const isCarousel = variant === 'discovery--carousel';
   const isCompactList = variant === 'discovery--compact';

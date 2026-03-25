@@ -3,7 +3,7 @@
 import {
   Text,
   Link as SitecoreLink,
-  useSitecoreContext,
+  useSitecore,
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
 import { ArrowRight } from 'lucide-react';
@@ -15,8 +15,8 @@ type HeroBannerProps = {
 };
 
 export default function HeroBanner({ fields, params }: HeroBannerProps) {
-  const { sitecoreContext } = useSitecoreContext();
-  const isEditing = sitecoreContext?.pageEditing === true;
+  const { page: { mode } } = useSitecore();
+  const isEditing = mode?.isEditing === true;
   const variant = params?.FieldNames || '';
   const isCompact = variant === 'hero--compact';
 

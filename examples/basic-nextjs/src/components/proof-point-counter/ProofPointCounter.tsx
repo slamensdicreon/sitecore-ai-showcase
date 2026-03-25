@@ -2,7 +2,7 @@
 
 import {
   Text,
-  useSitecoreContext,
+  useSitecore,
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
 import { getChildItems, getChildFieldValue, type ChildItem } from 'src/lib/field-utils';
@@ -14,8 +14,8 @@ type ProofPointCounterProps = {
 };
 
 export default function ProofPointCounter({ fields, rendering }: ProofPointCounterProps) {
-  const { sitecoreContext } = useSitecoreContext();
-  const isEditing = sitecoreContext?.pageEditing === true;
+  const { page: { mode } } = useSitecore();
+  const isEditing = mode?.isEditing === true;
 
   const children = getChildItems(rendering as Record<string, unknown>);
 
