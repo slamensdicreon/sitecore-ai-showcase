@@ -87,22 +87,45 @@ export default async function Page({ params, searchParams }: PageProps) {
       const errorStack = err instanceof Error ? err.stack : '';
       console.error('[NovaTech] Editing preview FAILED:', errorMsg);
       console.error('[NovaTech] Error stack:', errorStack);
-      return (
-        <EditingErrorFallback
-          error={`Editing preview error: ${errorMsg}. Check XM Cloud rendering host logs for diagnostic details (search for [NovaTech]).`}
-        />
-      );
+      console.log('[NovaTech] Attempting fallback via getPage...');
+      try {
+        const decodedSite = decodeURIComponent(site);
+        page = await client.getPage(path ?? [], { site: decodedSite, locale });
+        if (page) {
+          console.log('[NovaTech] Fallback getPage succeeded. Has layout:', !!page?.layout);
+        }
+      } catch (fallbackErr) {
+        console.error('[NovaTech] Fallback getPage also failed:', fallbackErr);
+      }
+      if (!page) {
+        return (
+          <EditingErrorFallback
+            error={`The Preview Edge endpoint returned empty layout data. This usually means the content has not been published to Experience Edge yet.`}
+          />
+        );
+      }
     }
 
     if (page && (!page.layout?.sitecore?.context)) {
       console.error('[NovaTech] Malformed layout data — missing sitecore.context');
-      console.error('[NovaTech] Layout keys:', page.layout ? Object.keys(page.layout) : 'no layout');
-      console.error('[NovaTech] Sitecore keys:', page.layout?.sitecore ? Object.keys(page.layout.sitecore) : 'no sitecore');
-      return (
-        <EditingErrorFallback
-          error="The editing data returned from Experience Edge is incomplete (missing layout context). Please republish all content to Experience Edge from the Content Editor."
-        />
-      );
+      console.log('[NovaTech] Attempting fallback via getPage for malformed data...');
+      try {
+        const decodedSite = decodeURIComponent(site);
+        const fallbackPage = await client.getPage(path ?? [], { site: decodedSite, locale });
+        if (fallbackPage?.layout?.sitecore?.context) {
+          page = fallbackPage;
+          console.log('[NovaTech] Fallback getPage succeeded for malformed data');
+        }
+      } catch (fallbackErr) {
+        console.error('[NovaTech] Fallback also failed:', fallbackErr);
+      }
+      if (!page?.layout?.sitecore?.context) {
+        return (
+          <EditingErrorFallback
+            error="The editing data returned from Experience Edge is incomplete (missing layout context). Please republish all content to Experience Edge from the Content Editor."
+          />
+        );
+      }
     }
   } else {
     page = await client.getPage(path ?? [], { site, locale });

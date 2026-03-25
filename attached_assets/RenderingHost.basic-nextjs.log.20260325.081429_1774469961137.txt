@@ -1,0 +1,74 @@
+> content-sdk-nextjs-app-router@1.0.0 next:start
+> next start
+   ▲ Next.js 15.5.11
+   - Local:        http://localhost:3000
+   - Network:      http://10.3.68.28:3000
+ ✓ Starting...
+ ⚠ Mismatching @next/swc version, detected: 15.5.7 while Next.js is on 15.5.11. Please ensure these match
+ ✓ Ready in 493ms
+[NovaTech][Render] resolvePageUrl called with route: /
+[NovaTech][Render] Resolved page URL: http://localhost:3000/
+[NovaTech] Draft mode enabled. Route: undefined Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'version',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"6a9074ba-8036-460f-9d0a-808adafc9785","language":"en","variantIds":"_default","version":"1","mode":"edit","layoutKind":"final","timestamp":"1774469753967"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] Editing preview FAILED: Cannot read properties of undefined (reading 'context')
+[NovaTech] Error stack: TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (/artifacts/basic-nextjs/.next-container/server/chunks/905.js:106:3727)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async s (/artifacts/basic-nextjs/.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:17879)
+[NovaTech][Render] resolvePageUrl called with route: /Solutions
+[NovaTech][Render] Resolved page URL: http://localhost:3000/Solutions
+[NovaTech] Draft mode enabled. Route: [ 'Solutions' ] Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"513db59b-1e9d-4033-9209-e5d066dcbbc0","language":"en","variantIds":"_default","mode":"edit","layoutKind":"final","timestamp":"1774469756472"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] getPreview succeeded. Has layout: true Has context: true Has route: true
+[NovaTech][Render] resolvePageUrl called with route: /
+[NovaTech][Render] Resolved page URL: http://localhost:3000/
+[NovaTech] Draft mode enabled. Route: undefined Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"6a9074ba-8036-460f-9d0a-808adafc9785","language":"en","variantIds":"_default","mode":"edit","layoutKind":"final","timestamp":"1774469761472"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] Editing preview FAILED: Cannot read properties of undefined (reading 'context')
+[NovaTech] Error stack: TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (/artifacts/basic-nextjs/.next-container/server/chunks/905.js:106:3727)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async s (/artifacts/basic-nextjs/.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:17879)
