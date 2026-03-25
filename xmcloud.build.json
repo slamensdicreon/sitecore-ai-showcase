@@ -13,5 +13,8 @@
   },
   "buildTargets": [
     "./authoring/platform/Platform.csproj"
-  ]
+  ],
+  "postActions": {
+    "actions": []
+  }
 }
