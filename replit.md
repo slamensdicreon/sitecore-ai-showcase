@@ -24,7 +24,7 @@ Core features include:
   - Uses `SITECORE_AUTOMATION2_*` credentials for authoring API
   - Tenant: `TE Connectivity` (renamed from nxp); Site root: `/sitecore/content/TE Connectivity/TE Connectivity`
   - Templates: `/sitecore/templates/Project/nxp`; Renderings: `/sitecore/layout/Renderings/Project/build/NovaTech`
-  - Rendering host: `basic-nextjs` (built-in XM Cloud rendering host, same as EAA demo)
+  - Rendering host: `basic-nextjs` at `examples/basic-nextjs/` — stock Content SDK starter with TE components layered on top (same approach as EAA demo on `sitecorebranch`)
   - Datasource location: `./Data` (nested under each page, following EAA pattern)
   - Content tree: Home/Data, Home/Solutions/Transportation/Data, Home/Solutions/Communications/Data, Home/Solutions/Industrial/Data
   - Sync pipeline creates 16 templates, 10 renderings, 16+ datasource items
@@ -33,7 +33,7 @@ Core features include:
   - `authoring/items/te-connector/` — 225 YAML files pulled from XM Cloud with real GUIDs
   - `authoring/items/te-connector/te-connector.module.json` — Sitecore CLI module config
   - `sitecore.json` — Root serialization config pointing to module glob
-  - `xmcloud.build.json` — XM Cloud build config (site grouping uses built-in `basic-nextjs` rendering host)
+  - `xmcloud.build.json` — XM Cloud build config pointing `basic-nextjs` to `./examples/basic-nextjs/`
   - `scripts/push-to-github.sh` — Push script for `slamensdicreon/sitecore-ai-showcase` repo
 
 ## External Dependencies
