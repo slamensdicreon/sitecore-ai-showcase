@@ -27,7 +27,7 @@ export default function CrossNavigation({ fields, rendering }: CrossNavigationPr
   const { page: { mode } } = useSitecore();
   const isEditing = mode?.isEditing === true;
 
-  const children = getChildItems(rendering as Record<string, unknown>);
+  const children = getChildItems(rendering);
 
   return (
     <section className="py-16 md:py-20 bg-gray-50" data-testid="section-cross-navigation">

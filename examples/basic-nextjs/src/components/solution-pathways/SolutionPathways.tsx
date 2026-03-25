@@ -1,8 +1,5 @@
-'use client';
-
 import {
   Text,
-  useSitecore,
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
 import { ChevronRight } from 'lucide-react';
@@ -15,12 +12,10 @@ type SolutionPathwaysProps = {
 };
 
 export default function SolutionPathways({ fields, rendering, params }: SolutionPathwaysProps) {
-  const { page: { mode } } = useSitecore();
-  const isEditing = mode?.isEditing === true;
   const variant = params?.FieldNames || '';
   const isLight = variant === 'pathways--light';
 
-  const children = getChildItems(rendering as Record<string, unknown>);
+  const children = getChildItems(rendering);
 
   return (
     <section

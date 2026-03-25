@@ -17,7 +17,7 @@ export default function ProofPointCounter({ fields, rendering }: ProofPointCount
   const { page: { mode } } = useSitecore();
   const isEditing = mode?.isEditing === true;
 
-  const children = getChildItems(rendering as Record<string, unknown>);
+  const children = getChildItems(rendering);
 
   return (
     <section className="py-16 md:py-24 bg-[#2e4957] text-white" data-testid="section-proof-points">

@@ -31,7 +31,7 @@ export default function MegaTrends({ fields, rendering }: MegaTrendsProps) {
   const { page: { mode } } = useSitecore();
   const isEditing = mode?.isEditing === true;
 
-  const children = getChildItems(rendering as Record<string, unknown>);
+  const children = getChildItems(rendering);
 
   return (
     <section className="relative bg-white py-20 md:py-28 overflow-hidden" data-testid="section-mega-trends">

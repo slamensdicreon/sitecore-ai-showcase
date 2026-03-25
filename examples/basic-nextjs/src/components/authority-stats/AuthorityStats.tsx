@@ -1,8 +1,5 @@
-'use client';
-
 import {
   Text,
-  useSitecore,
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
 import {
@@ -28,12 +25,10 @@ type AuthorityStatsProps = {
 };
 
 export default function AuthorityStats({ fields, rendering, params }: AuthorityStatsProps) {
-  const { page: { mode } } = useSitecore();
-  const isEditing = mode?.isEditing === true;
   const variant = params?.FieldNames || '';
   const isDark = variant === 'authority--dark';
 
-  const children = getChildItems(rendering as Record<string, unknown>);
+  const children = getChildItems(rendering);
 
   return (
     <section

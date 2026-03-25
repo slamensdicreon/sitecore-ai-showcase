@@ -16,8 +16,8 @@ export interface ChildItem {
   fields?: Record<string, Field<string> | Field<number> | LinkField | undefined>;
 }
 
-export function getChildItems(rendering: Record<string, unknown>): ChildItem[] {
-  const fields = rendering?.fields as Record<string, unknown> | undefined;
+export function getChildItems(rendering: unknown): ChildItem[] {
+  const fields = (rendering as Record<string, unknown>)?.fields as Record<string, unknown> | undefined;
   const items = fields?.items;
   if (Array.isArray(items)) return items as ChildItem[];
   return [];
