@@ -1,0 +1,22 @@
+@import 'tailwindcss';
+
+:root {
+  --te-slate: #2e4957;
+  --te-orange: #f28d00;
+  --te-teal: #167a87;
+  --te-dark: #1a2e3a;
+  --te-light: #f5f7f9;
+  --te-white: #ffffff;
+  --te-text: #2e4957;
+  --te-text-muted: #5a7a8a;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--te-text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+  font-weight: 700;
+}
