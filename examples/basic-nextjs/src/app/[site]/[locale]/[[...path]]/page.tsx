@@ -56,23 +56,48 @@ export default async function Page({ params, searchParams }: PageProps) {
   let page;
   if (draft.isEnabled) {
     const editingParams = await searchParams;
+
+    console.log('[NovaTech] Draft mode enabled. Route:', path, 'Site:', site, 'Locale:', locale);
+    console.log('[NovaTech] Editing params keys:', Object.keys(editingParams));
+    console.log('[NovaTech] Editing params:', JSON.stringify(
+      Object.fromEntries(
+        Object.entries(editingParams).map(([k, v]) => [
+          k,
+          typeof v === 'string' && v.length > 200
+            ? `${v.substring(0, 200)}...(${v.length} chars)`
+            : v
+        ])
+      )
+    ));
+    console.log('[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID=', process.env.SITECORE_EDGE_CONTEXT_ID ? `set(${process.env.SITECORE_EDGE_CONTEXT_ID.length}chars)` : 'NOT SET');
+    console.log('[NovaTech] Env: SITECORE_EDITING_SECRET=', process.env.SITECORE_EDITING_SECRET ? `set(${process.env.SITECORE_EDITING_SECRET.length}chars)` : 'NOT SET');
+    console.log('[NovaTech] Env: SITECORE=', process.env.SITECORE || 'NOT SET');
+    console.log('[NovaTech] Client status:', client ? 'initialized' : 'NULL');
+    console.log('[NovaTech] isDesignLibrary:', isDesignLibraryPreviewData(editingParams));
+
     try {
       if (isDesignLibraryPreviewData(editingParams)) {
         page = await client.getDesignLibraryData(editingParams);
       } else {
         page = await client.getPreview(editingParams);
       }
+      console.log('[NovaTech] getPreview succeeded. Has layout:', !!page?.layout, 'Has context:', !!page?.layout?.sitecore?.context, 'Has route:', !!page?.layout?.sitecore?.route);
     } catch (err) {
-      console.error('[NovaTech] Editing preview failed:', err);
+      const errorMsg = err instanceof Error ? err.message : String(err);
+      const errorStack = err instanceof Error ? err.stack : '';
+      console.error('[NovaTech] Editing preview FAILED:', errorMsg);
+      console.error('[NovaTech] Error stack:', errorStack);
       return (
         <EditingErrorFallback
-          error="The Preview Edge endpoint returned empty layout data. This usually means the content has not been published to Experience Edge yet."
+          error={`Editing preview error: ${errorMsg}. Check XM Cloud rendering host logs for diagnostic details (search for [NovaTech]).`}
         />
       );
     }
 
     if (page && (!page.layout?.sitecore?.context)) {
-      console.error('[NovaTech] Editing preview returned malformed layout data — missing sitecore.context');
+      console.error('[NovaTech] Malformed layout data — missing sitecore.context');
+      console.error('[NovaTech] Layout keys:', page.layout ? Object.keys(page.layout) : 'no layout');
+      console.error('[NovaTech] Sitecore keys:', page.layout?.sitecore ? Object.keys(page.layout.sitecore) : 'no sitecore');
       return (
         <EditingErrorFallback
           error="The editing data returned from Experience Edge is incomplete (missing layout context). Please republish all content to Experience Edge from the Content Editor."
