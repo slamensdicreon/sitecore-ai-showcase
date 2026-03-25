@@ -1,7 +1,7 @@
 {
   "$schema": "./.sitecore/schemas/xmcloud.build.schema.json",
   "renderingHosts": {
-    "te-connector-demo": {
+    "basic-nextjs": {
       "path": "./examples/te-connector-demo/",
       "nodeVersion": "22.22.0",
       "jssDeploymentSecret": "te-connector-demo-jss-deployment-secret",
