@@ -35,17 +35,36 @@ async function getItemFields(path: string): Promise<{ id: string; fields: Record
   } catch { return null; }
 }
 
+async function getItemWithTemplate(path: string): Promise<{ id: string; templateId: string } | null> {
+  try {
+    const d = await gql(`query($p:String!){item(where:{path:$p}){itemId template{templateId}}}`, { p: path });
+    if (!d?.item) return null;
+    return { id: d.item.itemId, templateId: d.item.template?.templateId || "" };
+  } catch { return null; }
+}
+
+function normalizeGuid(g: string): string {
+  return g.replace(/[{}-]/g, "").toLowerCase();
+}
+
 async function ensureItem(parentPath: string, name: string, templateId: string, fields?: Record<string, string>): Promise<string> {
   const fullPath = `${parentPath}/${name}`;
-  const existing = await getItemId(fullPath);
+  const existing = await getItemWithTemplate(fullPath);
   if (existing) {
-    if (fields && Object.keys(fields).length > 0) {
-      await gql(`mutation($id:ID!,$lang:String!,$fields:[FieldValueInput!]!){updateItem(input:{itemId:$id,language:$lang,fields:$fields}){item{itemId}}}`, {
-        id: existing, lang: "en",
-        fields: Object.entries(fields).map(([name, value]) => ({ name, value: value || "" })),
-      });
+    const expectedTpl = normalizeGuid(templateId);
+    const actualTpl = normalizeGuid(existing.templateId);
+    if (actualTpl !== expectedTpl) {
+      console.log(`  ⚠ ${fullPath}: wrong template (${actualTpl}), expected (${expectedTpl}). Deleting and recreating...`);
+      await gql(`mutation($id:ID!){deleteItem(input:{itemId:$id}){successful}}`, { id: existing.id });
+    } else {
+      if (fields && Object.keys(fields).length > 0) {
+        await gql(`mutation($id:ID!,$lang:String!,$fields:[FieldValueInput!]!){updateItem(input:{itemId:$id,language:$lang,fields:$fields}){item{itemId}}}`, {
+          id: existing.id, lang: "en",
+          fields: Object.entries(fields).map(([name, value]) => ({ name, value: value || "" })),
+        });
+      }
+      return existing.id;
     }
-    return existing;
   }
   const parentId = await getItemId(parentPath);
   if (!parentId) throw new Error(`Parent not found: ${parentPath}`);
@@ -434,14 +453,24 @@ async function step6_validate() {
     { name: "Innovation", path: `${SITE_ROOT}/Home/Innovation`, expectedCount: 4 },
   ];
 
+  const expectedPageTpl = normalizeGuid(PAGE_TEMPLATE_ID);
+
   for (const page of pages) {
-    const item = await getItemFields(page.path);
+    const item = await getItemWithTemplate(page.path);
     if (!item) {
       console.log(`  ✗ ${page.name}: page not found`);
       errors++;
       continue;
     }
-    const fr = item.fields["__Final Renderings"] || "";
+    const actualTpl = normalizeGuid(item.templateId);
+    if (actualTpl !== expectedPageTpl) {
+      console.log(`  ✗ ${page.name}: WRONG template (${actualTpl}), expected Page (${expectedPageTpl})`);
+      errors++;
+    } else {
+      console.log(`  ✓ ${page.name}: correct Page template`);
+    }
+    const itemFields = await getItemFields(page.path);
+    const fr = itemFields?.fields["__Final Renderings"] || "";
     const renderingCount = (fr.match(/s:id="/g) || []).length;
     if (renderingCount === page.expectedCount) {
       console.log(`  ✓ ${page.name}: ${renderingCount} renderings in __Final Renderings`);
@@ -485,14 +514,22 @@ async function step6_validate() {
     }
     console.log(`  ✓ Branch "${bn}" exists (${formatGuid(bid)})`);
 
-    const namePage = await getItemFields(`${BRANCHES_ROOT}/${bn}/$name`);
-    if (!namePage) {
+    const namePageInfo = await getItemWithTemplate(`${BRANCHES_ROOT}/${bn}/$name`);
+    if (!namePageInfo) {
       console.log(`  ✗ Branch "${bn}/$name" page not found`);
       errors++;
       continue;
     }
+    const namePageTpl = normalizeGuid(namePageInfo.templateId);
+    if (namePageTpl !== expectedPageTpl) {
+      console.log(`  ✗ Branch "${bn}/$name": WRONG template (${namePageTpl}), expected Page (${expectedPageTpl})`);
+      errors++;
+    } else {
+      console.log(`  ✓ Branch "${bn}/$name": correct Page template`);
+    }
 
-    const fr = namePage.fields["__Final Renderings"] || "";
+    const namePage = await getItemFields(`${BRANCHES_ROOT}/${bn}/$name`);
+    const fr = namePage?.fields["__Final Renderings"] || "";
     const rCount = (fr.match(/s:id="/g) || []).length;
     const dsCount = (fr.match(/s:ds="/g) || []).length;
     if (rCount === 4 && dsCount === 4) {
