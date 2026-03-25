@@ -1,4 +1,5 @@
 import { createEditingRenderRouteHandlers } from '@sitecore-content-sdk/nextjs/route-handler';
+import { type NextRequest } from 'next/server';
 
 const handlers = createEditingRenderRouteHandlers({
   resolvePageUrl: (route: string) => {
@@ -19,7 +20,7 @@ const handlers = createEditingRenderRouteHandlers({
 export const GET = handlers.GET;
 export const OPTIONS = handlers.OPTIONS;
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   console.log('[NovaTech][Render] POST received. URL:', request.url);
   console.log('[NovaTech][Render] Content-Type:', request.headers.get('content-type'));
   try {
