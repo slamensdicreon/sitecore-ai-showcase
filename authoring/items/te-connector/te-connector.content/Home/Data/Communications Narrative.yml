@@ -1,0 +1,24 @@
+---
+ID: "5dba5ca0-2ee3-4adb-aabf-66c56cee907e"
+Parent: "71b27a4d-0589-452f-92e0-2960a61356be"
+Template: "af57195c-3edf-4003-9ae8-7bc936d89aa3"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Communications Narrative"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Section Label
+      Value: "Built for Bandwidth"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Heading
+      Value: "Where Speed Meets Density"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Lead Text
+      Value: |
+        AI workloads are driving unprecedented demand for power and signal density. TE's data center portfolio is purpose-built for the next generation of compute.
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Body
+      Value: |
+        <p>Our high-speed I/O connectors support data rates up to 112 Gbps PAM4, while our power distribution solutions handle the thermal and electrical demands of GPU-dense AI infrastructure.</p><p>From structured cabling with Cat 6A performance to fiber optic connectivity for long-haul data transport, TE provides end-to-end solutions for modern networks.</p>

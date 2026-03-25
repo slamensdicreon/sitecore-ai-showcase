@@ -1,0 +1,22 @@
+---
+ID: "ab6b84b7-18f6-4932-b59a-17e1c7e56fab"
+Parent: "d3d77af5-fecc-4771-94c8-ee128d85f135"
+Template: "19929c41-cc3a-4496-8ea3-d35bbaefbdb0"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Authority Stats/Engineers"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Value
+      Value: "8000"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Suffix
+      Value: "+"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Label
+      Value: "Engineers Worldwide"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Icon Name
+      Value: "Wrench"

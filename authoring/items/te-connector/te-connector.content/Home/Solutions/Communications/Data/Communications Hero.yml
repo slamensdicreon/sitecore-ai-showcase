@@ -1,0 +1,27 @@
+---
+ID: "447ec51d-ef3a-4794-a98e-e120675db256"
+Parent: "b663d45c-9419-47a9-bc87-281a587ec6bc"
+Template: "7325aeca-17f8-40eb-a3c7-4b7e1ebc0773"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Communications/Data/Communications Hero"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Industry Label
+      Value: "Communications Solutions"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Title
+      Value: "Enabling the Connected World"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Subtitle
+      Value: |
+        From hyperscale data centers to 5G base stations, TE provides the high-speed, high-density connectivity that modern communications infrastructure demands.
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Background Video URL
+      Value: |
+        https://assets.mixkit.co/videos/preview/mixkit-servers-in-a-data-center-close-up-38894-large.mp4
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Accent Color
+      Value: "#167a87"

@@ -1,0 +1,24 @@
+---
+ID: "ad14b6df-fd70-4416-acef-89e9925d59ae"
+Parent: "71b27a4d-0589-452f-92e0-2960a61356be"
+Template: "af57195c-3edf-4003-9ae8-7bc936d89aa3"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Industrial Narrative"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Section Label
+      Value: "Engineered for Extremes"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Heading
+      Value: "Where Reliability Is Non-Negotiable"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Lead Text
+      Value: |
+        Industrial environments punish weak links. TE products are engineered to survive vibration, chemicals, extreme temperatures, and decades of continuous operation.
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Body
+      Value: |
+        <p>From M12 circular connectors with IP67 protection for factory-floor Ethernet to DIN rail terminal blocks rated for 800V, TE's industrial portfolio covers every layer of the automation stack.</p><p>Our sensor technologies — including piezoelectric vibration sensors for condition monitoring and RTD assemblies for process control — provide the data backbone for predictive maintenance strategies.</p>

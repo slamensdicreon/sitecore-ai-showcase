@@ -1,0 +1,36 @@
+---
+ID: "67918eb9-91e2-4f93-b10b-6e5402797aef"
+Parent: "2973d344-e649-4c05-a59e-d7926223a068"
+Template: "0430fee5-85b0-49a9-b8f9-d4c2dcdd11f8"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Mega Trends/Electrification"
+SharedFields:
+- ID: "00000000-0000-0000-0000-000000000000"
+  Hint: Description
+  Value: "From EV battery systems to renewable energy grids, TE connectivity solutions enable the reliable flow of power across next-generation electrical architectures."
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Title
+      Value: "Electrification"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Subtitle
+      Value: "Powering the transition to electric everything"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Stat Value
+      Value: "40%"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Stat Label
+      Value: "growth in EV connector demand"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Icon Name
+      Value: "BatteryCharging"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Accent Color
+      Value: "#f28d00"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Link
+      Value: |
+        <link linktype="internal" url="/solutions/transportation" />

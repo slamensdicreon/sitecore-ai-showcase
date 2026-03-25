@@ -1,0 +1,30 @@
+---
+ID: "ffd567d6-21f3-40a8-83d7-25ea546fe144"
+Parent: "10c74e42-76bf-4a6b-8380-f6c2189f36c7"
+Template: "345cbcfc-b371-4157-9156-c4ce95e0563c"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Innovation/Data/Innovation Products"
+SharedFields:
+- ID: "00000000-0000-0000-0000-000000000000"
+  Hint: Description
+  Value: "Explore our latest innovations in connectivity, sensing, and power management."
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Section Label
+      Value: "Innovation Spotlight"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Heading
+      Value: "Next-Generation Solutions"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Max Products
+      Value: "6"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: CTA Text
+      Value: "View All Innovations"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: CTA Link
+      Value: |
+        <link linktype="internal" url="/products" />

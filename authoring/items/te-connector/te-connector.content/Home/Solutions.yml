@@ -1,0 +1,28 @@
+---
+ID: "513db59b-1e9d-4033-9209-e5d066dcbbc0"
+Parent: "6a9074ba-8036-460f-9d0a-808adafc9785"
+Template: "57d89b89-6f79-44e7-b5bd-435326761859"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions"
+SharedFields:
+- ID: "1a7c85e5-dc0b-490d-9187-bb1dbcb4c72f"
+  Hint: __Renderings
+  Value: |
+    <r xmlns:xsd="http://www.w3.org/2001/XMLSchema"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}" l="{96E5F4BA-A2CF-4A4C-A4E7-64DA88226362}" /></r>
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Value: "{57D89B89-6F79-44E7-B5BD-435326761859}|{597E0CE5-1F96-4154-8CF9-992590DB0A37}|{D8B6F753-9271-4E56-982A-C21410DFD379}|{7DCE7501-C7D6-43E4-A7F1-97005D356A25}"
+- ID: "04bf00db-f5fb-41f7-8ab7-22408372ddef"
+  Hint: __Final Renderings
+  Value: |
+    <r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"><r uid="{06B7EF5B-95B3-4B8A-BF47-79387AE39001}" s:id="{055C6661-4626-4E8F-8453-2D4805CE88A6}" s:par="CSSStyles" s:ph="headless-main" /></d></r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Title
+      Value: "Solutions"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: NavigationTitle
+      Value: "Solutions"

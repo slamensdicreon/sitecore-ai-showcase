@@ -1,0 +1,24 @@
+---
+ID: "283d4b76-f824-4370-be6a-4372bc4755db"
+Parent: "3ae2aae3-28a9-4a99-8e90-b731628f8c30"
+Template: "41d38ce8-d565-4c25-aab7-5a8aa6887ce6"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Solution Pathways/Signal Integrity"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Question
+      Value: "How do I ensure signal integrity in harsh environments?"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Context
+      Value: |
+        Connectors and sensors rated for extreme temperatures, vibration, and mission-critical reliability across industries.
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Industry Label
+      Value: "Cross-Industry"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Link
+      Value: |
+        <link linktype="internal" url="/products" />

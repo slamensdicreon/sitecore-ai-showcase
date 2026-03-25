@@ -1,0 +1,36 @@
+---
+ID: "18a16260-9c32-43ab-b90b-fda818e267f1"
+Parent: "2973d344-e649-4c05-a59e-d7926223a068"
+Template: "0430fee5-85b0-49a9-b8f9-d4c2dcdd11f8"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Mega Trends/Industrial Automation"
+SharedFields:
+- ID: "00000000-0000-0000-0000-000000000000"
+  Hint: Description
+  Value: "Robotics, smart manufacturing, and factory automation demand connectivity that survives heat, vibration, and continuous operation. That's where TE thrives."
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Title
+      Value: "Industrial Automation"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Subtitle
+      Value: "Connecting the smart factory"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Stat Value
+      Value: "90K+"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Stat Label
+      Value: "employees across 140 countries"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Icon Name
+      Value: "Factory"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Accent Color
+      Value: "#2e4957"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Link
+      Value: |
+        <link linktype="internal" url="/solutions/industrial" />

@@ -1,0 +1,16 @@
+---
+ID: "49674e41-d849-43a6-9fb7-20f64e2bfc6a"
+Parent: "1a2fa09d-890c-45e9-b88b-1a6a6eb2e251"
+Template: "e90b7fd6-538a-47d1-a26e-3e25d46e7689"
+Path: "/sitecore/templates/Branches/Project/build/Homepage/$name/Data/Stats"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Section Label
+      Value: "By The Numbers"
+    - Hint: Heading
+      Value: "Our Impact"
+    - Hint: Description
+      Value: "Key statistics"

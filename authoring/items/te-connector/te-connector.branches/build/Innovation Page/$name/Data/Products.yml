@@ -1,0 +1,16 @@
+---
+ID: "f7c1f14c-ce05-47b8-a66b-0be68720a02e"
+Parent: "82483303-0103-4a04-b874-a2779f5bf306"
+Template: "345cbcfc-b371-4157-9156-c4ce95e0563c"
+Path: "/sitecore/templates/Branches/Project/build/Innovation Page/$name/Data/Products"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Section Label
+      Value: "Spotlight"
+    - Hint: Heading
+      Value: "Latest Innovations"
+    - Hint: Description
+      Value: "Explore new innovations"

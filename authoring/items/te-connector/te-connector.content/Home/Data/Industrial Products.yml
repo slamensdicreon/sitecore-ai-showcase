@@ -1,0 +1,33 @@
+---
+ID: "e83e837b-c0f0-48a9-8082-ee32fae300b2"
+Parent: "71b27a4d-0589-452f-92e0-2960a61356be"
+Template: "345cbcfc-b371-4157-9156-c4ce95e0563c"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Industrial Products"
+SharedFields:
+- ID: "00000000-0000-0000-0000-000000000000"
+  Hint: Description
+  Value: "Explore our industrial connectivity and sensor portfolio"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Section Label
+      Value: "Featured Products"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Heading
+      Value: "Industrial Automation Solutions"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Industry Filter
+      Value: "Industrial Automation"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Max Products
+      Value: "9"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: CTA Text
+      Value: "View Full Catalog"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: CTA Link
+      Value: |
+        <link linktype="internal" url="/products?industry=Industrial+Automation" />

@@ -1,0 +1,25 @@
+---
+ID: "e496bf94-c8e3-4c74-b190-cd073694fd68"
+Parent: "d3d77af5-fecc-4771-94c8-ee128d85f135"
+Template: "19929c41-cc3a-4496-8ea3-d35bbaefbdb0"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Authority Stats/Revenue"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Value
+      Value: "18"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Prefix
+      Value: "$"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Suffix
+      Value: "B+"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Label
+      Value: "Annual Revenue"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Icon Name
+      Value: "DollarSign"

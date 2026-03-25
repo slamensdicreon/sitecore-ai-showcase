@@ -1,0 +1,16 @@
+---
+ID: "c9d347a3-b5e7-44a0-84b9-418b6eb5df8e"
+Parent: "1a2fa09d-890c-45e9-b88b-1a6a6eb2e251"
+Template: "4a8ad106-274b-4d86-b91c-7aa1e7e37602"
+Path: "/sitecore/templates/Branches/Project/build/Homepage/$name/Data/Pathways"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Section Label
+      Value: "Solutions"
+    - Hint: Heading
+      Value: "Explore Solutions"
+    - Hint: Description
+      Value: "Find the right solution for your challenge"

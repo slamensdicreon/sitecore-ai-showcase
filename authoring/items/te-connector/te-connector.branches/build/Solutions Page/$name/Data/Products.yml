@@ -1,0 +1,16 @@
+---
+ID: "d30847eb-60a7-4d7c-b141-7daff68ec9d8"
+Parent: "e8cccc03-1829-4b72-9648-77908003049b"
+Template: "345cbcfc-b371-4157-9156-c4ce95e0563c"
+Path: "/sitecore/templates/Branches/Project/build/Solutions Page/$name/Data/Products"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Section Label
+      Value: "Products"
+    - Hint: Heading
+      Value: "Featured Products"
+    - Hint: Description
+      Value: "Explore the product portfolio"

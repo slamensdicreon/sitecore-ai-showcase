@@ -1,0 +1,18 @@
+---
+ID: "b48bc9e5-721f-44b2-9b48-c54c7efb96a0"
+Parent: "1a2fa09d-890c-45e9-b88b-1a6a6eb2e251"
+Template: "5cf185ad-d3a5-4f19-8fb8-488ed5a54e03"
+Path: "/sitecore/templates/Branches/Project/build/Homepage/$name/Data/Hero"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Badge Text
+      Value: "Welcome"
+    - Hint: Title
+      Value: "Page Title"
+    - Hint: Title Accent
+      Value: "Accent"
+    - Hint: Subtitle
+      Value: "Page subtitle goes here"

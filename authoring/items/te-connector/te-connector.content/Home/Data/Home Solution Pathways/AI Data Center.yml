@@ -1,0 +1,24 @@
+---
+ID: "81cfab39-1dd0-439f-b620-2a46d2b6b4a7"
+Parent: "3ae2aae3-28a9-4a99-8e90-b731628f8c30"
+Template: "41d38ce8-d565-4c25-aab7-5a8aa6887ce6"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Solution Pathways/AI Data Center"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Question
+      Value: "How do I scale AI data center infrastructure?"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Context
+      Value: |
+        High-speed, high-density connectivity solutions that handle the power and signal demands of next-gen AI compute.
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Industry Label
+      Value: "Communications"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Link
+      Value: |
+        <link linktype="internal" url="/solutions/communications" />

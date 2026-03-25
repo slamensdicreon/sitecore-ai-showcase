@@ -1,0 +1,33 @@
+---
+ID: "cb64a9cc-e56d-4b11-9cd2-43ec9bf2dccc"
+Parent: "b663d45c-9419-47a9-bc87-281a587ec6bc"
+Template: "345cbcfc-b371-4157-9156-c4ce95e0563c"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Communications/Data/Communications Products"
+SharedFields:
+- ID: "00000000-0000-0000-0000-000000000000"
+  Hint: Description
+  Value: "Explore our data center and networking portfolio"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Section Label
+      Value: "Featured Products"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Heading
+      Value: "Communications Infrastructure Solutions"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Industry Filter
+      Value: "Data Communications"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Max Products
+      Value: "6"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: CTA Text
+      Value: "View Full Catalog"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: CTA Link
+      Value: |
+        <link linktype="internal" url="/products?industry=Data+Communications" />

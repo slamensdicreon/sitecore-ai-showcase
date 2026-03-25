@@ -1,0 +1,9 @@
+---
+ID: "e8cccc03-1829-4b72-9648-77908003049b"
+Parent: "dd516ce6-55d3-43fe-aa23-db357b35764d"
+Template: "1c82e550-ebcd-4e5d-8abd-d50d0809541e"
+Path: "/sitecore/templates/Branches/Project/build/Solutions Page/$name/Data"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1

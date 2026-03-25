@@ -1,0 +1,27 @@
+---
+ID: "23019046-3ba8-4187-b3a0-1811f4e4cb0b"
+Parent: "c5426aff-489d-46ec-89a7-cb0d4ce1ac0b"
+Template: "25e5d6f8-b178-416b-aab3-4c033ce84913"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Industrial Cross Nav/Communications"
+SharedFields:
+- ID: "00000000-0000-0000-0000-000000000000"
+  Hint: Description
+  Value: "Data center, 5G, and high-speed network infrastructure"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Title
+      Value: "Communications Solutions"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Link
+      Value: |
+        <link linktype="internal" url="/solutions/communications" />
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Icon Name
+      Value: "Server"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Accent Color
+      Value: "#167a87"

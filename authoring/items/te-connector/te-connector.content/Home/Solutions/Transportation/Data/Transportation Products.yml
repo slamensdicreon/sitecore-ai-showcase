@@ -1,0 +1,33 @@
+---
+ID: "335a491b-0f73-4bd4-8173-e38d5fb9211d"
+Parent: "a40e4809-0698-4cb9-ba1e-aa5cf16552ed"
+Template: "345cbcfc-b371-4157-9156-c4ce95e0563c"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Transportation/Data/Transportation Products"
+SharedFields:
+- ID: "00000000-0000-0000-0000-000000000000"
+  Hint: Description
+  Value: "Explore our automotive and transportation product portfolio"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Section Label
+      Value: "Featured Products"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Heading
+      Value: "Transportation Connectivity Solutions"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Industry Filter
+      Value: "Automotive"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Max Products
+      Value: "6"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: CTA Text
+      Value: "View Full Catalog"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: CTA Link
+      Value: |
+        <link linktype="internal" url="/products?industry=Automotive" />

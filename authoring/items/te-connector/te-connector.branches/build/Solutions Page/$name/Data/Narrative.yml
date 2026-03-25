@@ -1,0 +1,19 @@
+---
+ID: "a0681a9a-d24e-446f-aa55-c736814c0874"
+Parent: "e8cccc03-1829-4b72-9648-77908003049b"
+Template: "af57195c-3edf-4003-9ae8-7bc936d89aa3"
+Path: "/sitecore/templates/Branches/Project/build/Solutions Page/$name/Data/Narrative"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Section Label
+      Value: "The Advantage"
+    - Hint: Heading
+      Value: "Why Choose TE"
+    - Hint: Lead Text
+      Value: "Lead paragraph"
+    - Hint: Body
+      Value: |
+        <p>Body content</p>

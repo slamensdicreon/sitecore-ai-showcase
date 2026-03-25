@@ -1,0 +1,17 @@
+---
+ID: "ab88a6ff-cd12-473b-82d9-ff1bdee57596"
+Parent: "71b27a4d-0589-452f-92e0-2960a61356be"
+Template: "4dd207ed-c4d0-411d-91b9-3c976922a2e7"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Communications Cross Nav"
+SharedFields:
+- ID: "00000000-0000-0000-0000-000000000000"
+  Hint: Description
+  Value: "TE Connectivity serves multiple industries with the same engineering excellence."
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Heading
+      Value: "Explore Other Industries"

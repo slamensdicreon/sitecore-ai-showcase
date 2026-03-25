@@ -1,0 +1,16 @@
+---
+ID: "fc0544eb-3d5a-4ddc-8849-1d00818c44ed"
+Parent: "1a2fa09d-890c-45e9-b88b-1a6a6eb2e251"
+Template: "18a95f74-2dcf-4798-9147-47694b9836e2"
+Path: "/sitecore/templates/Branches/Project/build/Homepage/$name/Data/Trends"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Section Label
+      Value: "Trends"
+    - Hint: Heading
+      Value: "Industry Mega-Trends"
+    - Hint: Description
+      Value: "Description of key trends"

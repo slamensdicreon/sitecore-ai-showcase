@@ -13,6 +13,17 @@
         "name": "te-connector.renderings",
         "path": "/sitecore/layout/Renderings/Project/build/NovaTech",
         "allowedPushOperations": "CreateUpdateAndDelete"
+      },
+      {
+        "name": "te-connector.branches",
+        "path": "/sitecore/templates/Branches/Project/build",
+        "allowedPushOperations": "CreateUpdateAndDelete"
+      },
+      {
+        "name": "te-connector.content",
+        "path": "/sitecore/content/TE Connectivity/TE Connectivity/Home",
+        "scope": "ItemAndDescendants",
+        "allowedPushOperations": "CreateAndUpdate"
       }
     ]
   }

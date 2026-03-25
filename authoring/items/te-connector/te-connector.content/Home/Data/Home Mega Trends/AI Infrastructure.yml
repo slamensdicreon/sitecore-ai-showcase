@@ -1,0 +1,36 @@
+---
+ID: "f87512e2-dd14-4814-a0b5-333abf15f2e0"
+Parent: "2973d344-e649-4c05-a59e-d7926223a068"
+Template: "0430fee5-85b0-49a9-b8f9-d4c2dcdd11f8"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Mega Trends/AI Infrastructure"
+SharedFields:
+- ID: "00000000-0000-0000-0000-000000000000"
+  Hint: Description
+  Value: "Hyperscale data centers require unprecedented power density and high-speed connectivity. TE delivers both — enabling AI compute at scale."
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Title
+      Value: "AI Infrastructure"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Subtitle
+      Value: "The backbone of intelligent systems"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Stat Value
+      Value: "3x"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Stat Label
+      Value: "data center power demand by 2030"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Icon Name
+      Value: "Server"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Accent Color
+      Value: "#167a87"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Link
+      Value: |
+        <link linktype="internal" url="/solutions/communications" />

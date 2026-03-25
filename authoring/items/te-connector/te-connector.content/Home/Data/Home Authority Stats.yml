@@ -1,0 +1,34 @@
+---
+ID: "d3d77af5-fecc-4771-94c8-ee128d85f135"
+Parent: "71b27a4d-0589-452f-92e0-2960a61356be"
+Template: "e90b7fd6-538a-47d1-a26e-3e25d46e7689"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Authority Stats"
+SharedFields:
+- ID: "00000000-0000-0000-0000-000000000000"
+  Hint: Description
+  Value: "TE Connectivity is a Tier 1 backbone player across multiple industries. Once our products are designed into a system, they stay for 10–20+ years. That's not a supplier relationship — that's partnership."
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Section Label
+      Value: "Global Scale, Engineering Precision"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Heading
+      Value: "The Nervous System of Modern Industry"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: CTA Heading
+      Value: "Engineering-Led. Co-Design Model."
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: CTA Description
+      Value: |
+        With 8,000+ engineers and a local-for-local manufacturing model where ~70% of products are produced where they're sold, TE reduces supply chain risk while delivering deep OEM integration.
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: CTA Link Text
+      Value: "Explore Products"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: CTA Link
+      Value: |
+        <link linktype="internal" url="/products" />

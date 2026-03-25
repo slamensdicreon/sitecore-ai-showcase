@@ -1,0 +1,27 @@
+---
+ID: "f4e8f478-00ed-499e-b397-132615d9a4e2"
+Parent: "02fcf351-9b05-4340-8e1a-a061ca6d7b42"
+Template: "7325aeca-17f8-40eb-a3c7-4b7e1ebc0773"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Industrial/Data/Industrial Hero"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Industry Label
+      Value: "Industrial Solutions"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Title
+      Value: "The Backbone of Industry 4.0"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Subtitle
+      Value: |
+        Smart factories, predictive maintenance, and industrial IoT demand connectivity that performs in the harshest environments. TE delivers the sensors, connectors, and terminal blocks that make Industry 4.0 real.
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Background Video URL
+      Value: |
+        https://assets.mixkit.co/videos/preview/mixkit-robotic-arm-in-a-factory-close-up-38910-large.mp4
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Accent Color
+      Value: "#2e4957"

@@ -10,5 +10,11 @@
       "buildCommand": "build",
       "runCommand": "next:start"
     }
-  }
+  },
+  "buildTargets": [
+    {
+      "name": "Platform",
+      "path": "./authoring/platform/Platform.csproj"
+    }
+  ]
 }

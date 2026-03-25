@@ -1,0 +1,16 @@
+---
+ID: "1d24d3a3-26c1-4f3d-8df9-e54aaa938972"
+Parent: "82483303-0103-4a04-b874-a2779f5bf306"
+Template: "7325aeca-17f8-40eb-a3c7-4b7e1ebc0773"
+Path: "/sitecore/templates/Branches/Project/build/Innovation Page/$name/Data/Hero"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Industry Label
+      Value: "Innovation"
+    - Hint: Title
+      Value: "Innovation Title"
+    - Hint: Subtitle
+      Value: "Innovation description"

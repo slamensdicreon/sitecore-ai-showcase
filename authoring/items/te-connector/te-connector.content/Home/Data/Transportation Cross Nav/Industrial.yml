@@ -1,0 +1,27 @@
+---
+ID: "2b9115f9-464d-44c0-8d0e-b2d63828d896"
+Parent: "d1495769-e650-4fdd-b645-88251b4cc9b8"
+Template: "25e5d6f8-b178-416b-aab3-4c033ce84913"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Transportation Cross Nav/Industrial"
+SharedFields:
+- ID: "00000000-0000-0000-0000-000000000000"
+  Hint: Description
+  Value: "Factory automation, robotics, and harsh-environment connectivity"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Title
+      Value: "Industrial Solutions"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Link
+      Value: |
+        <link linktype="internal" url="/solutions/industrial" />
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Icon Name
+      Value: "Factory"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Accent Color
+      Value: "#2e4957"

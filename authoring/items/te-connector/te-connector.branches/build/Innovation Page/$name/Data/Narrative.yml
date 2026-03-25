@@ -1,0 +1,19 @@
+---
+ID: "71ce2b9e-dfd3-487b-b3d9-67c6093a97f4"
+Parent: "82483303-0103-4a04-b874-a2779f5bf306"
+Template: "af57195c-3edf-4003-9ae8-7bc936d89aa3"
+Path: "/sitecore/templates/Branches/Project/build/Innovation Page/$name/Data/Narrative"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Section Label
+      Value: "Our Approach"
+    - Hint: Heading
+      Value: "Innovation Philosophy"
+    - Hint: Lead Text
+      Value: "Lead paragraph"
+    - Hint: Body
+      Value: |
+        <p>Body content</p>

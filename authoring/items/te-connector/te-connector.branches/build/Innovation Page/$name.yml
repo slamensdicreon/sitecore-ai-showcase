@@ -1,0 +1,19 @@
+---
+ID: "fa28cbab-6a1a-44bb-80c7-029fd6a97d2f"
+Parent: "7dce7501-c7d6-43e4-a7f1-97005d356a25"
+Template: "57d89b89-6f79-44e7-b5bd-435326761859"
+Path: "/sitecore/templates/Branches/Project/build/Innovation Page/$name"
+SharedFields:
+- Hint: __Final Renderings
+  Value: |
+    <r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"><r uid="{87835A79-6519-43D5-87AB-8CF0932066A6}" p:before="*" s:ds="{1D24D3A3-26C1-4F3D-8DF9-E54AAA938972}" s:id="{C01A77B7-2FC9-459D-8952-613F009105D4}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{F695E3C5-44E7-4A9E-B08B-0D738D6DC403}" p:after="r[@uid='{87835A79-6519-43D5-87AB-8CF0932066A6}']" s:ds="{A64F3802-D5ED-4B1D-96D2-D2979BFBA452}" s:id="{42125EA2-75A6-4542-A370-BB5257790416}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{BC175B04-305B-46B6-B4DE-2CC3C70D1F97}" p:after="r[@uid='{F695E3C5-44E7-4A9E-B08B-0D738D6DC403}']" s:ds="{F7C1F14C-CE05-47B8-A66B-0BE68720A02E}" s:id="{0E0F2E66-1B94-4CD2-A8AC-36590E41CF3A}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{D324BCE6-C9BF-4936-9CBE-B09A2028DA27}" p:after="*[1=2]" s:ds="{71CE2B9E-DFD3-487B-B3D9-67C6093A97F4}" s:id="{716F45F8-B1F0-49DB-9C1B-E008C65514D4}" s:par="CSSStyles" s:ph="headless-main" /></d></r>
+- Hint: __Renderings
+  Value: |
+    <r xmlns:xsd="http://www.w3.org/2001/XMLSchema"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}" l="{96E5F4BA-A2CF-4A4C-A4E7-64DA88226362}" /></r>
+- Hint: __Masters
+  Value: |
+    {57D89B89-6F79-44E7-B5BD-435326761859}|{597E0CE5-1F96-4154-8CF9-992590DB0A37}|{D8B6F753-9271-4E56-982A-C21410DFD379}|{7DCE7501-C7D6-43E4-A7F1-97005D356A25}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1

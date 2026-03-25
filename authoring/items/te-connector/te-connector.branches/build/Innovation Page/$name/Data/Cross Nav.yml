@@ -1,0 +1,14 @@
+---
+ID: "a64f3802-d5ed-4b1d-96d2-d2979bfba452"
+Parent: "82483303-0103-4a04-b874-a2779f5bf306"
+Template: "4dd207ed-c4d0-411d-91b9-3c976922a2e7"
+Path: "/sitecore/templates/Branches/Project/build/Innovation Page/$name/Data/Cross Nav"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Heading
+      Value: "Explore Solutions"
+    - Hint: Description
+      Value: "See industry solutions"

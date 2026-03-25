@@ -1,0 +1,44 @@
+---
+ID: "046bc767-1899-4abc-88bf-58441d23af18"
+Parent: "71b27a4d-0589-452f-92e0-2960a61356be"
+Template: "5cf185ad-d3a5-4f19-8fb8-488ed5a54e03"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Hero"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Badge Text
+      Value: "The Infrastructure Behind What Matters"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Title
+      Value: "Every Connection"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Title Accent
+      Value: "Counts"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Subtitle
+      Value: |
+        TE Connectivity is the invisible infrastructure powering electrification, AI, and industrial automation at global scale. We don't just connect components — we enable the systems that power the world.
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Primary CTA Text
+      Value: "Explore Solutions"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Primary CTA Link
+      Value: |
+        <link linktype="internal" url="/solutions/transportation" />
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Secondary CTA Text
+      Value: "Browse Catalog"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Secondary CTA Link
+      Value: |
+        <link linktype="internal" url="/products" />
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Background Video URL
+      Value: |
+        https://assets.mixkit.co/videos/preview/mixkit-circuit-board-with-neon-lights-close-up-view-77488-large.mp4
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Show Connectivity Motif
+      Value: "1"

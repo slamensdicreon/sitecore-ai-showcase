@@ -1,0 +1,27 @@
+---
+ID: "0554d424-d650-4b66-ad0f-d24a0730b2c7"
+Parent: "a40e4809-0698-4cb9-ba1e-aa5cf16552ed"
+Template: "7325aeca-17f8-40eb-a3c7-4b7e1ebc0773"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Transportation/Data/Transportation Hero"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Industry Label
+      Value: "Transportation Solutions"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Title
+      Value: "Powering the Vehicles of Tomorrow"
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Subtitle
+      Value: |
+        From internal combustion to full electrification, TE Connectivity is engineering the transition. Our connectors, sensors, and harness solutions are designed into platforms that will define mobility for the next two decades.
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Background Video URL
+      Value: |
+        https://assets.mixkit.co/videos/preview/mixkit-car-electric-engine-close-up-4883-large.mp4
+    - ID: "00000000-0000-0000-0000-000000000000"
+      Hint: Accent Color
+      Value: "#f28d00"
