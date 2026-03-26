@@ -450,6 +450,19 @@ async function step2b_createCardItems() {
       console.log(`  ✓ ${nav.dsName}: Items field set with ${navItemIds.length} references`);
     }
   }
+
+  console.log("\n═══ Step 2d: Create Proof Point items in shared folder ═══");
+  const proofPointCardsFolder = `${dataPath}/Proof Point Items`;
+  const proofPointItems = [
+    { name: "Patents Filed", fields: { "Value": "$2,400+", "Label": "Patents Filed", "Description": "Active patents protecting our innovations" } },
+    { name: "R&D Investment", fields: { "Value": "$640M", "Label": "Annual R&D Investment", "Description": "Invested annually in research and development" } },
+    { name: "Engineering Centers", fields: { "Value": "30+", "Label": "Engineering Centers", "Description": "R&D facilities across the globe" } },
+    { name: "Product Launches", fields: { "Value": "1,200+", "Label": "New Products per Year", "Description": "New products launched annually" } },
+  ];
+  for (const item of proofPointItems) {
+    await ensureItem(proofPointCardsFolder, item.name, TEMPLATE_IDS["Proof Point Item"], item.fields);
+    console.log(`  ✓ Proof Point Item: ${item.name}`);
+  }
 }
 
 async function step3_fixSolutionPages() {
