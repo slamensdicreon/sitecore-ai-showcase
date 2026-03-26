@@ -13,9 +13,11 @@ interface MegaItem {
 
 interface SolutionsMenuProps {
   items: MegaItem[];
+  label?: string;
+  href?: string;
 }
 
-export default function SolutionsMenu({ items }: SolutionsMenuProps) {
+export default function SolutionsMenu({ items, label = 'Solutions', href = '/Solutions' }: SolutionsMenuProps) {
   const [open, setOpen] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -63,7 +65,7 @@ export default function SolutionsMenu({ items }: SolutionsMenuProps) {
           <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" />
           <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" />
         </svg>
-        Solutions
+        {label}
         <svg
           width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
           style={{ transition: 'transform 0.2s', transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}

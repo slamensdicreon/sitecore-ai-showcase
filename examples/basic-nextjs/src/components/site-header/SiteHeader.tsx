@@ -21,31 +21,74 @@ export interface NavLinkData {
   children?: NavLinkData[];
 }
 
-const MAIN_NAV: NavLinkData[] = [
+interface EdgeField {
+  name: string;
+  jsonValue: { value: string } | { value: { href?: string; text?: string; linktype?: string; target?: string } };
+}
+
+interface EdgeChildResult {
+  id: string;
+  name: string;
+  fields: EdgeField[];
+  children?: {
+    results?: EdgeChildResult[];
+  };
+}
+
+interface EdgeQueryResponse {
+  data?: {
+    item?: {
+      children?: {
+        results?: EdgeChildResult[];
+      };
+    };
+  };
+}
+
+const EDGE_URL = 'https://edge-platform.sitecorecloud.io/v1/content/api/graphql/v1';
+
+const TOP_LEVEL_QUERY = `
+query TopNav($datasource: String!, $language: String!) {
+  item(path: $datasource, language: $language) {
+    children(hasLayout: false, first: 20) {
+      results {
+        id
+        name
+        fields {
+          name
+          jsonValue
+        }
+      }
+    }
+  }
+}`;
+
+const CHILDREN_QUERY = `
+query ChildNav($parentId: String!, $language: String!) {
+  item(path: $parentId, language: $language) {
+    children(hasLayout: false, first: 15) {
+      results {
+        id
+        name
+        fields {
+          name
+          jsonValue
+        }
+      }
+    }
+  }
+}`;
+
+const FALLBACK_NAV: NavLinkData[] = [
   {
     id: 'solutions',
     title: 'Solutions',
     href: '/Solutions',
     external: false,
     children: [
-      {
-        id: 's-transportation',
-        title: 'Transportation',
-        href: '/Solutions',
-        external: false,
-      },
-      {
-        id: 's-industrial',
-        title: 'Industrial',
-        href: '/Solutions',
-        external: false,
-      },
-      {
-        id: 's-communications',
-        title: 'Communications',
-        href: '/Solutions',
-        external: false,
-      },
+      { id: 's-transportation', title: 'Transportation', href: '/Solutions', external: false },
+      { id: 's-industrial', title: 'Industrial', href: '/Solutions', external: false },
+      { id: 's-communications', title: 'Communications', href: '/Solutions', external: false },
     ],
   },
   {
@@ -92,6 +135,67 @@ const SOLUTIONS_MEGA = [
   },
 ];
 
+function parseLink(child: EdgeChildResult): NavLinkData {
+  const fieldMap: Record<string, EdgeField['jsonValue']> = {};
+  for (const f of child.fields) {
+    fieldMap[f.name] = f.jsonValue;
+  }
+
+  const titleField = fieldMap.Title as { value: string } | undefined;
+  const linkField = fieldMap.Link as { value: { href?: string; text?: string; linktype?: string } } | undefined;
+  const title = (typeof titleField?.value === 'string' ? titleField.value : linkField?.value?.text) || child.name || '';
+  const href = linkField?.value?.href || '/';
+  const linktype = linkField?.value?.linktype || '';
+  const external = linktype === 'external' || href.startsWith('http');
+
+  return { id: child.id, title, href, external };
+}
+
+async function edgeFetch(query: string, variables: Record<string, string>, contextId: string): Promise<EdgeQueryResponse | null> {
+  try {
+    const res = await fetch(`${EDGE_URL}?sitecoreContextId=${contextId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query, variables }),
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
+async function fetchChildren(parentId: string, contextId: string): Promise<NavLinkData[]> {
+  const json = await edgeFetch(CHILDREN_QUERY, { parentId, language: 'en' }, contextId);
+  const results = json?.data?.item?.children?.results;
+  if (!Array.isArray(results) || results.length === 0) return [];
+  return results.map(parseLink);
+}
+
+async function fetchNavData(datasourceId: string): Promise<NavLinkData[]> {
+  const contextId = process.env.SITECORE_EDGE_CONTEXT_ID || process.env.NEXT_PUBLIC_SITECORE_EDGE_CONTEXT_ID;
+  if (!datasourceId || !contextId) return FALLBACK_NAV;
+
+  const cleanId = datasourceId.replace(/[{}]/g, '');
+
+  const topJson = await edgeFetch(TOP_LEVEL_QUERY, { datasource: cleanId, language: 'en' }, contextId);
+  const results = topJson?.data?.item?.children?.results;
+  if (!Array.isArray(results) || results.length === 0) return FALLBACK_NAV;
+
+  const childFetches = results.map((item) => {
+    const link = parseLink(item);
+    if (link.href === '/') return Promise.resolve(link);
+    return fetchChildren(item.id, contextId).then((children) => {
+      if (children.length > 0) link.children = children;
+      return link;
+    });
+  });
+
+  const nav = await Promise.all(childFetches);
+  return nav.length > 0 ? nav : FALLBACK_NAV;
+}
+
 function TELogoSVG() {
   return (
     <svg viewBox="0 0 120 48" style={{ height: '40px', width: 'auto' }} aria-label="TE Connectivity">
@@ -104,8 +208,8 @@ function TELogoSVG() {
   );
 }
 
-export const Default = (props: SiteHeaderProps): JSX.Element => {
-  const { fields, params } = props;
+export const Default = async (props: SiteHeaderProps): Promise<JSX.Element> => {
+  const { fields, params, rendering } = props;
   const id = params?.RenderingIdentifier;
   const styles = params?.styles || '';
 
@@ -118,6 +222,8 @@ export const Default = (props: SiteHeaderProps): JSX.Element => {
       </div>
     );
   }
+
+  const nav = await fetchNavData(rendering?.dataSource || '');
 
   return (
     <div
@@ -297,14 +403,6 @@ export const Default = (props: SiteHeaderProps): JSX.Element => {
         @media (min-width: 1024px) {
           .te-hamburger { display: none; }
         }
-        .te-hamburger-bar {
-          display: block;
-          width: 20px;
-          height: 2px;
-          background: #2e4957;
-          border-radius: 1px;
-          transition: transform 0.3s, opacity 0.3s;
-        }
 
         /* === Row 3: Desktop Nav === */
         .te-nav {
@@ -461,32 +559,6 @@ export const Default = (props: SiteHeaderProps): JSX.Element => {
         .te-mobile-inner {
           padding: 12px 16px;
         }
-        .te-mobile-search {
-          position: relative;
-          margin-bottom: 12px;
-        }
-        .te-mobile-search-icon {
-          position: absolute;
-          left: 12px;
-          top: 50%;
-          transform: translateY(-50%);
-          color: #9ca3af;
-          pointer-events: none;
-        }
-        .te-mobile-search input {
-          width: 100%;
-          height: 36px;
-          padding: 0 16px 0 36px;
-          border: 1px solid #e5e7eb;
-          border-radius: 6px;
-          background: #FFFFFF;
-          font-size: 14px;
-          outline: none;
-        }
-        .te-mobile-search input:focus {
-          border-color: #f28d00;
-          box-shadow: 0 0 0 2px rgba(242,141,0,0.15);
-        }
         .te-mobile-nav-item {
           display: flex;
           align-items: center;
@@ -570,7 +642,7 @@ export const Default = (props: SiteHeaderProps): JSX.Element => {
       <div className="te-main">
         <div className="te-main-inner">
           <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-            <DrawerNav links={MAIN_NAV} megaItems={SOLUTIONS_MEGA} />
+            <DrawerNav links={nav} megaItems={SOLUTIONS_MEGA} />
             <Link href="/" className="te-logo-area" data-testid="link-home-logo">
               {fields.Logo?.value?.src ? (
                 <Image field={fields.Logo} style={{ height: '40px', width: 'auto' }} />
@@ -612,28 +684,35 @@ export const Default = (props: SiteHeaderProps): JSX.Element => {
           </div>
         </div>
 
-        {/* Row 3: Desktop Nav */}
+        {/* Row 3: Desktop Nav — driven by CMS data with fallback */}
         <nav className="te-nav" data-testid="desktop-nav">
-          <SolutionsMenu items={SOLUTIONS_MEGA} />
-          <Link href="/Solutions" className="te-nav-link" data-testid="nav-applications">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '2px' }}>
-              <rect width="7" height="7" x="3" y="3" rx="1" />
-              <rect width="7" height="7" x="14" y="3" rx="1" />
-              <rect width="7" height="7" x="14" y="14" rx="1" />
-              <rect width="7" height="7" x="3" y="14" rx="1" />
-            </svg>
-            Applications
-          </Link>
-          <Link href="/Products" className="te-nav-link" data-testid="nav-products">
-            All Products
-          </Link>
-          <Link href="/Innovation" className="te-nav-link" data-testid="nav-innovation">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '2px' }}>
-              <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
-              <path d="M9 18h6" /><path d="M10 22h4" />
-            </svg>
-            Innovation
-          </Link>
+          {nav.map((item) => {
+            if (item.id === 'solutions' || (item.children && item.children.length > 0)) {
+              return <SolutionsMenu key={item.id} items={SOLUTIONS_MEGA} label={item.title} href={item.href} />;
+            }
+
+            return item.external ? (
+              <a
+                key={item.id}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="te-nav-link"
+                data-testid={`nav-${item.id}`}
+              >
+                {item.title}
+              </a>
+            ) : (
+              <Link
+                key={item.id}
+                href={item.href}
+                className="te-nav-link"
+                data-testid={`nav-${item.id}`}
+              >
+                {item.title}
+              </Link>
+            );
+          })}
         </nav>
       </div>
     </div>
