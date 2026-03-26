@@ -80,7 +80,17 @@ query ChildNav($parentId: String!, $language: String!) {
 }`;
 
 const FALLBACK_NAV: NavLinkData[] = [
-  { id: 'home', title: 'Home', href: '/', external: false },
+  {
+    id: 'solutions',
+    title: 'Solutions',
+    href: '/Solutions',
+    external: false,
+    children: [
+      { id: 's1', title: 'Transportation', href: '/Solutions', external: false },
+      { id: 's2', title: 'Industrial', href: '/Solutions', external: false },
+      { id: 's3', title: 'Communications', href: '/Solutions', external: false },
+    ],
+  },
   {
     id: 'products',
     title: 'Products',
@@ -93,20 +103,6 @@ const FALLBACK_NAV: NavLinkData[] = [
       { id: 'p4', title: 'Wire & Cable', href: '/Products', external: false },
       { id: 'p5', title: 'Circuit Protection', href: '/Products', external: false },
       { id: 'p6', title: 'Antennas', href: '/Products', external: false },
-    ],
-  },
-  {
-    id: 'solutions',
-    title: 'Solutions',
-    href: '/Solutions',
-    external: false,
-    children: [
-      { id: 's1', title: 'Automotive', href: '/Solutions', external: false },
-      { id: 's2', title: 'Industrial', href: '/Solutions', external: false },
-      { id: 's3', title: 'Data Communications', href: '/Solutions', external: false },
-      { id: 's4', title: 'Aerospace & Defense', href: '/Solutions', external: false },
-      { id: 's5', title: 'Medical', href: '/Solutions', external: false },
-      { id: 's6', title: 'Energy', href: '/Solutions', external: false },
     ],
   },
   {
@@ -215,6 +211,36 @@ async function fetchNavData(datasourceId: string): Promise<{ nav: NavLinkData[];
   return { nav: finalNav, subNav: finalSubNav };
 }
 
+function TELogoSVG() {
+  return (
+    <svg viewBox="0 0 120 48" style={{ height: '40px', width: 'auto' }} aria-label="TE Connectivity">
+      <rect x="0" y="0" width="48" height="48" rx="4" fill="#f28d00" />
+      <text x="24" y="34" textAnchor="middle" fontFamily="Montserrat, Arial, sans-serif" fontWeight="800" fontStyle="italic" fontSize="28" fill="white">TE</text>
+      <line x1="56" y1="14" x2="110" y2="14" stroke="#f28d00" strokeWidth="3" strokeLinecap="round" />
+      <line x1="56" y1="24" x2="100" y2="24" stroke="#2e4957" strokeWidth="3" strokeLinecap="round" />
+      <line x1="56" y1="34" x2="90" y2="34" stroke="#167a87" strokeWidth="3" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function SearchIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.5 }}>
+      <circle cx="11" cy="11" r="8" />
+      <path d="m21 21-4.3-4.3" />
+    </svg>
+  );
+}
+
+function UserIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+      <circle cx="12" cy="7" r="4" />
+    </svg>
+  );
+}
+
 export const Default = async (props: SiteHeaderProps): Promise<JSX.Element> => {
   const { fields, params, rendering } = props;
   const id = params?.RenderingIdentifier;
@@ -236,41 +262,233 @@ export const Default = async (props: SiteHeaderProps): Promise<JSX.Element> => {
     <div
       className={`component site-header ${styles}`}
       id={id || undefined}
-      style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 1000,
-      }}
+      data-testid="site-header"
+      style={{ position: 'sticky', top: 0, zIndex: 1000 }}
     >
-      <div
-        style={{
-          background: '#061E40',
-          color: '#FFFFFF',
-          padding: '0 24px',
-        }}
-      >
-        <div
-          className="component-content"
-          style={{
-            maxWidth: '1200px',
-            margin: '0 auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            height: '64px',
-          }}
-        >
-          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
-            {fields.Logo?.value?.src ? (
-              <Image field={fields.Logo} style={{ height: '40px', width: 'auto', filter: 'brightness(0) invert(1)' }} />
-            ) : (
-              <span style={{ color: '#FFFFFF', fontSize: '20px', fontWeight: 700, letterSpacing: '-0.5px', fontFamily: 'var(--font-heading, sans-serif)' }}>
-                TE Connectivity
-              </span>
-            )}
-          </Link>
+      <style>{`
+        .te-header-utility {
+          background: #2e4957;
+          color: #FFFFFF;
+          font-size: 10px;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+        .te-header-utility-inner {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0 16px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 32px;
+        }
+        .te-header-main {
+          background: #FFFFFF;
+          border-bottom: 1px solid #e5e7eb;
+        }
+        .te-header-main-inner {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0 16px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+          height: 64px;
+        }
+        .te-header-logo-area {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          text-decoration: none;
+          flex-shrink: 0;
+        }
+        .te-header-logo-text {
+          display: none;
+        }
+        @media (min-width: 640px) {
+          .te-header-logo-text {
+            display: block;
+          }
+        }
+        .te-header-search {
+          display: none;
+          flex: 1;
+          max-width: 480px;
+          position: relative;
+        }
+        @media (min-width: 768px) {
+          .te-header-search {
+            display: flex;
+          }
+        }
+        .te-header-search input {
+          width: 100%;
+          height: 36px;
+          padding: 0 16px 0 36px;
+          border: 1px solid #e5e7eb;
+          border-radius: 6px;
+          background: #f9fafb;
+          font-size: 13px;
+          color: #2e4957;
+          outline: none;
+          transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .te-header-search input:focus {
+          border-color: #f28d00;
+          box-shadow: 0 0 0 3px rgba(242,141,0,0.1);
+        }
+        .te-header-search input::placeholder {
+          color: #9ca3af;
+        }
+        .te-header-search-icon {
+          position: absolute;
+          left: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: #9ca3af;
+          pointer-events: none;
+        }
+        .te-header-actions {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          flex-shrink: 0;
+        }
+        .te-header-action-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 36px;
+          height: 36px;
+          border-radius: 6px;
+          background: none;
+          border: none;
+          color: #2e4957;
+          cursor: pointer;
+          transition: background 0.15s;
+        }
+        .te-header-action-btn:hover {
+          background: #f3f4f6;
+        }
+        .te-header-nav {
+          background: #FFFFFF;
+          border-bottom: 1px solid #e5e7eb;
+        }
+        .te-header-nav-inner {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0 16px;
+          display: none;
+          align-items: center;
+          gap: 4px;
+          height: 40px;
+        }
+        @media (min-width: 1024px) {
+          .te-header-nav-inner {
+            display: flex;
+          }
+        }
+        .te-nav-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          padding: 6px 12px;
+          font-size: 12px;
+          font-weight: 500;
+          font-family: 'Montserrat', system-ui, sans-serif;
+          color: rgba(46,73,87,0.8);
+          text-decoration: none;
+          border-radius: 6px;
+          transition: color 0.15s, background 0.15s;
+          white-space: nowrap;
+        }
+        .te-nav-link:hover {
+          color: #2e4957;
+          background: rgba(0,0,0,0.04);
+        }
+        .te-nav-link.active {
+          color: #f28d00;
+          background: rgba(242,141,0,0.08);
+        }
+      `}</style>
 
-          <DrawerNav links={nav} />
+      <div className="te-header-utility">
+        <div className="te-header-utility-inner">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <span style={{ opacity: 0.9, fontFamily: 'Montserrat, system-ui, sans-serif', letterSpacing: '0.05em' }}>
+              Engineering the connections that power our world
+            </span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <span style={{ opacity: 0.8 }}>United States (English)</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="te-header-main">
+        <div className="te-header-main-inner">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+            <Link href="/" className="te-header-logo-area" data-testid="link-home-logo">
+              {fields.Logo?.value?.src ? (
+                <Image field={fields.Logo} style={{ height: '40px', width: 'auto' }} />
+              ) : (
+                <TELogoSVG />
+              )}
+              <div className="te-header-logo-text">
+                <div style={{ fontFamily: 'Montserrat, system-ui, sans-serif', fontWeight: 600, fontSize: '14px', lineHeight: 1.2, color: '#424241' }}>
+                  connectivity
+                </div>
+              </div>
+            </Link>
+          </div>
+
+          <div className="te-header-search">
+            <div className="te-header-search-icon">
+              <SearchIcon />
+            </div>
+            <input
+              type="search"
+              placeholder="Search by part number, keyword..."
+              readOnly
+              data-testid="input-search"
+            />
+          </div>
+
+          <div className="te-header-actions">
+            <button className="te-header-action-btn" aria-label="Account" data-testid="button-account">
+              <UserIcon />
+            </button>
+            <DrawerNav links={nav} />
+          </div>
+        </div>
+      </div>
+
+      <div className="te-header-nav">
+        <div className="te-header-nav-inner">
+          {nav.map((item) => (
+            item.external ? (
+              <a
+                key={item.id}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="te-nav-link"
+                data-testid={`nav-${item.title.toLowerCase()}`}
+              >
+                {item.title}
+              </a>
+            ) : (
+              <Link
+                key={item.id}
+                href={item.href}
+                className="te-nav-link"
+                data-testid={`nav-${item.title.toLowerCase()}`}
+              >
+                {item.title}
+              </Link>
+            )
+          ))}
         </div>
       </div>
 
