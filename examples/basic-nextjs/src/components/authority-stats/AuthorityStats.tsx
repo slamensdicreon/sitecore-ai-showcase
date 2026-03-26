@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
 import {
   Text,
 } from '@sitecore-content-sdk/nextjs';
@@ -16,6 +19,43 @@ const iconMap: IconMap = {
 
 function getIcon(name: string) {
   return iconMap[name] || Zap;
+}
+
+function AnimatedCounter({ target, prefix = '', suffix = '', duration = 2000 }: {
+  target: number; prefix?: string; suffix?: string; duration?: number;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [displayed, setDisplayed] = useState('0');
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    if (!ref.current || hasAnimated) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasAnimated(true);
+          const start = performance.now();
+          const step = (now: number) => {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.round(eased * target);
+            setDisplayed(target >= 1000 ? current.toLocaleString() : String(current));
+            if (progress < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [target, duration, hasAnimated]);
+
+  return (
+    <span ref={ref}>{prefix}{displayed}{suffix}</span>
+  );
 }
 
 type AuthorityStatsProps = {
@@ -55,13 +95,18 @@ export const Default = ({ fields, rendering, params }: AuthorityStatsProps) => {
               const val = getChildFieldValue(stat, 'Value', '0');
               const prefix = getChildFieldValue(stat, 'Prefix');
               const suffix = getChildFieldValue(stat, 'Suffix');
+              const numericVal = parseInt(val.replace(/[^0-9]/g, ''), 10);
               return (
                 <div key={stat.id || i} className="text-center">
-                  <div className={`w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4 ${isDark ? 'bg-white/5' : 'bg-[#2e4957]/5'}`}>
+                  <div className={`w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4 ${isDark ? 'bg-white/5' : 'bg-[#2e4957]/[0.08]'}`}>
                     <Icon className={`h-6 w-6 ${isDark ? 'text-[#167a87]' : 'text-[#2e4957]'}`} />
                   </div>
                   <div className={`text-3xl md:text-4xl font-heading font-bold mb-1 ${isDark ? 'text-white' : 'text-[#2e4957]'}`}>
-                    {prefix}{val}{suffix}
+                    {!isNaN(numericVal) ? (
+                      <AnimatedCounter target={numericVal} prefix={prefix} suffix={suffix} />
+                    ) : (
+                      <>{prefix}{val}{suffix}</>
+                    )}
                   </div>
                   <p className={`text-sm font-medium ${isDark ? 'text-white/70' : 'text-gray-500'}`}>
                     {getChildFieldValue(stat, 'Label')}

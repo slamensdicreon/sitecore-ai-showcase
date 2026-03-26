@@ -1,10 +1,52 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import {
   Text,
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
 import { tf, getChildItems, getChildFieldValue, type ChildItem } from 'lib/field-utils';
+
+function AnimatedValue({ value }: { value: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [displayed, setDisplayed] = useState(value);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    if (!ref.current || hasAnimated) return;
+    const numericMatch = value.match(/^([^0-9]*)(\d[\d,]*)(.*)$/);
+    if (!numericMatch) return;
+    const [, prefix, numStr, suffix] = numericMatch;
+    const target = parseInt(numStr.replace(/,/g, ''), 10);
+    if (isNaN(target)) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasAnimated(true);
+          const start = performance.now();
+          const duration = 2000;
+          const step = (now: number) => {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.round(eased * target);
+            const formatted = target >= 1000 ? current.toLocaleString() : String(current);
+            setDisplayed(`${prefix}${formatted}${suffix}`);
+            if (progress < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [value, hasAnimated]);
+
+  return <span ref={ref}>{displayed}</span>;
+}
 
 type ProofPointCounterProps = {
   rendering: ComponentRendering;
@@ -34,7 +76,7 @@ export const Default = ({ fields, rendering, params }: ProofPointCounterProps) =
             {children.map((item: ChildItem, i: number) => (
               <div key={item.id || i} className="text-center">
                 <div className="text-3xl md:text-4xl font-heading font-bold text-[#f28d00] mb-2">
-                  {getChildFieldValue(item, 'Value')}
+                  <AnimatedValue value={getChildFieldValue(item, 'Value')} />
                 </div>
                 <div className="text-sm font-medium text-white/80 mb-1">
                   {getChildFieldValue(item, 'Label')}
