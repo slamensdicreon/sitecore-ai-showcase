@@ -1,0 +1,1073 @@
+> content-sdk-nextjs-app-router@1.0.0 next:start
+> next start
+   ▲ Next.js 15.5.11
+   - Local:        http://localhost:3000
+   - Network:      http://10.3.67.134:3000
+ ✓ Starting...
+ ⚠ Mismatching @next/swc version, detected: 15.5.7 while Next.js is on 15.5.11. Please ensure these match
+ ✓ Ready in 472ms
+[NovaTech] Draft mode enabled. Route: undefined Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'version',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"6a9074ba-8036-460f-9d0a-808adafc9785","language":"en","variantIds":"_default","version":"1","mode":"edit","layoutKind":"final","timestamp":"1774500381145"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] getPreview succeeded. Has layout: true Has context: true Has route: true
+Placeholder headless-header contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+    ph: 'headless-header',
+    sig: 'sxa-nt_header'
+  },
+  rendering: {
+    uid: '6f24e4b5-1d51-41e6-959d-1f41c2da121d',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+      ph: 'headless-header',
+      sig: 'sxa-nt_header'
+    },
+    placeholders: { 'sxa-nt_header': [Array] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+Placeholder headless-footer contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+    ph: 'headless-footer',
+    sig: 'sxa-nt_footer'
+  },
+  rendering: {
+    uid: '64142461-d37c-42bd-999f-5d88643495e0',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+      ph: 'headless-footer',
+      sig: 'sxa-nt_footer'
+    },
+    placeholders: { 'sxa-nt_footer': [Array] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+[NovaTech] Draft mode enabled. Route: [ 'Solutions' ] Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"4a8f6123-2aa8-4ab7-8b3c-c51fb3df9e26","language":"en","variantIds":"_default","mode":"edit","layoutKind":"final","timestamp":"1774500396681"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] getPreview succeeded. Has layout: true Has context: true Has route: true
+Placeholder headless-header contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+    ph: 'headless-header',
+    sig: 'sxa-nt_header'
+  },
+  rendering: {
+    uid: '6f24e4b5-1d51-41e6-959d-1f41c2da121d',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+      ph: 'headless-header',
+      sig: 'sxa-nt_header'
+    },
+    placeholders: { 'sxa-nt_header': [Array] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+Placeholder headless-footer contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+    ph: 'headless-footer',
+    sig: 'sxa-nt_footer'
+  },
+  rendering: {
+    uid: '64142461-d37c-42bd-999f-5d88643495e0',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+      ph: 'headless-footer',
+      sig: 'sxa-nt_footer'
+    },
+    placeholders: { 'sxa-nt_footer': [Array] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+[NovaTech] Draft mode enabled. Route: [ 'Solutions' ] Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"513db59b-1e9d-4033-9209-e5d066dcbbc0","language":"en","variantIds":"_default","mode":"edit","layoutKind":"final","timestamp":"1774500401779"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] getPreview succeeded. Has layout: true Has context: true Has route: true
+Placeholder headless-header contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+    ph: 'headless-header',
+    sig: 'sxa-nt_header'
+  },
+  rendering: {
+    uid: '6f24e4b5-1d51-41e6-959d-1f41c2da121d',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+      ph: 'headless-header',
+      sig: 'sxa-nt_header'
+    },
+    placeholders: { 'sxa-nt_header': [Array] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+Placeholder headless-footer contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+    ph: 'headless-footer',
+    sig: 'sxa-nt_footer'
+  },
+  rendering: {
+    uid: '64142461-d37c-42bd-999f-5d88643495e0',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+      ph: 'headless-footer',
+      sig: 'sxa-nt_footer'
+    },
+    placeholders: { 'sxa-nt_footer': [Array] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+[NovaTech] Draft mode enabled. Route: [ 'Solutions', 'Communications' ] Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"7c3a2c71-6ef5-460f-b469-925c57d23a8d","language":"en","variantIds":"_default","mode":"edit","layoutKind":"final","timestamp":"1774500403522"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] getPreview succeeded. Has layout: true Has context: true Has route: true
+Placeholder headless-header contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+    ph: 'headless-header',
+    sig: 'sxa-nt_header'
+  },
+  rendering: {
+    uid: '6f24e4b5-1d51-41e6-959d-1f41c2da121d',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+      ph: 'headless-header',
+      sig: 'sxa-nt_header'
+    },
+    placeholders: { 'sxa-nt_header': [Array] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+Placeholder headless-footer contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+    ph: 'headless-footer',
+    sig: 'sxa-nt_footer'
+  },
+  rendering: {
+    uid: '64142461-d37c-42bd-999f-5d88643495e0',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+      ph: 'headless-footer',
+      sig: 'sxa-nt_footer'
+    },
+    placeholders: { 'sxa-nt_footer': [Array] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+[NovaTech] Draft mode enabled. Route: [ 'Innovation' ] Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"a055e76f-509d-470c-841e-960f65b6aa14","language":"en","variantIds":"_default","mode":"edit","layoutKind":"final","timestamp":"1774500405530"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] getPreview succeeded. Has layout: true Has context: true Has route: true
+Placeholder headless-header contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+    ph: 'headless-header',
+    sig: 'sxa-nt_header'
+  },
+  rendering: {
+    uid: '6f24e4b5-1d51-41e6-959d-1f41c2da121d',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+      ph: 'headless-header',
+      sig: 'sxa-nt_header'
+    },
+    placeholders: { 'sxa-nt_header': [Array] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+Placeholder headless-footer contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+    ph: 'headless-footer',
+    sig: 'sxa-nt_footer'
+  },
+  rendering: {
+    uid: '64142461-d37c-42bd-999f-5d88643495e0',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+      ph: 'headless-footer',
+      sig: 'sxa-nt_footer'
+    },
+    placeholders: { 'sxa-nt_footer': [Array] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+[NovaTech] Draft mode enabled. Route: undefined Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"6a9074ba-8036-460f-9d0a-808adafc9785","language":"en","variantIds":"_default","mode":"edit","layoutKind":"final","timestamp":"1774500406565"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] getPreview succeeded. Has layout: true Has context: true Has route: true
+Placeholder headless-header contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+    ph: 'headless-header',
+    sig: 'sxa-nt_header'
+  },
+  rendering: {
+    uid: '6f24e4b5-1d51-41e6-959d-1f41c2da121d',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+      ph: 'headless-header',
+      sig: 'sxa-nt_header'
+    },
+    placeholders: { 'sxa-nt_header': [Array] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+Placeholder headless-footer contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+    ph: 'headless-footer',
+    sig: 'sxa-nt_footer'
+  },
+  rendering: {
+    uid: '64142461-d37c-42bd-999f-5d88643495e0',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+      ph: 'headless-footer',
+      sig: 'sxa-nt_footer'
+    },
+    placeholders: { 'sxa-nt_footer': [Array] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+[NovaTech] Draft mode enabled. Route: [ 'Innovation' ] Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"a055e76f-509d-470c-841e-960f65b6aa14","language":"en","variantIds":"_default","mode":"edit","layoutKind":"final","timestamp":"1774500407816"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] getPreview succeeded. Has layout: true Has context: true Has route: true
+Placeholder headless-header contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+    ph: 'headless-header',
+    sig: 'sxa-nt_header'
+  },
+  rendering: {
+    uid: '6f24e4b5-1d51-41e6-959d-1f41c2da121d',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+      ph: 'headless-header',
+      sig: 'sxa-nt_header'
+    },
+    placeholders: { 'sxa-nt_header': [Array] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+Placeholder headless-footer contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+    ph: 'headless-footer',
+    sig: 'sxa-nt_footer'
+  },
+  rendering: {
+    uid: '64142461-d37c-42bd-999f-5d88643495e0',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+      ph: 'headless-footer',
+      sig: 'sxa-nt_footer'
+    },
+    placeholders: { 'sxa-nt_footer': [Array] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+[NovaTech] Draft mode enabled. Route: undefined Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"6a9074ba-8036-460f-9d0a-808adafc9785","language":"en","variantIds":"_default","mode":"edit","layoutKind":"final","timestamp":"1774500412867"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] getPreview succeeded. Has layout: true Has context: true Has route: true
+Placeholder headless-header contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+    ph: 'headless-header',
+    sig: 'sxa-nt_header'
+  },
+  rendering: {
+    uid: '6f24e4b5-1d51-41e6-959d-1f41c2da121d',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+      ph: 'headless-header',
+      sig: 'sxa-nt_header'
+    },
+    placeholders: { 'sxa-nt_header': [Array] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+Placeholder headless-footer contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+    ph: 'headless-footer',
+    sig: 'sxa-nt_footer'
+  },
+  rendering: {
+    uid: '64142461-d37c-42bd-999f-5d88643495e0',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+      ph: 'headless-footer',
+      sig: 'sxa-nt_footer'
+    },
+    placeholders: { 'sxa-nt_footer': [Array] }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
