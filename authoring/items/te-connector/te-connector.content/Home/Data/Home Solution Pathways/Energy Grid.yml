@@ -15,7 +15,7 @@ Languages:
     - Hint: Context
       Value: "Utility-grade connectors, sensors, and power distribution solutions for smart grid and renewable energy infrastructure."
     - Hint: Link
-      Value: "<link linktype=\"internal\" url=\"/solutions/industrial\" />"
+      Value: "<link linktype=\"external\" url=\"/solutions/industrial\" text=\"Explore Energy Grid\" />"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

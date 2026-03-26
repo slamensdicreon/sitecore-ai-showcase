@@ -10,7 +10,7 @@ Languages:
     Fields:
     - Hint: Link
       Value: |
-        <link linktype="internal" url="/solutions/industrial" />
+        <link linktype="external" url="/solutions/industrial" />
     - Hint: Question
       Value: "How do we build smarter?"
     - Hint: Context

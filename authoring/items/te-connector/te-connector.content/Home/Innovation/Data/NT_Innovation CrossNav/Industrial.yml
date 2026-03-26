@@ -14,7 +14,7 @@ Languages:
       Value: "Factory automation, robotics, and harsh-environment connectivity"
     - Hint: Link
       Value: |
-        <link linktype="internal" url="/solutions/industrial" />
+        <link linktype="external" url="/solutions/industrial" />
     - Hint: Icon Name
       Value: "Factory"
     - Hint: Accent Color

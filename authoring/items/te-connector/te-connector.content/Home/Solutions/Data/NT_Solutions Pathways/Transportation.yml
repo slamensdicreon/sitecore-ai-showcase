@@ -10,7 +10,7 @@ Languages:
     Fields:
     - Hint: Link
       Value: |
-        <link linktype="internal" url="/solutions/transportation" />
+        <link linktype="external" url="/solutions/transportation" />
     - Hint: Question
       Value: "How do we move forward?"
     - Hint: Context

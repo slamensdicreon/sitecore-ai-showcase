@@ -15,7 +15,7 @@ Languages:
     - Hint: Context
       Value: "Connectors and sensors rated for extreme temperatures, vibration, and mission-critical reliability across industries."
     - Hint: Link
-      Value: "<link linktype=\"internal\" url=\"/products\" />"
+      Value: "<link linktype=\"external\" url=\"/products\" text=\"View Products\" />"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

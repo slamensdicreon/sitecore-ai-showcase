@@ -23,7 +23,7 @@ Languages:
     - Hint: Accent Color
       Value: "#167a87"
     - Hint: Link
-      Value: "<link linktype=\"internal\" url=\"/solutions/communications\" />"
+      Value: "<link linktype=\"external\" url=\"/solutions/communications\" text=\"Explore Communications\" />"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

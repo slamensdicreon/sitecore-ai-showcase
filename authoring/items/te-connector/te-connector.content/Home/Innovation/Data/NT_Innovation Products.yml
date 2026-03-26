@@ -16,7 +16,7 @@ Languages:
       Value: "View All Innovations"
     - Hint: CTA Link
       Value: |
-        <link linktype="internal" url="/products" />
+        <link linktype="external" url="/products" />
     - Hint: Section Label
       Value: "Innovation Spotlight"
     - Hint: Max Products

@@ -21,7 +21,7 @@ Languages:
     - Hint: CTA Link Text
       Value: "Explore Products"
     - Hint: CTA Link
-      Value: "<link linktype=\"internal\" url=\"/products\" />"
+      Value: "<link linktype=\"external\" url=\"/products\" text=\"Explore Products\" />"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

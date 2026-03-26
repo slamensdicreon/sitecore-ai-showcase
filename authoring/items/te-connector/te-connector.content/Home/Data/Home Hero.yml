@@ -19,11 +19,11 @@ Languages:
     - Hint: Primary CTA Text
       Value: "Explore Solutions"
     - Hint: Primary CTA Link
-      Value: "<link linktype=\"internal\" url=\"/solutions/transportation\" />"
+      Value: "<link linktype=\"external\" url=\"/solutions/transportation\" text=\"Explore Solutions\" />"
     - Hint: Secondary CTA Text
       Value: "Browse Catalog"
     - Hint: Secondary CTA Link
-      Value: "<link linktype=\"internal\" url=\"/products\" />"
+      Value: "<link linktype=\"external\" url=\"/products\" text=\"Browse Catalog\" />"
     - Hint: Background Video URL
       Value: "https://assets.mixkit.co/videos/preview/mixkit-circuit-board-with-neon-lights-close-up-view-77488-large.mp4"
     - Hint: Show Connectivity Motif

@@ -14,7 +14,7 @@ Languages:
       Value: "Data center, 5G, and high-speed network infrastructure"
     - Hint: Link
       Value: |
-        <link linktype="internal" url="/solutions/communications" />
+        <link linktype="external" url="/solutions/communications" />
     - Hint: Icon Name
       Value: "Server"
     - Hint: Accent Color

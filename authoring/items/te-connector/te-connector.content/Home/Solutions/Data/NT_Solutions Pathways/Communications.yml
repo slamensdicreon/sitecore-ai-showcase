@@ -10,7 +10,7 @@ Languages:
     Fields:
     - Hint: Link
       Value: |
-        <link linktype="internal" url="/solutions/communications" />
+        <link linktype="external" url="/solutions/communications" />
     - Hint: Question
       Value: "How do we connect the world?"
     - Hint: Context

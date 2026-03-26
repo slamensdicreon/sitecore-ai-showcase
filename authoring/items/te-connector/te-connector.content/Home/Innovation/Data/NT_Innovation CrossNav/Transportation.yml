@@ -14,7 +14,7 @@ Languages:
       Value: "EV connectors, sensor systems, and automotive harnesses"
     - Hint: Link
       Value: |
-        <link linktype="internal" url="/solutions/transportation" />
+        <link linktype="external" url="/solutions/transportation" />
     - Hint: Icon Name
       Value: "Car"
     - Hint: Accent Color

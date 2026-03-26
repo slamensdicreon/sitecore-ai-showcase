@@ -15,7 +15,7 @@ Languages:
     - Hint: Context
       Value: "High-speed, high-density connectivity solutions that handle the power and signal demands of next-gen AI compute."
     - Hint: Link
-      Value: "<link linktype=\"internal\" url=\"/solutions/communications\" />"
+      Value: "<link linktype=\"external\" url=\"/solutions/communications\" text=\"Explore AI Infrastructure\" />"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z

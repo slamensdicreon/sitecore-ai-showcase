@@ -16,7 +16,7 @@ Languages:
       Value: "View Full Catalog"
     - Hint: CTA Link
       Value: |
-        <link linktype="internal" url="/products?industry=Automotive" />
+        <link linktype="external" url="/products?industry=Automotive" />
     - Hint: Section Label
       Value: "Featured Products"
     - Hint: Industry Filter

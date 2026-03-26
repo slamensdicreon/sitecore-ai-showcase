@@ -14,7 +14,7 @@ Languages:
       Value: "EV powertrains, autonomous systems, and vehicle connectivity"
     - Hint: Link
       Value: |
-        <link linktype="internal" url="/solutions/transportation" />
+        <link linktype="external" url="/solutions/transportation" />
     - Hint: Icon Name
       Value: "BatteryCharging"
     - Hint: Accent Color
