@@ -1,7 +1,8 @@
 import {
   Text,
+  Image as JssImage,
 } from '@sitecore-content-sdk/nextjs';
-import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
+import type { ComponentRendering, ComponentFields, ImageField } from '@sitecore-content-sdk/nextjs';
 import { tf, getFieldValue } from 'lib/field-utils';
 
 type SolutionHeroProps = {
@@ -14,6 +15,8 @@ export const Default = ({ fields, params }: SolutionHeroProps) => {
   const variant = params?.FieldNames || '';
   const isMinimal = variant === 'solution-hero--minimal';
   const accentColor = getFieldValue(fields, 'Accent Color', '#f28d00');
+  const bgImage = fields?.['Background Image'] as ImageField | undefined;
+  const hasBgImage = !!(bgImage?.value?.src);
 
   return (
     <section
@@ -21,7 +24,17 @@ export const Default = ({ fields, params }: SolutionHeroProps) => {
       data-testid="section-solution-hero"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-[#04215d]/90 via-[#2e4957]/85 to-[#167a87]/70 z-10" />
-      <div className="absolute inset-0 bg-[#2e4957]" />
+      {hasBgImage ? (
+        <div className="absolute inset-0">
+          <JssImage
+            field={bgImage}
+            className="w-full h-full object-cover"
+            data-testid="img-solution-hero-bg"
+          />
+        </div>
+      ) : (
+        <div className="absolute inset-0 bg-[#2e4957]" />
+      )}
 
       <div className="relative z-20 max-w-[1400px] mx-auto px-4 py-16 md:py-24 w-full">
         <div className="max-w-3xl">
