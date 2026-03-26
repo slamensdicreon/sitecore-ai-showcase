@@ -35,7 +35,7 @@ interface EdgeChildResult {
 function parseChild(child: EdgeChildResult): ChildItem {
   const fields: Record<string, Field<string> | Field<number> | LinkField | undefined> = {};
   for (const f of child.fields) {
-    fields[f.name] = f.jsonValue as Field<string> | Field<number> | LinkField | undefined;
+    fields[f.name] = f.jsonValue as unknown as Field<string> | Field<number> | LinkField | undefined;
   }
   return { id: child.id, fields };
 }
