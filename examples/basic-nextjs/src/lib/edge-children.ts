@@ -1,7 +1,9 @@
 import type { Field, LinkField } from '@sitecore-content-sdk/nextjs';
 import type { ChildItem } from './field-utils';
 
-const EDGE_URL = 'https://edge-platform.sitecorecloud.io/v1/content/api/graphql/v1';
+const EDGE_URL =
+  process.env.SITECORE_EDGE_URL ||
+  'https://edge-platform.sitecorecloud.io/v1/content/api/graphql/v1';
 
 const CHILDREN_QUERY = `
 query DatasourceChildren($datasource: String!, $language: String!) {
