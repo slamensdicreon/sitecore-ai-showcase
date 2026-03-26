@@ -1,5 +1,5 @@
 import { JSX } from 'react';
-import { Text, Field, ImageField } from '@sitecore-content-sdk/nextjs';
+import { Text, Image, Field, ImageField } from '@sitecore-content-sdk/nextjs';
 import { ComponentProps } from 'lib/component-props';
 
 interface SiteFooterFields {
@@ -267,7 +267,11 @@ export const Default = (props: SiteFooterProps): JSX.Element => {
         <div className="te-footer-inner">
           <div className="te-footer-grid">
             <div className="te-footer-brand">
-              <TELogoFooter />
+              {fields.Logo?.value?.src ? (
+                <Image field={fields.Logo} style={{ height: '40px', width: 'auto' }} />
+              ) : (
+                <TELogoFooter />
+              )}
               <p className="te-footer-tagline">EVERY CONNECTION COUNTS</p>
               <div className="te-footer-contact">
                 <a href="tel:1-800-522-6752" className="te-footer-contact-link" data-testid="footer-phone">

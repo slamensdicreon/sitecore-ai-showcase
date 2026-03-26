@@ -451,6 +451,7 @@ export const Default = async (props: SiteHeaderProps): Promise<JSX.Element> => {
               type="search"
               placeholder="Search by part number, keyword..."
               readOnly
+              aria-label="Search products by part number or keyword"
               data-testid="input-search"
             />
           </div>
