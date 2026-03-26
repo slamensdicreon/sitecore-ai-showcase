@@ -455,7 +455,7 @@ async function step2b_createCardItems() {
   const proofPointCardsFolder = `${dataPath}/Proof Point Items`;
   const proofPointItems = [
     { name: "Patents Filed", fields: { "Value": "$2,400+", "Label": "Patents Filed", "Description": "Active patents protecting our innovations" } },
-    { name: "R&D Investment", fields: { "Value": "$640M", "Label": "Annual R&D Investment", "Description": "Invested annually in research and development" } },
+    { name: "RD Investment", fields: { "Value": "$640M", "Label": "Annual R&D Investment", "Description": "Invested annually in research and development" } },
     { name: "Engineering Centers", fields: { "Value": "30+", "Label": "Engineering Centers", "Description": "R&D facilities across the globe" } },
     { name: "Product Launches", fields: { "Value": "1,200+", "Label": "New Products per Year", "Description": "New products launched annually" } },
   ];
@@ -466,26 +466,133 @@ async function step2b_createCardItems() {
 }
 
 async function step3_fixSolutionPages() {
-  console.log("\n═══ Step 3: Verify & fix Solution page layouts ═══");
+  console.log("\n═══ Step 3: Create Solution page datasources & fix layouts ═══");
+
+  const crossNavCardsFolder = `${SITE_ROOT}/Home/Data/Cross Nav Links`;
+
   const solutions = [
-    { name: "Transportation", path: `${SITE_ROOT}/Home/Solutions/Transportation` },
-    { name: "Industrial", path: `${SITE_ROOT}/Home/Solutions/Industrial` },
-    { name: "Communications", path: `${SITE_ROOT}/Home/Solutions/Communications` },
+    {
+      name: "Transportation",
+      path: `${SITE_ROOT}/Home/Solutions/Transportation`,
+      hero: {
+        "Industry Label": "Transportation",
+        "Title": "Driving the Future of Mobility",
+        "Subtitle": "From EV powertrains to autonomous systems, TE Connectivity delivers the connectors, sensors, and harness solutions that keep next-generation vehicles running safely and efficiently.",
+        "Accent Color": "#f28d00",
+      },
+      narrative: {
+        "Section Label": "Our Approach",
+        "Heading": "Engineering for the Road Ahead",
+        "Lead Text": "TE partners with the world's leading automotive OEMs to co-engineer connectivity solutions that meet the extreme demands of modern vehicles.",
+        "Body": "<p>Our transportation portfolio spans high-voltage connectors rated for 800V+ EV architectures, miniaturized sensor arrays for ADAS and autonomous driving, and complete wiring harness systems engineered for weight reduction and thermal management.</p><p>With decades of automotive expertise and global manufacturing scale, TE delivers the reliability that tier-one suppliers and OEMs depend on — from prototype through high-volume production.</p>",
+      },
+      products: {
+        "Section Label": "Featured Products",
+        "Heading": "Transportation Solutions",
+        "Description": "Explore our range of automotive connectors, sensors, and harness solutions designed for next-generation vehicles.",
+        "Max Products": "6",
+        "CTA Text": "View All Products",
+        "CTA Link": '<link linktype="external" url="/products" />',
+      },
+      crossNavItems: ["Transportation-Industrial", "Transportation-Communications"],
+      crossNav: {
+        "Heading": "Explore Related Solutions",
+        "Description": "See how TE connectivity solutions serve other industries.",
+      },
+    },
+    {
+      name: "Industrial",
+      path: `${SITE_ROOT}/Home/Solutions/Industrial`,
+      hero: {
+        "Industry Label": "Industrial",
+        "Title": "Powering the Smart Factory",
+        "Subtitle": "Factory automation, robotics, energy management, and harsh-environment connectivity — TE solutions keep industrial systems running in the most demanding conditions.",
+        "Accent Color": "#2e4957",
+      },
+      narrative: {
+        "Section Label": "Our Approach",
+        "Heading": "Built for the Harshest Environments",
+        "Lead Text": "TE industrial solutions are engineered to withstand extreme temperatures, vibration, moisture, and continuous operation cycles that define modern manufacturing.",
+        "Body": "<p>Our industrial portfolio includes ruggedized circular and rectangular connectors, industrial Ethernet solutions for real-time factory communication, and sensor systems for predictive maintenance and process control.</p><p>From discrete manufacturing to process industries, TE delivers the connectivity backbone that enables Industry 4.0 — helping manufacturers increase uptime, reduce waste, and accelerate production.</p>",
+      },
+      products: {
+        "Section Label": "Featured Products",
+        "Heading": "Industrial Solutions",
+        "Description": "Explore our industrial connectors, sensors, and automation solutions built for demanding factory environments.",
+        "Max Products": "6",
+        "CTA Text": "View All Products",
+        "CTA Link": '<link linktype="external" url="/products" />',
+      },
+      crossNavItems: ["Industrial-Transportation", "Industrial-Communications"],
+      crossNav: {
+        "Heading": "Explore Related Solutions",
+        "Description": "See how TE connectivity solutions serve other industries.",
+      },
+    },
+    {
+      name: "Communications",
+      path: `${SITE_ROOT}/Home/Solutions/Communications`,
+      hero: {
+        "Industry Label": "Communications",
+        "Title": "Connecting the Digital World",
+        "Subtitle": "Data center infrastructure, 5G networks, and high-speed signal integrity — TE delivers the connectivity that powers global communications at scale.",
+        "Accent Color": "#167a87",
+      },
+      narrative: {
+        "Section Label": "Our Approach",
+        "Heading": "Engineered for Speed and Density",
+        "Lead Text": "As data demands accelerate, TE delivers the high-speed, high-density connectivity solutions that hyperscale operators and network builders require.",
+        "Body": "<p>Our communications portfolio spans high-speed backplane connectors supporting 112G PAM4 signaling, fiber optic interconnects for data center fabric, and antenna solutions for 5G macro and small cell deployments.</p><p>TE works alongside the world's leading cloud providers and telecom operators to ensure signal integrity, thermal performance, and power delivery at the densities required by next-generation infrastructure.</p>",
+      },
+      products: {
+        "Section Label": "Featured Products",
+        "Heading": "Communications Solutions",
+        "Description": "Explore our data center connectors, fiber optics, and 5G infrastructure solutions for high-speed networks.",
+        "Max Products": "6",
+        "CTA Text": "View All Products",
+        "CTA Link": '<link linktype="external" url="/products" />',
+      },
+      crossNavItems: ["Communications-Transportation", "Communications-Industrial"],
+      crossNav: {
+        "Heading": "Explore Related Solutions",
+        "Description": "See how TE connectivity solutions serve other industries.",
+      },
+    },
   ];
 
+  await ensureItem(`${SITE_ROOT}/Home`, "Solutions", PAGE_TEMPLATE_ID, { Title: "Solutions" });
+
   for (const sol of solutions) {
-    const page = await getItemFields(sol.path);
-    if (!page) { console.log(`  ✗ ${sol.name} not found`); continue; }
+    const pageId = await ensureItem(`${SITE_ROOT}/Home/Solutions`, sol.name, PAGE_TEMPLATE_ID, {
+      Title: sol.name,
+    });
 
-    const dataPath = `${SITE_ROOT}/Home/Data`;
-    const heroId = await getItemId(`${dataPath}/${sol.name} Hero`);
-    const narrativeId = await getItemId(`${dataPath}/${sol.name} Narrative`);
-    const productsId = await getItemId(`${dataPath}/${sol.name} Products`);
-    const crossNavId = await getItemId(`${dataPath}/${sol.name} Cross Nav`);
+    const dataPath = `${sol.path}/Data`;
+    await ensureItem(sol.path, "Data", PAGE_DATA_TEMPLATE_ID);
 
-    if (!heroId || !narrativeId || !productsId || !crossNavId) {
-      console.log(`  ✗ ${sol.name}: Missing datasources`);
-      continue;
+    const heroId = await ensureItem(dataPath, `${sol.name} Hero`, TEMPLATE_IDS["Solution Hero"], sol.hero);
+    console.log(`  ✓ ${sol.name} Hero datasource created`);
+
+    const narrativeId = await ensureItem(dataPath, `${sol.name} Narrative`, TEMPLATE_IDS["Solution Narrative"], sol.narrative);
+    console.log(`  ✓ ${sol.name} Narrative datasource created`);
+
+    const productsId = await ensureItem(dataPath, `${sol.name} Products`, TEMPLATE_IDS["Product Discovery"], sol.products);
+    console.log(`  ✓ ${sol.name} Products datasource created`);
+
+    const crossNavId = await ensureItem(dataPath, `${sol.name} Cross Nav`, TEMPLATE_IDS["Cross Navigation"], sol.crossNav);
+    console.log(`  ✓ ${sol.name} Cross Nav datasource created`);
+
+    const crossNavItemIds: string[] = [];
+    for (const itemName of sol.crossNavItems) {
+      const id = await getItemId(`${crossNavCardsFolder}/${itemName}`);
+      if (id) crossNavItemIds.push(id);
+    }
+    if (crossNavItemIds.length > 0) {
+      await gql(`mutation($id:ID!,$lang:String!,$fields:[FieldValueInput!]!){updateItem(input:{itemId:$id,language:$lang,fields:$fields}){item{itemId}}}`, {
+        id: crossNavId, lang: "en",
+        fields: [{ name: "Items", value: crossNavItemIds.map(id => formatGuid(id)).join("|") }],
+      });
+      console.log(`  ✓ ${sol.name} Cross Nav: Items field set with ${crossNavItemIds.length} references`);
     }
 
     const finalRenderings = buildFinalRenderings([
@@ -495,7 +602,7 @@ async function step3_fixSolutionPages() {
       { renderingName: "Cross Navigation", datasourceId: crossNavId },
     ]);
 
-    await setLayout(page.id, finalRenderings, buildSharedLayout());
+    await setLayout(pageId, finalRenderings, buildSharedLayout());
     console.log(`  ✓ ${sol.name} layout set with 4 renderings`);
   }
 }
