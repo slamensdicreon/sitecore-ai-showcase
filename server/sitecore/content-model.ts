@@ -187,15 +187,25 @@ export const componentTemplates: ComponentTemplate[] = [
     ],
   },
   {
+    name: "Product Card",
+    path: `${TEMPLATES_ROOT}/Product Card`,
+    fields: [
+      { name: "Name", type: "Single-Line Text", section: "Content" },
+      { name: "SKU", type: "Single-Line Text", section: "Content" },
+      { name: "Description", type: "Multi-Line Text", section: "Content" },
+      { name: "Price", type: "Single-Line Text", section: "Content" },
+      { name: "Image", type: "Image", section: "Media" },
+      { name: "Category", type: "Single-Line Text", section: "Data" },
+      { name: "Industry", type: "Single-Line Text", section: "Data" },
+    ],
+  },
+  {
     name: "Product Discovery",
     path: `${TEMPLATES_ROOT}/Product Discovery`,
     fields: [
       { name: "Section Label", type: "Single-Line Text", section: "Content" },
       { name: "Heading", type: "Single-Line Text", section: "Content" },
       { name: "Description", type: "Multi-Line Text", section: "Content" },
-      { name: "Industry Filter", type: "Single-Line Text", section: "Data" },
-      { name: "Application Filter", type: "Single-Line Text", section: "Data" },
-      { name: "Max Products", type: "Integer", section: "Data", standardValue: "6" },
       { name: "CTA Text", type: "Single-Line Text", section: "CTA" },
       { name: "CTA Link", type: "General Link", section: "CTA" },
     ],

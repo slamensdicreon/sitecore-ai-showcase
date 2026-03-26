@@ -153,6 +153,7 @@ const TEMPLATE_IDS: Record<string, string> = {
   "Solution Hero":     "7325aeca17f840eba3c74b7e1ebc0773",
   "Solution Narrative":"af57195c3edf40039ae87bc936d89aa3",
   "Product Discovery": "345cbcfcb37141579156c4ce95e0563c",
+  "Product Card":      "",
   "Cross Navigation":  "4dd207edc4d0411d91b93c976922a2e7",
   "Cross Nav Link":    "25e5d6f8b178416baab34c033ce84913",
   "Rich Text Block":   "f21694227ea041d681298a3f9c1c819a",
@@ -259,6 +260,7 @@ async function step1d_addMultilistFields() {
     { name: "Authority Stats", cardsFolder: "Stat Items" },
     { name: "Cross Navigation", cardsFolder: "Cross Nav Links" },
     { name: "Proof Point Counter", cardsFolder: "Proof Point Items" },
+    { name: "Product Discovery", cardsFolder: "Product Cards" },
   ];
 
   for (const tpl of templates) {
@@ -462,6 +464,73 @@ async function step2b_createCardItems() {
   for (const item of proofPointItems) {
     await ensureItem(proofPointCardsFolder, item.name, TEMPLATE_IDS["Proof Point Item"], item.fields);
     console.log(`  ✓ Proof Point Item: ${item.name}`);
+  }
+
+  console.log("\n═══ Step 2e: Create Product Card items in shared folder ═══");
+  const productCardsFolder = `${dataPath}/Product Cards`;
+  const productCardTpl = TEMPLATE_IDS["Product Card"];
+  if (!productCardTpl) {
+    console.log("  ⚠ Product Card template not found, skipping product cards");
+  } else {
+    const productCards = [
+      { name: "DEUTSCH DT 12-Pin Connector", fields: { "Name": "DEUTSCH DT 12-Pin Connector Assembly", "SKU": "DT06-12S-CE06", "Description": "Rugged 12-pin connector assembly designed for automotive engine harness applications. IP68 sealed with vibration-resistant contacts.", "Price": "$24.50", "Category": "Connectors", "Industry": "Automotive" } },
+      { name: "M12 Circular Connector 8-Pos", fields: { "Name": "M12 Circular Connector 8-Pos D-Coded", "SKU": "T4171110008-001", "Description": "Industrial M12 circular connector with D-coded 8 positions for Ethernet communication in harsh environments.", "Price": "$18.75", "Category": "Connectors", "Industry": "Industrial Automation" } },
+      { name: "AMPSEAL 16 Series 23-Pin", fields: { "Name": "AMPSEAL 16 Series 23-Pin Plug", "SKU": "776087-1", "Description": "High-performance 23-pin sealed connector for powertrain systems. Rated for continuous vibration and wide temperature range.", "Price": "$32.20", "Category": "Connectors", "Industry": "Automotive" } },
+      { name: "RTD Pt100 Temperature Sensor", fields: { "Name": "RTD Pt100 Temperature Sensor Assembly", "SKU": "NB-PTCO-152", "Description": "Precision platinum RTD sensor for process control applications. Class A accuracy with fast response time.", "Price": "$45.80", "Category": "Sensors", "Industry": "Industrial Automation" } },
+      { name: "Piezoelectric Vibration Sensor", fields: { "Name": "Piezoelectric Vibration Sensor 100mV/g", "SKU": "805M1-0100", "Description": "High-sensitivity vibration sensor for condition monitoring and predictive maintenance applications.", "Price": "$128.50", "Category": "Sensors", "Industry": "Industrial Automation" } },
+      { name: "Pressure Transducer 0-100 PSI", fields: { "Name": "Pressure Transducer 0-100 PSI 4-20mA", "SKU": "U5374-000005-100PG", "Description": "Industrial-grade pressure transducer with 4-20mA output for hydraulic systems monitoring.", "Price": "$89.00", "Category": "Sensors", "Industry": "Industrial Automation" } },
+      { name: "PCB Power Relay 30A", fields: { "Name": "PCB Power Relay 30A SPST-NO", "SKU": "T9AS1D12-12", "Description": "Compact PCB-mount power relay with 30A switching capacity for HVAC control applications.", "Price": "$6.25", "Category": "Relays", "Industry": "Industrial Automation" } },
+      { name: "Shielded Cat6A Ethernet Cable", fields: { "Name": "Shielded Cat6A Ethernet Patch Cable 10ft", "SKU": "CAT6A-S-10-BL", "Description": "High-performance shielded Cat6A patch cable supporting 10GBASE-T for network infrastructure.", "Price": "$12.95", "Category": "Wire & Cable", "Industry": "Data Communications" } },
+      { name: "TVS Diode Array USB Protection", fields: { "Name": "TVS Diode Array USB 3.0 Protection", "SKU": "SESD0402Q2UG-0024-098", "Description": "Ultra-low capacitance TVS diode array for USB 3.0 ESD protection in consumer electronics.", "Price": "$0.45", "Category": "Circuit Protection", "Industry": "Consumer Electronics" } },
+      { name: "PCB Screw Terminal Block", fields: { "Name": "PCB Screw Terminal Block 5.0mm 12-Pos", "SKU": "OSTB-1200503", "Description": "12-position PCB screw terminal block with 5.0mm pitch for reliable PCB interconnects.", "Price": "$4.25", "Category": "Terminal Blocks", "Industry": "Industrial Automation" } },
+      { name: "DIN Rail Terminal Block 10mm2", fields: { "Name": "DIN Rail Terminal Block 10mm2 Feed-Through", "SKU": "XBUT10-FT-BG", "Description": "Feed-through DIN rail terminal block rated for 10mm2 conductors in panel wiring applications.", "Price": "$3.85", "Category": "Terminal Blocks", "Industry": "Industrial Automation" } },
+      { name: "Contactor Relay 4-Pole", fields: { "Name": "Contactor Relay 4-Pole 10A DIN Rail", "SKU": "ICS-V16A-4C-24", "Description": "4-pole DIN rail mounted contactor relay for motor control, rated 10A per pole.", "Price": "$22.40", "Category": "Relays", "Industry": "Industrial Automation" } },
+      { name: "Silicone Multi-Conductor Cable", fields: { "Name": "Silicone Multi-Conductor Cable 18AWG 4C", "SKU": "SIL-18-4C-300V", "Description": "High-temperature silicone-insulated 4-conductor cable for demanding industrial wiring.", "Price": "$3.75", "Category": "Wire & Cable", "Industry": "Industrial Automation" } },
+      { name: "Automotive Blade Fuse 15A", fields: { "Name": "Automotive Blade Fuse 15A (Pack of 100)", "SKU": "FBF-15A-100PK", "Description": "Standard blade fuse rated 15A for automotive electrical distribution systems. Pack of 100.", "Price": "$18.50", "Category": "Circuit Protection", "Industry": "Automotive" } },
+    ];
+
+    const allProductIds: string[] = [];
+    for (const card of productCards) {
+      const id = await ensureItem(productCardsFolder, card.name, productCardTpl, card.fields);
+      allProductIds.push(id);
+      console.log(`  ✓ Product Card: ${card.name}`);
+    }
+
+    const industryProductMap: Record<string, string[]> = {
+      "Transportation": [],
+      "Industrial": [],
+      "Communications": [],
+      "Innovation": [],
+    };
+    for (let i = 0; i < productCards.length; i++) {
+      const industry = productCards[i].fields["Industry"];
+      if (industry === "Automotive") industryProductMap["Transportation"].push(allProductIds[i]);
+      if (industry === "Industrial Automation") industryProductMap["Industrial"].push(allProductIds[i]);
+      if (industry === "Data Communications") industryProductMap["Communications"].push(allProductIds[i]);
+    }
+    industryProductMap["Innovation"] = allProductIds.slice(0, 6);
+
+    for (const [pageName, productIds] of Object.entries(industryProductMap)) {
+      let dsName = "";
+      if (pageName === "Transportation") dsName = "Transportation Products";
+      else if (pageName === "Industrial") dsName = "Industrial Products";
+      else if (pageName === "Communications") dsName = "Communications Products";
+      else if (pageName === "Innovation") dsName = "Innovation Products";
+
+      const dsPath = pageName === "Innovation"
+        ? `${SITE_ROOT}/Home/Innovation/Data/${dsName}`
+        : `${SITE_ROOT}/Home/Solutions/${pageName}/Data/${dsName}`;
+      const dsId = await getItemId(dsPath);
+      if (dsId && productIds.length > 0) {
+        await gql(`mutation($id:ID!,$lang:String!,$fields:[FieldValueInput!]!){updateItem(input:{itemId:$id,language:$lang,fields:$fields}){item{itemId}}}`, {
+          id: dsId, lang: "en",
+          fields: [{ name: "Items", value: productIds.map(id => formatGuid(id)).join("|") }],
+        });
+        console.log(`  ✓ ${dsName}: Items set with ${productIds.length} product references`);
+      } else {
+        console.log(`  ⚠ ${dsName}: datasource not found or no products (dsId=${dsId})`);
+      }
+    }
   }
 }
 
@@ -1166,6 +1235,14 @@ async function main() {
 
   console.log("\n═══ Step 0: Resolve well-known IDs ═══");
   await resolveWellKnownIds();
+
+  const productCardTplId = await getItemId(`${TEMPLATES_ROOT}/Product Card`);
+  if (productCardTplId) {
+    TEMPLATE_IDS["Product Card"] = normalizeGuid(productCardTplId);
+    console.log(`  Resolved Product Card template: ${productCardTplId}`);
+  } else {
+    console.log("  ⚠ Product Card template not found — run content model sync first");
+  }
 
   await step1_fixDatasourceLocation();
   await step1b_clearRenderingContentsResolver();
