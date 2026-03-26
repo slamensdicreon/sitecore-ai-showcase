@@ -1,0 +1,26 @@
+---
+ID: "ad1af30c-6056-4592-851f-56ad194cab46"
+Parent: "1a3c9693-ab37-4a6d-ad84-1178d97a48d1"
+Template: "9c9c6fae-f68a-4c4b-a1ac-2991b800b2f9"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Innovation/Data/NT_Innovation Narrative"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Heading
+      Value: "Co-Engineering the Future with Our Customers"
+    - Hint: Body
+      Value: |
+        <p>With 8,000+ engineers across 30+ engineering centers worldwide, TE operates at the intersection of fundamental materials science and practical product engineering. Our co-design model means we embed with customer teams from concept through production validation.</p><p>Key focus areas include next-generation high-voltage connectors for 800V+ EV platforms, miniaturized sensor arrays for autonomous systems, and high-density power delivery solutions for AI data centers requiring 100kW+ per rack.</p>
+    - Hint: Section Label
+      Value: "Our Innovation Philosophy"
+    - Hint: Lead Text
+      Value: "Innovation at TE isn't theoretical. It's driven by real engineering challenges from our customers — the world's leading OEMs and system integrators."
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

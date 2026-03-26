@@ -1,0 +1,21 @@
+---
+ID: "fb2487bd-06ca-48a5-8008-c23dd8169dfa"
+Parent: "7ea8b64b-7906-46c5-bc5d-e335bacc5428"
+Template: "3540f1c9-3272-4b30-bd75-6f0c08926729"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Transportation/Data/NT_Transport CrossNav"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Heading
+      Value: "Explore Other Industries"
+    - Hint: Description
+      Value: "TE Connectivity serves multiple industries with the same engineering excellence."
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

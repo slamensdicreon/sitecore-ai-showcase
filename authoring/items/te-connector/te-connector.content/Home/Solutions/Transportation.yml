@@ -1,0 +1,34 @@
+---
+ID: "2605b891-bdfd-461b-b389-4989a946aed5"
+Parent: "4a8f6123-2aa8-4ab7-8b3c-c51fb3df9e26"
+Template: "57d89b89-6f79-44e7-b5bd-435326761859"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Transportation"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Title
+      Value: "Transportation"
+    - Hint: NavigationTitle
+      Value: "Transportation"
+    - Hint: ChangeFrequency
+      Value: "{D23B4654-53A5-4589-8B1B-5665A763D144}"
+    - Hint: Priority
+      Value: "{19F3E919-4991-495F-9207-E1DADFD06F54}"
+    - Hint: Page Design
+      Value: "{0F3D270A-7F8E-4CA2-9251-B623DABC1D27}"
+    - Hint: __Final Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"><r uid="{59663414-8DE2-4569-8C51-D68599AF0153}" p:before="*" s:ds="{056CF582-8747-4725-8E6E-2FCFA9161951}" s:id="{D3FDDEEE-0FF5-43BA-AA60-411B138BC43C}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{A8DECA93-003F-4492-822D-81A572C0DF7E}" p:before="*" s:ds="{FB2487BD-06CA-48A5-8008-C23DD8169DFA}" s:id="{FD0944E3-5C08-4481-B7EE-1F1E0E25B6EE}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{BBC32A1E-CD6B-4110-BE7D-0198B7413C7C}" p:before="*" s:ds="{2BB60035-3442-4751-A06A-ACEC0EBC5927}" s:id="{F6E4F4B8-E34C-4981-A570-A272D7EF3CD7}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{1452C502-C779-4BF7-842F-341F3E8D2816}" p:before="*" s:ds="{CA348D84-B18B-440C-B20B-05F5E231644A}" s:id="{872ECABE-8B70-4EFC-96EE-D439E7624804}" s:par="CSSStyles" s:ph="headless-main" /></d></r>
+    - Hint: __Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}" l="{96E5F4BA-A2CF-4A4C-A4E7-64DA88226362}"/></r>
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+

@@ -1,0 +1,34 @@
+---
+ID: "b9332e9c-2e63-40da-8de3-4e2047b3fedc"
+Parent: "4a8f6123-2aa8-4ab7-8b3c-c51fb3df9e26"
+Template: "57d89b89-6f79-44e7-b5bd-435326761859"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Solutions/Industrial"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Title
+      Value: "Industrial"
+    - Hint: NavigationTitle
+      Value: "Industrial"
+    - Hint: ChangeFrequency
+      Value: "{D23B4654-53A5-4589-8B1B-5665A763D144}"
+    - Hint: Priority
+      Value: "{19F3E919-4991-495F-9207-E1DADFD06F54}"
+    - Hint: Page Design
+      Value: "{0F3D270A-7F8E-4CA2-9251-B623DABC1D27}"
+    - Hint: __Final Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"><r uid="{14ECB885-70C2-4070-88DD-53D7429F06C7}" p:before="*" s:ds="{179B5644-DB9B-4B74-A43D-B0F202B610D6}" s:id="{D3FDDEEE-0FF5-43BA-AA60-411B138BC43C}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{F5BCF595-845D-4C1B-A38A-0FB361026F0E}" p:before="*" s:ds="{591DD4D1-823F-45EE-938B-BAB8EA30E4A7}" s:id="{FD0944E3-5C08-4481-B7EE-1F1E0E25B6EE}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{422821B0-9EEB-4677-9225-4B7E1064BB2F}" p:before="*" s:ds="{5BC57ED3-E91C-47C3-958D-331CA5CCCA83}" s:id="{F6E4F4B8-E34C-4981-A570-A272D7EF3CD7}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{A4182D75-9A41-4885-B131-2B996477F4D0}" p:before="*" s:ds="{ED8EE028-93CE-4081-BB6A-6C1831AB595C}" s:id="{872ECABE-8B70-4EFC-96EE-D439E7624804}" s:par="CSSStyles" s:ph="headless-main" /></d></r>
+    - Hint: __Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}" l="{96E5F4BA-A2CF-4A4C-A4E7-64DA88226362}"/></r>
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+

@@ -1,0 +1,34 @@
+---
+ID: "a055e76f-509d-470c-841e-960f65b6aa14"
+Parent: "6a9074ba-8036-460f-9d0a-808adafc9785"
+Template: "57d89b89-6f79-44e7-b5bd-435326761859"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Innovation"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Title
+      Value: "Innovation"
+    - Hint: NavigationTitle
+      Value: "Innovation"
+    - Hint: ChangeFrequency
+      Value: "{D23B4654-53A5-4589-8B1B-5665A763D144}"
+    - Hint: Priority
+      Value: "{19F3E919-4991-495F-9207-E1DADFD06F54}"
+    - Hint: Page Design
+      Value: "{0F3D270A-7F8E-4CA2-9251-B623DABC1D27}"
+    - Hint: __Final Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"><r uid="{51D625FC-4213-4DB8-8F6A-DE0D1F5B0C0F}" p:before="*" s:ds="{9C7EE3D3-E7AD-4DB8-A5AC-3155A0CFAC99}" s:id="{D3FDDEEE-0FF5-43BA-AA60-411B138BC43C}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{2F78C0DD-B85B-4EAB-98F8-2FAE17C332FA}" p:before="*" s:ds="{9D566B56-D22A-417E-AD87-2CA4ABD7FDEA}" s:id="{FD0944E3-5C08-4481-B7EE-1F1E0E25B6EE}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{18758D28-DAC7-4ACC-8CAC-6535A28CD807}" p:before="*" s:ds="{AF255D99-9724-48BB-B0A5-80B0A85FE90A}" s:id="{F6E4F4B8-E34C-4981-A570-A272D7EF3CD7}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{AEE5E18F-725F-4DD2-A69A-F34F8EA2E5FE}" p:before="*" s:ds="{AD1AF30C-6056-4592-851F-56AD194CAB46}" s:id="{872ECABE-8B70-4EFC-96EE-D439E7624804}" s:par="CSSStyles" s:ph="headless-main" /></d></r>
+    - Hint: __Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}" l="{96E5F4BA-A2CF-4A4C-A4E7-64DA88226362}"/></r>
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+
