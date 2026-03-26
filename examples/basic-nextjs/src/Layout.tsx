@@ -3,7 +3,7 @@ import { Field, Page, DesignLibraryApp } from "@sitecore-content-sdk/nextjs";
 import Scripts from "src/Scripts";
 import SitecoreStyles from "components/content-sdk/SitecoreStyles";
 import { AppPlaceholder } from "@sitecore-content-sdk/nextjs";
-import componentMap from ".sitecore/component-map";
+import componentMap from "src/lib/component-map-enhanced";
 
 interface LayoutProps {
   page: Page;

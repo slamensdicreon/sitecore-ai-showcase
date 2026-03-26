@@ -1,6 +1,6 @@
 import React, { JSX } from 'react';
 import { ComponentProps } from 'lib/component-props';
-import componentMap from '.sitecore/component-map';
+import componentMap from 'src/lib/component-map-enhanced';
 import { AppPlaceholder } from "@sitecore-content-sdk/nextjs";
 
 export const Default = (
