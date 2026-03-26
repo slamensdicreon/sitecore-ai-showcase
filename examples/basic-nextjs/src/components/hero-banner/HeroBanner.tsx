@@ -72,7 +72,7 @@ function HeroCTAs({ fields, className }: { fields: ComponentFields; className?: 
 }
 
 function ConnectivityMotif({ fields }: { fields: ComponentFields }) {
-  if (getFieldValue<string>(fields, 'Show Connectivity Motif', '') !== '1') return null;
+  if (getFieldValue(fields, 'Show Connectivity Motif', '') !== '1') return null;
   return (
     <div className="mt-12 pt-8 border-t border-white/10">
       <div className="flex flex-col gap-2 w-48">
