@@ -1,6 +1,20 @@
 import { JSX } from 'react';
+import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
 
-function ComponentErrorFallback({ componentName }: { componentName: string }) {
+interface SitecoreComponentProps {
+  rendering: ComponentRendering;
+  fields: ComponentFields;
+  params: Record<string, string>;
+}
+
+type SitecoreComponent = (props: SitecoreComponentProps) => JSX.Element | Promise<JSX.Element>;
+
+interface ComponentModule {
+  Default?: SitecoreComponent;
+  [key: string]: unknown;
+}
+
+function ComponentErrorFallback({ componentName }: { componentName: string }): JSX.Element {
   return (
     <div
       style={{
@@ -20,28 +34,40 @@ function ComponentErrorFallback({ componentName }: { componentName: string }) {
   );
 }
 
+const RENDER_EXPORT_NAMES = new Set(['Default']);
+
 export function wrapSafe(
   componentName: string,
-  mod: Record<string, any>
-): Record<string, any> {
-  const wrapped: Record<string, any> = { ...mod };
+  mod: ComponentModule
+): ComponentModule {
+  const wrapped: ComponentModule = {};
 
-  for (const exportName of Object.keys(mod)) {
-    const Original = mod[exportName];
-    if (typeof Original !== 'function') continue;
+  for (const key of Object.keys(mod)) {
+    const value = mod[key];
 
-    wrapped[exportName] = async (props: any): Promise<JSX.Element> => {
-      try {
-        const result = Original(props);
-        if (result && typeof result.then === 'function') {
-          return await result;
+    if (RENDER_EXPORT_NAMES.has(key) && typeof value === 'function') {
+      const OriginalComponent = value as SitecoreComponent;
+
+      const SafeComponent = async (props: SitecoreComponentProps): Promise<JSX.Element> => {
+        try {
+          const result = OriginalComponent(props);
+          if (result && typeof (result as Promise<JSX.Element>).then === 'function') {
+            return await (result as Promise<JSX.Element>);
+          }
+          return result as JSX.Element;
+        } catch (err) {
+          console.error(
+            `[NovaTech] ${componentName}.${key} render error:`,
+            err instanceof Error ? err.message : err
+          );
+          return <ComponentErrorFallback componentName={componentName} />;
         }
-        return result;
-      } catch (err) {
-        console.error(`[NovaTech] ${componentName}.${exportName} render error:`, err);
-        return <ComponentErrorFallback componentName={componentName} />;
-      }
-    };
+      };
+
+      wrapped[key] = SafeComponent;
+    } else {
+      wrapped[key] = value;
+    }
   }
 
   return wrapped;
