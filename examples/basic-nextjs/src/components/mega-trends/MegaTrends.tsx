@@ -90,7 +90,7 @@ export const Default = ({ fields, rendering, params }: MegaTrendsProps) => {
 
         {isEditing && children.length === 0 && (
           <div className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center">
-            <p className="text-gray-400">Add Mega Trend Card items as children of this datasource</p>
+            <p className="text-gray-400">Select Mega Trend Card items in the Items field</p>
           </div>
         )}
       </div>

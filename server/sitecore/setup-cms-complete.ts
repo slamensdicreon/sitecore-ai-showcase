@@ -254,11 +254,11 @@ async function step1d_addMultilistFields() {
 
   const DATA_ROOT = `${SITE_ROOT}/Home/Data`;
   const templates = [
-    { name: "Mega Trends", id: TEMPLATE_IDS["Mega Trends"], cardTemplate: "Mega Trend Card", cardsFolder: "Mega Trend Cards" },
-    { name: "Solution Pathways", id: TEMPLATE_IDS["Solution Pathways"], cardTemplate: "Solution Pathway Card", cardsFolder: "Solution Pathway Cards" },
-    { name: "Authority Stats", id: TEMPLATE_IDS["Authority Stats"], cardTemplate: "Stat Item", cardsFolder: "Stat Items" },
-    { name: "Cross Navigation", id: TEMPLATE_IDS["Cross Navigation"], cardTemplate: "Cross Nav Link", cardsFolder: "Cross Nav Links" },
-    { name: "Proof Point Counter", id: TEMPLATE_IDS["Proof Point Counter"], cardTemplate: "Proof Point Item", cardsFolder: "Proof Point Items" },
+    { name: "Mega Trends", cardsFolder: "Mega Trend Cards" },
+    { name: "Solution Pathways", cardsFolder: "Solution Pathway Cards" },
+    { name: "Authority Stats", cardsFolder: "Stat Items" },
+    { name: "Cross Navigation", cardsFolder: "Cross Nav Links" },
+    { name: "Proof Point Counter", cardsFolder: "Proof Point Items" },
   ];
 
   for (const tpl of templates) {

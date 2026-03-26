@@ -92,7 +92,7 @@ export function ProofPointCounterClient({ fields, params, items }: ProofPointCou
 
         {isEditing && items.length === 0 && (
           <div className="border-2 border-dashed border-white/20 rounded-lg p-12 text-center">
-            <p className="text-white/40">Add Proof Point Item children to this datasource</p>
+            <p className="text-white/40">Select Proof Point Items in the Items field</p>
           </div>
         )}
       </div>

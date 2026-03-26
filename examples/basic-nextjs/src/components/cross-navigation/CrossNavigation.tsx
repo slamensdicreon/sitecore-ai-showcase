@@ -71,7 +71,7 @@ export const Default = ({ fields, rendering, params }: CrossNavigationProps) => 
 
         {isEditing && children.length === 0 && (
           <div className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center">
-            <p className="text-gray-400">Add Cross Nav Link items as children</p>
+            <p className="text-gray-400">Select Cross Nav Link items in the Items field</p>
           </div>
         )}
       </div>
