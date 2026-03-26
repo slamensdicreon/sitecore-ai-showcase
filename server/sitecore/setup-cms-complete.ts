@@ -252,13 +252,19 @@ const TEMPLATE_SECTION_TEMPLATE_ID = "e269fbb53750427a91497aa950b49301";
 async function step1d_addMultilistFields() {
   console.log("\n═══ Step 1d: Add 'Items' Multilist field to tile templates ═══");
 
+  const DATA_ROOT = `${SITE_ROOT}/Home/Data`;
   const templates = [
-    { name: "Mega Trends", id: TEMPLATE_IDS["Mega Trends"] },
-    { name: "Solution Pathways", id: TEMPLATE_IDS["Solution Pathways"] },
-    { name: "Authority Stats", id: TEMPLATE_IDS["Authority Stats"] },
-    { name: "Cross Navigation", id: TEMPLATE_IDS["Cross Navigation"] },
-    { name: "Proof Point Counter", id: TEMPLATE_IDS["Proof Point Counter"] },
+    { name: "Mega Trends", id: TEMPLATE_IDS["Mega Trends"], cardTemplate: "Mega Trend Card", cardsFolder: "Mega Trend Cards" },
+    { name: "Solution Pathways", id: TEMPLATE_IDS["Solution Pathways"], cardTemplate: "Solution Pathway Card", cardsFolder: "Solution Pathway Cards" },
+    { name: "Authority Stats", id: TEMPLATE_IDS["Authority Stats"], cardTemplate: "Stat Item", cardsFolder: "Stat Items" },
+    { name: "Cross Navigation", id: TEMPLATE_IDS["Cross Navigation"], cardTemplate: "Cross Nav Link", cardsFolder: "Cross Nav Links" },
+    { name: "Proof Point Counter", id: TEMPLATE_IDS["Proof Point Counter"], cardTemplate: "Proof Point Item", cardsFolder: "Proof Point Items" },
   ];
+
+  for (const tpl of templates) {
+    await ensureItem(DATA_ROOT, tpl.cardsFolder, FOLDER_TEMPLATE_ID);
+    console.log(`  ✓ Cards folder: ${tpl.cardsFolder}`);
+  }
 
   for (const tpl of templates) {
     const tplPath = `${TEMPLATES_ROOT}/${tpl.name}`;
@@ -275,10 +281,16 @@ async function step1d_addMultilistFields() {
 
     const sectionChildren = await gql(`query($id:ID!){item(where:{itemId:$id}){children{nodes{itemId name}}}}`, { id: section.itemId });
     const existingFields = sectionChildren?.item?.children?.nodes || [];
-    const hasItems = existingFields.some((f: any) => f.name === 'Items');
+    const itemsField = existingFields.find((f: any) => f.name === 'Items');
 
-    if (hasItems) {
-      console.log(`  ✓ ${tpl.name}: Items field already exists`);
+    const source = `${DATA_ROOT}/${tpl.cardsFolder}`;
+
+    if (itemsField) {
+      await gql(`mutation($id:ID!,$lang:String!,$fields:[FieldValueInput!]!){updateItem(input:{itemId:$id,language:$lang,fields:$fields}){item{itemId}}}`, {
+        id: itemsField.itemId, lang: "en",
+        fields: [{ name: "Source", value: source }],
+      });
+      console.log(`  ✓ ${tpl.name}: Items field exists, Source updated to ${source}`);
       continue;
     }
 
@@ -289,10 +301,10 @@ async function step1d_addMultilistFields() {
       l: "en",
       f: [
         { name: "Type", value: "Multilist" },
-        { name: "Source", value: `/sitecore/content/TE Connectivity/TE Connectivity/Home` },
+        { name: "Source", value: source },
       ],
     });
-    console.log(`  + ${tpl.name}: Items Multilist field added`);
+    console.log(`  + ${tpl.name}: Items Multilist field added (Source: ${source})`);
   }
 }
 
@@ -325,125 +337,117 @@ async function step2_fixHomepage() {
   console.log("  ✓ Homepage layout set with 4 renderings + shared layout");
 }
 
-async function step2b_createChildItems() {
-  console.log("\n═══ Step 2b: Create child items under Homepage datasources ═══");
+async function step2b_createCardItems() {
+  console.log("\n═══ Step 2b: Create card items in shared folders & populate Multilist ═══");
 
   const dataPath = `${SITE_ROOT}/Home/Data`;
+  const megaCardsFolder = `${dataPath}/Mega Trend Cards`;
+  const pathwayCardsFolder = `${dataPath}/Solution Pathway Cards`;
+  const statCardsFolder = `${dataPath}/Stat Items`;
+  const crossNavCardsFolder = `${dataPath}/Cross Nav Links`;
 
-  const megaTrendsPath = `${dataPath}/Home Mega Trends`;
-  const megaExists = await getItemId(megaTrendsPath);
-  if (megaExists) {
-    const megaTrendCards = [
-      { name: "Electrification", fields: { "Title": "Electrification", "Subtitle": "Powering the transition to electric everything", "Description": "From EV battery systems to renewable energy grids, TE connectivity solutions enable the reliable flow of power across next-generation electrical architectures.", "Stat Value": "40%", "Stat Label": "growth in EV connector demand", "Icon Name": "BatteryCharging", "Accent Color": "#f28d00", "Link": '<link linktype="external" url="/solutions/transportation" />' } },
-      { name: "AI Infrastructure", fields: { "Title": "AI Infrastructure", "Subtitle": "The backbone of intelligent systems", "Description": "Hyperscale data centers require unprecedented power density and high-speed connectivity. TE delivers both — enabling AI compute at scale.", "Stat Value": "3x", "Stat Label": "data center power demand by 2030", "Icon Name": "Server", "Accent Color": "#167a87", "Link": '<link linktype="external" url="/solutions/communications" />' } },
-      { name: "Industrial Automation", fields: { "Title": "Industrial Automation", "Subtitle": "Connecting the smart factory", "Description": "Robotics, smart manufacturing, and factory automation demand connectivity that survives heat, vibration, and continuous operation. That's where TE thrives.", "Stat Value": "90K+", "Stat Label": "employees across 140 countries", "Icon Name": "Factory", "Accent Color": "#2e4957", "Link": '<link linktype="external" url="/solutions/industrial" />' } },
-    ];
-    const megaTrendIds: string[] = [];
-    for (const card of megaTrendCards) {
-      const id = await ensureItem(megaTrendsPath, card.name, TEMPLATE_IDS["Mega Trend Card"], card.fields);
-      megaTrendIds.push(id);
-      console.log(`  ✓ Mega Trend Card: ${card.name}`);
-    }
+  const megaTrendCards = [
+    { name: "Electrification", fields: { "Title": "Electrification", "Subtitle": "Powering the transition to electric everything", "Description": "From EV battery systems to renewable energy grids, TE connectivity solutions enable the reliable flow of power across next-generation electrical architectures.", "Stat Value": "40%", "Stat Label": "growth in EV connector demand", "Icon Name": "BatteryCharging", "Accent Color": "#f28d00", "Link": '<link linktype="external" url="/solutions/transportation" />' } },
+    { name: "AI Infrastructure", fields: { "Title": "AI Infrastructure", "Subtitle": "The backbone of intelligent systems", "Description": "Hyperscale data centers require unprecedented power density and high-speed connectivity. TE delivers both — enabling AI compute at scale.", "Stat Value": "3x", "Stat Label": "data center power demand by 2030", "Icon Name": "Server", "Accent Color": "#167a87", "Link": '<link linktype="external" url="/solutions/communications" />' } },
+    { name: "Industrial Automation", fields: { "Title": "Industrial Automation", "Subtitle": "Connecting the smart factory", "Description": "Robotics, smart manufacturing, and factory automation demand connectivity that survives heat, vibration, and continuous operation. That's where TE thrives.", "Stat Value": "90K+", "Stat Label": "employees across 140 countries", "Icon Name": "Factory", "Accent Color": "#2e4957", "Link": '<link linktype="external" url="/solutions/industrial" />' } },
+  ];
+  const megaTrendIds: string[] = [];
+  for (const card of megaTrendCards) {
+    const id = await ensureItem(megaCardsFolder, card.name, TEMPLATE_IDS["Mega Trend Card"], card.fields);
+    megaTrendIds.push(id);
+    console.log(`  ✓ Mega Trend Card: ${card.name}`);
+  }
+  const megaDsId = await getItemId(`${dataPath}/Home Mega Trends`);
+  if (megaDsId) {
     await gql(`mutation($id:ID!,$lang:String!,$fields:[FieldValueInput!]!){updateItem(input:{itemId:$id,language:$lang,fields:$fields}){item{itemId}}}`, {
-      id: megaExists, lang: "en",
+      id: megaDsId, lang: "en",
       fields: [{ name: "Items", value: megaTrendIds.map(id => formatGuid(id)).join("|") }],
     });
     console.log(`  ✓ Home Mega Trends: Items field set with ${megaTrendIds.length} references`);
-  } else {
-    console.log("  ✗ Home Mega Trends datasource not found, skipping children");
   }
 
-  const pathwaysPath = `${dataPath}/Home Solution Pathways`;
-  const pathwaysExists = await getItemId(pathwaysPath);
-  if (pathwaysExists) {
-    const pathwayCards = [
-      { name: "EV Charging", fields: { "Question": "How do I improve EV charging reliability?", "Context": "High-voltage connectors and thermal management solutions engineered for the harshest automotive environments.", "Industry Label": "Transportation", "Link": '<link linktype="external" url="/solutions/transportation" />' } },
-      { name: "AI Data Center", fields: { "Question": "How do I scale AI data center infrastructure?", "Context": "High-speed, high-density connectivity solutions that handle the power and signal demands of next-gen AI compute.", "Industry Label": "Communications", "Link": '<link linktype="external" url="/solutions/communications" />' } },
-      { name: "Energy Grid", fields: { "Question": "How do I modernize energy grid systems?", "Context": "Utility-grade connectors, sensors, and power distribution solutions for smart grid and renewable energy infrastructure.", "Industry Label": "Industrial", "Link": '<link linktype="external" url="/solutions/industrial" />' } },
-      { name: "Signal Integrity", fields: { "Question": "How do I ensure signal integrity in harsh environments?", "Context": "Connectors and sensors rated for extreme temperatures, vibration, and mission-critical reliability across industries.", "Industry Label": "Cross-Industry", "Link": '<link linktype="external" url="/products" />' } },
-    ];
-    const pathwayIds: string[] = [];
-    for (const card of pathwayCards) {
-      const id = await ensureItem(pathwaysPath, card.name, TEMPLATE_IDS["Solution Pathway Card"], card.fields);
-      pathwayIds.push(id);
-      console.log(`  ✓ Solution Pathway Card: ${card.name}`);
-    }
+  const pathwayCards = [
+    { name: "EV Charging", fields: { "Question": "How do I improve EV charging reliability?", "Context": "High-voltage connectors and thermal management solutions engineered for the harshest automotive environments.", "Industry Label": "Transportation", "Link": '<link linktype="external" url="/solutions/transportation" />' } },
+    { name: "AI Data Center", fields: { "Question": "How do I scale AI data center infrastructure?", "Context": "High-speed, high-density connectivity solutions that handle the power and signal demands of next-gen AI compute.", "Industry Label": "Communications", "Link": '<link linktype="external" url="/solutions/communications" />' } },
+    { name: "Energy Grid", fields: { "Question": "How do I modernize energy grid systems?", "Context": "Utility-grade connectors, sensors, and power distribution solutions for smart grid and renewable energy infrastructure.", "Industry Label": "Industrial", "Link": '<link linktype="external" url="/solutions/industrial" />' } },
+    { name: "Signal Integrity", fields: { "Question": "How do I ensure signal integrity in harsh environments?", "Context": "Connectors and sensors rated for extreme temperatures, vibration, and mission-critical reliability across industries.", "Industry Label": "Cross-Industry", "Link": '<link linktype="external" url="/products" />' } },
+  ];
+  const pathwayIds: string[] = [];
+  for (const card of pathwayCards) {
+    const id = await ensureItem(pathwayCardsFolder, card.name, TEMPLATE_IDS["Solution Pathway Card"], card.fields);
+    pathwayIds.push(id);
+    console.log(`  ✓ Solution Pathway Card: ${card.name}`);
+  }
+  const pathwaysDsId = await getItemId(`${dataPath}/Home Solution Pathways`);
+  if (pathwaysDsId) {
     await gql(`mutation($id:ID!,$lang:String!,$fields:[FieldValueInput!]!){updateItem(input:{itemId:$id,language:$lang,fields:$fields}){item{itemId}}}`, {
-      id: pathwaysExists, lang: "en",
+      id: pathwaysDsId, lang: "en",
       fields: [{ name: "Items", value: pathwayIds.map(id => formatGuid(id)).join("|") }],
     });
     console.log(`  ✓ Home Solution Pathways: Items field set with ${pathwayIds.length} references`);
-  } else {
-    console.log("  ✗ Home Solution Pathways datasource not found, skipping children");
   }
 
-  const statsPath = `${dataPath}/Home Authority Stats`;
-  const statsExists = await getItemId(statsPath);
-  if (statsExists) {
-    const statItems = [
-      { name: "Revenue", fields: { "Value": "18", "Prefix": "$", "Suffix": "B+", "Label": "Annual Revenue", "Icon Name": "DollarSign" } },
-      { name: "Countries", fields: { "Value": "140", "Prefix": "", "Suffix": "+", "Label": "Countries Served", "Icon Name": "MapPin" } },
-      { name: "Engineers", fields: { "Value": "8000", "Prefix": "", "Suffix": "+", "Label": "Engineers Worldwide", "Icon Name": "Wrench" } },
-      { name: "Employees", fields: { "Value": "90000", "Prefix": "", "Suffix": "+", "Label": "Global Employees", "Icon Name": "Users" } },
-    ];
-    const statIds: string[] = [];
-    for (const stat of statItems) {
-      const id = await ensureItem(statsPath, stat.name, TEMPLATE_IDS["Stat Item"], stat.fields);
-      statIds.push(id);
-      console.log(`  ✓ Stat Item: ${stat.name}`);
-    }
+  const statItems = [
+    { name: "Revenue", fields: { "Value": "18", "Prefix": "$", "Suffix": "B+", "Label": "Annual Revenue", "Icon Name": "DollarSign" } },
+    { name: "Countries", fields: { "Value": "140", "Prefix": "", "Suffix": "+", "Label": "Countries Served", "Icon Name": "MapPin" } },
+    { name: "Engineers", fields: { "Value": "8000", "Prefix": "", "Suffix": "+", "Label": "Engineers Worldwide", "Icon Name": "Wrench" } },
+    { name: "Employees", fields: { "Value": "90000", "Prefix": "", "Suffix": "+", "Label": "Global Employees", "Icon Name": "Users" } },
+  ];
+  const statIds: string[] = [];
+  for (const stat of statItems) {
+    const id = await ensureItem(statCardsFolder, stat.name, TEMPLATE_IDS["Stat Item"], stat.fields);
+    statIds.push(id);
+    console.log(`  ✓ Stat Item: ${stat.name}`);
+  }
+  const statsDsId = await getItemId(`${dataPath}/Home Authority Stats`);
+  if (statsDsId) {
     await gql(`mutation($id:ID!,$lang:String!,$fields:[FieldValueInput!]!){updateItem(input:{itemId:$id,language:$lang,fields:$fields}){item{itemId}}}`, {
-      id: statsExists, lang: "en",
+      id: statsDsId, lang: "en",
       fields: [{ name: "Items", value: statIds.map(id => formatGuid(id)).join("|") }],
     });
     console.log(`  ✓ Home Authority Stats: Items field set with ${statIds.length} references`);
-  } else {
-    console.log("  ✗ Home Authority Stats datasource not found, skipping children");
   }
 
-  console.log("\n═══ Step 2c: Create child items under Solution page datasources ═══");
+  console.log("\n═══ Step 2c: Create cross nav link items & populate Multilist ═══");
 
-  const solutionCrossNavs = [
+  const crossNavConfigs = [
     {
       dsName: "Transportation Cross Nav",
       items: [
-        { name: "Industrial", fields: { "Title": "Industrial Solutions", "Description": "Factory automation, robotics, and harsh-environment connectivity", "Link": '<link linktype="external" url="/solutions/industrial" />', "Icon Name": "Factory", "Accent Color": "#2e4957" } },
-        { name: "Communications", fields: { "Title": "Communications Solutions", "Description": "Data center, 5G, and high-speed network infrastructure", "Link": '<link linktype="external" url="/solutions/communications" />', "Icon Name": "Server", "Accent Color": "#167a87" } },
+        { name: "Transportation-Industrial", fields: { "Title": "Industrial Solutions", "Description": "Factory automation, robotics, and harsh-environment connectivity", "Link": '<link linktype="external" url="/solutions/industrial" />', "Icon Name": "Factory", "Accent Color": "#2e4957" } },
+        { name: "Transportation-Communications", fields: { "Title": "Communications Solutions", "Description": "Data center, 5G, and high-speed network infrastructure", "Link": '<link linktype="external" url="/solutions/communications" />', "Icon Name": "Server", "Accent Color": "#167a87" } },
       ],
     },
     {
       dsName: "Industrial Cross Nav",
       items: [
-        { name: "Transportation", fields: { "Title": "Transportation Solutions", "Description": "EV powertrains, autonomous systems, and vehicle connectivity", "Link": '<link linktype="external" url="/solutions/transportation" />', "Icon Name": "BatteryCharging", "Accent Color": "#f28d00" } },
-        { name: "Communications", fields: { "Title": "Communications Solutions", "Description": "Data center, 5G, and high-speed network infrastructure", "Link": '<link linktype="external" url="/solutions/communications" />', "Icon Name": "Server", "Accent Color": "#167a87" } },
+        { name: "Industrial-Transportation", fields: { "Title": "Transportation Solutions", "Description": "EV powertrains, autonomous systems, and vehicle connectivity", "Link": '<link linktype="external" url="/solutions/transportation" />', "Icon Name": "BatteryCharging", "Accent Color": "#f28d00" } },
+        { name: "Industrial-Communications", fields: { "Title": "Communications Solutions", "Description": "Data center, 5G, and high-speed network infrastructure", "Link": '<link linktype="external" url="/solutions/communications" />', "Icon Name": "Server", "Accent Color": "#167a87" } },
       ],
     },
     {
       dsName: "Communications Cross Nav",
       items: [
-        { name: "Transportation", fields: { "Title": "Transportation Solutions", "Description": "EV powertrains, autonomous systems, and vehicle connectivity", "Link": '<link linktype="external" url="/solutions/transportation" />', "Icon Name": "BatteryCharging", "Accent Color": "#f28d00" } },
-        { name: "Industrial", fields: { "Title": "Industrial Solutions", "Description": "Factory automation, robotics, and harsh-environment connectivity", "Link": '<link linktype="external" url="/solutions/industrial" />', "Icon Name": "Factory", "Accent Color": "#2e4957" } },
+        { name: "Communications-Transportation", fields: { "Title": "Transportation Solutions", "Description": "EV powertrains, autonomous systems, and vehicle connectivity", "Link": '<link linktype="external" url="/solutions/transportation" />', "Icon Name": "BatteryCharging", "Accent Color": "#f28d00" } },
+        { name: "Communications-Industrial", fields: { "Title": "Industrial Solutions", "Description": "Factory automation, robotics, and harsh-environment connectivity", "Link": '<link linktype="external" url="/solutions/industrial" />', "Icon Name": "Factory", "Accent Color": "#2e4957" } },
       ],
     },
   ];
 
-  for (const nav of solutionCrossNavs) {
-    const navPath = `${dataPath}/${nav.dsName}`;
-    const navExists = await getItemId(navPath);
-    if (navExists) {
-      const navItemIds: string[] = [];
-      for (const item of nav.items) {
-        const id = await ensureItem(navPath, item.name, TEMPLATE_IDS["Cross Nav Link"], item.fields);
-        navItemIds.push(id);
-        console.log(`  ✓ Cross Nav Link: ${nav.dsName}/${item.name}`);
-      }
+  for (const nav of crossNavConfigs) {
+    const navItemIds: string[] = [];
+    for (const item of nav.items) {
+      const id = await ensureItem(crossNavCardsFolder, item.name, TEMPLATE_IDS["Cross Nav Link"], item.fields);
+      navItemIds.push(id);
+      console.log(`  ✓ Cross Nav Link: ${item.name}`);
+    }
+    const navDsId = await getItemId(`${dataPath}/${nav.dsName}`);
+    if (navDsId) {
       await gql(`mutation($id:ID!,$lang:String!,$fields:[FieldValueInput!]!){updateItem(input:{itemId:$id,language:$lang,fields:$fields}){item{itemId}}}`, {
-        id: navExists, lang: "en",
+        id: navDsId, lang: "en",
         fields: [{ name: "Items", value: navItemIds.map(id => formatGuid(id)).join("|") }],
       });
       console.log(`  ✓ ${nav.dsName}: Items field set with ${navItemIds.length} references`);
-    } else {
-      console.log(`  ⚠ ${nav.dsName} not found, skipping`);
     }
   }
 }
@@ -523,23 +527,23 @@ async function step4_createInnovationPage() {
     "Description": "See how TE innovation translates into industry-specific solutions.",
   });
 
-  const crossNavItemPath = `${innovDataPath}/Innovation Cross Nav`;
+  const crossNavCardsFolder = `${SITE_ROOT}/Home/Data/Cross Nav Links`;
   const innovCrossNavIds: string[] = [];
-  innovCrossNavIds.push(await ensureItem(crossNavItemPath, "Transportation", TEMPLATE_IDS["Cross Nav Link"], {
+  innovCrossNavIds.push(await ensureItem(crossNavCardsFolder, "Innovation-Transportation", TEMPLATE_IDS["Cross Nav Link"], {
     "Title": "Transportation Solutions",
     "Description": "EV connectors, sensor systems, and automotive harnesses",
     "Link": "<link linktype=\"internal\" url=\"/solutions/transportation\" />",
     "Icon Name": "Car",
     "Accent Color": "#f28d00",
   }));
-  innovCrossNavIds.push(await ensureItem(crossNavItemPath, "Industrial", TEMPLATE_IDS["Cross Nav Link"], {
+  innovCrossNavIds.push(await ensureItem(crossNavCardsFolder, "Innovation-Industrial", TEMPLATE_IDS["Cross Nav Link"], {
     "Title": "Industrial Solutions",
     "Description": "Factory automation, robotics, and harsh-environment connectivity",
     "Link": "<link linktype=\"internal\" url=\"/solutions/industrial\" />",
     "Icon Name": "Factory",
     "Accent Color": "#2e4957",
   }));
-  innovCrossNavIds.push(await ensureItem(crossNavItemPath, "Communications", TEMPLATE_IDS["Cross Nav Link"], {
+  innovCrossNavIds.push(await ensureItem(crossNavCardsFolder, "Innovation-Communications", TEMPLATE_IDS["Cross Nav Link"], {
     "Title": "Communications Solutions",
     "Description": "Data center, 5G, and high-speed network infrastructure",
     "Link": "<link linktype=\"internal\" url=\"/solutions/communications\" />",
@@ -805,7 +809,7 @@ async function main() {
   await step1c_ensureHeroBannerVariants();
   await step1d_addMultilistFields();
   await step2_fixHomepage();
-  await step2b_createChildItems();
+  await step2b_createCardItems();
   await step3_fixSolutionPages();
   await step4_createInnovationPage();
   await step5_createBranchTemplates();
