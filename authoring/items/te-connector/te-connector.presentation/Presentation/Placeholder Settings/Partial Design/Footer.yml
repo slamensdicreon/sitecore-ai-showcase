@@ -9,11 +9,11 @@ Languages:
   - Version: 1
     Fields:
     - Hint: Allowed Controls
-      Value: "{8DDF28CF-706A-45EF-A2E6-F9CD016E2FF3}"
+      Value: "{4200D4E3C1D04CD195D26DFE35ED52CE}"
     - Hint: Editable
       Value: "1"
     - Hint: Placeholder Key
-      Value: "sxa-footer"
+      Value: "sxa-nt_footer"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20260325T000000Z
