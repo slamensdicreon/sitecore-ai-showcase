@@ -22,6 +22,9 @@ export const Default = ({ fields, rendering, params }: SolutionPathwaysProps) =>
       className={`${isLight ? 'bg-white' : 'bg-[#2e4957] text-white'} py-20 md:py-24 relative overflow-hidden`}
       data-testid="section-solution-pathways"
     >
+      {!isLight && (
+        <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-[#f28d00]/5 blur-3xl" />
+      )}
       <div className="max-w-[1400px] mx-auto px-4 relative">
         <div className="text-center mb-14">
           <p className="text-[#f28d00] font-heading font-semibold text-sm tracking-wider uppercase mb-3" data-testid="text-pathways-label">

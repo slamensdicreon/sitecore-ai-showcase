@@ -23,6 +23,18 @@ export const Default = ({ fields, params }: HeroBannerProps) => {
       <div className="absolute inset-0 bg-gradient-to-br from-[#04215d]/90 via-[#2e4957]/85 to-[#167a87]/70 z-10" />
       <div className="absolute inset-0 bg-[#2e4957]" />
 
+      <svg className="absolute inset-0 w-full h-full opacity-[0.04] z-[1]" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="hero-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="0.5" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#hero-grid)" />
+      </svg>
+
+      <div className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-[#f28d00]/5 blur-3xl z-[2]" />
+      <div className="absolute bottom-1/4 left-1/4 w-80 h-80 rounded-full bg-[#167a87]/[0.08] blur-3xl z-[2]" />
+
       <div className="relative z-20 max-w-[1400px] mx-auto px-4 py-20 md:py-32 w-full">
         <div className="max-w-3xl">
           {getFieldValue(fields, 'Badge Text', '') && (
@@ -72,22 +84,22 @@ export const Default = ({ fields, params }: HeroBannerProps) => {
 
           {getFieldValue<string>(fields, 'Show Connectivity Motif', '') === '1' && (
             <div className="mt-12 pt-8 border-t border-white/10">
-              <svg className="w-48 h-6 text-white/20" viewBox="0 0 200 24">
-                <circle cx="4" cy="12" r="3" fill="currentColor" />
-                <line x1="7" y1="12" x2="40" y2="12" stroke="currentColor" strokeWidth="1" />
-                <circle cx="43" cy="12" r="3" fill="currentColor" />
-                <line x1="46" y1="12" x2="80" y2="6" stroke="currentColor" strokeWidth="1" />
-                <circle cx="83" cy="6" r="3" fill="currentColor" />
-                <line x1="86" y1="6" x2="120" y2="12" stroke="currentColor" strokeWidth="1" />
-                <circle cx="123" cy="12" r="3" fill="currentColor" />
-                <line x1="126" y1="12" x2="160" y2="18" stroke="currentColor" strokeWidth="1" />
-                <circle cx="163" cy="18" r="3" fill="currentColor" />
-                <line x1="166" y1="18" x2="196" y2="12" stroke="currentColor" strokeWidth="1" />
-                <circle cx="199" cy="12" r="2" fill="currentColor" />
-              </svg>
+              <div className="flex flex-col gap-2 w-48">
+                <div className="h-1 rounded-full bg-[#f28d00]" style={{ width: '100%' }} />
+                <div className="h-1 rounded-full bg-white/20" style={{ width: '80%' }} />
+                <div className="h-1 rounded-full bg-[#167a87]" style={{ width: '60%' }} />
+              </div>
             </div>
           )}
         </div>
+      </div>
+
+      <div className="absolute bottom-0 left-0 right-0 z-20 overflow-hidden h-20">
+        <svg viewBox="0 0 1400 80" className="w-full h-full" preserveAspectRatio="none" aria-hidden="true">
+          <line x1="0" y1="20" x2="1400" y2="20" stroke="#f28d00" strokeWidth="3" strokeLinecap="round" opacity="0.5" />
+          <line x1="0" y1="40" x2="1100" y2="40" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" opacity="0.12" />
+          <line x1="0" y1="60" x2="800" y2="60" stroke="#167a87" strokeWidth="3" strokeLinecap="round" opacity="0.35" />
+        </svg>
       </div>
     </section>
   );

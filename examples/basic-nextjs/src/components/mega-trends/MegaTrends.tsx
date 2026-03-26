@@ -33,6 +33,16 @@ export const Default = ({ fields, rendering, params }: MegaTrendsProps) => {
 
   return (
     <section className="relative bg-white py-20 md:py-28 overflow-hidden" data-testid="section-mega-trends">
+      <div className="absolute inset-0 opacity-[0.02]">
+        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="megatrends-dots" width="30" height="30" patternUnits="userSpaceOnUse">
+              <circle cx="2" cy="2" r="1" fill="currentColor" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#megatrends-dots)" />
+        </svg>
+      </div>
       <div className="max-w-[1400px] mx-auto px-4 relative">
         <div className="text-center mb-16">
           <p className="text-[#f28d00] font-heading font-semibold text-sm tracking-wider uppercase mb-3" data-testid="text-megatrends-label">
