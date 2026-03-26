@@ -32,6 +32,7 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['SiteHeader', { ...SiteHeader }],
   ['SiteFooter', { ...SiteFooter }],
   ['PartialDesignDynamicPlaceholder', { ...PartialDesignDynamicPlaceholder }],
+  ['PartialDesign Dynamic Placeholder', { ...PartialDesignDynamicPlaceholder }],
   ['ContainerFullWidth', { ...ContainerFullWidth }],
   ['ContainerFullBleed', { ...ContainerFullBleed }],
   ['Container70', { ...Container70 }],

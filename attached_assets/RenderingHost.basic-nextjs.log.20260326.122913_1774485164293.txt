@@ -1,0 +1,904 @@
+> content-sdk-nextjs-app-router@1.0.0 next:start
+> next start
+   ▲ Next.js 15.5.11
+   - Local:        http://localhost:3000
+   - Network:      http://10.3.71.133:3000
+ ✓ Starting...
+ ⚠ Mismatching @next/swc version, detected: 15.5.7 while Next.js is on 15.5.11. Please ensure these match
+ ✓ Ready in 523ms
+[NovaTech][Render] resolvePageUrl called with route: /
+[NovaTech][Render] Resolved page URL: http://localhost:3000/
+[NovaTech] Draft mode enabled. Route: undefined Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'version',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"6a9074ba-8036-460f-9d0a-808adafc9785","language":"en","variantIds":"_default","version":"1","mode":"edit","layoutKind":"final","timestamp":"1774485013924"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] Editing preview FAILED: Cannot read properties of undefined (reading 'context')
+[NovaTech] Error stack: TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (/artifacts/basic-nextjs/.next-container/server/chunks/905.js:106:3727)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async s (/artifacts/basic-nextjs/.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:17879)
+[NovaTech] Attempting fallback via getPage...
+[NovaTech] Fallback getPage also failed: TypeError: Cannot read properties of undefined (reading 'route')
+    at l.getPage (.next-container/server/chunks/905.js:106:1906)
+[NovaTech][Render] resolvePageUrl called with route: /NT_Homepage
+[NovaTech][Render] Resolved page URL: http://localhost:3000/NT_Homepage
+[NovaTech] Draft mode enabled. Route: [ 'NT_Homepage' ] Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"649111a1-f85c-440b-bdf6-93f301335cf6","language":"en","variantIds":"_default","mode":"edit","layoutKind":"final","timestamp":"1774485019298"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] Editing preview FAILED: Cannot read properties of undefined (reading 'context')
+[NovaTech] Error stack: TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (/artifacts/basic-nextjs/.next-container/server/chunks/905.js:106:3727)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async s (/artifacts/basic-nextjs/.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:17879)
+[NovaTech] Attempting fallback via getPage...
+[NovaTech] Fallback getPage also failed: TypeError: Cannot read properties of undefined (reading 'route')
+    at l.getPage (.next-container/server/chunks/905.js:106:1906)
+[NovaTech][Render] resolvePageUrl called with route: /NT_Homepage/Home
+[NovaTech][Render] Resolved page URL: http://localhost:3000/NT_Homepage/Home
+[NovaTech] Draft mode enabled. Route: [ 'NT_Homepage', 'Home' ] Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"19eacb3d-972f-45ac-a8ef-961114dff57c","language":"en","variantIds":"_default","mode":"edit","layoutKind":"final","timestamp":"1774485022374"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] getPreview succeeded. Has layout: true Has context: true Has route: true
+Placeholder headless-header contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+    ph: 'headless-header',
+    sig: 'sxa-nt_header'
+  },
+  rendering: {
+    uid: '6f24e4b5-1d51-41e6-959d-1f41c2da121d',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+      ph: 'headless-header',
+      sig: 'sxa-nt_header'
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+Placeholder headless-footer contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+    ph: 'headless-footer',
+    sig: 'sxa-nt_footer'
+  },
+  rendering: {
+    uid: '64142461-d37c-42bd-999f-5d88643495e0',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+      ph: 'headless-footer',
+      sig: 'sxa-nt_footer'
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+[NovaTech][Render] resolvePageUrl called with route: /NT_Homepage/Solution-page
+[NovaTech][Render] Resolved page URL: http://localhost:3000/NT_Homepage/Solution-page
+[NovaTech] Draft mode enabled. Route: [ 'NT_Homepage', 'Solution-page' ] Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"c8f5b910-bd3d-4e6c-bfa1-29d0f95812e1","language":"en","variantIds":"_default","mode":"edit","layoutKind":"final","timestamp":"1774485038648"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] getPreview succeeded. Has layout: true Has context: true Has route: true
+Placeholder headless-header contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+    ph: 'headless-header',
+    sig: 'sxa-nt_header'
+  },
+  rendering: {
+    uid: '6f24e4b5-1d51-41e6-959d-1f41c2da121d',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+      ph: 'headless-header',
+      sig: 'sxa-nt_header'
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+Placeholder headless-footer contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+    ph: 'headless-footer',
+    sig: 'sxa-nt_footer'
+  },
+  rendering: {
+    uid: '64142461-d37c-42bd-999f-5d88643495e0',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+      ph: 'headless-footer',
+      sig: 'sxa-nt_footer'
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+[NovaTech][Render] resolvePageUrl called with route: /NT_Innovation
+[NovaTech][Render] Resolved page URL: http://localhost:3000/NT_Innovation
+[NovaTech] Draft mode enabled. Route: [ 'NT_Innovation' ] Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"a055e76f-509d-470c-841e-960f65b6aa14","language":"en","variantIds":"_default","mode":"edit","layoutKind":"final","timestamp":"1774485041394"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] Editing preview FAILED: Cannot read properties of undefined (reading 'context')
+[NovaTech] Error stack: TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (/artifacts/basic-nextjs/.next-container/server/chunks/905.js:106:3727)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async s (/artifacts/basic-nextjs/.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:17879)
+[NovaTech] Attempting fallback via getPage...
+[NovaTech] Fallback getPage also failed: TypeError: Cannot read properties of undefined (reading 'route')
+    at l.getPage (.next-container/server/chunks/905.js:106:1906)
+[NovaTech][Render] resolvePageUrl called with route: /NT_Homepage/Home
+[NovaTech][Render] Resolved page URL: http://localhost:3000/NT_Homepage/Home
+[NovaTech] Draft mode enabled. Route: [ 'NT_Homepage', 'Home' ] Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"19eacb3d-972f-45ac-a8ef-961114dff57c","language":"en","variantIds":"_default","mode":"edit","layoutKind":"final","timestamp":"1774485043652"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] getPreview succeeded. Has layout: true Has context: true Has route: true
+Placeholder headless-header contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+    ph: 'headless-header',
+    sig: 'sxa-nt_header'
+  },
+  rendering: {
+    uid: '6f24e4b5-1d51-41e6-959d-1f41c2da121d',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+      ph: 'headless-header',
+      sig: 'sxa-nt_header'
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+Placeholder headless-footer contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+    ph: 'headless-footer',
+    sig: 'sxa-nt_footer'
+  },
+  rendering: {
+    uid: '64142461-d37c-42bd-999f-5d88643495e0',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+      ph: 'headless-footer',
+      sig: 'sxa-nt_footer'
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+[NovaTech][Render] resolvePageUrl called with route: /
+[NovaTech][Render] Resolved page URL: http://localhost:3000/
+[NovaTech] Draft mode enabled. Route: undefined Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"6a9074ba-8036-460f-9d0a-808adafc9785","language":"en","variantIds":"_default","mode":"edit","layoutKind":"final","timestamp":"1774485045197"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] Editing preview FAILED: Cannot read properties of undefined (reading 'context')
+[NovaTech] Error stack: TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (/artifacts/basic-nextjs/.next-container/server/chunks/905.js:106:3727)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async s (/artifacts/basic-nextjs/.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:17879)
+[NovaTech] Attempting fallback via getPage...
+[NovaTech] Fallback getPage also failed: TypeError: Cannot read properties of undefined (reading 'route')
+    at l.getPage (.next-container/server/chunks/905.js:106:1906)
+[NovaTech][Render] resolvePageUrl called with route: /
+[NovaTech][Render] Resolved page URL: http://localhost:3000/
+[NovaTech] Draft mode enabled. Route: undefined Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'version',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"6a9074ba-8036-460f-9d0a-808adafc9785","language":"en","variantIds":"_default","version":"2","mode":"edit","layoutKind":"final","timestamp":"1774485058320"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] Editing preview FAILED: Cannot read properties of undefined (reading 'context')
+[NovaTech] Error stack: TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (/artifacts/basic-nextjs/.next-container/server/chunks/905.js:106:3727)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async s (/artifacts/basic-nextjs/.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:17879)
+[NovaTech] Attempting fallback via getPage...
+[NovaTech] Fallback getPage also failed: TypeError: Cannot read properties of undefined (reading 'route')
+    at l.getPage (.next-container/server/chunks/905.js:106:1906)
+[NovaTech][Render] resolvePageUrl called with route: /
+[NovaTech][Render] Resolved page URL: http://localhost:3000/
+[NovaTech] Draft mode enabled. Route: undefined Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [ 'site', 'itemId', 'language', 'variantIds', 'mode', 'timestamp' ]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"{6A9074BA-8036-460F-9D0A-808ADAFC9785}","language":"en","variantIds":"_default","mode":"preview","timestamp":"1774485059997"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] Editing preview FAILED: Cannot read properties of undefined (reading 'context')
+[NovaTech] Error stack: TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (/artifacts/basic-nextjs/.next-container/server/chunks/905.js:106:3727)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async s (/artifacts/basic-nextjs/.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:17879)
+[NovaTech] Attempting fallback via getPage...
+[NovaTech] Fallback getPage also failed: TypeError: Cannot read properties of undefined (reading 'route')
+    at l.getPage (.next-container/server/chunks/905.js:106:1906)
+[NovaTech][Render] resolvePageUrl called with route: /
+[NovaTech][Render] Resolved page URL: http://localhost:3000/
+[NovaTech] Draft mode enabled. Route: undefined Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'version',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"6a9074ba-8036-460f-9d0a-808adafc9785","language":"en","variantIds":"_default","version":"1","mode":"edit","layoutKind":"final","timestamp":"1774485074057"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] Editing preview FAILED: Cannot read properties of undefined (reading 'context')
+[NovaTech] Error stack: TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (/artifacts/basic-nextjs/.next-container/server/chunks/905.js:106:3727)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async s (/artifacts/basic-nextjs/.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:17879)
+[NovaTech] Attempting fallback via getPage...
+[NovaTech] Fallback getPage also failed: TypeError: Cannot read properties of undefined (reading 'route')
+    at l.getPage (.next-container/server/chunks/905.js:106:1906)
+[NovaTech][Render] resolvePageUrl called with route: /NT_Innovation
+[NovaTech][Render] Resolved page URL: http://localhost:3000/NT_Innovation
+[NovaTech] Draft mode enabled. Route: [ 'NT_Innovation' ] Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"a055e76f-509d-470c-841e-960f65b6aa14","language":"en","variantIds":"_default","mode":"edit","layoutKind":"final","timestamp":"1774485080651"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] Editing preview FAILED: Cannot read properties of undefined (reading 'context')
+[NovaTech] Error stack: TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (/artifacts/basic-nextjs/.next-container/server/chunks/905.js:106:3727)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async s (/artifacts/basic-nextjs/.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:17879)
+[NovaTech] Attempting fallback via getPage...
+[NovaTech] Fallback getPage also failed: TypeError: Cannot read properties of undefined (reading 'route')
+    at l.getPage (.next-container/server/chunks/905.js:106:1906)
+[NovaTech][Render] resolvePageUrl called with route: /NT_Homepage/Home
+[NovaTech][Render] Resolved page URL: http://localhost:3000/NT_Homepage/Home
+[NovaTech] Draft mode enabled. Route: [ 'NT_Homepage', 'Home' ] Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"19eacb3d-972f-45ac-a8ef-961114dff57c","language":"en","variantIds":"_default","mode":"edit","layoutKind":"final","timestamp":"1774485082954"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] getPreview succeeded. Has layout: true Has context: true Has route: true
+Placeholder headless-header contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+    ph: 'headless-header',
+    sig: 'sxa-nt_header'
+  },
+  rendering: {
+    uid: '6f24e4b5-1d51-41e6-959d-1f41c2da121d',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+      ph: 'headless-header',
+      sig: 'sxa-nt_header'
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+Placeholder headless-footer contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+    ph: 'headless-footer',
+    sig: 'sxa-nt_footer'
+  },
+  rendering: {
+    uid: '64142461-d37c-42bd-999f-5d88643495e0',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+      ph: 'headless-footer',
+      sig: 'sxa-nt_footer'
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+[NovaTech][Render] resolvePageUrl called with route: /
+[NovaTech][Render] Resolved page URL: http://localhost:3000/
+[NovaTech] Draft mode enabled. Route: undefined Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"6a9074ba-8036-460f-9d0a-808adafc9785","language":"en","variantIds":"_default","mode":"edit","layoutKind":"final","timestamp":"1774485091441"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] Editing preview FAILED: Cannot read properties of undefined (reading 'context')
+[NovaTech] Error stack: TypeError: Cannot read properties of undefined (reading 'context')
+    at l.getPreview (/artifacts/basic-nextjs/.next-container/server/chunks/905.js:106:3727)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async s (/artifacts/basic-nextjs/.next-container/server/app/[site]/[locale]/[[...path]]/page.js:1:17879)
+[NovaTech] Attempting fallback via getPage...
+[NovaTech] Fallback getPage also failed: TypeError: Cannot read properties of undefined (reading 'route')
+    at l.getPage (.next-container/server/chunks/905.js:106:1906)
+[NovaTech][Render] resolvePageUrl called with route: /Solutions
+[NovaTech][Render] Resolved page URL: http://localhost:3000/Solutions
+[NovaTech] Draft mode enabled. Route: [ 'Solutions' ] Site: TE%20Connectivity Locale: en
+[NovaTech] Editing params keys: [
+  'site',
+  'itemId',
+  'language',
+  'variantIds',
+  'mode',
+  'layoutKind',
+  'timestamp'
+]
+[NovaTech] Editing params: {"site":"TE Connectivity","itemId":"513db59b-1e9d-4033-9209-e5d066dcbbc0","language":"en","variantIds":"_default","mode":"edit","layoutKind":"final","timestamp":"1774485099070"}
+[NovaTech] Env: SITECORE_EDGE_CONTEXT_ID= set(22chars)
+[NovaTech] Env: SITECORE_EDITING_SECRET= set(22chars)
+[NovaTech] Env: SITECORE= true
+[NovaTech] Client status: initialized
+[NovaTech] isDesignLibrary: false
+[NovaTech] getPreview succeeded. Has layout: true Has context: true Has route: true
+Placeholder headless-header contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+    ph: 'headless-header',
+    sig: 'sxa-nt_header'
+  },
+  rendering: {
+    uid: '6f24e4b5-1d51-41e6-959d-1f41c2da121d',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{6F24E4B5-1D51-41E6-959D-1F41C2DA121D}',
+      ph: 'headless-header',
+      sig: 'sxa-nt_header'
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+Placeholder headless-footer contains unknown component PartialDesign Dynamic Placeholder. Ensure that a React component exists for it, and that it is registered in your component-map file.
+Component props for unimplemented 'PartialDesign Dynamic Placeholder' component {
+  fields: {},
+  params: {
+    sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+    ph: 'headless-footer',
+    sig: 'sxa-nt_footer'
+  },
+  rendering: {
+    uid: '64142461-d37c-42bd-999f-5d88643495e0',
+    componentName: 'PartialDesign Dynamic Placeholder',
+    dataSource: '',
+    params: {
+      sid: '{64142461-D37C-42BD-999F-5D88643495E0}',
+      ph: 'headless-footer',
+      sig: 'sxa-nt_footer'
+    }
+  },
+  page: {
+    locale: 'en',
+    layout: { sitecore: [Object] },
+    siteName: 'TE Connectivity',
+    mode: {
+      name: 'edit',
+      isNormal: false,
+      isPreview: false,
+      isEditing: true,
+      isDesignLibrary: false,
+      designLibrary: [Object]
+    }
+  },
+  componentMap: Map(23) {
+    'BYOCWrapper' => [AsyncFunction: i],
+    'FEaaSWrapper' => [AsyncFunction: i],
+    'Form' => { componentType: 'client' },
+    'Container' => { Default: [Function: x] },
+    'ColumnSplitter' => { Default: [Function: y] },
+    'SolutionPathways' => { Default: [Function: C] },
+    'SolutionNarrative' => { Default: [Function: E] },
+    'SolutionHero' => { Default: [Function: F] },
+    'SubNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteHeader' => { Default: [AsyncFunction: T] },
+    'DrawerNav' => { default: [Function (anonymous)], componentType: 'client' },
+    'SiteFooter' => { Default: [Function: U] },
+    'RichTextBlock' => { Default: [Function: V] },
+    'ProofPointCounter' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ProductDiscovery' => { Default: [Function (anonymous)], componentType: 'client' },
+    'PartialDesignDynamicPlaceholder' => { Default: [Function: Y] },
+    'MegaTrends' => { Default: [Function (anonymous)], componentType: 'client' },
+    'HeroBanner' => { Default: [Function: _] },
+    'CrossNavigation' => { Default: [Function (anonymous)], componentType: 'client' },
+    'ContainerFullWidth' => { Default: [Function: ab] },
+    'ContainerFullBleed' => { Default: [Function: ad] },
+    'Container70' => { Default: [Function: ae] },
+    'AuthorityStats' => { Default: [Function: au] }
+  }
+}
+[NovaTech][Render] resolvePageUrl called with route: /
+[NovaTech][Render] Resolved page URL: http://localhost:3000/
