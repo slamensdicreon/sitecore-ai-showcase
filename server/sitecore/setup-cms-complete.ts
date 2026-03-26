@@ -208,8 +208,9 @@ async function step1_fixDatasourceLocation() {
 
 const DATASOURCE_CHILDREN_RESOLVER_ID = "{2F5C334E-5615-423C-8281-9FC180191302}";
 
-async function step1b_setRenderingContentsResolver() {
-  console.log("\n═══ Step 1b: Set Rendering Contents Resolver on tile renderings ═══");
+async function step1b_clearRenderingContentsResolver() {
+  console.log("\n═══ Step 1b: Clear Rendering Contents Resolver on tile renderings ═══");
+  console.log("  (Children are now fetched via Edge GraphQL in server component wrappers)");
   const tileRenderings = ["Mega Trends", "Solution Pathways", "Authority Stats", "Cross Navigation", "Proof Point Counter"];
   for (const name of tileRenderings) {
     const rawId = RENDERING_IDS[name];
@@ -218,9 +219,9 @@ async function step1b_setRenderingContentsResolver() {
     try {
       await gql(`mutation($id:ID!,$lang:String!,$fields:[FieldValueInput!]!){updateItem(input:{itemId:$id,language:$lang,fields:$fields}){item{itemId}}}`, {
         id, lang: "en",
-        fields: [{ name: "Rendering Contents Resolver", value: DATASOURCE_CHILDREN_RESOLVER_ID }],
+        fields: [{ name: "Rendering Contents Resolver", value: "" }],
       });
-      console.log(`  ✓ ${name}: Rendering Contents Resolver → Datasource Item Children Resolver`);
+      console.log(`  ✓ ${name}: Rendering Contents Resolver cleared`);
     } catch (e) {
       console.error(`  ✗ ${name}: ${(e as Error).message}`);
     }
@@ -716,7 +717,7 @@ async function main() {
   await resolveWellKnownIds();
 
   await step1_fixDatasourceLocation();
-  await step1b_setRenderingContentsResolver();
+  await step1b_clearRenderingContentsResolver();
   await step1c_ensureHeroBannerVariants();
   await step2_fixHomepage();
   await step2b_createChildItems();

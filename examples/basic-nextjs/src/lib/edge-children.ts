@@ -52,7 +52,7 @@ export async function fetchDatasourceChildren(datasourceId: string): Promise<Chi
         query: CHILDREN_QUERY,
         variables: { datasource: cleanId, language: 'en' },
       }),
-      next: { revalidate: 300 },
+      next: { revalidate: 300 } as any,
     });
     if (!res.ok) return [];
     const json = await res.json();
