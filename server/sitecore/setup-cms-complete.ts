@@ -289,7 +289,7 @@ async function step1d_addMultilistFields() {
       l: "en",
       f: [
         { name: "Type", value: "Multilist" },
-        { name: "Source", value: `/sitecore/content/TE Connectivity/TE Connectivity/Home/Data` },
+        { name: "Source", value: `/sitecore/content/TE Connectivity/TE Connectivity/Home` },
       ],
     });
     console.log(`  + ${tpl.name}: Items Multilist field added`);
