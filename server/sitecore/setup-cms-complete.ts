@@ -774,24 +774,73 @@ async function step5_createBranchTemplates() {
     console.log(`  ✓ Branch "${branch.name}" created with ${branch.renderings.length} renderings`);
   }
 
-  console.log("\n  Setting Insert Options on Page template...");
+  console.log("\n  Setting Insert Options on Page template and content items...");
   const pageStdValuesPath = `${TEMPLATES_ROOT}/Page/__Standard Values`;
   const stdValues = await getItemId(pageStdValuesPath);
+  const branchIds: string[] = [];
+  for (const branch of branches) {
+    const id = await getItemId(`${BRANCHES_ROOT}/${branch.name}`);
+    if (id) branchIds.push(formatGuid(id));
+  }
+  const pageTemplateFormatted = formatGuid(PAGE_TEMPLATE_ID);
+  const insertOptions = [pageTemplateFormatted, ...branchIds].join("|");
+
   if (stdValues) {
-    const branchIds = [];
-    for (const branch of branches) {
-      const id = await getItemId(`${BRANCHES_ROOT}/${branch.name}`);
-      if (id) branchIds.push(formatGuid(id));
-    }
-    const pageTemplateFormatted = formatGuid(PAGE_TEMPLATE_ID);
-    const insertOptions = [pageTemplateFormatted, ...branchIds].join("|");
     await gql(`mutation($id:ID!,$lang:String!,$fields:[FieldValueInput!]!){updateItem(input:{itemId:$id,language:$lang,fields:$fields}){item{itemId}}}`, {
       id: stdValues, lang: "en",
       fields: [{ name: "__Masters", value: insertOptions }],
     });
-    console.log(`  ✓ Insert Options set on Page template: ${branches.length} branches + Page template`);
+    console.log(`  ✓ Insert Options set on Page template Standard Values: ${branches.length} branches + Page template`);
   } else {
     console.log("  ✗ Page template Standard Values not found");
+  }
+
+  const contentItems = [
+    `${SITE_ROOT}/Home`,
+    `${SITE_ROOT}/Home/Solutions`,
+    `${SITE_ROOT}/Home/Innovation`,
+  ];
+  for (const itemPath of contentItems) {
+    const itemId = await getItemId(itemPath);
+    if (itemId) {
+      await gql(`mutation($id:ID!,$lang:String!,$fields:[FieldValueInput!]!){updateItem(input:{itemId:$id,language:$lang,fields:$fields}){item{itemId}}}`, {
+        id: itemId, lang: "en",
+        fields: [{ name: "__Masters", value: insertOptions }],
+      });
+      const name = itemPath.split("/").pop();
+      console.log(`  ✓ Insert Options set on ${name}`);
+    }
+  }
+}
+
+async function step5b_setRenderingThumbnails() {
+  console.log("\n═══ Step 5b: Set component thumbnails on renderings ═══");
+
+  const thumbnails: Record<string, { icon: string; description: string }> = {
+    "Hero Banner":       { icon: "Office/32x32/window_colors.png", description: "Full-width hero banner with headline, subtitle, badge, and call-to-action button" },
+    "Mega Trends":       { icon: "Office/32x32/chart_up_color.png", description: "Grid of industry mega-trend cards with icons, stats, and descriptions" },
+    "Solution Pathways": { icon: "Office/32x32/signpost.png", description: "Interactive solution pathway cards that ask questions and guide users to solutions" },
+    "Authority Stats":   { icon: "Office/32x32/gauge.png", description: "Animated counter section showing key company statistics and metrics" },
+    "Solution Hero":     { icon: "Office/32x32/window_environment.png", description: "Industry-specific hero with accent color, label, and full-width layout" },
+    "Solution Narrative": { icon: "Office/32x32/document_text.png", description: "Two-column narrative section with heading, lead text, and rich body content" },
+    "Product Discovery": { icon: "Office/32x32/elements_selection.png", description: "Product grid with filters, integrated with OrderCloud commerce catalog" },
+    "Cross Navigation":  { icon: "Office/32x32/navigate_right2.png", description: "Card-based links to related solution pages with icons and descriptions" },
+    "Proof Point Counter":{ icon: "Office/32x32/speedometer.png", description: "Animated proof-point counters for showcasing innovation metrics" },
+    "Rich Text Block":   { icon: "Office/32x32/document_plain_text.png", description: "Flexible rich text content block for any page section" },
+  };
+
+  for (const [name, thumb] of Object.entries(thumbnails)) {
+    const renderingId = RENDERING_IDS[name];
+    if (!renderingId) continue;
+    const formattedId = formatGuid(renderingId);
+    await gql(`mutation($id:ID!,$lang:String!,$fields:[FieldValueInput!]!){updateItem(input:{itemId:$id,language:$lang,fields:$fields}){item{itemId}}}`, {
+      id: formattedId, lang: "en",
+      fields: [
+        { name: "__Thumbnail", value: thumb.icon },
+        { name: "__Short description", value: thumb.description },
+      ],
+    });
+    console.log(`  ✓ ${name}: thumbnail and description set`);
   }
 }
 
@@ -933,6 +982,7 @@ async function main() {
   await step3_fixSolutionPages();
   await step4_createInnovationPage();
   await step5_createBranchTemplates();
+  await step5b_setRenderingThumbnails();
   const validationErrors = await step6_validate();
   await step7_publish();
 
