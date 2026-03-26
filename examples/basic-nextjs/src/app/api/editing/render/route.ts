@@ -1,8 +1,13 @@
 import { createEditingRenderRouteHandlers } from '@sitecore-content-sdk/nextjs/route-handler';
-import components from '.sitecore/component-map';
-import clientComponents from '.sitecore/component-map.client';
 
 export const { GET, POST, OPTIONS } = createEditingRenderRouteHandlers({
-  components,
-  clientComponents,
+  resolvePageUrl: (route: string) => {
+    if (route.startsWith('http://') || route.startsWith('https://')) {
+      return route;
+    }
+    const base = process.env.SITECORE
+      ? 'http://localhost:3000'
+      : `http://localhost:${process.env.PORT || '3000'}`;
+    return `${base}${route}`;
+  },
 });

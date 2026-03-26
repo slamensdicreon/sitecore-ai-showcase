@@ -2,9 +2,6 @@ import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 
 const nextConfig: NextConfig = {
-  env: {
-    PUBLIC_URL: process.env.PUBLIC_URL || 'http://localhost:3000',
-  },
   distDir: process.env.NEXTJS_DIST_DIR || '.next',
   reactStrictMode: true,
   poweredByHeader: false,
