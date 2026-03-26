@@ -230,9 +230,20 @@ export const Default = async (props: SiteHeaderProps): Promise<JSX.Element> => {
       className={`component site-header ${styles}`}
       id={id || undefined}
       data-testid="site-header"
-      style={{ position: 'sticky', top: 0, zIndex: 50, borderBottom: '1px solid #e5e7eb', background: '#FFFFFF' }}
+      style={{ position: 'sticky', top: 0, borderBottom: '1px solid #e5e7eb', background: '#FFFFFF' }}
     >
       <style>{`
+        .site-header {
+          z-index: 50;
+        }
+        .editing-mode .site-header,
+        .editing-mode [data-sc-component] :is(.site-header) {
+          z-index: 9999;
+        }
+        .editing-mode [data-sc-component]:has(.site-header) {
+          position: relative;
+          z-index: 9999 !important;
+        }
         /* === Row 1: Utility Bar === */
         .te-utility {
           background: #2e4957;
