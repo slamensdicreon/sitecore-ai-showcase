@@ -1,0 +1,172 @@
+
+OrganizationId: org_nqH2YUQNEoUWPkGW
+EnvironmentId: eTgkBX1LQu2VQF1lWpyjq
+DeploymentId: 3XYfVxokpdM1TUdub9gmZp
+PlatformTenantName: icreonpartn26cc-novatech39b8-basicnextjsf64e
+Region: eus
+Build - Failed
+03/26/2026 06:38:45 +00:00|INFO|Downloading source code from git ref/commit: main
+03/26/2026 06:38:46 +00:00|INFO|Starting editing host build because source code was provided.
+03/26/2026 06:38:49 +00:00|INFO|Resolved version '@sitecore-content-sdk/nextjs' is, 1.4.1
+03/26/2026 06:38:53 +00:00|INFO|Starting Rendering host building
+03/26/2026 06:38:53 +00:00|INFO|Downloading artifacts...
+03/26/2026 06:38:53 +00:00|INFO|Unzipping...
+03/26/2026 06:38:55 +00:00|INFO|Removing zip...
+03/26/2026 06:38:55 +00:00|INFO|Building rendering host for 'basic-nextjs'
+03/26/2026 06:38:55 +00:00|INFO|Extracting build configs completed.
+03/26/2026 06:38:55 +00:00|INFO|Installing node for 'basic-nextjs' of version 22.22.0
+03/26/2026 06:38:57 +00:00|INFO|Node installation for 'basic-nextjs' completed
+03/26/2026 06:38:57 +00:00|INFO|Building artifacts for 'basic-nextjs'...
+03/26/2026 06:38:57 +00:00|INFO|Node version: v22.22.0
+03/26/2026 06:38:58 +00:00|INFO|npm warn using --force Recommended protections disabled.
+03/26/2026 06:38:59 +00:00|INFO|npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+03/26/2026 06:39:00 +00:00|INFO|npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+03/26/2026 06:39:01 +00:00|INFO|npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+03/26/2026 06:39:06 +00:00|INFO|added 517 packages, and audited 518 packages in 8s
+03/26/2026 06:39:06 +00:00|INFO|169 packages are looking for funding
+03/26/2026 06:39:06 +00:00|INFO|run `npm fund` for details
+03/26/2026 06:39:06 +00:00|INFO|6 vulnerabilities (2 moderate, 4 high)
+03/26/2026 06:39:06 +00:00|INFO|To address all issues, run:
+03/26/2026 06:39:06 +00:00|INFO|npm audit fix
+03/26/2026 06:39:06 +00:00|INFO|Run `npm audit` for details.
+03/26/2026 06:39:07 +00:00|INFO|Found Content SDK package version: 1.4.1 for site: basic-nextjs
+03/26/2026 06:39:07 +00:00|INFO|pnpm installation started
+03/26/2026 06:39:08 +00:00|INFO|added 1 package in 704ms
+03/26/2026 06:39:08 +00:00|INFO|1 package is looking for funding
+03/26/2026 06:39:08 +00:00|INFO|run `npm fund` for details
+03/26/2026 06:39:08 +00:00|INFO|Running build with 'build'
+03/26/2026 06:39:08 +00:00|INFO|> content-sdk-nextjs-app-router@1.0.0 build
+03/26/2026 06:39:08 +00:00|INFO|> cross-env NODE_ENV=production npm-run-all --serial sitecore-tools:generate-map sitecore-tools:build next:build
+03/26/2026 06:39:08 +00:00|INFO|> content-sdk-nextjs-app-router@1.0.0 sitecore-tools:generate-map
+03/26/2026 06:39:08 +00:00|INFO|> sitecore-tools project component generate-map && node scripts/patch-component-map.js
+03/26/2026 06:39:09 +00:00|INFO|Generating component map for:
+03/26/2026 06:39:09 +00:00|INFO|src/components
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component Container
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component ColumnSplitter
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component SolutionPathways
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component SolutionNarrative
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component SolutionHero
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component SubNav
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component SolutionsMenu
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component SiteHeader
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component DrawerNav
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component SiteFooter
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component RichTextBlock
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component ProofPointCounterClient
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component ProofPointCounter
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component ProductDiscovery
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component PartialDesignDynamicPlaceholder
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component MegaTrends
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component HeroBanner
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component CrossNavigation
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component ContainerFullWidth
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component ContainerFullBleed
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component Container70
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component AuthorityStatsClient
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component AuthorityStats
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component SubNav
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component SolutionsMenu
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component DrawerNav
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component ProofPointCounterClient
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component ProductDiscovery
+03/26/2026 06:39:09 +00:00|INFO|Registering Content SDK component AuthorityStatsClient
+03/26/2026 06:39:09 +00:00|INFO|Patched component-map.ts: added 22 spaced alias(es)
+03/26/2026 06:39:09 +00:00|INFO|Patched component-map.client.ts: added 6 spaced alias(es)
+03/26/2026 06:39:09 +00:00|INFO|> content-sdk-nextjs-app-router@1.0.0 sitecore-tools:build
+03/26/2026 06:39:09 +00:00|INFO|> sitecore-tools project build || echo 'Warning: sitecore-tools build skipped (missing XM Cloud credentials). Using existing metadata.'
+03/26/2026 06:39:10 +00:00|INFO|Writing metadata to /workspace/tmp/builds/basic-nextjs/.sitecore/metadata.json
+03/26/2026 06:39:10 +00:00|INFO|Code extraction started
+03/26/2026 06:39:11 +00:00|INFO|Code extraction completed successfully, files extracted:
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/sxa/Container.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/sxa/ColumnSplitter.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/sxa/ColumnSplitter.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/solution-pathways/SolutionPathways.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/solution-pathways/SolutionPathways.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/solution-narrative/SolutionNarrative.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/solution-narrative/SolutionNarrative.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/solution-hero/SolutionHero.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/solution-hero/SolutionHero.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/site-header/SubNav.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/site-header/SubNav.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/site-header/SolutionsMenu.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/site-header/SolutionsMenu.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/site-header/SiteHeader.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/site-header/SiteHeader.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/site-header/DrawerNav.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/site-header/DrawerNav.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/site-footer/SiteFooter.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/site-footer/SiteFooter.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/rich-text-block/RichTextBlock.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/rich-text-block/RichTextBlock.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/proof-point-counter/ProofPointCounterClient.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/proof-point-counter/ProofPointCounterClient.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/proof-point-counter/ProofPointCounter.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/proof-point-counter/ProofPointCounter.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/product-discovery/ProductDiscovery.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/product-discovery/ProductDiscovery.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/partial-design-dynamic-placeholder/PartialDesignDynamicPlaceholder.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/partial-design-dynamic-placeholder/PartialDesignDynamicPlaceholder.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/partial-design-dynamic-placeholder/PartialDesignDynamicPlaceholder.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/mega-trends/MegaTrends.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/mega-trends/MegaTrends.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/hero-banner/HeroBanner.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/hero-banner/HeroBanner.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/cross-navigation/CrossNavigation.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/cross-navigation/CrossNavigation.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/container/container-full-width/ContainerFullWidth.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/container/container-full-width/ContainerFullWidth.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/container/container-full-bleed/ContainerFullBleed.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/container/container-full-bleed/ContainerFullBleed.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/container/container-70/Container70.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/authority-stats/AuthorityStatsClient.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/authority-stats/AuthorityStatsClient.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/authority-stats/AuthorityStats.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/authority-stats/AuthorityStats.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/site-header/SubNav.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/site-header/SubNav.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/site-header/SolutionsMenu.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/site-header/SolutionsMenu.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/site-header/DrawerNav.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/proof-point-counter/ProofPointCounterClient.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/proof-point-counter/ProofPointCounterClient.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/product-discovery/ProductDiscovery.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/product-discovery/ProductDiscovery.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/authority-stats/AuthorityStatsClient.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/src/components/authority-stats/AuthorityStatsClient.tsx
+03/26/2026 06:39:11 +00:00|INFO|/workspace/tmp/builds/basic-nextjs/package.json
+03/26/2026 06:39:11 +00:00|INFO|[Codegen] Generating import map: {"paths":["src/components"]}.
+03/26/2026 06:39:11 +00:00|INFO|Writing into /workspace/tmp/builds/basic-nextjs/.sitecore/import-map.server.ts ...
+03/26/2026 06:39:11 +00:00|INFO|[Codegen] Generating import map: {"paths":["src/components"]}.
+03/26/2026 06:39:11 +00:00|INFO|Writing into /workspace/tmp/builds/basic-nextjs/.sitecore/import-map.client.ts ...
+03/26/2026 06:39:11 +00:00|INFO|> content-sdk-nextjs-app-router@1.0.0 next:build
+03/26/2026 06:39:11 +00:00|INFO|> next build
+03/26/2026 06:39:12 +00:00|INFO|⚠ Mismatching @next/swc version, detected: 15.5.7 while Next.js is on 15.5.11. Please ensure these match
+03/26/2026 06:39:12 +00:00|INFO|Attention: Next.js now collects completely anonymous telemetry regarding usage.
+03/26/2026 06:39:12 +00:00|INFO|This information is used to shape Next.js' roadmap and prioritize features.
+03/26/2026 06:39:12 +00:00|INFO|You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+03/26/2026 06:39:12 +00:00|INFO|https://nextjs.org/telemetry
+03/26/2026 06:39:12 +00:00|INFO|▲ Next.js 15.5.11
+03/26/2026 06:39:12 +00:00|INFO|Creating an optimized production build ...
+03/26/2026 06:39:20 +00:00|INFO|✓ Compiled successfully in 8.2s
+03/26/2026 06:39:20 +00:00|INFO|Linting and checking validity of types ...
+03/26/2026 06:39:20 +00:00|INFO|We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
+03/26/2026 06:39:20 +00:00|INFO|The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:
+03/26/2026 06:39:20 +00:00|INFO|- include was updated to add '.next-container/types/**/*.ts'
+03/26/2026 06:39:23 +00:00|INFO|Failed to compile.
+03/26/2026 06:39:23 +00:00|INFO|./src/lib/edge-children.ts:38:22
+03/26/2026 06:39:23 +00:00|INFO|Type error: Conversion of type 'Record<string, unknown>' to type 'LinkField | Field<string> | Field<number> | undefined' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+03/26/2026 06:39:23 +00:00|INFO|Property 'value' is missing in type 'Record<string, unknown>' but required in type 'Field<number>'.
+03/26/2026 06:39:23 +00:00|INFO|36 |   const fields: Record<string, Field<string> | Field<number> | LinkField | undefined> = {};
+03/26/2026 06:39:23 +00:00|INFO|37 |   for (const f of child.fields) {
+03/26/2026 06:39:23 +00:00|INFO|> 38 |     fields[f.name] = f.jsonValue as Field<string> | Field<number> | LinkField | undefined;
+03/26/2026 06:39:23 +00:00|INFO||                      ^
+03/26/2026 06:39:23 +00:00|INFO|39 |   }
+03/26/2026 06:39:23 +00:00|INFO|40 |   return { id: child.id, fields };
+03/26/2026 06:39:23 +00:00|INFO|41 | }
+03/26/2026 06:39:23 +00:00|INFO|Next.js build worker exited with code: 1 and signal: null
+03/26/2026 06:39:23 +00:00|INFO|ERROR: "next:build" exited with 1.
+03/26/2026 06:39:23 +00:00|INFO|Error during building for 'basic-nextjs'
+03/26/2026 06:39:23 +00:00|INFO|build failed on 'basic-nextjs'
+03/26/2026 06:39:24 +00:00|ERROR|Build has failed.
+
+
