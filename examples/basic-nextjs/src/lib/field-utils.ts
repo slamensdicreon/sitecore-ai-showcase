@@ -12,9 +12,11 @@ export function rtf(fields: ComponentFields | undefined, name: string): RichText
   return fields?.[name] as RichTextField | undefined;
 }
 
-export function getFieldValue<T = string>(fields: Record<string, unknown> | undefined, fieldName: string, fallback: T): T {
-  const field = fields?.[fieldName] as Field<T> | undefined;
-  return field?.value ?? fallback;
+export function getFieldValue(fields: Record<string, unknown> | undefined, fieldName: string, fallback = ''): string {
+  const field = fields?.[fieldName] as Field<string | number> | undefined;
+  const v = field?.value;
+  if (v === undefined || v === null) return fallback;
+  return String(v);
 }
 
 export function getLinkHref(fields: Record<string, unknown> | undefined, fieldName: string): string {
@@ -35,8 +37,10 @@ export function getChildItems(rendering: unknown): ChildItem[] {
 }
 
 export function getChildFieldValue(item: ChildItem, fieldName: string, fallback = ''): string {
-  const field = item.fields?.[fieldName] as Field<string> | undefined;
-  return field?.value ?? fallback;
+  const field = item.fields?.[fieldName] as Field<string | number> | undefined;
+  const v = field?.value;
+  if (v === undefined || v === null) return fallback;
+  return String(v);
 }
 
 export function getChildLinkHref(item: ChildItem, fieldName: string): string {
