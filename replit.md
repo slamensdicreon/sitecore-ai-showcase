@@ -27,7 +27,10 @@ Core features include:
   - Rendering host: `basic-nextjs` at `examples/basic-nextjs/` — stock Content SDK starter with TE components layered on top (same approach as EAA demo on `sitecorebranch`)
   - Datasource location: `./Data` (nested under each page, following EAA pattern)
   - Content tree: Home/Data, Home/Solutions/Transportation/Data, Home/Solutions/Communications/Data, Home/Solutions/Industrial/Data
+  - **CRITICAL**: All General Link fields MUST use `linktype="external"` (not `linktype="internal"`) unless the `id="{GUID}"` attribute is included. Missing GUID on internal links breaks Edge layout resolution for ALL pages (returns `rendered: {}`).
   - Sync pipeline creates 16 templates, 10 renderings, 16+ datasource items
+  - EAA Partial Design Architecture: NT_Default page design references NT_Header + NT_Footer partial designs; pages get header/footer auto-injected via partial design chain
+  - `SITECORE_EDGE_CLIENT_*` credentials have write access to Authoring GraphQL API; `SITECORE_AUTOMATION2_*` has read-only access
   - Key XM Cloud GraphQL differences: `parent` field is `ID!` (GUID, not path); `itemId` returns bare lowercase GUIDs; Template Section ID `{E269FBB5-3750-427A-9149-7AA950B49301}`; Template Field ID `{455A3E98-A627-4B40-8035-E683A0331AC7}`; publish uses `experienceedge` target database
 - **Sitecore CLI Serialization**: Item serialization for XM Cloud deployment pipeline
   - `authoring/items/te-connector/` — 225 YAML files pulled from XM Cloud with real GUIDs
