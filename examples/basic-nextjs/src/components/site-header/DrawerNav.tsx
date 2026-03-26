@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import NextLink from 'next/link';
 
 interface NavLinkData {
@@ -24,23 +24,72 @@ interface DrawerNavProps {
   megaItems?: MegaItem[];
 }
 
+const NAV_ICONS: Record<string, { path: string; color: string }> = {
+  solutions: {
+    color: '#167a87',
+    path: 'M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.84Z M22 17.65l-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65 M22 12.65l-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65',
+  },
+  applications: {
+    color: '#f28d00',
+    path: 'M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z',
+  },
+  products: {
+    color: '#2e4957',
+    path: 'M7.5 4.27l9 5.15 M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z M3.3 7l8.7 5 8.7-5 M12 22V12',
+  },
+  innovation: {
+    color: '#167a87',
+    path: 'M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5 M9 18h6 M10 22h4',
+  },
+};
+
+function NavIcon({ id }: { id: string }) {
+  const icon = NAV_ICONS[id];
+  if (!icon) return null;
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={icon.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      {icon.path.split(' M').map((segment, i) => (
+        <path key={i} d={i === 0 ? segment : `M${segment}`} />
+      ))}
+    </svg>
+  );
+}
+
 export default function DrawerNav({ links, megaItems }: DrawerNavProps) {
   const [open, setOpen] = useState(false);
-  const [solutionsExpanded, setSolutionsExpanded] = useState(false);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  const closeMenu = useCallback(() => {
+    setOpen(false);
+    setExpandedId(null);
+  }, []);
 
   useEffect(() => {
     if (open) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
-      setSolutionsExpanded(false);
+      setExpandedId(null);
     }
     return () => { document.body.style.overflow = ''; };
   }, [open]);
 
+  useEffect(() => {
+    if (!open) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeMenu();
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [open, closeMenu]);
+
+  const solutionsItem = links.find((l) => l.id === 'solutions');
+  const hasSolutionsMega = !!solutionsItem && !!megaItems && megaItems.length > 0;
+
   return (
     <>
-      {/* Hamburger - visible only below lg */}
       <button
         aria-label={open ? 'Close menu' : 'Open menu'}
         aria-expanded={open}
@@ -59,7 +108,6 @@ export default function DrawerNav({ links, megaItems }: DrawerNavProps) {
         )}
       </button>
 
-      {/* Mobile menu panel */}
       {open && (
         <div
           className="te-mobile-menu open"
@@ -74,10 +122,12 @@ export default function DrawerNav({ links, megaItems }: DrawerNavProps) {
             overflowY: 'auto',
             borderTop: '1px solid #e5e7eb',
           }}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation"
           data-testid="mobile-menu"
         >
           <div style={{ padding: '12px 16px' }}>
-            {/* Mobile search */}
             <div style={{ position: 'relative', marginBottom: '12px' }}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>
                 <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
@@ -101,102 +151,72 @@ export default function DrawerNav({ links, megaItems }: DrawerNavProps) {
               />
             </div>
 
-            {/* Solutions (expandable) */}
-            <button
-              onClick={() => setSolutionsExpanded(!solutionsExpanded)}
-              className="te-mobile-nav-item"
-              data-testid="mobile-nav-solutions"
-            >
-              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#167a87" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.84Z" />
-                  <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" />
-                  <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" />
-                </svg>
-                Solutions
-              </span>
-              <svg
-                width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                style={{ transition: 'transform 0.2s', transform: solutionsExpanded ? 'rotate(180deg)' : 'rotate(0deg)' }}
-              >
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-            </button>
+            {links.map((item) => {
+              const hasChildren = hasSolutionsMega && item.id === 'solutions';
+              const isExpanded = expandedId === item.id;
 
-            {solutionsExpanded && megaItems && (
-              <div className="te-mobile-sub">
-                {megaItems.map((item) => (
-                  <NextLink
-                    key={item.slug}
-                    href="/Solutions"
-                    onClick={() => setOpen(false)}
-                    className="te-mobile-sub-link"
-                    data-testid={`mobile-nav-solution-${item.slug}`}
-                  >
-                    <div className="te-mobile-sub-icon" style={{ background: `${item.color}18` }}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={item.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d={item.iconPath} />
+              if (hasChildren) {
+                return (
+                  <div key={item.id}>
+                    <button
+                      onClick={() => setExpandedId(isExpanded ? null : item.id)}
+                      className="te-mobile-nav-item"
+                      aria-expanded={isExpanded}
+                      data-testid={`mobile-nav-${item.id}`}
+                    >
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <NavIcon id={item.id} />
+                        {item.title}
+                      </span>
+                      <svg
+                        width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                        style={{ transition: 'transform 0.2s', transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                      >
+                        <path d="m6 9 6 6 6-6" />
                       </svg>
-                    </div>
-                    <div>
-                      <div className="te-mobile-sub-label">{item.label}</div>
-                      <div className="te-mobile-sub-desc">{item.description}</div>
-                    </div>
-                  </NextLink>
-                ))}
-              </div>
-            )}
+                    </button>
+                    {isExpanded && megaItems && (
+                      <div className="te-mobile-sub">
+                        {megaItems.map((mega) => (
+                          <NextLink
+                            key={mega.slug}
+                            href={item.href}
+                            onClick={closeMenu}
+                            className="te-mobile-sub-link"
+                            data-testid={`mobile-nav-solution-${mega.slug}`}
+                          >
+                            <div className="te-mobile-sub-icon" style={{ background: `${mega.color}18` }}>
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={mega.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d={mega.iconPath} />
+                              </svg>
+                            </div>
+                            <div>
+                              <div className="te-mobile-sub-label">{mega.label}</div>
+                              <div className="te-mobile-sub-desc">{mega.description}</div>
+                            </div>
+                          </NextLink>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
 
-            {/* Applications */}
-            <NextLink
-              href="/Solutions"
-              onClick={() => setOpen(false)}
-              className="te-mobile-nav-item"
-              data-testid="mobile-nav-applications"
-            >
-              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f28d00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect width="7" height="7" x="3" y="3" rx="1" />
-                  <rect width="7" height="7" x="14" y="3" rx="1" />
-                  <rect width="7" height="7" x="14" y="14" rx="1" />
-                  <rect width="7" height="7" x="3" y="14" rx="1" />
-                </svg>
-                Applications
-              </span>
-            </NextLink>
-
-            {/* All Products */}
-            <NextLink
-              href="/Products"
-              onClick={() => setOpen(false)}
-              className="te-mobile-nav-item"
-              data-testid="mobile-nav-products"
-            >
-              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e4957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="m7.5 4.27 9 5.15" />
-                  <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
-                  <path d="m3.3 7 8.7 5 8.7-5" /><path d="M12 22V12" />
-                </svg>
-                All Products
-              </span>
-            </NextLink>
-
-            {/* Innovation */}
-            <NextLink
-              href="/Innovation"
-              onClick={() => setOpen(false)}
-              className="te-mobile-nav-item"
-              data-testid="mobile-nav-innovation"
-            >
-              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#167a87" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
-                  <path d="M9 18h6" /><path d="M10 22h4" />
-                </svg>
-                Innovation
-              </span>
-            </NextLink>
+              return (
+                <NextLink
+                  key={item.id}
+                  href={item.href}
+                  onClick={closeMenu}
+                  className="te-mobile-nav-item"
+                  data-testid={`mobile-nav-${item.id}`}
+                >
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <NavIcon id={item.id} />
+                    {item.title}
+                  </span>
+                </NextLink>
+              );
+            })}
           </div>
         </div>
       )}
