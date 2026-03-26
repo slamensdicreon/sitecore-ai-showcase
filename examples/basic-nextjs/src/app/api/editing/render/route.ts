@@ -1,4 +1,4 @@
-import { createEditingRenderRouteHandlers } from '@sitecore-content-sdk/nextjs/editing';
+import { createEditingRenderRouteHandlers } from '@sitecore-content-sdk/nextjs/route-handler';
 import components from '.sitecore/component-map';
 import clientComponents from '.sitecore/component-map.client';
 
