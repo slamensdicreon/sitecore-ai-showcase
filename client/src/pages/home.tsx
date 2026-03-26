@@ -47,6 +47,20 @@ function HeroVideoBackground() {
   const playerRef = useRef<ReactPlayer>(null);
   const prefersReducedMotion = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  useEffect(() => {
+    const ref = playerRef;
+    return () => {
+      try {
+        const internalPlayer = ref.current?.getInternalPlayer() as HTMLVideoElement | undefined;
+        if (internalPlayer && internalPlayer instanceof HTMLVideoElement) {
+          internalPlayer.pause();
+          internalPlayer.removeAttribute("src");
+          internalPlayer.load();
+        }
+      } catch (_) {}
+    };
+  }, []);
+
   const showVideo = videoReady && !videoFailed && !prefersReducedMotion;
 
   return (
