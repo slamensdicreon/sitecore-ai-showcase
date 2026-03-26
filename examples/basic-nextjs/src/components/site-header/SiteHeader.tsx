@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Image, ImageField } from '@sitecore-content-sdk/nextjs';
 import { ComponentProps } from 'lib/component-props';
 import DrawerNav from './DrawerNav';
+import SolutionsMenu from './SolutionsMenu';
 
 interface SiteHeaderFields {
   Logo: ImageField;
@@ -613,7 +614,7 @@ export const Default = (props: SiteHeaderProps): JSX.Element => {
 
         {/* Row 3: Desktop Nav */}
         <nav className="te-nav" data-testid="desktop-nav">
-          <SolutionsDropdown />
+          <SolutionsMenu items={SOLUTIONS_MEGA} />
           <Link href="/Solutions" className="te-nav-link" data-testid="nav-applications">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '2px' }}>
               <rect width="7" height="7" x="3" y="3" rx="1" />
@@ -638,21 +639,3 @@ export const Default = (props: SiteHeaderProps): JSX.Element => {
     </div>
   );
 };
-
-function SolutionsDropdown() {
-  return (
-    <div className="te-solutions-trigger" style={{ position: 'relative' }}>
-      <button className="te-nav-link" data-testid="nav-solutions">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '2px' }}>
-          <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.84Z" />
-          <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" />
-          <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" />
-        </svg>
-        Solutions
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="m6 9 6 6 6-6" />
-        </svg>
-      </button>
-    </div>
-  );
-}
