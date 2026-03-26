@@ -4,13 +4,6 @@ Parent: "a1c18aa2-9e08-4d05-aa8c-6758d6048843"
 Template: "57d89b89-6f79-44e7-b5bd-435326761859"
 Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home"
 SharedFields:
-- ID: "04bf00db-f5fb-41f7-8ab7-22408372ddef"
-  Hint: __Final Renderings
-  Value: |
-    <r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"><r uid="{5BF2EA12-5568-42AB-8B0C-F81C494011EB}" p:before="*" s:ds="{046BC767-1899-4ABC-88BF-58441D23AF18}" s:id="{8D39CB74-9020-4F04-B366-CD4617C32D8A}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{AF2F3C60-A84E-41F2-BBE4-4FC9ED98122C}" p:before="*" s:ds="{D3D77AF5-FECC-4771-94C8-EE128D85F135}" s:id="{E9522C6C-E8D3-4F0B-AA06-4ABFD8442D31}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{C2B16BB0-BF31-4392-BA8F-9AD31B4F8F21}" p:before="*" s:ds="{3AE2AAE3-28A9-4A99-8E90-B731628F8C30}" s:id="{352622B9-B9C5-4764-BCB4-C97CBE51FFEC}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{480F1846-F2DD-41E0-8B82-30DCC8DE7429}" p:before="*" s:ds="{2973D344-E649-4C05-A59E-D7926223A068}" s:id="{A383CA61-FAA3-4EA8-AA18-448FD5AB038D}" s:par="CSSStyles" s:ph="headless-main" /></d></r>
-- ID: "1a7c85e5-dc0b-490d-9187-bb1dbcb4c72f"
-  Hint: __Renderings
-  Value: ""
 - ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
   Hint: __Masters
   Value: "{57D89B89-6F79-44E7-B5BD-435326761859}|{597E0CE5-1F96-4154-8CF9-992590DB0A37}|{D8B6F753-9271-4E56-982A-C21410DFD379}|{7DCE7501-C7D6-43E4-A7F1-97005D356A25}"
@@ -25,3 +18,18 @@ Languages:
     - ID: "4e0720e9-9d50-4ddc-87cf-ecd65e8e94c8"
       Hint: NavigationTitle
       Value: "Home"
+    - Hint: Page Design
+      Value: "{0F3D270A-7F8E-4CA2-9251-B623DABC1D27}"
+    - Hint: __Final Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"><r uid="{5BF2EA12-5568-42AB-8B0C-F81C494011EB}" p:before="*" s:ds="{046BC767-1899-4ABC-88BF-58441D23AF18}" s:id="{8D39CB74-9020-4F04-B366-CD4617C32D8A}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{AF2F3C60-A84E-41F2-BBE4-4FC9ED98122C}" p:before="*" s:ds="{D3D77AF5-FECC-4771-94C8-EE128D85F135}" s:id="{E9522C6C-E8D3-4F0B-AA06-4ABFD8442D31}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{C2B16BB0-BF31-4392-BA8F-9AD31B4F8F21}" p:before="*" s:ds="{3AE2AAE3-28A9-4A99-8E90-B731628F8C30}" s:id="{352622B9-B9C5-4764-BCB4-C97CBE51FFEC}" s:par="CSSStyles" s:ph="headless-main" /><r uid="{480F1846-F2DD-41E0-8B82-30DCC8DE7429}" p:before="*" s:ds="{2973D344-E649-4C05-A59E-D7926223A068}" s:id="{A383CA61-FAA3-4EA8-AA18-448FD5AB038D}" s:par="CSSStyles" s:ph="headless-main" /></d></r>
+    - Hint: __Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}" l="{96E5F4BA-A2CF-4A4C-A4E7-64DA88226362}"/></r>
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
