@@ -974,22 +974,21 @@ async function step5b_setRenderingThumbnails() {
     const formattedId = formatGuid(renderingId);
 
     const mediaId = mediaIds[name];
-    let thumbnailValue: string;
+    const fields: { name: string; value: string }[] = [
+      { name: "__Short description", value: thumb.description },
+    ];
     if (mediaId) {
-      thumbnailValue = `<image mediaid="${formatGuid(mediaId)}" />`;
-    } else {
-      const itemName = name.replace(/\s+/g, "-").toLowerCase();
-      thumbnailValue = `${THUMBNAILS_FOLDER}/${itemName}`;
+      fields.push({ name: "__Thumbnail", value: `<image mediaid="${formatGuid(mediaId)}" />` });
     }
 
     await gql(`mutation($id:ID!,$lang:String!,$fields:[FieldValueInput!]!){updateItem(input:{itemId:$id,language:$lang,fields:$fields}){item{itemId}}}`, {
-      id: formattedId, lang: "en",
-      fields: [
-        { name: "__Thumbnail", value: thumbnailValue },
-        { name: "__Short description", value: thumb.description },
-      ],
+      id: formattedId, lang: "en", fields,
     });
-    console.log(`  ✓ ${name}: thumbnail=${mediaId ? "media:" + formatGuid(mediaId) : "path"}, description set`);
+    if (mediaId) {
+      console.log(`  ✓ ${name}: thumbnail=media:${formatGuid(mediaId)}, description set`);
+    } else {
+      console.log(`  ⚠ ${name}: no media uploaded, thumbnail unchanged, description set`);
+    }
   }
 }
 
@@ -1118,21 +1117,31 @@ async function step6_validate() {
   }
 
   console.log("\n  Validating rendering thumbnails...");
-  const renderingItems = await gql(`query($p:String!){item(where:{path:$p}){children{nodes{itemId name fields(ownFields:false){nodes{name value}}}}}}`, { p: RENDERINGS_ROOT });
-  for (const r of renderingItems?.item?.children?.nodes || []) {
-    const fields = r.fields?.nodes || [];
-    const thumb = fields.find((f: any) => f.name === "__Thumbnail")?.value || "";
-    const desc = fields.find((f: any) => f.name === "__Short description")?.value || "";
-    if (thumb && thumb.length > 0) {
-      console.log(`  ✓ ${r.name}: __Thumbnail set`);
-    } else {
-      console.log(`  ✗ ${r.name}: __Thumbnail not set`);
-      errors++;
-    }
-    if (desc && desc.length > 0) {
-      console.log(`  ✓ ${r.name}: __Short description set`);
-    } else {
-      console.log(`  ⚠ ${r.name}: __Short description not set`);
+  const thumbnailRenderingNames = Object.keys(COMPONENT_THUMBNAILS);
+  for (const rName of thumbnailRenderingNames) {
+    const rId = RENDERING_IDS[rName];
+    if (!rId) continue;
+    const formattedId = formatGuid(rId);
+    try {
+      const d = await gql(`query($id:String!){item(where:{itemId:$id}){fields(ownFields:false){nodes{name value}}}}`, { id: formattedId });
+      const fields = d?.item?.fields?.nodes || [];
+      const thumb = fields.find((f: any) => f.name === "__Thumbnail")?.value || "";
+      const desc = fields.find((f: any) => f.name === "__Short description")?.value || "";
+      if (thumb && thumb.includes("mediaid")) {
+        console.log(`  ✓ ${rName}: __Thumbnail references media item`);
+      } else if (thumb && thumb.length > 0) {
+        console.log(`  ⚠ ${rName}: __Thumbnail set but not a media reference`);
+      } else {
+        console.log(`  ✗ ${rName}: __Thumbnail not set`);
+        errors++;
+      }
+      if (desc && desc.length > 0) {
+        console.log(`  ✓ ${rName}: __Short description set`);
+      } else {
+        console.log(`  ⚠ ${rName}: __Short description not set`);
+      }
+    } catch {
+      console.log(`  ⚠ ${rName}: could not read rendering fields`);
     }
   }
 
