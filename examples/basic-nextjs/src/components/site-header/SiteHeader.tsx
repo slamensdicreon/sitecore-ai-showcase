@@ -438,13 +438,18 @@ export const Default = async (props: SiteHeaderProps): Promise<JSX.Element> => {
           background: rgba(0,0,0,0.04);
         }
 
+        .editing-mode .site-header {
+          position: relative;
+          z-index: 9999;
+        }
+
         /* === Mega Menu === */
         .te-mega {
           position: absolute;
           left: 0;
           right: 0;
           top: 100%;
-          z-index: 50;
+          z-index: 9999;
           border-bottom: 1px solid #e5e7eb;
           background: #FFFFFF;
           box-shadow: 0 4px 24px rgba(0,0,0,0.08);
