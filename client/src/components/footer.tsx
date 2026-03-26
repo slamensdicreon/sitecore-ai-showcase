@@ -26,20 +26,19 @@ const footerLinks = {
     { label: "Transportation", href: "/solutions/transportation" },
     { label: "Industrial", href: "/solutions/industrial" },
     { label: "Communications", href: "/solutions/communications" },
-    { label: "Energy", href: "/solutions/energy" },
-    { label: "Medical", href: "/solutions/medical" },
+    { label: "Applications", href: "/applications" },
   ],
   resources: [
     { label: "Innovation", href: "/innovation" },
     { label: "Technical Resources", href: "/products" },
-    { label: "Sample & Buy", href: "/products" },
-    { label: "Design Tools", href: "/innovation" },
+    { label: "Sample & Buy", href: "/products?view=buy" },
+    { label: "All Products", href: "/products" },
   ],
   support: [
-    { label: "Contact Us", href: "#" },
-    { label: "Find a Distributor", href: "#" },
-    { label: "Request a Sample", href: "#" },
-    { label: "FAQs", href: "#" },
+    { label: "My Orders", href: "/orders" },
+    { label: "Parts Lists", href: "/parts-lists" },
+    { label: "Sign In", href: "/login" },
+    { label: "Shopping Cart", href: "/cart" },
   ],
 };
 
@@ -124,16 +123,18 @@ export function Footer() {
           </div>
 
           <div className="col-span-2 md:col-span-1">
-            <h3 className="font-heading font-bold text-sm tracking-wider uppercase mb-4 text-white/90" data-testid="footer-heading-support">
-              Support
+            <h3 className="font-heading font-bold text-sm tracking-wider uppercase mb-4 text-white/90" data-testid="footer-heading-account">
+              My Account
             </h3>
             <ul className="space-y-2.5">
               {footerLinks.support.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-white/60 hover:text-[#f28d00] transition-colors flex items-center gap-1 group" data-testid={`footer-link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}>
-                    <ChevronRight className="h-3 w-3 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
-                    {link.label}
-                  </a>
+                  <Link href={link.href}>
+                    <span className="text-sm text-white/60 hover:text-[#f28d00] transition-colors cursor-pointer flex items-center gap-1 group" data-testid={`footer-link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}>
+                      <ChevronRight className="h-3 w-3 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                      {link.label}
+                    </span>
+                  </Link>
                 </li>
               ))}
             </ul>
