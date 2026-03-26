@@ -61,10 +61,10 @@ function AnimatedCounter({ target, prefix = '', suffix = '', duration = 2000 }: 
 type AuthorityStatsClientProps = {
   fields: ComponentFields;
   params: Record<string, string>;
-  children: ChildItem[];
+  items: ChildItem[];
 };
 
-export function AuthorityStatsClient({ fields, params, children }: AuthorityStatsClientProps) {
+export function AuthorityStatsClient({ fields, params, items }: AuthorityStatsClientProps) {
   const variant = params?.FieldNames || '';
   const isDark = variant === 'authority--dark';
 
@@ -86,9 +86,9 @@ export function AuthorityStatsClient({ fields, params, children }: AuthorityStat
           </div>
         </div>
 
-        {children.length > 0 && (
+        {items.length > 0 && (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-10 max-w-4xl mx-auto mb-16">
-            {children.map((stat: ChildItem, i: number) => {
+            {items.map((stat: ChildItem, i: number) => {
               const Icon = getIcon(getChildFieldValue(stat, 'Icon Name'));
               const val = getChildFieldValue(stat, 'Value', '0');
               const prefix = getChildFieldValue(stat, 'Prefix');

@@ -12,12 +12,12 @@ type ProofPointCounterProps = {
 export const Default = async ({ fields, rendering, params }: ProofPointCounterProps) => {
   const language = params?.sc_lang || 'en';
 
-  let children = getChildItems(rendering);
-  if (children.length === 0 && rendering?.dataSource) {
-    children = await fetchDatasourceChildren(rendering.dataSource, language);
+  let items = getChildItems(rendering);
+  if (items.length === 0 && rendering?.dataSource) {
+    items = await fetchDatasourceChildren(rendering.dataSource, language);
   }
 
   return (
-    <ProofPointCounterClient fields={fields} params={params} children={children} />
+    <ProofPointCounterClient fields={fields} params={params} items={items} />
   );
 };

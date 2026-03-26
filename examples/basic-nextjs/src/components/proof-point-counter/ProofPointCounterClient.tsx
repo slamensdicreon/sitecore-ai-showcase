@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import {
   Text,
 } from '@sitecore-content-sdk/nextjs';
@@ -9,15 +9,15 @@ import { tf, getChildFieldValue, type ChildItem } from 'lib/field-utils';
 
 function AnimatedValue({ value }: { value: string }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const numericMatch = value.match(/^([^0-9]*)(\d[\d,]*)(.*)$/);
-  const initialDisplay = numericMatch ? `${numericMatch[1]}0${numericMatch[3]}` : value;
+  const parsed = useMemo(() => value.match(/^([^0-9]*)(\d[\d,]*)(.*)$/), [value]);
+  const initialDisplay = parsed ? `${parsed[1]}0${parsed[3]}` : value;
   const [displayed, setDisplayed] = useState(initialDisplay);
   const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     if (!ref.current || hasAnimated) return;
-    if (!numericMatch) return;
-    const [, prefix, numStr, suffix] = numericMatch;
+    if (!parsed) return;
+    const [, prefix, numStr, suffix] = parsed;
     const target = parseInt(numStr.replace(/,/g, ''), 10);
     if (isNaN(target)) return;
 
@@ -44,7 +44,7 @@ function AnimatedValue({ value }: { value: string }) {
     );
     observer.observe(ref.current);
     return () => observer.disconnect();
-  }, [value, hasAnimated]);
+  }, [parsed, hasAnimated]);
 
   return <span ref={ref}>{displayed}</span>;
 }
@@ -52,10 +52,10 @@ function AnimatedValue({ value }: { value: string }) {
 type ProofPointCounterClientProps = {
   fields: ComponentFields;
   params: Record<string, string>;
-  children: ChildItem[];
+  items: ChildItem[];
 };
 
-export function ProofPointCounterClient({ fields, params, children }: ProofPointCounterClientProps) {
+export function ProofPointCounterClient({ fields, params, items }: ProofPointCounterClientProps) {
   const isEditing = params?.sc_mode === 'edit' || params?.sc_mode === 'preview';
 
   return (
@@ -70,9 +70,9 @@ export function ProofPointCounterClient({ fields, params, children }: ProofPoint
           </h2>
         </div>
 
-        {children.length > 0 && (
+        {items.length > 0 && (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-            {children.map((item: ChildItem, i: number) => (
+            {items.map((item: ChildItem, i: number) => (
               <div key={item.id || i} className="text-center">
                 <div className="text-3xl md:text-4xl font-heading font-bold text-[#f28d00] mb-2">
                   <AnimatedValue value={getChildFieldValue(item, 'Value')} />
@@ -90,7 +90,7 @@ export function ProofPointCounterClient({ fields, params, children }: ProofPoint
           </div>
         )}
 
-        {isEditing && children.length === 0 && (
+        {isEditing && items.length === 0 && (
           <div className="border-2 border-dashed border-white/20 rounded-lg p-12 text-center">
             <p className="text-white/40">Add Proof Point Item children to this datasource</p>
           </div>
