@@ -31,7 +31,7 @@ export interface ChildItem {
 
 export function getChildItems(rendering: unknown): ChildItem[] {
   const fields = (rendering as Record<string, unknown>)?.fields as Record<string, unknown> | undefined;
-  const items = fields?.items;
+  const items = fields?.Items || fields?.items;
   if (Array.isArray(items)) return items as ChildItem[];
   return [];
 }

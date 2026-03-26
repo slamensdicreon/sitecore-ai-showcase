@@ -4,7 +4,6 @@ import {
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
 import { ChevronRight } from 'lucide-react';
 import { tf, getChildItems, getChildFieldValue, getChildLinkHref, type ChildItem } from 'lib/field-utils';
-import { fetchDatasourceChildren } from 'lib/edge-children';
 
 type SolutionPathwaysProps = {
   rendering: ComponentRendering;
@@ -12,16 +11,11 @@ type SolutionPathwaysProps = {
   params: Record<string, string>;
 };
 
-export const Default = async ({ fields, rendering, params }: SolutionPathwaysProps) => {
+export const Default = ({ fields, rendering, params }: SolutionPathwaysProps) => {
   const variant = params?.FieldNames || '';
   const isLight = variant === 'pathways--light';
 
-  const language = params?.sc_lang || 'en';
-
-  let children = getChildItems(rendering);
-  if (children.length === 0 && rendering?.dataSource) {
-    children = await fetchDatasourceChildren(rendering.dataSource, language);
-  }
+  const children = getChildItems(rendering);
 
   return (
     <section

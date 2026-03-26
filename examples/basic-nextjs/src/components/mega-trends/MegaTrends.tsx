@@ -8,7 +8,6 @@ import {
   DollarSign, MapPin, Wrench, Users,
 } from 'lucide-react';
 import { tf, getChildItems, getChildFieldValue, getChildLinkHref, type IconMap, type ChildItem } from 'lib/field-utils';
-import { fetchDatasourceChildren } from 'lib/edge-children';
 
 const iconMap: IconMap = {
   BatteryCharging, Server, Factory, DollarSign, MapPin, Wrench, Users,
@@ -25,15 +24,10 @@ type MegaTrendsProps = {
   params: Record<string, string>;
 };
 
-export const Default = async ({ fields, rendering, params }: MegaTrendsProps) => {
+export const Default = ({ fields, rendering, params }: MegaTrendsProps) => {
   const isEditing = params?.sc_mode === 'edit' || params?.sc_mode === 'preview';
 
-  const language = params?.sc_lang || 'en';
-
-  let children = getChildItems(rendering);
-  if (children.length === 0 && rendering?.dataSource) {
-    children = await fetchDatasourceChildren(rendering.dataSource, language);
-  }
+  const children = getChildItems(rendering);
 
   return (
     <section className="relative bg-white py-20 md:py-28 overflow-hidden" data-testid="section-mega-trends">
