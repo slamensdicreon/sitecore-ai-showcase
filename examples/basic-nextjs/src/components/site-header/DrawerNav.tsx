@@ -202,6 +202,25 @@ export default function DrawerNav({ links, megaItems }: DrawerNavProps) {
                 );
               }
 
+              if (item.external) {
+                return (
+                  <a
+                    key={item.id}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={closeMenu}
+                    className="te-mobile-nav-item"
+                    data-testid={`mobile-nav-${item.id}`}
+                  >
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <NavIcon id={item.id} />
+                      {item.title}
+                    </span>
+                  </a>
+                );
+              }
+
               return (
                 <NextLink
                   key={item.id}

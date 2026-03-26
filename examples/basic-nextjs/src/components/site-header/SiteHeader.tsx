@@ -687,7 +687,7 @@ export const Default = async (props: SiteHeaderProps): Promise<JSX.Element> => {
         {/* Row 3: Desktop Nav — driven by CMS data with fallback */}
         <nav className="te-nav" data-testid="desktop-nav">
           {nav.map((item) => {
-            if (item.id === 'solutions' || (item.children && item.children.length > 0)) {
+            if (item.id === 'solutions' || item.title.toLowerCase() === 'solutions') {
               return <SolutionsMenu key={item.id} items={SOLUTIONS_MEGA} label={item.title} href={item.href} />;
             }
 

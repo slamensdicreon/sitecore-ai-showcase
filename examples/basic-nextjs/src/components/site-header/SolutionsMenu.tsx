@@ -86,7 +86,7 @@ export default function SolutionsMenu({ items, label = 'Solutions', href = '/Sol
               {items.map((item) => (
                 <NextLink
                   key={item.slug}
-                  href="/Solutions"
+                  href={href}
                   onClick={() => setOpen(false)}
                   className="te-mega-card"
                   data-testid={`megamenu-${item.slug}`}
@@ -113,7 +113,7 @@ export default function SolutionsMenu({ items, label = 'Solutions', href = '/Sol
                 Discover how TE solves challenges across industries
               </p>
               <NextLink
-                href="/Solutions"
+                href={href}
                 onClick={() => setOpen(false)}
                 className="te-mega-footer-link"
               >
