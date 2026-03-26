@@ -9,12 +9,13 @@ import { tf, getChildItems, getChildFieldValue, type ChildItem } from 'lib/field
 
 function AnimatedValue({ value }: { value: string }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [displayed, setDisplayed] = useState(value);
+  const numericMatch = value.match(/^([^0-9]*)(\d[\d,]*)(.*)$/);
+  const initialDisplay = numericMatch ? `${numericMatch[1]}0${numericMatch[3]}` : value;
+  const [displayed, setDisplayed] = useState(initialDisplay);
   const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     if (!ref.current || hasAnimated) return;
-    const numericMatch = value.match(/^([^0-9]*)(\d[\d,]*)(.*)$/);
     if (!numericMatch) return;
     const [, prefix, numStr, suffix] = numericMatch;
     const target = parseInt(numStr.replace(/,/g, ''), 10);
