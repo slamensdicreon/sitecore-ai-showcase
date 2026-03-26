@@ -82,46 +82,47 @@ query ChildNav($parentId: String!, $language: String!) {
 const FALLBACK_NAV: NavLinkData[] = [
   { id: 'home', title: 'Home', href: '/', external: false },
   {
-    id: 'membership',
-    title: 'Membership',
+    id: 'products',
+    title: 'Products',
     href: '/Products',
     external: false,
     children: [
-      { id: 'm1', title: 'Join Now', href: '/Products', external: false },
-      { id: 'm2', title: 'Renew Membership', href: 'https://eaa.org/eaa/renew', external: true },
-      { id: 'm3', title: 'Member Benefits', href: '/Products', external: false },
-      { id: 'm4', title: 'Gift Membership', href: 'https://eaa.org/eaa/gift', external: true },
-      { id: 'm5', title: 'Family Membership', href: '/Products', external: false },
-      { id: 'm6', title: 'Lifetime Membership', href: '/Products', external: false },
-      { id: 'm7', title: 'Student Membership', href: 'https://eaa.org/eaa/student', external: true },
-      { id: 'm8', title: 'Corporate Partners', href: 'https://eaa.org/eaa/corporate', external: true },
+      { id: 'p1', title: 'Connectors', href: '/Products', external: false },
+      { id: 'p2', title: 'Sensors', href: '/Products', external: false },
+      { id: 'p3', title: 'Relays & Contactors', href: '/Products', external: false },
+      { id: 'p4', title: 'Wire & Cable', href: '/Products', external: false },
+      { id: 'p5', title: 'Circuit Protection', href: '/Products', external: false },
+      { id: 'p6', title: 'Antennas', href: '/Products', external: false },
     ],
   },
   {
-    id: 'programs',
-    title: 'Programs',
+    id: 'solutions',
+    title: 'Solutions',
     href: '/Solutions',
     external: false,
     children: [
-      { id: 'p1', title: 'AirVenture Oshkosh', href: 'https://eaa.org/airventure', external: true },
-      { id: 'p2', title: 'Young Eagles', href: 'https://eaa.org/eaa/youth/young-eagles', external: true },
-      { id: 'p3', title: 'Eagle Flights', href: 'https://eaa.org/eaa/youth/eagle-flights', external: true },
-      { id: 'p4', title: 'Homebuilders', href: '/Solutions', external: false },
-      { id: 'p5', title: 'Warbirds of America', href: 'https://eaa.org/eaa/warbirds', external: true },
-      { id: 'p6', title: 'Advocacy', href: 'https://eaa.org/eaa/advocacy', external: true },
-      { id: 'p7', title: 'Scholarships', href: 'https://eaa.org/eaa/scholarships', external: true },
-      { id: 'p8', title: 'Flying Start', href: 'https://eaa.org/eaa/flying-start', external: true },
+      { id: 's1', title: 'Automotive', href: '/Solutions', external: false },
+      { id: 's2', title: 'Industrial', href: '/Solutions', external: false },
+      { id: 's3', title: 'Data Communications', href: '/Solutions', external: false },
+      { id: 's4', title: 'Aerospace & Defense', href: '/Solutions', external: false },
+      { id: 's5', title: 'Medical', href: '/Solutions', external: false },
+      { id: 's6', title: 'Energy', href: '/Solutions', external: false },
     ],
+  },
+  {
+    id: 'innovation',
+    title: 'Innovation',
+    href: '/Innovation',
+    external: false,
   },
 ];
 
 const FALLBACK_SUBNAV: NavLinkData[] = [
-  { id: 's1', title: 'About EAA', href: 'https://eaa.org/eaa/about', external: true },
-  { id: 's2', title: 'Events', href: 'https://eaa.org/eaa/events', external: true },
-  { id: 's3', title: 'Chapters', href: 'https://eaa.org/eaa/chapters', external: true },
-  { id: 's4', title: 'Shop', href: 'https://shop.eaa.org', external: true },
-  { id: 's5', title: 'Donate', href: 'https://eaa.org/eaa/donate', external: true },
-  { id: 's6', title: 'Contact', href: 'https://eaa.org/eaa/contact', external: true },
+  { id: 'sub1', title: 'About TE', href: '/About', external: false },
+  { id: 'sub2', title: 'Industries', href: '/Solutions', external: false },
+  { id: 'sub3', title: 'Resources', href: '/Innovation', external: false },
+  { id: 'sub4', title: 'Support', href: '/Support', external: false },
+  { id: 'sub5', title: 'Contact', href: '/Contact', external: false },
 ];
 
 function parseLink(child: EdgeChildResult): NavLinkData {
@@ -263,12 +264,9 @@ export const Default = async (props: SiteHeaderProps): Promise<JSX.Element> => {
             {fields.Logo?.value?.src ? (
               <Image field={fields.Logo} style={{ height: '40px', width: 'auto', filter: 'brightness(0) invert(1)' }} />
             ) : (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src="/eaa-logo.svg"
-                alt="EAA"
-                style={{ height: '40px', width: 'auto' }}
-              />
+              <span style={{ color: '#FFFFFF', fontSize: '20px', fontWeight: 700, letterSpacing: '-0.5px', fontFamily: 'var(--font-heading, sans-serif)' }}>
+                TE Connectivity
+              </span>
             )}
           </Link>
 

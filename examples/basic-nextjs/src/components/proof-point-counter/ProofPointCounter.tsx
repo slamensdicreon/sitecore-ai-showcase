@@ -2,7 +2,6 @@
 
 import {
   Text,
-  useSitecore,
 } from '@sitecore-content-sdk/nextjs';
 import type { ComponentRendering, ComponentFields } from '@sitecore-content-sdk/nextjs';
 import { tf, getChildItems, getChildFieldValue, type ChildItem } from 'lib/field-utils';
@@ -13,9 +12,8 @@ type ProofPointCounterProps = {
   params: Record<string, string>;
 };
 
-export const Default = ({ fields, rendering }: ProofPointCounterProps) => {
-  const { page: { mode } } = useSitecore();
-  const isEditing = mode?.isEditing === true;
+export const Default = ({ fields, rendering, params }: ProofPointCounterProps) => {
+  const isEditing = params?.sc_mode === 'edit' || params?.sc_mode === 'preview';
 
   const children = getChildItems(rendering);
 

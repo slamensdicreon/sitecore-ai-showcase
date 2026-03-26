@@ -2,9 +2,6 @@ import { JSX } from 'react';
 import { Image, Text, Field, ImageField } from '@sitecore-content-sdk/nextjs';
 import { ComponentProps } from 'lib/component-props';
 
-/**
- * Fields for the SiteFooter datasource template
- */
 interface SiteFooterFields {
   Logo: ImageField;
   Copyright: Field<string>;
@@ -14,10 +11,6 @@ type SiteFooterProps = ComponentProps & {
   fields: SiteFooterFields;
 };
 
-/**
- * SiteFooter component — site logo and copyright text.
- * Maps to the "SiteFooter" JSON rendering in Sitecore.
- */
 export const Default = (props: SiteFooterProps): JSX.Element => {
   const { fields, params } = props;
   const id = params?.RenderingIdentifier;
@@ -55,7 +48,6 @@ export const Default = (props: SiteFooterProps): JSX.Element => {
           gap: '16px',
         }}
       >
-        {/* Logo */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           {fields.Logo?.value?.src ? (
             <Image
@@ -63,19 +55,15 @@ export const Default = (props: SiteFooterProps): JSX.Element => {
               style={{ height: '28px', width: 'auto', opacity: 0.7, filter: 'brightness(0) invert(1)' }}
             />
           ) : (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src="/eaa-logo.svg"
-              alt="EAA"
-              style={{ height: '28px', width: 'auto', opacity: 0.7 }}
-            />
+            <span style={{ color: '#FFFFFF', fontSize: '16px', fontWeight: 700, opacity: 0.7, letterSpacing: '-0.5px', fontFamily: 'var(--font-heading, sans-serif)' }}>
+              TE Connectivity
+            </span>
           )}
         </div>
 
-        {/* Copyright */}
         <Text
           tag="p"
-          field={fields.Copyright}
+          field={fields.Copyright?.value ? fields.Copyright : { value: `© ${new Date().getFullYear()} TE Connectivity. All Rights Reserved.` }}
           style={{
             fontSize: '0.875rem',
             opacity: 0.6,
