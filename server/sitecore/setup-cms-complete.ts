@@ -639,7 +639,7 @@ async function step4_createInnovationPage() {
     "Description": "Explore our latest innovations in connectivity, sensing, and power management.",
     "Max Products": "6",
     "CTA Text": "View All Innovations",
-    "CTA Link": "<link linktype=\"internal\" url=\"/products\" />",
+    "CTA Link": "<link linktype=\"external\" url=\"/products\" />",
   });
 
   const crossNavId = await ensureItem(innovDataPath, "Innovation Cross Nav", TEMPLATE_IDS["Cross Navigation"], {
@@ -652,21 +652,21 @@ async function step4_createInnovationPage() {
   innovCrossNavIds.push(await ensureItem(crossNavCardsFolder, "Innovation-Transportation", TEMPLATE_IDS["Cross Nav Link"], {
     "Title": "Transportation Solutions",
     "Description": "EV connectors, sensor systems, and automotive harnesses",
-    "Link": "<link linktype=\"internal\" url=\"/solutions/transportation\" />",
+    "Link": "<link linktype=\"external\" url=\"/solutions/transportation\" />",
     "Icon Name": "Car",
     "Accent Color": "#f28d00",
   }));
   innovCrossNavIds.push(await ensureItem(crossNavCardsFolder, "Innovation-Industrial", TEMPLATE_IDS["Cross Nav Link"], {
     "Title": "Industrial Solutions",
     "Description": "Factory automation, robotics, and harsh-environment connectivity",
-    "Link": "<link linktype=\"internal\" url=\"/solutions/industrial\" />",
+    "Link": "<link linktype=\"external\" url=\"/solutions/industrial\" />",
     "Icon Name": "Factory",
     "Accent Color": "#2e4957",
   }));
   innovCrossNavIds.push(await ensureItem(crossNavCardsFolder, "Innovation-Communications", TEMPLATE_IDS["Cross Nav Link"], {
     "Title": "Communications Solutions",
     "Description": "Data center, 5G, and high-speed network infrastructure",
-    "Link": "<link linktype=\"internal\" url=\"/solutions/communications\" />",
+    "Link": "<link linktype=\"external\" url=\"/solutions/communications\" />",
     "Icon Name": "Server",
     "Accent Color": "#167a87",
   }));
