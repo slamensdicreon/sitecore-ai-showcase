@@ -1,3 +1,3 @@
-import { createEditingDataRouteHandlers } from '@sitecore-content-sdk/nextjs/route-handler';
+import { createEditingDataRouteHandlers } from '@sitecore-content-sdk/nextjs/editing';
 
 export const { GET, PUT } = createEditingDataRouteHandlers();
