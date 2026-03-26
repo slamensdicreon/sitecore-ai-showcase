@@ -235,6 +235,101 @@ async function step2_fixHomepage() {
   console.log("  ✓ Homepage layout set with 4 renderings + shared layout");
 }
 
+async function step2b_createChildItems() {
+  console.log("\n═══ Step 2b: Create child items under Homepage datasources ═══");
+
+  const dataPath = `${SITE_ROOT}/Home/Data`;
+
+  const megaTrendsPath = `${dataPath}/Home Mega Trends`;
+  const megaExists = await getItemId(megaTrendsPath);
+  if (megaExists) {
+    const megaTrendCards = [
+      { name: "Electrification", fields: { "Title": "Electrification", "Subtitle": "Powering the transition to electric everything", "Description": "From EV battery systems to renewable energy grids, TE connectivity solutions enable the reliable flow of power across next-generation electrical architectures.", "Stat Value": "40%", "Stat Label": "growth in EV connector demand", "Icon Name": "BatteryCharging", "Accent Color": "#f28d00", "Link": '<link linktype="external" url="/solutions/transportation" />' } },
+      { name: "AI Infrastructure", fields: { "Title": "AI Infrastructure", "Subtitle": "The backbone of intelligent systems", "Description": "Hyperscale data centers require unprecedented power density and high-speed connectivity. TE delivers both — enabling AI compute at scale.", "Stat Value": "3x", "Stat Label": "data center power demand by 2030", "Icon Name": "Server", "Accent Color": "#167a87", "Link": '<link linktype="external" url="/solutions/communications" />' } },
+      { name: "Industrial Automation", fields: { "Title": "Industrial Automation", "Subtitle": "Connecting the smart factory", "Description": "Robotics, smart manufacturing, and factory automation demand connectivity that survives heat, vibration, and continuous operation. That's where TE thrives.", "Stat Value": "90K+", "Stat Label": "employees across 140 countries", "Icon Name": "Factory", "Accent Color": "#2e4957", "Link": '<link linktype="external" url="/solutions/industrial" />' } },
+    ];
+    for (const card of megaTrendCards) {
+      await ensureItem(megaTrendsPath, card.name, TEMPLATE_IDS["Mega Trend Card"], card.fields);
+      console.log(`  ✓ Mega Trend Card: ${card.name}`);
+    }
+  } else {
+    console.log("  ✗ Home Mega Trends datasource not found, skipping children");
+  }
+
+  const pathwaysPath = `${dataPath}/Home Solution Pathways`;
+  const pathwaysExists = await getItemId(pathwaysPath);
+  if (pathwaysExists) {
+    const pathwayCards = [
+      { name: "EV Charging", fields: { "Question": "How do I improve EV charging reliability?", "Context": "High-voltage connectors and thermal management solutions engineered for the harshest automotive environments.", "Industry Label": "Transportation", "Link": '<link linktype="external" url="/solutions/transportation" />' } },
+      { name: "AI Data Center", fields: { "Question": "How do I scale AI data center infrastructure?", "Context": "High-speed, high-density connectivity solutions that handle the power and signal demands of next-gen AI compute.", "Industry Label": "Communications", "Link": '<link linktype="external" url="/solutions/communications" />' } },
+      { name: "Energy Grid", fields: { "Question": "How do I modernize energy grid systems?", "Context": "Utility-grade connectors, sensors, and power distribution solutions for smart grid and renewable energy infrastructure.", "Industry Label": "Industrial", "Link": '<link linktype="external" url="/solutions/industrial" />' } },
+      { name: "Signal Integrity", fields: { "Question": "How do I ensure signal integrity in harsh environments?", "Context": "Connectors and sensors rated for extreme temperatures, vibration, and mission-critical reliability across industries.", "Industry Label": "Cross-Industry", "Link": '<link linktype="external" url="/products" />' } },
+    ];
+    for (const card of pathwayCards) {
+      await ensureItem(pathwaysPath, card.name, TEMPLATE_IDS["Solution Pathway Card"], card.fields);
+      console.log(`  ✓ Solution Pathway Card: ${card.name}`);
+    }
+  } else {
+    console.log("  ✗ Home Solution Pathways datasource not found, skipping children");
+  }
+
+  const statsPath = `${dataPath}/Home Authority Stats`;
+  const statsExists = await getItemId(statsPath);
+  if (statsExists) {
+    const statItems = [
+      { name: "Revenue", fields: { "Value": "18", "Prefix": "$", "Suffix": "B+", "Label": "Annual Revenue", "Icon Name": "DollarSign" } },
+      { name: "Countries", fields: { "Value": "140", "Prefix": "", "Suffix": "+", "Label": "Countries Served", "Icon Name": "MapPin" } },
+      { name: "Engineers", fields: { "Value": "8000", "Prefix": "", "Suffix": "+", "Label": "Engineers Worldwide", "Icon Name": "Wrench" } },
+      { name: "Employees", fields: { "Value": "90000", "Prefix": "", "Suffix": "+", "Label": "Global Employees", "Icon Name": "Users" } },
+    ];
+    for (const stat of statItems) {
+      await ensureItem(statsPath, stat.name, TEMPLATE_IDS["Stat Item"], stat.fields);
+      console.log(`  ✓ Stat Item: ${stat.name}`);
+    }
+  } else {
+    console.log("  ✗ Home Authority Stats datasource not found, skipping children");
+  }
+
+  console.log("\n═══ Step 2c: Create child items under Solution page datasources ═══");
+
+  const solutionCrossNavs = [
+    {
+      dsName: "Transportation Cross Nav",
+      items: [
+        { name: "Industrial", fields: { "Title": "Industrial Solutions", "Description": "Factory automation, robotics, and harsh-environment connectivity", "Link": '<link linktype="external" url="/solutions/industrial" />', "Icon Name": "Factory", "Accent Color": "#2e4957" } },
+        { name: "Communications", fields: { "Title": "Communications Solutions", "Description": "Data center, 5G, and high-speed network infrastructure", "Link": '<link linktype="external" url="/solutions/communications" />', "Icon Name": "Server", "Accent Color": "#167a87" } },
+      ],
+    },
+    {
+      dsName: "Industrial Cross Nav",
+      items: [
+        { name: "Transportation", fields: { "Title": "Transportation Solutions", "Description": "EV powertrains, autonomous systems, and vehicle connectivity", "Link": '<link linktype="external" url="/solutions/transportation" />', "Icon Name": "BatteryCharging", "Accent Color": "#f28d00" } },
+        { name: "Communications", fields: { "Title": "Communications Solutions", "Description": "Data center, 5G, and high-speed network infrastructure", "Link": '<link linktype="external" url="/solutions/communications" />', "Icon Name": "Server", "Accent Color": "#167a87" } },
+      ],
+    },
+    {
+      dsName: "Communications Cross Nav",
+      items: [
+        { name: "Transportation", fields: { "Title": "Transportation Solutions", "Description": "EV powertrains, autonomous systems, and vehicle connectivity", "Link": '<link linktype="external" url="/solutions/transportation" />', "Icon Name": "BatteryCharging", "Accent Color": "#f28d00" } },
+        { name: "Industrial", fields: { "Title": "Industrial Solutions", "Description": "Factory automation, robotics, and harsh-environment connectivity", "Link": '<link linktype="external" url="/solutions/industrial" />', "Icon Name": "Factory", "Accent Color": "#2e4957" } },
+      ],
+    },
+  ];
+
+  for (const nav of solutionCrossNavs) {
+    const navPath = `${dataPath}/${nav.dsName}`;
+    const navExists = await getItemId(navPath);
+    if (navExists) {
+      for (const item of nav.items) {
+        await ensureItem(navPath, item.name, TEMPLATE_IDS["Cross Nav Link"], item.fields);
+        console.log(`  ✓ Cross Nav Link: ${nav.dsName}/${item.name}`);
+      }
+    } else {
+      console.log(`  ⚠ ${nav.dsName} not found, skipping`);
+    }
+  }
+}
+
 async function step3_fixSolutionPages() {
   console.log("\n═══ Step 3: Verify & fix Solution page layouts ═══");
   const solutions = [
@@ -583,6 +678,7 @@ async function main() {
 
   await step1_fixDatasourceLocation();
   await step2_fixHomepage();
+  await step2b_createChildItems();
   await step3_fixSolutionPages();
   await step4_createInnovationPage();
   await step5_createBranchTemplates();
