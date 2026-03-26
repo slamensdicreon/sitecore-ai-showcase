@@ -206,6 +206,45 @@ async function step1_fixDatasourceLocation() {
   }
 }
 
+const DATASOURCE_CHILDREN_RESOLVER_ID = "{2F5C334E-5615-423C-8281-9FC180191302}";
+
+async function step1b_setRenderingContentsResolver() {
+  console.log("\n═══ Step 1b: Set Rendering Contents Resolver on tile renderings ═══");
+  const tileRenderings = ["Mega Trends", "Solution Pathways", "Authority Stats", "Cross Navigation", "Proof Point Counter"];
+  for (const name of tileRenderings) {
+    const rawId = RENDERING_IDS[name];
+    if (!rawId) { console.log(`  ⚠ Rendering ID not found for: ${name}`); continue; }
+    const id = rawId.replace(/[{}-]/g, "").toLowerCase();
+    try {
+      await gql(`mutation($id:ID!,$lang:String!,$fields:[FieldValueInput!]!){updateItem(input:{itemId:$id,language:$lang,fields:$fields}){item{itemId}}}`, {
+        id, lang: "en",
+        fields: [{ name: "Rendering Contents Resolver", value: DATASOURCE_CHILDREN_RESOLVER_ID }],
+      });
+      console.log(`  ✓ ${name}: Rendering Contents Resolver → Datasource Item Children Resolver`);
+    } catch (e) {
+      console.error(`  ✗ ${name}: ${(e as Error).message}`);
+    }
+  }
+}
+
+const VARIANT_DEFINITION_TEMPLATE_ID = "4d50cdaec2d94de8b0808f992bfb1b55";
+const HEADLESS_VARIANTS_ROOT = `${SITE_ROOT}/Presentation/Headless Variants`;
+
+async function step1c_ensureHeroBannerVariants() {
+  console.log("\n═══ Step 1c: Ensure HeroBanner Headless Variant items ═══");
+  const heroVariantsPath = `${HEADLESS_VARIANTS_ROOT}/HeroBanner`;
+  const heroVariantsId = await getItemId(heroVariantsPath);
+  if (!heroVariantsId) {
+    console.log("  ⚠ HeroBanner variants folder not found, skipping");
+    return;
+  }
+  const requiredVariants = ["Default", "Compact", "Centered", "Right Justified"];
+  for (const name of requiredVariants) {
+    await ensureItem(heroVariantsPath, name, VARIANT_DEFINITION_TEMPLATE_ID);
+    console.log(`  ✓ Variant: ${name}`);
+  }
+}
+
 async function step2_fixHomepage() {
   console.log("\n═══ Step 2: Verify & fix Homepage layout ═══");
   const homePath = `${SITE_ROOT}/Home`;
@@ -677,6 +716,8 @@ async function main() {
   await resolveWellKnownIds();
 
   await step1_fixDatasourceLocation();
+  await step1b_setRenderingContentsResolver();
+  await step1c_ensureHeroBannerVariants();
   await step2_fixHomepage();
   await step2b_createChildItems();
   await step3_fixSolutionPages();
