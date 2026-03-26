@@ -813,34 +813,183 @@ async function step5_createBranchTemplates() {
   }
 }
 
+const MEDIA_ROOT = "/sitecore/media library/Project/TE Connectivity";
+const THUMBNAILS_FOLDER = `${MEDIA_ROOT}/Thumbnails`;
+const SVG_MEDIA_TEMPLATE_ID = "{EB3FB96C-D56B-4AC9-97F8-F07B24BB9BF7}";
+
+function generateThumbnailSvg(label: string, color: string, iconPath: string): string {
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="6" fill="${color}" opacity="0.15"/>
+  <rect x="1" y="1" width="62" height="62" rx="5" fill="none" stroke="${color}" stroke-width="1.5"/>
+  <path d="${iconPath}" fill="${color}"/>
+  <text x="32" y="56" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="${color}" font-weight="bold">${label}</text>
+</svg>`;
+}
+
+const COMPONENT_THUMBNAILS: Record<string, { color: string; iconPath: string; label: string; description: string }> = {
+  "Hero Banner": {
+    color: "#f28d00",
+    iconPath: "M8 12h48v4H8zm12 8h24v3H20zm16 7H28l4-4h0z",
+    label: "HERO",
+    description: "Full-width hero banner with headline, subtitle, badge, and call-to-action button",
+  },
+  "Mega Trends": {
+    color: "#167a87",
+    iconPath: "M10 14h12v12H10zm18 0h12v12H28zm9 0h12v12H37zM10 30h12v6H10zm18 0h12v6H28z",
+    label: "TRENDS",
+    description: "Grid of industry mega-trend cards with icons, stats, and descriptions",
+  },
+  "Solution Pathways": {
+    color: "#04215d",
+    iconPath: "M14 18l8-6 8 6v14H14zm20 0l8-6 8 6v14H34zM24 26h4v6h-4z",
+    label: "PATHWAYS",
+    description: "Interactive solution pathway cards guiding users to solutions",
+  },
+  "Authority Stats": {
+    color: "#2e4957",
+    iconPath: "M12 34V20h8v14zm14 0V14h8v20zm14 0V24h8v10z",
+    label: "STATS",
+    description: "Animated counter section showing key company statistics and metrics",
+  },
+  "Solution Hero": {
+    color: "#167a87",
+    iconPath: "M8 14h48v20H8zm12 4h24v3H20zm10 6h4v4h-4z",
+    label: "SOL HERO",
+    description: "Industry-specific hero with accent color, label, and full-width layout",
+  },
+  "Solution Narrative": {
+    color: "#04215d",
+    iconPath: "M8 14h24v24H8zm28 0h20v4H36zm0 8h20v2H36zm0 5h20v2H36zm0 5h14v2H36z",
+    label: "NARRATIVE",
+    description: "Two-column narrative section with heading, lead text, and rich body content",
+  },
+  "Product Discovery": {
+    color: "#f28d00",
+    iconPath: "M10 14h12v14H10zm16 0h12v14H26zm16 0h12v14H42zM10 32h12v4H10zm16 0h12v4H26z",
+    label: "PRODUCTS",
+    description: "Product grid with filters, integrated with OrderCloud commerce catalog",
+  },
+  "Cross Navigation": {
+    color: "#2e4957",
+    iconPath: "M10 18h12v12H10zm16 0h12v12H26zm16 0h12v12H42zM30 36l2-3 2 3z",
+    label: "CROSS NAV",
+    description: "Card-based links to related solution pages with icons and descriptions",
+  },
+  "Proof Point Counter": {
+    color: "#167a87",
+    iconPath: "M20 34a12 12 0 1 1 24 0M32 22v8l4 4M12 34h4m32 0h4",
+    label: "PROOF PTS",
+    description: "Animated proof-point counters for showcasing innovation metrics",
+  },
+  "Rich Text Block": {
+    color: "#2e4957",
+    iconPath: "M12 14h40v3H12zm0 7h36v2H12zm0 5h40v2H12zm0 5h28v2H12zm0 5h34v2H12z",
+    label: "RICH TEXT",
+    description: "Flexible rich text content block for any page section",
+  },
+};
+
+async function uploadSvgToMediaLibrary(name: string, svgContent: string): Promise<string | null> {
+  const itemName = name.replace(/\s+/g, "-").toLowerCase();
+  const fullPath = `${THUMBNAILS_FOLDER}/${itemName}`;
+
+  const existing = await getItemId(fullPath);
+  if (existing) {
+    return existing;
+  }
+
+  const parentId = await getItemId(THUMBNAILS_FOLDER);
+  if (!parentId) {
+    throw new Error(`Thumbnails folder not found at ${THUMBNAILS_FOLDER}`);
+  }
+
+  const base64Content = Buffer.from(svgContent).toString("base64");
+
+  try {
+    const d = await gql(`mutation($input:UploadMediaInput!){uploadMedia(input:$input){mediaItem{itemId path}}}`, {
+      input: {
+        itemPath: fullPath,
+        fileName: `${itemName}.svg`,
+        content: base64Content,
+        language: "en",
+      },
+    });
+    const mediaId = d?.uploadMedia?.mediaItem?.itemId;
+    if (mediaId) {
+      console.log(`  + Uploaded SVG: ${itemName}.svg → ${fullPath}`);
+      return mediaId;
+    }
+  } catch (e: any) {
+    console.log(`  ⚠ uploadMedia mutation not available, using createItem fallback for ${name}`);
+  }
+
+  try {
+    const d = await gql(`mutation($n:String!,$p:ID!,$t:ID!,$l:String!,$f:[FieldValueInput!]){createItem(input:{name:$n,parent:$p,templateId:$t,language:$l,fields:$f}){item{itemId}}}`, {
+      n: itemName, p: parentId, t: SVG_MEDIA_TEMPLATE_ID, l: "en",
+      f: [
+        { name: "Extension", value: "svg" },
+        { name: "Mime Type", value: "image/svg+xml" },
+        { name: "Blob", value: base64Content },
+        { name: "Width", value: "64" },
+        { name: "Height", value: "64" },
+        { name: "Size", value: String(svgContent.length) },
+        { name: "Alt", value: name },
+      ],
+    });
+    const mediaId = d?.createItem?.item?.itemId;
+    if (mediaId) {
+      console.log(`  + Created media item: ${itemName} → ${fullPath}`);
+      return mediaId;
+    }
+  } catch (e2: any) {
+    console.log(`  ⚠ Could not create media item for ${name}: ${e2.message}`);
+  }
+
+  return null;
+}
+
 async function step5b_setRenderingThumbnails() {
-  console.log("\n═══ Step 5b: Set component thumbnails on renderings ═══");
+  console.log("\n═══ Step 5b: Upload component thumbnails to Media Library ═══");
 
-  const thumbnails: Record<string, { icon: string; description: string }> = {
-    "Hero Banner":       { icon: "Office/32x32/window_colors.png", description: "Full-width hero banner with headline, subtitle, badge, and call-to-action button" },
-    "Mega Trends":       { icon: "Office/32x32/chart_up_color.png", description: "Grid of industry mega-trend cards with icons, stats, and descriptions" },
-    "Solution Pathways": { icon: "Office/32x32/signpost.png", description: "Interactive solution pathway cards that ask questions and guide users to solutions" },
-    "Authority Stats":   { icon: "Office/32x32/gauge.png", description: "Animated counter section showing key company statistics and metrics" },
-    "Solution Hero":     { icon: "Office/32x32/window_environment.png", description: "Industry-specific hero with accent color, label, and full-width layout" },
-    "Solution Narrative": { icon: "Office/32x32/document_text.png", description: "Two-column narrative section with heading, lead text, and rich body content" },
-    "Product Discovery": { icon: "Office/32x32/elements_selection.png", description: "Product grid with filters, integrated with OrderCloud commerce catalog" },
-    "Cross Navigation":  { icon: "Office/32x32/navigate_right2.png", description: "Card-based links to related solution pages with icons and descriptions" },
-    "Proof Point Counter":{ icon: "Office/32x32/speedometer.png", description: "Animated proof-point counters for showcasing innovation metrics" },
-    "Rich Text Block":   { icon: "Office/32x32/document_plain_text.png", description: "Flexible rich text content block for any page section" },
-  };
+  const thumbFolderExists = await getItemId(THUMBNAILS_FOLDER);
+  if (!thumbFolderExists) {
+    await ensureItem(MEDIA_ROOT, "Thumbnails", FOLDER_TEMPLATE_ID);
+    console.log("  + Created Thumbnails folder in Media Library");
+  }
 
-  for (const [name, thumb] of Object.entries(thumbnails)) {
+  const mediaIds: Record<string, string> = {};
+
+  for (const [name, thumb] of Object.entries(COMPONENT_THUMBNAILS)) {
+    const svg = generateThumbnailSvg(thumb.label, thumb.color, thumb.iconPath);
+    const mediaId = await uploadSvgToMediaLibrary(name, svg);
+    if (mediaId) {
+      mediaIds[name] = mediaId;
+    }
+  }
+
+  console.log("\n  Setting __Thumbnail on rendering items...");
+  for (const [name, thumb] of Object.entries(COMPONENT_THUMBNAILS)) {
     const renderingId = RENDERING_IDS[name];
     if (!renderingId) continue;
     const formattedId = formatGuid(renderingId);
+
+    const mediaId = mediaIds[name];
+    let thumbnailValue: string;
+    if (mediaId) {
+      thumbnailValue = `<image mediaid="${formatGuid(mediaId)}" />`;
+    } else {
+      const itemName = name.replace(/\s+/g, "-").toLowerCase();
+      thumbnailValue = `${THUMBNAILS_FOLDER}/${itemName}`;
+    }
+
     await gql(`mutation($id:ID!,$lang:String!,$fields:[FieldValueInput!]!){updateItem(input:{itemId:$id,language:$lang,fields:$fields}){item{itemId}}}`, {
       id: formattedId, lang: "en",
       fields: [
-        { name: "__Thumbnail", value: thumb.icon },
+        { name: "__Thumbnail", value: thumbnailValue },
         { name: "__Short description", value: thumb.description },
       ],
     });
-    console.log(`  ✓ ${name}: thumbnail and description set`);
+    console.log(`  ✓ ${name}: thumbnail=${mediaId ? "media:" + formatGuid(mediaId) : "path"}, description set`);
   }
 }
 
@@ -948,6 +1097,42 @@ async function step6_validate() {
     } else {
       console.log(`  ✗ Branch "${bn}/$name/Data" folder missing`);
       errors++;
+    }
+  }
+
+  console.log("\n  Validating Insert Options on content items...");
+  const insertOptItems = [
+    { name: "Home", path: `${SITE_ROOT}/Home` },
+    { name: "Solutions", path: `${SITE_ROOT}/Home/Solutions` },
+    { name: "Innovation", path: `${SITE_ROOT}/Home/Innovation` },
+  ];
+  for (const ioi of insertOptItems) {
+    const item = await getItemFields(ioi.path);
+    const masters = item?.fields["__Masters"] || "";
+    if (masters && masters.includes("{")) {
+      console.log(`  ✓ ${ioi.name}: __Masters set (${masters.split("|").length} entries)`);
+    } else {
+      console.log(`  ✗ ${ioi.name}: __Masters not set or empty`);
+      errors++;
+    }
+  }
+
+  console.log("\n  Validating rendering thumbnails...");
+  const renderingItems = await gql(`query($p:String!){item(where:{path:$p}){children{nodes{itemId name fields(ownFields:false){nodes{name value}}}}}}`, { p: RENDERINGS_ROOT });
+  for (const r of renderingItems?.item?.children?.nodes || []) {
+    const fields = r.fields?.nodes || [];
+    const thumb = fields.find((f: any) => f.name === "__Thumbnail")?.value || "";
+    const desc = fields.find((f: any) => f.name === "__Short description")?.value || "";
+    if (thumb && thumb.length > 0) {
+      console.log(`  ✓ ${r.name}: __Thumbnail set`);
+    } else {
+      console.log(`  ✗ ${r.name}: __Thumbnail not set`);
+      errors++;
+    }
+    if (desc && desc.length > 0) {
+      console.log(`  ✓ ${r.name}: __Short description set`);
+    } else {
+      console.log(`  ⚠ ${r.name}: __Short description not set`);
     }
   }
 
