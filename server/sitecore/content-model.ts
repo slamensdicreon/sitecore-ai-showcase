@@ -68,6 +68,8 @@ export const componentTemplates: ComponentTemplate[] = [
       { name: "Default", description: "Full-width manifesto hero with video background", cssClass: "" },
       { name: "Compact", description: "Shorter hero without video, solid background", cssClass: "hero--compact" },
       { name: "Split", description: "Two-column hero with content left, media right", cssClass: "hero--split" },
+      { name: "Centered", description: "Center-aligned content on solid black background", cssClass: "hero--centered" },
+      { name: "Right Justified", description: "Right-aligned content with standard gradient background", cssClass: "hero--right" },
     ],
   },
   {
