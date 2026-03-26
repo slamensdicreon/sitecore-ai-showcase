@@ -135,11 +135,16 @@ export default async function Page({ params, searchParams }: PageProps) {
     notFound();
   }
 
-  const componentProps = await client.getComponentData(
-    page.layout,
-    {},
-    components
-  );
+  let componentProps = {};
+  try {
+    componentProps = await client.getComponentData(
+      page.layout,
+      {},
+      components
+    );
+  } catch (err) {
+    console.error('[NovaTech] getComponentData failed:', err instanceof Error ? err.message : err);
+  }
 
   return (
     <NextIntlClientProvider>

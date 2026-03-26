@@ -223,7 +223,13 @@ export const Default = async (props: SiteHeaderProps): Promise<JSX.Element> => {
     );
   }
 
-  const nav = await fetchNavData(rendering?.dataSource || '');
+  let nav: NavLinkData[];
+  try {
+    nav = await fetchNavData(rendering?.dataSource || '');
+  } catch (err) {
+    console.error('[NovaTech] SiteHeader fetchNavData error:', err);
+    nav = FALLBACK_NAV;
+  }
 
   return (
     <div
