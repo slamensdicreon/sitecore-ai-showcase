@@ -1,0 +1,23 @@
+---
+ID: "2973d344-e649-4c05-a59e-d7926223a068"
+Parent: "71b27a4d-0589-452f-92e0-2960a61356be"
+Template: "18a95f74-2dcf-4798-9147-47694b9836e2"
+Path: "/sitecore/content/TE Connectivity/TE Connectivity/Home/Data/Home Mega Trends"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - Hint: Section Label
+      Value: "Where We Create Impact"
+    - Hint: Heading
+      Value: "Positioned at the Intersection of Three Mega-Trends"
+    - Hint: Description
+      Value: "TE Connectivity is uniquely positioned where electrification, artificial intelligence, and industrial automation converge — benefiting from every single one simultaneously."
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20260325T000000Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
