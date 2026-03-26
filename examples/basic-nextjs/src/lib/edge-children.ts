@@ -38,6 +38,10 @@ function parseChild(child: EdgeChildResult): ChildItem {
   return { id: child.id, fields };
 }
 
+interface EdgeFetchInit extends RequestInit {
+  next?: { revalidate?: number | false; tags?: string[] };
+}
+
 export async function fetchDatasourceChildren(
   datasourceId: string,
   language = 'en'
@@ -48,15 +52,16 @@ export async function fetchDatasourceChildren(
   const cleanId = datasourceId.replace(/[{}]/g, '');
 
   try {
-    const res = await fetch(`${EDGE_URL}?sitecoreContextId=${contextId}`, {
+    const fetchOptions: EdgeFetchInit = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         query: CHILDREN_QUERY,
         variables: { datasource: cleanId, language },
       }),
-      next: { revalidate: 300 } as any,
-    });
+      next: { revalidate: 300 },
+    };
+    const res = await fetch(`${EDGE_URL}?sitecoreContextId=${contextId}`, fetchOptions);
     if (!res.ok) {
       console.warn(`[edge-children] fetch failed for ${cleanId}: ${res.status}`);
       return [];

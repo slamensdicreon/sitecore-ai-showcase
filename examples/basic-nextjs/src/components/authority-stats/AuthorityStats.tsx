@@ -10,9 +10,11 @@ type AuthorityStatsProps = {
 };
 
 export const Default = async ({ fields, rendering, params }: AuthorityStatsProps) => {
+  const language = params?.sc_lang || 'en';
+
   let children = getChildItems(rendering);
   if (children.length === 0 && rendering?.dataSource) {
-    children = await fetchDatasourceChildren(rendering.dataSource);
+    children = await fetchDatasourceChildren(rendering.dataSource, language);
   }
 
   return (

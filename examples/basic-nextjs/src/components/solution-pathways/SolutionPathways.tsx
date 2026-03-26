@@ -16,9 +16,11 @@ export const Default = async ({ fields, rendering, params }: SolutionPathwaysPro
   const variant = params?.FieldNames || '';
   const isLight = variant === 'pathways--light';
 
+  const language = params?.sc_lang || 'en';
+
   let children = getChildItems(rendering);
   if (children.length === 0 && rendering?.dataSource) {
-    children = await fetchDatasourceChildren(rendering.dataSource);
+    children = await fetchDatasourceChildren(rendering.dataSource, language);
   }
 
   return (
