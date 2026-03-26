@@ -739,12 +739,18 @@ export async function registerRoutes(
     inStock: z.boolean().optional(),
     stockQty: z.number().int().min(0).optional(),
     imageUrl: z.string().optional(),
+    datasheetUrl: z.string().optional(),
+    currency: z.string().optional(),
   });
+
+  const localProductUpdateSchema = localProductSchema.partial().omit({ sku: true });
 
   app.post("/api/admin/local-products", async (req, res) => {
     const parsed = localProductSchema.safeParse(req.body);
     if (!parsed.success) return res.status(400).json({ message: "Invalid input", errors: parsed.error.errors });
     try {
+      const existing = await storage.getProductBySku(parsed.data.sku);
+      if (existing) return res.status(409).json({ message: `A product with SKU "${parsed.data.sku}" already exists` });
       const product = await storage.createProduct(parsed.data as any);
       res.json(product);
     } catch (err: any) {
@@ -753,8 +759,10 @@ export async function registerRoutes(
   });
 
   app.put("/api/admin/local-products/:id", async (req, res) => {
+    const parsed = localProductUpdateSchema.safeParse(req.body);
+    if (!parsed.success) return res.status(400).json({ message: "Invalid input", errors: parsed.error.errors });
     try {
-      const updated = await storage.updateProduct(req.params.id, req.body);
+      const updated = await storage.updateProduct(req.params.id, parsed.data as any);
       if (!updated) return res.status(404).json({ message: "Product not found" });
       res.json(updated);
     } catch (err: any) {

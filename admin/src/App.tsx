@@ -174,14 +174,59 @@ function AdminDashboard() {
 
   const saveLocalProductMutation = useMutation({
     mutationFn: async (data: any) => { if (data.id) { const { id, ...rest } = data; const res = await apiRequest("PUT", `/api/admin/local-products/${id}`, rest); return res.json(); } const res = await apiRequest("POST", "/api/admin/local-products", data); return res.json(); },
-    onSuccess: () => { toast({ title: "Product Saved" }); setProductModal({ open: false }); queryClient.invalidateQueries({ queryKey: ["/api/admin/local-products"] }); queryClient.invalidateQueries({ queryKey: ["/api/admin/stats"] }); },
+    onSuccess: (_data: any, variables: any) => {
+      toast({ title: "Product Saved" });
+      setProductModal({ open: false });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/local-products"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/stats"] });
+      if (isConnected && confirm("Product saved locally. Push this product to OrderCloud now?")) {
+        const product = variables;
+        pushToOCMutation.mutate({
+          name: product.name, sku: product.sku, description: product.description,
+          basePrice: parseFloat(product.basePrice), active: product.active ?? true,
+          industry: product.industry, application: product.application,
+          minOrderQty: product.minOrderQty || 1, leadTimeDays: product.leadTimeDays || 5,
+          inStock: product.inStock ?? true, stockQty: product.stockQty || 0,
+          imageUrl: product.imageUrl,
+        });
+      }
+    },
     onError: (err: Error) => toast({ title: "Save Error", description: err.message, variant: "destructive" }),
   });
 
   const deleteLocalProductMutation = useMutation({
-    mutationFn: async (id: string) => { const res = await apiRequest("DELETE", `/api/admin/local-products/${id}`); return res.json(); },
-    onSuccess: () => { toast({ title: "Product Deleted" }); queryClient.invalidateQueries({ queryKey: ["/api/admin/local-products"] }); queryClient.invalidateQueries({ queryKey: ["/api/admin/stats"] }); },
+    mutationFn: async ({ id, sku, alsoDeleteFromOC }: { id: string; sku: string; alsoDeleteFromOC: boolean }) => {
+      const res = await apiRequest("DELETE", `/api/admin/local-products/${id}`);
+      const result = await res.json();
+      let ocDeleted = false;
+      let ocError: string | null = null;
+      if (alsoDeleteFromOC) {
+        try {
+          await apiRequest("DELETE", `/api/admin/ordercloud/products/${sku}`);
+          ocDeleted = true;
+        } catch (err: any) {
+          ocError = err.message || "Failed to delete from OrderCloud";
+        }
+      }
+      return { ...result, ocDeleted, ocError };
+    },
+    onSuccess: (data: any) => {
+      if (data.ocError) {
+        toast({ title: "Product Deleted Locally", description: `OrderCloud deletion failed: ${data.ocError}`, variant: "destructive" });
+      } else {
+        toast({ title: "Product Deleted", description: data.ocDeleted ? "Also removed from OrderCloud" : undefined });
+      }
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/local-products"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/stats"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/ordercloud/products"] });
+    },
     onError: (err: Error) => toast({ title: "Delete Error", description: err.message, variant: "destructive" }),
+  });
+
+  const pushToOCMutation = useMutation({
+    mutationFn: async (data: any) => { const res = await apiRequest("POST", "/api/admin/ordercloud/products", data); return res.json(); },
+    onSuccess: () => { toast({ title: "Pushed to OrderCloud" }); queryClient.invalidateQueries({ queryKey: ["/api/admin/ordercloud/products"] }); },
+    onError: (err: Error) => toast({ title: "Push Error", description: err.message, variant: "destructive" }),
   });
 
   const saveCategoryMutation = useMutation({
@@ -640,7 +685,8 @@ function AdminDashboard() {
                         <td className="p-4"><Badge variant={product.active ? "default" : "secondary"}>{product.active ? "Active" : "Inactive"}</Badge></td>
                         <td className="p-4"><div className="flex items-center gap-1">
                           <button onClick={() => setProductModal({ open: true, editing: product })} className="p-1.5 rounded-lg hover:bg-accent transition-colors" data-testid={`button-edit-product-${product.id}`}><Pencil className="h-3.5 w-3.5 text-muted-foreground" /></button>
-                          <button onClick={() => { if (confirm(`Delete "${product.name}"?`)) deleteLocalProductMutation.mutate(product.id); }} className="p-1.5 rounded-lg hover:bg-accent transition-colors" data-testid={`button-delete-product-${product.id}`}><Trash2 className="h-3.5 w-3.5 text-destructive" /></button>
+                          <button onClick={() => { pushToOCMutation.mutate({ name: product.name, sku: product.sku, description: product.description, basePrice: parseFloat(product.basePrice), active: product.active ?? true, industry: product.industry, application: product.application, minOrderQty: product.minOrderQty || 1, leadTimeDays: product.leadTimeDays || 5, inStock: product.inStock ?? true, stockQty: product.stockQty || 0, imageUrl: product.imageUrl }); }} disabled={!isConnected || pushToOCMutation.isPending} className="p-1.5 rounded-lg hover:bg-accent transition-colors disabled:opacity-40" title="Push to OrderCloud" data-testid={`button-push-oc-${product.id}`}><Upload className="h-3.5 w-3.5 text-primary" /></button>
+                          <button onClick={() => { if (confirm(`Delete "${product.name}"?`)) { const existsInOC = isConnected && ocProductsQuery.data?.Items?.some((op: any) => op.ID === product.sku); const alsoDeleteFromOC = existsInOC && confirm(`"${product.name}" exists in OrderCloud. Also delete it there?`); deleteLocalProductMutation.mutate({ id: product.id, sku: product.sku, alsoDeleteFromOC: !!alsoDeleteFromOC }); } }} className="p-1.5 rounded-lg hover:bg-accent transition-colors" data-testid={`button-delete-product-${product.id}`}><Trash2 className="h-3.5 w-3.5 text-destructive" /></button>
                         </div></td>
                       </tr>
                     );
@@ -1051,8 +1097,8 @@ function AdminDashboard() {
 }
 
 function ProductModal({ editing, categories, onClose, onSave, isPending }: { editing?: any; categories: any[]; onClose: () => void; onSave: (data: any) => void; isPending: boolean }) {
-  const [form, setForm] = useState({ name: editing?.name || "", sku: editing?.sku || "", description: editing?.description || "", categoryId: editing?.categoryId || "", basePrice: editing?.basePrice ? parseFloat(editing.basePrice).toString() : "", active: editing?.active ?? true, industry: editing?.industry || "", application: editing?.application || "", minOrderQty: editing?.minOrderQty?.toString() || "1", leadTimeDays: editing?.leadTimeDays?.toString() || "5", inStock: editing?.inStock ?? true, stockQty: editing?.stockQty?.toString() || "100", imageUrl: editing?.imageUrl || "" });
-  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); onSave({ ...(editing?.id ? { id: editing.id } : {}), name: form.name, sku: form.sku, description: form.description || undefined, categoryId: form.categoryId || undefined, basePrice: parseFloat(form.basePrice).toFixed(4), active: form.active, industry: form.industry || undefined, application: form.application || undefined, minOrderQty: parseInt(form.minOrderQty) || 1, leadTimeDays: parseInt(form.leadTimeDays) || 5, inStock: form.inStock, stockQty: parseInt(form.stockQty) || 0, imageUrl: form.imageUrl || undefined }); };
+  const [form, setForm] = useState({ name: editing?.name || "", sku: editing?.sku || "", description: editing?.description || "", categoryId: editing?.categoryId || "", basePrice: editing?.basePrice ? parseFloat(editing.basePrice).toString() : "", active: editing?.active ?? true, industry: editing?.industry || "", application: editing?.application || "", minOrderQty: editing?.minOrderQty?.toString() || "1", leadTimeDays: editing?.leadTimeDays?.toString() || "5", inStock: editing?.inStock ?? true, stockQty: editing?.stockQty?.toString() || "100", imageUrl: editing?.imageUrl || "", datasheetUrl: editing?.datasheetUrl || "", currency: editing?.currency || "USD" });
+  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); onSave({ ...(editing?.id ? { id: editing.id } : {}), name: form.name, sku: form.sku, description: form.description || undefined, categoryId: form.categoryId || undefined, basePrice: parseFloat(form.basePrice).toFixed(4), active: form.active, industry: form.industry || undefined, application: form.application || undefined, minOrderQty: parseInt(form.minOrderQty) || 1, leadTimeDays: parseInt(form.leadTimeDays) || 5, inStock: form.inStock, stockQty: parseInt(form.stockQty) || 0, imageUrl: form.imageUrl || undefined, datasheetUrl: form.datasheetUrl || undefined, currency: form.currency || "USD" }); };
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={onClose}>
       <div className="bg-card border border-border rounded-2xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()} data-testid="modal-product">
@@ -1075,6 +1121,11 @@ function ProductModal({ editing, categories, onClose, onSave, isPending }: { edi
           <div className="grid grid-cols-2 gap-4">
             <div><label className="text-xs font-medium text-muted-foreground block mb-1.5">Industry</label><input type="text" value={form.industry} onChange={(e) => setForm(f => ({ ...f, industry: e.target.value }))} className="w-full h-9 px-3 rounded-lg border border-border bg-background text-sm" /></div>
             <div><label className="text-xs font-medium text-muted-foreground block mb-1.5">Application</label><input type="text" value={form.application} onChange={(e) => setForm(f => ({ ...f, application: e.target.value }))} className="w-full h-9 px-3 rounded-lg border border-border bg-background text-sm" /></div>
+          </div>
+          <div><label className="text-xs font-medium text-muted-foreground block mb-1.5">Datasheet URL</label><input type="url" value={form.datasheetUrl} onChange={(e) => setForm(f => ({ ...f, datasheetUrl: e.target.value }))} placeholder="https://example.com/datasheet.pdf" className="w-full h-9 px-3 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring/40" data-testid="input-product-datasheet-url" /></div>
+          <div className="grid grid-cols-2 gap-4">
+            <div><label className="text-xs font-medium text-muted-foreground block mb-1.5">Currency</label><select value={form.currency} onChange={(e) => setForm(f => ({ ...f, currency: e.target.value }))} className="w-full h-9 px-3 rounded-lg border border-border bg-background text-sm" data-testid="select-product-currency"><option value="USD">USD</option><option value="EUR">EUR</option><option value="GBP">GBP</option><option value="CAD">CAD</option><option value="JPY">JPY</option><option value="CNY">CNY</option></select></div>
+            <div><label className="text-xs font-medium text-muted-foreground block mb-1.5">Image URL</label><input type="url" value={form.imageUrl} onChange={(e) => setForm(f => ({ ...f, imageUrl: e.target.value }))} placeholder="https://..." className="w-full h-9 px-3 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring/40" data-testid="input-product-image-url" /></div>
           </div>
           <div className="flex items-center gap-6"><label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={form.active} onChange={(e) => setForm(f => ({ ...f, active: e.target.checked }))} className="accent-primary" /> Active</label><label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={form.inStock} onChange={(e) => setForm(f => ({ ...f, inStock: e.target.checked }))} className="accent-primary" /> In Stock</label></div>
           <div className="flex justify-end gap-3 pt-2"><button type="button" onClick={onClose} className="px-5 py-2.5 rounded-4xl border border-border text-sm hover:bg-accent/60 transition-colors">Cancel</button><button type="submit" disabled={isPending} className="px-5 py-2.5 rounded-4xl bg-primary text-primary-foreground text-sm font-medium disabled:opacity-50 hover:bg-primary/90 transition-colors" data-testid="button-save-product">{isPending ? "Saving..." : "Save Product"}</button></div>
