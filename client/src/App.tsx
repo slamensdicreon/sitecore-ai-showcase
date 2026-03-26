@@ -7,6 +7,7 @@ import { AuthProvider } from "@/lib/auth";
 import { I18nProvider } from "@/lib/i18n";
 import { SitecoreProvider, initializeSitecoreComponents, injectEditingScripts, setupEditingMessageListener, isEditingRequest } from "@/sitecore";
 import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 import { AIChatbot } from "@/components/ai-chatbot";
 import Home from "@/pages/home";
 import Products from "@/pages/products";
@@ -60,11 +61,12 @@ function AppContent() {
   return (
     <SitecoreProvider>
       <AuthProvider>
-        <div className="min-h-screen bg-background">
+        <div className="min-h-screen bg-background flex flex-col">
           <Header />
-          <main>
+          <main className="flex-1">
             <Router />
           </main>
+          <Footer />
         </div>
         {chatbotEnabled && <AIChatbot />}
         <Toaster />

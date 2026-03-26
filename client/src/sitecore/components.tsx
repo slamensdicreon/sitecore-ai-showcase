@@ -621,6 +621,38 @@ function ScProofPointCounter({ fields, rendering }: SitecoreComponentProps) {
   );
 }
 
+function ScSiteHeader({ fields }: SitecoreComponentProps) {
+  const isEditing = useIsEditing();
+  const logoText = getFieldValue(fields["Logo Text"] as FieldValue) || "TE";
+  const tagline = getFieldValue(fields["Tagline"] as FieldValue) || "Every connection counts";
+
+  if (isEditing && !fields) {
+    return (
+      <div className="border-2 border-dashed border-blue-300/50 rounded-lg p-8 text-center">
+        <p className="text-sm text-blue-400">SiteHeader requires a datasource item assigned.</p>
+      </div>
+    );
+  }
+
+  return null;
+}
+
+function ScSiteFooter({ fields }: SitecoreComponentProps) {
+  const isEditing = useIsEditing();
+  const copyright = getFieldValue(fields["Copyright"] as FieldValue) || `© ${new Date().getFullYear()} TE Connectivity. All Rights Reserved.`;
+  const tagline = getFieldValue(fields["Tagline"] as FieldValue) || "Every connection counts";
+
+  if (isEditing && !fields) {
+    return (
+      <div className="border-2 border-dashed border-blue-300/50 rounded-lg p-8 text-center">
+        <p className="text-sm text-blue-400">SiteFooter requires a datasource item assigned.</p>
+      </div>
+    );
+  }
+
+  return null;
+}
+
 export function initializeSitecoreComponents() {
   registerComponents({
     HeroBanner: ScHeroBanner,
@@ -633,5 +665,7 @@ export function initializeSitecoreComponents() {
     CrossNavigation: ScCrossNavigation,
     RichTextBlock: ScRichTextBlock,
     ProofPointCounter: ScProofPointCounter,
+    SiteHeader: ScSiteHeader,
+    SiteFooter: ScSiteFooter,
   });
 }
