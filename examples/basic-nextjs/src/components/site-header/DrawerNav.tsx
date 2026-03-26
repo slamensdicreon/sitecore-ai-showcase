@@ -1,511 +1,205 @@
 'use client';
 
-import { useState, useCallback, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import NextLink from 'next/link';
-import type { NavLinkData } from './SiteHeader';
+
+interface NavLinkData {
+  id: string;
+  title: string;
+  href: string;
+  external: boolean;
+  children?: NavLinkData[];
+}
+
+interface MegaItem {
+  slug: string;
+  label: string;
+  description: string;
+  color: string;
+  iconPath: string;
+}
 
 interface DrawerNavProps {
   links: NavLinkData[];
+  megaItems?: MegaItem[];
 }
 
-const linkStyle: React.CSSProperties = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  padding: '14px 16px',
-  color: '#FFFFFF',
-  textDecoration: 'none',
-  fontSize: '1.05rem',
-  fontWeight: 500,
-  borderRadius: '8px',
-  transition: 'background 0.2s ease',
-  cursor: 'pointer',
-};
+export default function DrawerNav({ links, megaItems }: DrawerNavProps) {
+  const [open, setOpen] = useState(false);
+  const [solutionsExpanded, setSolutionsExpanded] = useState(false);
 
-const subLinkStyle: React.CSSProperties = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: '6px',
-  padding: '11px 20px',
-  color: '#FFFFFF',
-  textDecoration: 'none',
-  fontSize: '0.95rem',
-  fontWeight: 400,
-  borderRadius: '6px',
-  transition: 'background 0.15s ease',
-};
-
-function ChevronRight() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style={{ opacity: 0.6, flexShrink: 0 }}>
-      <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  );
-}
-
-function ExternalIcon() {
-  return (
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" style={{ opacity: 0.5, flexShrink: 0 }}>
-      <path d="M3.5 1.5H10.5V8.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M10.5 1.5L1.5 10.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  );
-}
-
-function getFocusableElements(container: HTMLElement): HTMLElement[] {
-  return Array.from(
-    container.querySelectorAll<HTMLElement>(
-      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
-    )
-  );
-}
-
-export default function DrawerNav({ links }: DrawerNavProps) {
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
-  const submenuTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const hamburgerRef = useRef<HTMLButtonElement>(null);
-  const drawerRef = useRef<HTMLDivElement>(null);
-  const submenuRef = useRef<HTMLDivElement>(null);
-
-  const closeDrawer = useCallback(() => {
-    setDrawerOpen(false);
-    setActiveSubmenu(null);
-    hamburgerRef.current?.focus();
-  }, []);
-
-  const openSubmenu = useCallback((itemId: string) => {
-    setActiveSubmenu(itemId);
-    requestAnimationFrame(() => {
-      if (submenuRef.current) {
-        const firstLink = submenuRef.current.querySelector<HTMLElement>('a, button');
-        firstLink?.focus();
-      }
-    });
-  }, []);
-
-  const closeSubmenu = useCallback(() => {
-    setActiveSubmenu(null);
-  }, []);
-
-  const handleItemHover = useCallback((itemId: string, hasChildren: boolean) => {
-    if (submenuTimeout.current) clearTimeout(submenuTimeout.current);
-    if (hasChildren) {
-      setActiveSubmenu(itemId);
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
     } else {
-      setActiveSubmenu(null);
-    }
-  }, []);
-
-  const handleItemLeave = useCallback(() => {
-    submenuTimeout.current = setTimeout(() => {
-      setActiveSubmenu(null);
-    }, 200);
-  }, []);
-
-  const handleSubmenuEnter = useCallback(() => {
-    if (submenuTimeout.current) clearTimeout(submenuTimeout.current);
-  }, []);
-
-  const handleSubmenuLeave = useCallback(() => {
-    submenuTimeout.current = setTimeout(() => {
-      setActiveSubmenu(null);
-    }, 200);
-  }, []);
-
-  useEffect(() => {
-    if (drawerOpen) {
-      requestAnimationFrame(() => {
-        if (drawerRef.current) {
-          const firstLink = drawerRef.current.querySelector<HTMLElement>('a[role="menuitem"]');
-          firstLink?.focus();
-        }
-      });
-    }
-  }, [drawerOpen]);
-
-  useEffect(() => {
-    if (!drawerOpen) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        if (activeSubmenu) {
-          setActiveSubmenu(null);
-          const activeItemEl = drawerRef.current?.querySelector<HTMLElement>(`[data-submenu-id="${activeSubmenu}"]`);
-          activeItemEl?.focus();
-        } else {
-          closeDrawer();
-        }
-        return;
-      }
-
-      if (e.key === 'Tab') {
-        const activePanel = activeSubmenu && submenuRef.current ? submenuRef.current : drawerRef.current;
-        if (!activePanel) return;
-
-        const focusable = getFocusableElements(activePanel);
-        if (focusable.length === 0) return;
-
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-
-        if (e.shiftKey) {
-          if (document.activeElement === first) {
-            e.preventDefault();
-            last.focus();
-          }
-        } else {
-          if (document.activeElement === last) {
-            e.preventDefault();
-            first.focus();
-          }
-        }
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    document.body.style.overflow = 'hidden';
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = '';
-    };
-  }, [drawerOpen, activeSubmenu, closeDrawer]);
-
-  const activeItem = links.find((l) => l.id === activeSubmenu);
-  const hasSubmenu = !!activeItem?.children?.length;
+      setSolutionsExpanded(false);
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [open]);
 
   return (
     <>
-      <style>{`
-        .eaa-drawer {
-          position: fixed; top: 0; right: 0;
-          width: 100vw; height: 100vh;
-          background: #061E40; color: #FFFFFF;
-          z-index: 1060; transition: transform 0.3s ease;
-          display: flex; flex-direction: column;
-          padding-top: 70px;
-        }
-        .eaa-submenu-panel {
-          position: fixed; top: 0; left: 0;
-          width: 100vw; height: 100vh;
-          background: #0076C0; color: #FFFFFF;
-          z-index: 1065;
-          display: flex; flex-direction: column;
-          padding-top: 70px;
-          box-shadow: none;
-        }
-        .eaa-submenu-back { display: flex; }
-        @media (min-width: 640px) {
-          .eaa-drawer {
-            width: 320px; max-width: 80vw;
-            padding-top: 80px;
-          }
-          .eaa-submenu-panel {
-            right: 320px; left: auto;
-            width: 280px;
-            z-index: 1055;
-            padding-top: 80px;
-            box-shadow: -4px 0 24px rgba(0,0,0,0.2);
-          }
-          .eaa-submenu-back { display: none; }
-        }
-      `}</style>
+      {/* Hamburger - visible only below lg */}
       <button
-        ref={hamburgerRef}
-        aria-label={drawerOpen ? 'Close menu' : 'Open menu'}
-        aria-expanded={drawerOpen}
-        aria-controls="main-nav-drawer"
-        onClick={() => setDrawerOpen((prev) => !prev)}
-        style={{
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          padding: '8px',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: '36px',
-          height: '36px',
-          position: 'relative',
-          zIndex: 1100,
-        }}
+        aria-label={open ? 'Close menu' : 'Open menu'}
+        aria-expanded={open}
+        onClick={() => setOpen(!open)}
+        className="te-hamburger"
+        data-testid="button-mobile-menu"
       >
-        <span
-          aria-hidden="true"
-          style={{
-            display: 'block',
-            width: '22px',
-            height: '2px',
-            background: '#FFFFFF',
-            borderRadius: '1px',
-            transition: 'transform 0.3s ease, opacity 0.3s ease',
-            position: 'absolute',
-            ...(drawerOpen
-              ? { transform: 'rotate(45deg)' }
-              : { transform: 'translateY(-6px)' }),
-          }}
-        />
-        <span
-          aria-hidden="true"
-          style={{
-            display: 'block',
-            width: '22px',
-            height: '2px',
-            background: '#FFFFFF',
-            borderRadius: '1px',
-            transition: 'opacity 0.3s ease',
-            position: 'absolute',
-            opacity: drawerOpen ? 0 : 1,
-          }}
-        />
-        <span
-          aria-hidden="true"
-          style={{
-            display: 'block',
-            width: '22px',
-            height: '2px',
-            background: '#FFFFFF',
-            borderRadius: '1px',
-            transition: 'transform 0.3s ease, opacity 0.3s ease',
-            position: 'absolute',
-            ...(drawerOpen
-              ? { transform: 'rotate(-45deg)' }
-              : { transform: 'translateY(6px)' }),
-          }}
-        />
+        {open ? (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2e4957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M18 6 6 18" /><path d="m6 6 12 12" />
+          </svg>
+        ) : (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2e4957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" />
+          </svg>
+        )}
       </button>
 
-      {drawerOpen && (
+      {/* Mobile menu panel */}
+      {open && (
         <div
-          onClick={closeDrawer}
-          role="presentation"
+          className="te-mobile-menu open"
           style={{
             position: 'fixed',
-            inset: 0,
-            background: 'rgba(0, 0, 0, 0.5)',
-            zIndex: 1050,
-            transition: 'opacity 0.3s ease',
+            top: 96,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: '#FFFFFF',
+            zIndex: 40,
+            overflowY: 'auto',
+            borderTop: '1px solid #e5e7eb',
           }}
-        />
-      )}
-
-      {drawerOpen && hasSubmenu && (
-        <div
-          ref={submenuRef}
-          role="dialog"
-          aria-modal="true"
-          aria-label={`${activeItem?.title} submenu`}
-          className="eaa-submenu-panel"
-          onMouseEnter={handleSubmenuEnter}
-          onMouseLeave={handleSubmenuLeave}
+          data-testid="mobile-menu"
         >
-          <div style={{ padding: '0 16px 12px', borderBottom: '1px solid rgba(255,255,255,0.15)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ padding: '12px 16px' }}>
+            {/* Mobile search */}
+            <div style={{ position: 'relative', marginBottom: '12px' }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>
+                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
+              </svg>
+              <input
+                type="search"
+                placeholder="Search products..."
+                readOnly
+                aria-label="Search products"
+                style={{
+                  width: '100%',
+                  height: '36px',
+                  padding: '0 16px 0 36px',
+                  border: '1px solid #e5e7eb',
+                  borderRadius: '6px',
+                  background: '#FFFFFF',
+                  fontSize: '14px',
+                  outline: 'none',
+                }}
+                data-testid="input-search-mobile"
+              />
+            </div>
+
+            {/* Solutions (expandable) */}
             <button
-              onClick={() => {
-                closeSubmenu();
-                const activeItemEl = drawerRef.current?.querySelector<HTMLElement>(`[data-submenu-id="${activeSubmenu}"]`);
-                activeItemEl?.focus();
-              }}
-              aria-label="Back to main menu"
-              className="eaa-submenu-back"
-              style={{
-                background: 'none',
-                border: 'none',
-                color: '#FFFFFF',
-                cursor: 'pointer',
-                padding: '4px',
-                display: 'flex',
-                alignItems: 'center',
-              }}
+              onClick={() => setSolutionsExpanded(!solutionsExpanded)}
+              className="te-mobile-nav-item"
+              data-testid="mobile-nav-solutions"
             >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M10 4L6 8L10 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#167a87" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.84Z" />
+                  <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" />
+                  <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" />
+                </svg>
+                Solutions
+              </span>
+              <svg
+                width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                style={{ transition: 'transform 0.2s', transform: solutionsExpanded ? 'rotate(180deg)' : 'rotate(0deg)' }}
+              >
+                <path d="m6 9 6 6 6-6" />
               </svg>
             </button>
-            <span style={{ fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', opacity: 0.7 }}>
-              {activeItem?.title}
-            </span>
-          </div>
-          <ul
-            role="menu"
-            style={{
-              listStyle: 'none',
-              margin: 0,
-              padding: '0 12px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '2px',
-              overflowY: 'auto',
-              flex: 1,
-            }}
-          >
-            {activeItem?.children?.map((child) => (
-              <li key={child.id} role="none">
-                {child.external ? (
-                  <a
-                    href={child.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    role="menuitem"
-                    style={subLinkStyle}
-                    onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
-                    onFocus={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; }}
-                    onBlur={(e) => { e.currentTarget.style.background = 'transparent'; }}
-                    onKeyDown={(e) => {
-                      if (e.key === 'ArrowLeft') {
-                        e.preventDefault();
-                        closeSubmenu();
-                        const activeItemEl = drawerRef.current?.querySelector<HTMLElement>(`[data-submenu-id="${activeSubmenu}"]`);
-                        activeItemEl?.focus();
-                      }
-                    }}
-                  >
-                    <span style={{ flex: 1 }}>{child.title}</span>
-                    <ExternalIcon />
-                  </a>
-                ) : (
+
+            {solutionsExpanded && megaItems && (
+              <div className="te-mobile-sub">
+                {megaItems.map((item) => (
                   <NextLink
-                    href={child.href}
-                    onClick={closeDrawer}
-                    role="menuitem"
-                    style={subLinkStyle}
-                    onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
-                    onFocus={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; }}
-                    onBlur={(e) => { e.currentTarget.style.background = 'transparent'; }}
-                    onKeyDown={(e) => {
-                      if (e.key === 'ArrowLeft') {
-                        e.preventDefault();
-                        closeSubmenu();
-                        const activeItemEl = drawerRef.current?.querySelector<HTMLElement>(`[data-submenu-id="${activeSubmenu}"]`);
-                        activeItemEl?.focus();
-                      }
-                    }}
+                    key={item.slug}
+                    href="/Solutions"
+                    onClick={() => setOpen(false)}
+                    className="te-mobile-sub-link"
+                    data-testid={`mobile-nav-solution-${item.slug}`}
                   >
-                    <span style={{ flex: 1 }}>{child.title}</span>
+                    <div className="te-mobile-sub-icon" style={{ background: `${item.color}18` }}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={item.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d={item.iconPath} />
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="te-mobile-sub-label">{item.label}</div>
+                      <div className="te-mobile-sub-desc">{item.description}</div>
+                    </div>
                   </NextLink>
-                )}
-              </li>
-            ))}
-          </ul>
+                ))}
+              </div>
+            )}
+
+            {/* Applications */}
+            <NextLink
+              href="/Solutions"
+              onClick={() => setOpen(false)}
+              className="te-mobile-nav-item"
+              data-testid="mobile-nav-applications"
+            >
+              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f28d00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect width="7" height="7" x="3" y="3" rx="1" />
+                  <rect width="7" height="7" x="14" y="3" rx="1" />
+                  <rect width="7" height="7" x="14" y="14" rx="1" />
+                  <rect width="7" height="7" x="3" y="14" rx="1" />
+                </svg>
+                Applications
+              </span>
+            </NextLink>
+
+            {/* All Products */}
+            <NextLink
+              href="/Products"
+              onClick={() => setOpen(false)}
+              className="te-mobile-nav-item"
+              data-testid="mobile-nav-products"
+            >
+              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e4957" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m7.5 4.27 9 5.15" />
+                  <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+                  <path d="m3.3 7 8.7 5 8.7-5" /><path d="M12 22V12" />
+                </svg>
+                All Products
+              </span>
+            </NextLink>
+
+            {/* Innovation */}
+            <NextLink
+              href="/Innovation"
+              onClick={() => setOpen(false)}
+              className="te-mobile-nav-item"
+              data-testid="mobile-nav-innovation"
+            >
+              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#167a87" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
+                  <path d="M9 18h6" /><path d="M10 22h4" />
+                </svg>
+                Innovation
+              </span>
+            </NextLink>
+          </div>
         </div>
       )}
-
-      <div
-        id="main-nav-drawer"
-        ref={drawerRef}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Main navigation"
-        className="eaa-drawer"
-        style={{
-          transform: drawerOpen ? 'translateX(0)' : 'translateX(100%)',
-          boxShadow: drawerOpen ? '-4px 0 24px rgba(0,0,0,0.3)' : 'none',
-          visibility: drawerOpen ? 'visible' : 'hidden',
-        }}
-      >
-        <ul
-          role="menu"
-          style={{
-            listStyle: 'none',
-            margin: 0,
-            padding: '0 24px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '4px',
-          }}
-        >
-          {links.map((item) => {
-            const hasChildren = !!item.children?.length;
-            const isActive = activeSubmenu === item.id;
-
-            const isHovered = hoveredItem === item.id;
-            const bgColor = isActive
-              ? 'rgba(0,118,192,0.2)'
-              : isHovered
-                ? 'rgba(255,255,255,0.08)'
-                : 'transparent';
-
-            const itemProps = {
-              'data-submenu-id': hasChildren ? item.id : undefined,
-              style: {
-                ...linkStyle,
-                background: bgColor,
-              } as React.CSSProperties,
-              onMouseEnter: () => {
-                setHoveredItem(item.id);
-                handleItemHover(item.id, hasChildren);
-              },
-              onMouseLeave: () => {
-                setHoveredItem(null);
-                handleItemLeave();
-              },
-              onFocus: () => {
-                setHoveredItem(item.id);
-              },
-              onBlur: () => {
-                setHoveredItem(null);
-              },
-              onKeyDown: (e: React.KeyboardEvent) => {
-                if (hasChildren && (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowRight')) {
-                  e.preventDefault();
-                  openSubmenu(item.id);
-                }
-                if (e.key === 'ArrowLeft' && isActive) {
-                  closeSubmenu();
-                }
-              },
-            };
-
-            return (
-              <li
-                key={item.id}
-                role="none"
-                onMouseEnter={() => handleItemHover(item.id, hasChildren)}
-                onMouseLeave={handleItemLeave}
-              >
-                {item.external ? (
-                  <a
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    role="menuitem"
-                    aria-haspopup={hasChildren ? 'true' : undefined}
-                    aria-expanded={hasChildren ? isActive : undefined}
-                    {...itemProps}
-                  >
-                    <span>{item.title}</span>
-                    {hasChildren && <ChevronRight />}
-                  </a>
-                ) : (
-                  <NextLink
-                    href={item.href}
-                    onClick={(e) => {
-                      if (hasChildren) {
-                        e.preventDefault();
-                        openSubmenu(item.id);
-                      } else {
-                        closeDrawer();
-                      }
-                    }}
-                    role="menuitem"
-                    aria-haspopup={hasChildren ? 'true' : undefined}
-                    aria-expanded={hasChildren ? isActive : undefined}
-                    {...itemProps}
-                  >
-                    <span>{item.title}</span>
-                    {hasChildren && <ChevronRight />}
-                  </NextLink>
-                )}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
     </>
   );
 }
